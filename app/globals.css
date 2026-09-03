@@ -106,6 +106,7 @@ p {
   border-radius: 5px !important;
   height: 66px !important;
   width: 258px;
+  max-width: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 16px;
   font-weight: 500;

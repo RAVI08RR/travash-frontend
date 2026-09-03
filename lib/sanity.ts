@@ -15,7 +15,7 @@ export const client = isValidProjectId
       projectId,
       dataset,
       apiVersion,
-      useCdn: process.env.NODE_ENV === 'production',
+      useCdn: false, // Ensure live, fresh data on Vercel without CDN caching delay
     })
   : createClient({
       // Stub client for development without Sanity configured

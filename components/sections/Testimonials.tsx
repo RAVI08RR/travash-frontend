@@ -79,6 +79,22 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
       : TESTIMONIALS
 
   const current = activeList[currentIdx % activeList.length]
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return
+    const diff = touchStart - e.changedTouches[0].clientX
+    if (diff > 50) {
+      setCurrentIdx((prev) => (prev + 1) % activeList.length)
+    } else if (diff < -50) {
+      setCurrentIdx((prev) => (prev - 1 + activeList.length) % activeList.length)
+    }
+    setTouchStart(null)
+  }
 
   return (
     <section className="py-12 lg:py-16 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
@@ -90,7 +106,11 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
         </div>
 
         {/* Big Testimonial Container Card matching Image 2 */}
-        <div className="bg-white rounded-[32px] sm:rounded-[36px] p-6 sm:p-10 lg:p-14 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/80">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="bg-white rounded-[32px] sm:rounded-[36px] p-6 sm:p-10 lg:p-14 shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-200/80"
+        >
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left: Rectangular photo */}
             <div className="lg:col-span-4 relative rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100 shadow-sm border border-gray-100">

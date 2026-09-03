@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface Industry {
   name: string
@@ -96,18 +97,23 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
     setTouchStart(e.touches[0].clientX)
   }
 
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + totalDots) % totalDots)
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % totalDots)
+
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStart === null) return
     const diff = touchStart - e.changedTouches[0].clientX
     if (diff > 50) {
       // swipe left -> next
-      setCurrentIndex((prev) => (prev + 1) % totalDots)
+      nextSlide()
     } else if (diff < -50) {
       // swipe right -> prev
-      setCurrentIndex((prev) => (prev - 1 + totalDots) % totalDots)
+      prevSlide()
     }
     setTouchStart(null)
   }
+
+  const stepDistance = 283.5 // 263.5px card + 20px gap
 
   return (
     <section
@@ -132,7 +138,7 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
           <div
             className="flex gap-[20px] transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(-${currentIndex * 311.5}px)`,
+              transform: `translateX(-${currentIndex * stepDistance}px)`,
             }}
           >
             {/* Render loop to support sliding seamlessly */}
@@ -169,19 +175,38 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
           </div>
         </div>
 
-        {/* 7 Circular Interactive Pagination Dots */}
-        <div className="flex items-center justify-center gap-2.5 mt-10">
-          {Array.from({ length: totalDots }).map((_, dot) => (
-            <button
-              key={dot}
-              onClick={() => setCurrentIndex(dot)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${dot === currentIndex
-                ? 'bg-[#0B4785] scale-110'
-                : 'border border-[#0B4785]/60 bg-transparent hover:bg-[#0B4785]/20'
+        {/* Interactive Navigation: Prev Arrow, Pagination Dots, Next Arrow */}
+        <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-10">
+          <button
+            onClick={prevSlide}
+            className="w-10 h-10 rounded-full border border-[#0B4785]/40 text-[#0B4785] hover:bg-[#0B4785] hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 bg-white"
+            aria-label="Previous industry slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-2.5">
+            {Array.from({ length: totalDots }).map((_, dot) => (
+              <button
+                key={dot}
+                onClick={() => setCurrentIndex(dot)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  dot === currentIndex
+                    ? 'bg-[#0B4785] scale-110'
+                    : 'border border-[#0B4785]/60 bg-transparent hover:bg-[#0B4785]/20'
                 }`}
-              aria-label={`Slide to industry panel ${dot + 1}`}
-            />
-          ))}
+                aria-label={`Slide to industry panel ${dot + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={nextSlide}
+            className="w-10 h-10 rounded-full border border-[#0B4785]/40 text-[#0B4785] hover:bg-[#0B4785] hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 bg-white"
+            aria-label="Next industry slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>

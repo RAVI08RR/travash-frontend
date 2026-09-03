@@ -27,9 +27,9 @@ export default function Hero({ data }: { data?: HeroData }) {
                 fontWeight: 500,
               }}
             >
-              <span className="whitespace-nowrap">AI-Assisted Software &amp;</span>
+              <span className="break-words sm:whitespace-nowrap">AI-Assisted Software &amp;</span>
               <br />
-              <span className="whitespace-nowrap">Product Development</span>
+              <span className="break-words sm:whitespace-nowrap">Product Development</span>
               <br />
               Company
             </h1>

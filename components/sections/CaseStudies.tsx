@@ -181,6 +181,23 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
     setCurrentIdx((prev) => (prev - 1 + activeStudies.length) % activeStudies.length)
   }
 
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return
+    const diff = touchStart - e.changedTouches[0].clientX
+    if (diff > 50) {
+      nextSlide()
+    } else if (diff < -50) {
+      prevSlide()
+    }
+    setTouchStart(null)
+  }
+
   return (
     <section className="py-12 lg:py-5 
     bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif]">
@@ -194,6 +211,8 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
 
         {/* Big Rounded Case Study Container matching exact gradient */}
         <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           className="border border-gray-200/90 rounded-[32px] p-6 sm:p-8 lg:p-12 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
           style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)' }}
         >

@@ -15,8 +15,9 @@ import BlogSection from '@/components/sections/BlogSection'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
 
-// Revalidate every 60 seconds (ISR)
-export const revalidate = 60
+// Ensure live content updates immediately on Vercel upon publishing in Sanity CMS
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 async function getPageData() {
   try {
