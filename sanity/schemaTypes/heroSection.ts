@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 export const heroSection = defineType({
   name: 'heroSection',
   title: 'Hero Section',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'eyebrowText',

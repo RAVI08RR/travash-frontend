@@ -2,8 +2,8 @@ import { defineType, defineField } from 'sanity'
 
 export const testimonialSection = defineType({
   name: 'testimonialSection',
-  title: 'Testimonials Section',
-  type: 'object',
+  title: 'Testimonial Section',
+  type: 'document',
   fields: [
     defineField({
       name: 'heading',

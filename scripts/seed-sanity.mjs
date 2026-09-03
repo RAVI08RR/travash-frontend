@@ -327,6 +327,17 @@ async function seed() {
   console.log('Writing siteSettings...')
   await client.createOrReplace(siteSettingsDoc)
 
+  console.log('Writing individual section documents...')
+  await client.createOrReplace({ _id: 'heroSection', _type: 'heroSection', ...homePageDoc.hero })
+  await client.createOrReplace({ _id: 'capabilitiesSection', _type: 'capabilitiesSection', ...homePageDoc.capabilities })
+  await client.createOrReplace({ _id: 'caseStudySection', _type: 'caseStudySection', ...homePageDoc.caseStudies })
+  await client.createOrReplace({ _id: 'statsSection', _type: 'statsSection', ...homePageDoc.stats })
+  await client.createOrReplace({ _id: 'introVideoSection', _type: 'introVideoSection', ...homePageDoc.introVideo })
+  await client.createOrReplace({ _id: 'testimonialSection', _type: 'testimonialSection', ...homePageDoc.testimonials })
+  await client.createOrReplace({ _id: 'aboutSection', _type: 'aboutSection', ...homePageDoc.about })
+  await client.createOrReplace({ _id: 'industriesSection', _type: 'industriesSection', ...homePageDoc.industries })
+  await client.createOrReplace({ _id: 'contactSection', _type: 'contactSection', ...homePageDoc.contact })
+
   console.log('Writing homePage...')
   await client.createOrReplace(homePageDoc)
 

@@ -9,8 +9,12 @@ const imageFragment = `{
 // Full home page query — fetches everything in one request
 export const homePageQuery = groq`
   {
-    "homePage": *[_type == "homePage"][0] {
-      hero {
+    "homePage": {
+      "hero": coalesce(
+        *[_id == "heroSection"][0],
+        *[_type == "heroSection"][0],
+        *[_type == "homePage"][0].hero
+      ) {
         eyebrowText,
         headingLine1,
         headingHighlight,
@@ -25,7 +29,11 @@ export const homePageQuery = groq`
           image ${imageFragment}
         }
       },
-      capabilities {
+      "capabilities": coalesce(
+        *[_id == "capabilitiesSection"][0],
+        *[_type == "capabilitiesSection"][0],
+        *[_type == "homePage"][0].capabilities
+      ) {
         heading,
         cards[] {
           iconName,
@@ -36,7 +44,11 @@ export const homePageQuery = groq`
           ctaHref
         }
       },
-      caseStudies {
+      "caseStudies": coalesce(
+        *[_id == "caseStudySection"][0],
+        *[_type == "caseStudySection"][0],
+        *[_type == "homePage"][0].caseStudies
+      ) {
         heading,
         caseStudies[] {
           projectName,
@@ -50,16 +62,28 @@ export const homePageQuery = groq`
           ctaHref
         }
       },
-      stats {
+      "stats": coalesce(
+        *[_id == "statsSection"][0],
+        *[_type == "statsSection"][0],
+        *[_type == "homePage"][0].stats
+      ) {
         stats[] { value, label }
       },
-      introVideo {
+      "introVideo": coalesce(
+        *[_id == "introVideoSection"][0],
+        *[_type == "introVideoSection"][0],
+        *[_type == "homePage"][0].introVideo
+      ) {
         eyebrow,
         heading,
         videoThumbnail ${imageFragment},
         videoUrl
       },
-      testimonials {
+      "testimonials": coalesce(
+        *[_id == "testimonialSection"][0],
+        *[_type == "testimonialSection"][0],
+        *[_type == "homePage"][0].testimonials
+      ) {
         heading,
         testimonials[] {
           quote,
@@ -69,14 +93,22 @@ export const homePageQuery = groq`
           authorPhoto ${imageFragment}
         }
       },
-      about {
+      "about": coalesce(
+        *[_id == "aboutSection"][0],
+        *[_type == "aboutSection"][0],
+        *[_type == "homePage"][0].about
+      ) {
         heading,
         paragraphs,
         image ${imageFragment},
         ctaLabel,
         ctaHref
       },
-      industries {
+      "industries": coalesce(
+        *[_id == "industriesSection"][0],
+        *[_type == "industriesSection"][0],
+        *[_type == "homePage"][0].industries
+      ) {
         heading,
         industries[] {
           name,
@@ -84,12 +116,20 @@ export const homePageQuery = groq`
           href
         }
       },
-      blog {
+      "blog": coalesce(
+        *[_id == "blogSection"][0],
+        *[_type == "blogSection"][0],
+        *[_type == "homePage"][0].blog
+      ) {
         heading,
         ctaLabel,
         ctaHref
       },
-      contact {
+      "contact": coalesce(
+        *[_id == "contactSection"][0],
+        *[_type == "contactSection"][0],
+        *[_type == "homePage"][0].contact
+      ) {
         heading,
         subheading,
         sideImage ${imageFragment},

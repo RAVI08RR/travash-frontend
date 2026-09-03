@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 export const caseStudySection = defineType({
   name: 'caseStudySection',
   title: 'Case Study Section',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'heading',
