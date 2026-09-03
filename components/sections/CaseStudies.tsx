@@ -200,7 +200,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
 
   return (
     <section className="py-12 lg:py-5 
-    bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif]">
+    bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
@@ -213,10 +213,10 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="border border-gray-200/90 rounded-[32px] p-6 sm:p-8 lg:p-12 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
+          className="border border-gray-200/90 rounded-[24px] sm:rounded-[32px] p-4 sm:p-8 lg:p-12 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
           style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)' }}
         >
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Column: Clean Image */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-sm border border-gray-100">
               <Image
@@ -231,26 +231,26 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
             {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
             <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
-                <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-[500] text-[#0B4785] tracking-tight">
+                <h3 className="text-xl sm:text-2xl lg:text-[32px] font-[500] text-[#0B4785] tracking-tight break-words">
                   {current.projectName}
                 </h3>
-                <p className="text-gray-600 text-[15px] font-medium mt-1 mb-6 whitespace-pre-line">
+                <p className="text-gray-600 text-[14px] sm:text-[15px] font-medium mt-1 mb-4 sm:mb-6 whitespace-pre-line">
                   {current.clientType}
                 </p>
 
-                <p className="text-sm font-bold text-gray-800 uppercase tracking-wide mb-3">
+                <p className="text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wide mb-3">
                   Key Outcomes
                 </p>
 
                 {/* 2x2 Outcome Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-6 sm:mb-8">
                   {current.outcomes.map((item, idx) => (
                     <div
                       key={idx}
                       className={`${item.bg || 'bg-gray-50'} border ${item.border || 'border-gray-200'
-                        } rounded-xl p-4 flex flex-col justify-center`}
+                        } rounded-xl p-3.5 sm:p-4 flex flex-col justify-center`}
                     >
-                      <span className="text-lg font-bold text-gray-900 leading-tight">
+                      <span className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
                         {item.value}
                       </span>
                       <span className="text-xs text-gray-600 mt-1 leading-snug">
@@ -262,37 +262,37 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
               </div>
 
               {/* Bottom Row: CTA + Slider Nav */}
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 pt-2">
                 <Link
                   href={current.ctaHref || '/work'}
-                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-8 text-sm transition-all duration-200 shadow-sm"
+                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-8 text-sm transition-all duration-200 shadow-sm w-full sm:w-[258px]"
                 >
                   {current.ctaLabel || 'View Case Study'}
                 </Link>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <button
                     onClick={prevSlide}
-                    className="w-10 h-10 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center"
+                    className="w-11 h-11 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer active:scale-95"
                     aria-label="Previous case study"
                   >
                     <Image
                       src="/home-img/Group 1000003288.png"
                       alt="Previous"
-                      width={40}
-                      height={40}
+                      width={44}
+                      height={44}
                     />
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="w-10 h-10 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center"
+                    className="w-11 h-11 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer active:scale-95"
                     aria-label="Next case study"
                   >
                     <Image
                       src="/home-img/Group 1000003287-1.png"
                       alt="Next"
-                      width={40}
-                      height={40}
+                      width={44}
+                      height={44}
                     />
                   </button>
                 </div>
