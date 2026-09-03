@@ -5,10 +5,18 @@ import Image from 'next/image'
 import { User, Phone, Mail, MessageSquare, FileText, Send } from 'lucide-react'
 import { Toaster, toast } from 'sonner'
 
-export default function Contact({ data }: { data?: { heading?: string; subheading?: string } }) {
+interface ContactData {
+  heading?: string
+  subheading?: string
+  sideImage?: { asset?: { url: string } }
+  submitLabel?: string
+}
+
+export default function Contact({ data }: { data?: ContactData }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
-  const imageUrl = '/getintouch.png'
+  const imageUrl = data?.sideImage?.asset?.url || '/getintouch.png'
+  const submitLabel = data?.submitLabel || 'Get a Free Consultation'
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -58,7 +66,7 @@ export default function Contact({ data }: { data?: { heading?: string; subheadin
             <div className="lg:col-span-6 relative min-h-[380px] lg:min-h-[580px]">
               <Image
                 src={imageUrl}
-                alt="Travash consultation specialist"
+                alt={data?.heading || 'Travash consultation specialist'}
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -70,11 +78,17 @@ export default function Contact({ data }: { data?: { heading?: string; subheadin
             <div className="lg:col-span-6 p-6 sm:p-10 lg:p-12 xl:p-14 flex flex-col justify-center">
               <div className="mb-6">
                 <h2 className="section-heading-title">
-                  Request Your<br />
-                  Free Consultation
+                  {data?.heading ? (
+                    data.heading
+                  ) : (
+                    <>
+                      Request Your<br />
+                      Free Consultation
+                    </>
+                  )}
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-[14px] mt-2 leading-relaxed">
-                  Get in touch today and let's turn your idea into a remarkable success story!
+                  {data?.subheading || "Get in touch today and let's turn your idea into a remarkable success story!"}
                 </p>
               </div>
 
@@ -158,7 +172,7 @@ export default function Contact({ data }: { data?: { heading?: string; subheadin
                   disabled={isSubmitting}
                   className="btn-global h-[66px] rounded-[5px] w-full bg-[#073B6C] hover:bg-[#0B4785] text-white font-semibold px-6 transition-colors duration-200 text-[15px] shadow-sm disabled:opacity-70 mt-2 cursor-pointer flex items-center justify-center"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Get a Free Consultation'}
+                  {isSubmitting ? 'Submitting...' : submitLabel}
                 </button>
               </form>
             </div>

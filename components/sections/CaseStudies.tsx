@@ -123,16 +123,62 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ]
 
-export default function CaseStudies({ data }: { data?: { heading?: string } }) {
+interface SanityCaseStudy {
+  projectName?: string
+  clientType?: string
+  image?: { asset?: { url: string } }
+  outcomes?: { value: string; label: string }[]
+  ctaLabel?: string
+  ctaHref?: string
+}
+
+interface CaseStudiesSectionData {
+  heading?: string
+  caseStudies?: SanityCaseStudy[]
+}
+
+const OUTCOME_STYLES = [
+  { bg: 'bg-[#E8FAF5]', border: 'border-[#A3EEDC]' },
+  { bg: 'bg-[#FFFBEA]', border: 'border-[#FEEA9F]' },
+  { bg: 'bg-[#F0F5FF]', border: 'border-[#D6E4FF]' },
+  { bg: 'bg-[#FAF0FF]', border: 'border-[#EED5FD]' },
+]
+
+export default function CaseStudies({ data }: { data?: CaseStudiesSectionData }) {
   const [currentIdx, setCurrentIdx] = useState(0)
-  const current = CASE_STUDIES[currentIdx]
+
+  const activeStudies =
+    data?.caseStudies && data.caseStudies.length > 0
+      ? data.caseStudies.map((s, i) => {
+          const fallback = CASE_STUDIES[i % CASE_STUDIES.length]
+          return {
+            projectName: s.projectName || fallback.projectName,
+            clientType: s.clientType || fallback.clientType,
+            image: s.image?.asset?.url || fallback.image,
+            outcomes:
+              s.outcomes && s.outcomes.length > 0
+                ? s.outcomes.map((o, idx) => ({
+                    value: o.value,
+                    label: o.label,
+                    bg: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].bg,
+                    border: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].border,
+                  }))
+                : fallback.outcomes,
+            ctaLabel: s.ctaLabel || fallback.ctaLabel,
+            ctaHref: s.ctaHref || fallback.ctaHref,
+          }
+        })
+      : CASE_STUDIES
+
+  const current = activeStudies[currentIdx % activeStudies.length]
+  const heading = data?.heading || 'Built on Results, Not Promises'
 
   const nextSlide = () => {
-    setCurrentIdx((prev) => (prev + 1) % CASE_STUDIES.length)
+    setCurrentIdx((prev) => (prev + 1) % activeStudies.length)
   }
 
   const prevSlide = () => {
-    setCurrentIdx((prev) => (prev - 1 + CASE_STUDIES.length) % CASE_STUDIES.length)
+    setCurrentIdx((prev) => (prev - 1 + activeStudies.length) % activeStudies.length)
   }
 
   return (
@@ -142,7 +188,7 @@ export default function CaseStudies({ data }: { data?: { heading?: string } }) {
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
-            Built on Results, Not Promises
+            {heading}
           </h2>
         </div>
 

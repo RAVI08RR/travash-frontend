@@ -4,7 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 interface CapabilityCard {
+  icon?: { asset?: { url: string } }
   iconSrc?: string
+  iconName?: string
   title?: string
   description?: string
   ctaLabel?: string
@@ -44,7 +46,18 @@ const DEFAULT_CARDS: CapabilityCard[] = [
 ]
 
 export default function Capabilities({ data }: { data?: CapabilitiesData }) {
-  const cards = DEFAULT_CARDS
+  const cards =
+    data?.cards && data.cards.length > 0
+      ? data.cards.map((c, i) => ({
+          iconSrc: c.icon?.asset?.url || c.iconSrc || DEFAULT_CARDS[i % DEFAULT_CARDS.length].iconSrc,
+          title: c.title || DEFAULT_CARDS[i % DEFAULT_CARDS.length].title,
+          description: c.description || DEFAULT_CARDS[i % DEFAULT_CARDS.length].description,
+          ctaLabel: c.ctaLabel || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaLabel,
+          ctaHref: c.ctaHref || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaHref,
+        }))
+      : DEFAULT_CARDS
+
+  const heading = data?.heading || 'Capabilities That Move Business Forward'
 
   return (
     <section className="py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
@@ -52,7 +65,7 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
-            Capabilities That Move Business Forward
+            {heading}
           </h2>
         </div>
 

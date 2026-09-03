@@ -8,6 +8,10 @@ interface SiteSettings {
   copyrightText?: string
   contactEmail?: string
   contactPhone?: string
+  socialLinks?: { platform: string; url: string }[]
+  menuLinks?: { label: string; href: string }[]
+  serviceLinks?: { label: string; href: string }[]
+  offices?: { label: string; address: string }[]
 }
 
 const SocialIcons: Record<string, () => React.ReactElement> = {
@@ -36,10 +40,59 @@ const SocialIcons: Record<string, () => React.ReactElement> = {
   ),
 }
 
+const DEFAULT_MENU_LINKS = [
+  { label: 'Home', href: '/' },
+  { label: 'About us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Blogs', href: '/blog' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'Contact us', href: '/contact' },
+  { label: 'Works', href: '/work' },
+  { label: 'Technologies', href: '/technologies' },
+]
+
+const DEFAULT_SERVICE_LINKS = [
+  { label: 'AI & Data Engineering', href: '/services/ai-data' },
+  { label: 'Software Engineering', href: '/services/software' },
+  { label: 'Digital Experiences', href: '/services/digital' },
+  { label: 'Data & Analytics Solutions', href: '/services/analytics' },
+  { label: 'Enterprise Applications', href: '/services/enterprise' },
+  { label: 'Cloud & DevOps', href: '/services/cloud' },
+  { label: 'Dedicated Talent & Teams', href: '/services/dedicated-teams' },
+  { label: 'Quality Assurance & Testing', href: '/services/qa' },
+  { label: 'Staff Augmentation', href: '/services/staff-augmentation' },
+]
+
+const DEFAULT_OFFICES = [
+  {
+    label: 'India',
+    address: 'Sanali Spazio building, Inorbit Mall Road, Madhapur Plot No 19, Software Units Layout, Sy.No.64, Madhapur Hyderabad, Rangareddy Telangana 500081',
+  },
+  {
+    label: 'Dubai',
+    address: 'SAIF ZONE ADDRESS : Saif Office Q1 05 103/A Sharjah U.A.E',
+  },
+]
+
+const DEFAULT_SOCIALS = [
+  { platform: 'facebook', url: 'https://www.facebook.com/travashsoftwaresolutions' },
+  { platform: 'twitter', url: 'https://twitter.com/TravashSoftSols' },
+  { platform: 'instagram', url: 'https://www.instagram.com/travashsoftwaresolutions/' },
+  { platform: 'linkedin', url: 'https://www.linkedin.com/company/travash-software-solutions/' },
+]
+
 export default function Footer({ settings }: { settings?: SiteSettings }) {
   const logoUrl =
     settings?.footerLogo?.asset?.url ||
     'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg'
+
+  const menuLinks = settings?.menuLinks && settings.menuLinks.length > 0 ? settings.menuLinks : DEFAULT_MENU_LINKS
+  const serviceLinks = settings?.serviceLinks && settings.serviceLinks.length > 0 ? settings.serviceLinks : DEFAULT_SERVICE_LINKS
+  const offices = settings?.offices && settings.offices.length > 0 ? settings.offices : DEFAULT_OFFICES
+  const socialLinks = settings?.socialLinks && settings.socialLinks.length > 0 ? settings.socialLinks : DEFAULT_SOCIALS
+  const copyright = settings?.copyrightText || '©2025 Travash Software Solutions Pvt. Ltd'
+  const email = settings?.contactEmail || 'contact@travash.com'
+  const phone = settings?.contactPhone || '(+91) 7416743434'
 
   return (
     <footer className="bg-white text-gray-700 border-t border-gray-200">
@@ -59,17 +112,13 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               </Link>
               {/* Social Icons */}
               <div className="flex gap-2.5 pt-2">
-                {[
-                  { platform: 'facebook', href: 'https://www.facebook.com/travashsoftwaresolutions' },
-                  { platform: 'twitter', href: 'https://twitter.com/TravashSoftSols' },
-                  { platform: 'instagram', href: 'https://www.instagram.com/travashsoftwaresolutions/' },
-                  { platform: 'linkedin', href: 'https://www.linkedin.com/company/travash-software-solutions/' },
-                ].map(({ platform, href }) => {
-                  const Icon = SocialIcons[platform]
+                {socialLinks.map(({ platform, url }) => {
+                  const key = platform.toLowerCase()
+                  const Icon = SocialIcons[key]
                   return (
                     <a
                       key={platform}
-                      href={href}
+                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:text-[#0B4785] hover:border-[#0B4785] hover:bg-gray-50 transition-all"
@@ -83,7 +132,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
             </div>
 
             <div className="text-xs text-gray-500 pt-4 flex flex-col gap-1.5">
-              <p>©2025 Travash Software Solutions Pvt. Ltd</p>
+              <p>{copyright}</p>
               <div className="flex gap-2">
                 <Link href="/privacy" className="hover:text-[#0B4785] transition-colors">
                   Privacy Policy
@@ -100,16 +149,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           <div className="lg:col-span-2 flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Menu</h4>
             <ul className="flex flex-col gap-2.5 text-sm">
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'About us', href: '/about' },
-                { label: 'Services', href: '/services' },
-                { label: 'Blogs', href: '/blog' },
-                { label: 'Careers', href: '/careers' },
-                { label: 'Contact us', href: '/contact' },
-                { label: 'Works', href: '/work' },
-                { label: 'Technologies', href: '/technologies' },
-              ].map((link, i) => (
+              {menuLinks.map((link, i) => (
                 <li key={i}>
                   <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors">
                     {link.label}
@@ -123,17 +163,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           <div className="lg:col-span-3 flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Our Services</h4>
             <ul className="flex flex-col gap-2.5 text-sm">
-              {[
-                { label: 'AI & Data Engineering', href: '/services/ai-data' },
-                { label: 'Software Engineering', href: '/services/software' },
-                { label: 'Digital Experiences', href: '/services/digital' },
-                { label: 'Data & Analytics Solutions', href: '/services/analytics' },
-                { label: 'Enterprise Applications', href: '/services/enterprise' },
-                { label: 'Cloud & DevOps', href: '/services/cloud' },
-                { label: 'Dedicated Talent & Teams', href: '/services/dedicated-teams' },
-                { label: 'Quality Assurance & Testing', href: '/services/qa' },
-                { label: 'Staff Augmentation', href: '/services/staff-augmentation' },
-              ].map((link, i) => (
+              {serviceLinks.map((link, i) => (
                 <li key={i}>
                   <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors">
                     {link.label}
@@ -147,35 +177,28 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           <div className="lg:col-span-4 flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Contact</h4>
             <div className="flex flex-col gap-4 text-sm text-gray-600">
-              {/* India */}
-              <div>
-                <p className="font-semibold text-gray-900 mb-0.5">India</p>
-                <p className="leading-relaxed text-xs sm:text-sm text-gray-600">
-                  Sanali Spazio building, Inorbit Mall Road, Madhapur Plot No 19, Software Units Layout, Sy.No.64, Madhapur Hyderabad, Rangareddy Telangana 500081
-                </p>
-              </div>
-
-              {/* Dubai */}
-              <div>
-                <p className="font-semibold text-gray-900 mb-0.5">Dubai</p>
-                <p className="leading-relaxed text-xs sm:text-sm text-gray-600">
-                  SAIF ZONE ADDRESS : Saif Office Q1 05 103/A Sharjah U.A.E
-                </p>
-              </div>
+              {offices.map((office, idx) => (
+                <div key={idx}>
+                  <p className="font-semibold text-gray-900 mb-0.5">{office.label}</p>
+                  <p className="leading-relaxed text-xs sm:text-sm text-gray-600">
+                    {office.address}
+                  </p>
+                </div>
+              ))}
 
               {/* Email & Phone */}
               <div className="pt-2 flex flex-col gap-1.5 text-sm">
                 <a
-                  href="mailto:contact@travash.com"
+                  href={`mailto:${email}`}
                   className="text-gray-600 hover:text-[#0B4785] transition-colors"
                 >
-                  contact@travash.com
+                  {email}
                 </a>
                 <a
-                  href="tel:+917416743434"
+                  href={`tel:${phone.replace(/\s+/g, '')}`}
                   className="text-gray-600 hover:text-[#0B4785] transition-colors font-medium"
                 >
-                  (+91) 7416743434
+                  {phone}
                 </a>
               </div>
             </div>

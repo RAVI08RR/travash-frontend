@@ -53,16 +53,36 @@ const ALL_INDUSTRIES: Industry[] = [
   },
 ]
 
-export default function Industries({ data }: { data?: { heading?: string } }) {
+interface SanityIndustry {
+  name?: string
+  image?: { asset?: { url: string } }
+  href?: string
+}
+
+interface IndustriesSectionData {
+  heading?: string
+  industries?: SanityIndustry[]
+}
+
+export default function Industries({ data }: { data?: IndustriesSectionData }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const totalItems = ALL_INDUSTRIES.length
-  // Max starting index so 5 items are displayed on desktop without empty space
-  // We can cycle smoothly across all dots
-  const totalDots = 7
+  const activeIndustries =
+    data?.industries && data.industries.length > 0
+      ? data.industries.map((ind, i) => {
+          const fb = ALL_INDUSTRIES[i % ALL_INDUSTRIES.length]
+          return {
+            name: ind.name || fb.name,
+            image: ind.image?.asset?.url || fb.image,
+            href: ind.href || fb.href,
+          }
+        })
+      : ALL_INDUSTRIES
+
+  const totalDots = Math.min(7, Math.max(1, activeIndustries.length - 1))
 
   useEffect(() => {
     if (isPaused) return
@@ -116,7 +136,7 @@ export default function Industries({ data }: { data?: { heading?: string } }) {
             }}
           >
             {/* Render loop to support sliding seamlessly */}
-            {[...ALL_INDUSTRIES, ...ALL_INDUSTRIES].map((ind, idx) => (
+            {[...activeIndustries, ...activeIndustries].map((ind, idx) => (
               <div
                 key={idx}
                 className="w-[263.5px] h-[208.5px] flex-shrink-0"

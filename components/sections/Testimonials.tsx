@@ -49,9 +49,36 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ]
 
-export default function Testimonials({ data }: { data?: { heading?: string } }) {
+interface SanityTestimonial {
+  quote?: string
+  authorName?: string
+  authorTitle?: string
+  authorCompany?: string
+  authorPhoto?: { asset?: { url: string } }
+}
+
+interface TestimonialsSectionData {
+  heading?: string
+  testimonials?: SanityTestimonial[]
+}
+
+export default function Testimonials({ data }: { data?: TestimonialsSectionData }) {
   const [currentIdx, setCurrentIdx] = useState(0)
-  const current = TESTIMONIALS[currentIdx]
+
+  const activeList =
+    data?.testimonials && data.testimonials.length > 0
+      ? data.testimonials.map((t, i) => {
+          const fb = TESTIMONIALS[i % TESTIMONIALS.length]
+          return {
+            quote: t.quote || fb.quote,
+            authorName: t.authorName || fb.authorName,
+            authorTitle: t.authorTitle || fb.authorTitle,
+            authorPhoto: t.authorPhoto?.asset?.url || fb.authorPhoto,
+          }
+        })
+      : TESTIMONIALS
+
+  const current = activeList[currentIdx % activeList.length]
 
   return (
     <section className="py-12 lg:py-16 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
@@ -91,9 +118,9 @@ export default function Testimonials({ data }: { data?: { heading?: string } }) 
           </div>
         </div>
 
-        {/* 5 Pagination Dots */}
+        {/* Pagination Dots */}
         <div className="flex items-center justify-center gap-2.5 mt-8">
-          {TESTIMONIALS.map((_, i) => (
+          {activeList.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentIdx(i)}

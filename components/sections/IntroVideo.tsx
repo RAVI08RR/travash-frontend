@@ -8,11 +8,23 @@ interface IntroVideoData {
   eyebrow?: string
   heading?: string
   videoUrl?: string
+  videoThumbnail?: { asset?: { url: string } }
+}
+
+function getEmbedUrl(url?: string) {
+  if (!url) return 'https://www.youtube.com/embed/ch2ui0gfHUY?autoplay=1&rel=0'
+  if (url.includes('youtube.com/embed/')) return `${url}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0`
+  const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/)
+  if (ytMatch && ytMatch[1]) {
+    return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&rel=0`
+  }
+  return url
 }
 
 export default function IntroVideo({ data }: { data?: IntroVideoData }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const youtubeEmbedUrl = 'https://www.youtube.com/embed/ch2ui0gfHUY?autoplay=1&rel=0'
+  const embedUrl = getEmbedUrl(data?.videoUrl)
+  const posterUrl = data?.videoThumbnail?.asset?.url || '/home-img/Group 1000003287.png'
 
   return (
     <>
@@ -48,10 +60,9 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
             >
             {!isPlaying ? (
               <>
-                {/* Poster image from public/home-img/Group 1000003287.png */}
                 <Image
-                  src="/home-img/Group 1000003287.png"
-                  alt="Meet Your Next Technology Partner video poster"
+                  src={posterUrl}
+                  alt={data?.heading || 'Meet Your Next Technology Partner video poster'}
                   fill
                   priority
                   className="object-cover"
@@ -72,8 +83,8 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
               </>
             ) : (
               <iframe
-                src={youtubeEmbedUrl}
-                title="Meet Your Next Technology Partner"
+                src={embedUrl}
+                title={data?.heading || 'Meet Your Next Technology Partner'}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full border-0"
@@ -102,8 +113,8 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
               <X size={24} />
             </button>
             <iframe
-              src={youtubeEmbedUrl}
-              title="Meet Your Next Technology Partner - Travash"
+              src={embedUrl}
+              title={data?.heading || 'Meet Your Next Technology Partner - Travash'}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full border-0"
