@@ -9,6 +9,7 @@ import Footer from '@/components/sections/Footer'
 import Contact from '@/components/sections/Contact'
 
 import CaseStudyHero from '@/components/case-study/CaseStudyHero'
+import CaseStudySubNav from '@/components/case-study/CaseStudySubNav'
 import CaseStudyMetrics from '@/components/case-study/CaseStudyMetrics'
 import CaseStudyContentSection from '@/components/case-study/CaseStudyContentSection'
 import ProjectVisual from '@/components/case-study/ProjectVisual'
@@ -135,25 +136,28 @@ export default async function CaseStudyPage({
         {/* 1-3. Hero Section with Project Metadata & Badge */}
         <CaseStudyHero data={caseStudy} />
 
-        {/* 4. Key Metrics Grid */}
-        <CaseStudyMetrics data={caseStudy} />
+        {/* Sticky Sub-navigation Bar matching Net Solutions */}
+        <CaseStudySubNav />
 
-        {/* 5. Executive Summary */}
+        {/* 4. Executive Summary */}
         {caseStudy.executiveSummary && (
           <CaseStudyContentSection
-            id="executive-summary"
+            id="overview"
             eyebrow="Overview"
             title={caseStudy.executiveSummary.title || 'Executive Summary'}
             subtitle={caseStudy.executiveSummary.subtitle}
             variant="white"
           >
-            <div className="flex flex-col gap-4 text-gray-700 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal">
+            <div className="flex flex-col gap-4 text-gray-700 text-base sm:text-lg lg:text-[18px] leading-relaxed font-normal">
               {caseStudy.executiveSummary.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
             </div>
           </CaseStudyContentSection>
         )}
+
+        {/* 5. Key Metrics / Outcomes Grid */}
+        <CaseStudyMetrics data={caseStudy} />
 
         {/* 6-7. The Challenge */}
         {caseStudy.challenge && (

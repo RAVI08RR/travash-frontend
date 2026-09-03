@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { ArrowRight, MessageSquareCode } from 'lucide-react'
 
 interface CaseStudyNextStepProps {
@@ -21,27 +24,33 @@ export default function CaseStudyNextStep({
   },
 }: CaseStudyNextStepProps) {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-gray-100/80 overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#073B6C] text-white rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-8 sm:p-12 lg:p-16 shadow-md relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-[#002E54] text-white rounded-3xl p-8 sm:p-14 lg:p-16 shadow-xl relative overflow-hidden"
+        >
           {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#0B4785] rounded-full blur-3xl pointer-events-none opacity-60" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[120px] pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl">
             <span className="text-xs font-bold uppercase tracking-widest text-[#14B8A6] block mb-3">
               Actionable Execution
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
               {heading}
             </h2>
-            <p className="text-white/80 text-sm sm:text-base lg:text-lg leading-relaxed font-normal mb-8 sm:mb-10">
+            <p className="text-white/85 text-base sm:text-lg leading-relaxed font-normal mb-8 sm:mb-10">
               {content}
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href={primaryCTA.href || '#contact'}
-                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#073B6C] hover:bg-gray-100 font-semibold px-8 text-sm transition-all duration-200 shadow-sm w-full sm:w-auto"
+                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#002E54] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md w-full sm:w-auto active:scale-95"
               >
                 <span>{primaryCTA.label}</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -50,7 +59,7 @@ export default function CaseStudyNextStep({
               {secondaryCTA && (
                 <Link
                   href={secondaryCTA.href || '#contact'}
-                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200 w-full sm:w-auto"
+                  className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200 w-full sm:w-auto"
                 >
                   <MessageSquareCode className="w-4 h-4 mr-2" />
                   <span>{secondaryCTA.label}</span>
@@ -58,7 +67,7 @@ export default function CaseStudyNextStep({
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

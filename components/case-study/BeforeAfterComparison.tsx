@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import { XCircle, CheckCircle2 } from 'lucide-react'
 
 interface BeforeAfterProps {
@@ -18,13 +21,19 @@ export default function BeforeAfterComparison({
   after,
 }: BeforeAfterProps) {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-gray-100/80 overflow-hidden">
+    <section id="transformation" className="py-16 sm:py-20 lg:py-24 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16"
+        >
           <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
             Operational Transformation
           </span>
-          <h2 className="section-heading-title !text-2xl sm:!text-3xl lg:!text-4xl mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
             {title}
           </h2>
           {subtitle && (
@@ -32,22 +41,28 @@ export default function BeforeAfterComparison({
               {subtitle}
             </p>
           )}
-        </div>
+        </motion.div>
 
-        {/* 2 Comparison Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        {/* 2 Comparison Columns with Scroll Animation */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-6xl mx-auto">
           {/* Left Column: Before */}
-          <div className="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xs flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#FFF5F5] border border-[#FED7D7] rounded-3xl p-7 sm:p-9 lg:p-10 shadow-xs flex flex-col justify-between"
+          >
             <div>
-              <div className="flex items-center gap-2 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#E53E3E]" />
-                <h3 className="text-sm sm:text-base font-bold text-[#9B2C2C] tracking-wide uppercase">
+              <div className="flex items-center gap-2.5 mb-6">
+                <span className="w-3 h-3 rounded-full bg-[#E53E3E]" />
+                <h3 className="text-sm sm:text-base font-bold text-[#9B2C2C] tracking-wider uppercase">
                   {beforeTitle}
                 </h3>
               </div>
               <ul className="flex flex-col gap-4">
                 {before.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
+                  <li key={idx} className="flex items-start gap-3.5">
                     <XCircle className="w-5 h-5 text-[#E53E3E] flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-gray-800 leading-relaxed font-normal">
                       {point}
@@ -56,20 +71,26 @@ export default function BeforeAfterComparison({
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: After */}
-          <div className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xs flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-3xl p-7 sm:p-9 lg:p-10 shadow-xs flex flex-col justify-between"
+          >
             <div>
-              <div className="flex items-center gap-2 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A]" />
-                <h3 className="text-sm sm:text-base font-bold text-[#166534] tracking-wide uppercase">
+              <div className="flex items-center gap-2.5 mb-6">
+                <span className="w-3 h-3 rounded-full bg-[#16A34A]" />
+                <h3 className="text-sm sm:text-base font-bold text-[#166534] tracking-wider uppercase">
                   {afterTitle}
                 </h3>
               </div>
               <ul className="flex flex-col gap-4">
                 {after.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
+                  <li key={idx} className="flex items-start gap-3.5">
                     <CheckCircle2 className="w-5 h-5 text-[#16A34A] flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-gray-800 leading-relaxed font-semibold">
                       {point}
@@ -78,7 +99,7 @@ export default function BeforeAfterComparison({
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

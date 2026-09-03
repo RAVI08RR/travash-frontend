@@ -1,4 +1,7 @@
-import { Quote } from 'lucide-react'
+'use client'
+
+import { motion } from 'framer-motion'
+import { Quote, ShieldCheck } from 'lucide-react'
 
 interface TestimonialData {
   quote: string
@@ -18,49 +21,64 @@ export default function ClientPerspective({
   intro?: string
 }) {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-t border-gray-100/80 overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left: Heading & Intro */}
-          <div className="lg:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-4"
+          >
             <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
               Stakeholder Feedback
             </span>
-            <h2 className="section-heading-title !text-2xl sm:!text-3xl lg:!text-4xl mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
               {heading}
             </h2>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
               {intro}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Right: Testimonial Card */}
-          <div className="lg:col-span-7">
-            <div className="bg-white border border-gray-200/90 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm relative overflow-hidden">
-              {/* Subtle background quote watermark */}
-              <Quote className="absolute right-6 bottom-6 w-24 h-24 text-gray-100/80 pointer-events-none -scale-x-100" />
+          {/* Right: Large Impactful Testimonial Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="lg:col-span-8"
+          >
+            <div className="bg-white border border-gray-200/90 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
+              <Quote className="w-12 h-12 text-[#0B4785]/20 mb-6" />
 
-              <div className="relative z-10 flex flex-col gap-6">
-                <p className="text-gray-800 text-base sm:text-lg lg:text-xl leading-relaxed font-normal italic">
-                  &ldquo;{data.quote}&rdquo;
-                </p>
+              <p className="text-gray-900 text-lg sm:text-xl lg:text-2xl leading-relaxed font-normal italic mb-8">
+                &ldquo;{data.quote}&rdquo;
+              </p>
 
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+              <div className="pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-[#EEF4FB] text-[#0B4785] flex items-center justify-center font-bold text-lg">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#0B4785]">
+                    <h4 className="text-base sm:text-lg font-bold text-gray-900">
                       {data.author}
                     </h4>
-                    <p className="text-xs sm:text-sm text-gray-500 font-medium mt-0.5">
+                    <p className="text-xs sm:text-sm text-gray-500 font-medium">
                       {data.role} &bull; {data.company}
                     </p>
                   </div>
-                  <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-[#EEF4FB] text-[#0B4785] text-xs font-bold border border-[#D5E4F5]">
-                    Public Sector Partner
-                  </span>
                 </div>
+
+                <span className="px-3.5 py-1 rounded-full bg-[#EEF4FB] text-[#0B4785] text-xs font-bold border border-[#D5E4F5]">
+                  Public Sector Leadership
+                </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ChevronRight, Building2, ShieldCheck, MapPin, Cpu } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ChevronRight, Building2, ShieldCheck, MapPin, Cpu, ArrowUpRight } from 'lucide-react'
 import type { CaseStudyData } from '@/lib/case-study-data'
 
 const META_ICONS: Record<string, typeof Building2> = {
@@ -23,104 +24,165 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
     },
   ]
 
-  const heroVisual = data.heroImage?.asset?.url || '/Satyaapan.svg'
+  const featureVisual =
+    typeof data.featureImage === 'string'
+      ? data.featureImage
+      : data.featureImage?.asset?.url || '/home-img/satyapaan-min 2.png'
 
   return (
-    <section className="pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 bg-gradient-to-b from-[#F0F5FA] via-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+      {/* Dynamic Background Glows matching Net Solutions aesthetic */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.06)_0%,transparent_70%)] pointer-events-none" />
+
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-6 sm:mb-8">
-          <Link href="/" className="hover:text-[#0B4785] transition-colors">
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-2 text-xs sm:text-sm text-white/70 mb-6 sm:mb-8"
+        >
+          <Link href="/" className="hover:text-white transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-          <Link href="/#case-studies" className="hover:text-[#0B4785] transition-colors">
+          <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+          <Link href="/#case-studies" className="hover:text-white transition-colors">
             Case Studies
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
-          <span className="text-[#0B4785] font-semibold truncate max-w-[200px] sm:max-w-none">
+          <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+          <span className="text-[#14B8A6] font-semibold truncate max-w-[200px] sm:max-w-none">
             {data.client || 'Satyapaan'}
           </span>
-        </nav>
+        </motion.nav>
 
-        {/* Category Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0B4785]/10 border border-[#0B4785]/20 text-[#0B4785] text-xs sm:text-sm font-semibold mb-4 tracking-wide uppercase">
-          <span>{data.category || 'Enterprise AI / Public Sector'}</span>
-        </div>
+        {/* 2-Column Hero Grid: Left Content, Right Visual */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Title, Category, Summary, Specs */}
+          <div className="lg:col-span-7 flex flex-col items-start">
+            {/* Category / Client Pill Badges */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex flex-wrap items-center gap-2.5 mb-5"
+            >
+              <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider">
+                {data.category || 'Enterprise AI / Public Sector'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#14B8A6]/20 border border-[#14B8A6]/30 text-[#2DD4BF] text-xs font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2DD4BF] animate-pulse" />
+                Verified Live Deployment
+              </span>
+            </motion.div>
 
-        {/* Main H1 Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-semibold text-[#151515] tracking-tight leading-[1.15] max-w-5xl mb-6">
-          {data.title}
-        </h1>
+            {/* Main H1 Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-tight leading-[1.12] mb-6"
+            >
+              {data.title}
+            </motion.h1>
 
-        {/* Short Description */}
-        {data.shortDescription && (
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-4xl mb-10 sm:mb-12 font-normal">
-            {data.shortDescription}
-          </p>
-        )}
+            {/* Introductory Description */}
+            {data.shortDescription && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-white/85 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-normal"
+              >
+                {data.shortDescription}
+              </motion.p>
+            )}
 
-        {/* Two Column Hero Detail: Project Information on Left, Visual Badge on Right */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch pt-2">
-          {/* Left: Project Metadata Items */}
-          <div className="lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200/90 shadow-sm flex flex-col justify-center">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-6">
-              Project Overview &amp; Specifications
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap items-center gap-4 mb-10"
+            >
+              <Link
+                href="#outcomes"
+                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#04477E] hover:bg-gray-100 font-bold px-7 text-sm transition-all duration-200 shadow-md active:scale-95"
+              >
+                <span>View Results &amp; Architecture</span>
+                <ArrowUpRight className="w-4 h-4 ml-1.5" />
+              </Link>
+              <Link
+                href="#contact"
+                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-7 text-sm transition-all duration-200"
+              >
+                Consult Our Engineers
+              </Link>
+            </motion.div>
+
+            {/* Project Specifications Glass Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15"
+            >
               {metadata.map((item, idx) => {
                 const Icon = META_ICONS[item.label] || ShieldCheck
                 return (
-                  <div key={idx} className="flex items-start gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-[#EEF4FB] border border-[#D5E4F5] text-[#0B4785] flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-xs text-gray-500 font-medium block uppercase tracking-wide">
-                        {item.label}
-                      </span>
-                      <span className="text-sm sm:text-[15px] text-gray-900 font-semibold mt-0.5 block leading-snug">
-                        {item.value}
-                      </span>
-                    </div>
+                  <div key={idx} className="flex flex-col gap-1">
+                    <span className="text-[11px] uppercase tracking-wider text-white/60 font-semibold flex items-center gap-1.5">
+                      <Icon className="w-3.5 h-3.5 text-[#14B8A6]" />
+                      {item.label}
+                    </span>
+                    <span className="text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-2">
+                      {item.value}
+                    </span>
                   </div>
                 )
               })}
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right: Project Visual / Badge Emblem */}
-          <div className="lg:col-span-4 bg-gradient-to-br from-[#073B6C] to-[#0B4785] rounded-2xl sm:rounded-3xl p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-sm">
-            {/* Background geometric accents */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-36 h-36 bg-[#14B8A6]/10 rounded-full blur-xl pointer-events-none" />
+          {/* Right Column: Hero Showcase Visual with Device Mockup Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative w-full aspect-[4/3] rounded-[28px] overflow-hidden border border-white/20 shadow-2xl bg-black/20 backdrop-blur-xs group">
+              <Image
+                src={featureVisual}
+                alt={data.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 550px"
+                priority
+              />
 
-            <div className="relative z-10">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#14B8A6] block mb-2">
-                Government Initiative
-              </span>
-              <h3 className="text-2xl font-bold tracking-tight text-white mb-2">
-                {data.client || 'Telangana State Police'}
-              </h3>
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
-                Centralized high-throughput passport verification system built to eliminate bottlenecks and strengthen public integrity.
-              </p>
-            </div>
-
-            <div className="relative z-10 pt-8 mt-auto flex items-center justify-between border-t border-white/10">
-              <div className="relative h-12 w-36">
-                <Image
-                  src={heroVisual}
-                  alt={data.client || 'Satyapaan Project Emblem'}
-                  fill
-                  className="object-contain object-left filter brightness-0 invert"
-                />
+              {/* Floating Overlay Badge */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-white/40 shadow-lg text-gray-900 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#EEF4FB] text-[#0B4785] flex items-center justify-center font-bold">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-gray-900 leading-tight">
+                      {data.client || 'Telangana State Police'}
+                    </h4>
+                    <p className="text-[11px] text-gray-500 font-medium">
+                      Automated Identity Screening
+                    </p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full bg-[#EEFBF3] text-[#16A34A] text-[11px] font-bold border border-[#C6F5D8]">
+                  Production
+                </span>
               </div>
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-semibold backdrop-blur-sm border border-white/10">
-                Verified Deploy
-              </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
