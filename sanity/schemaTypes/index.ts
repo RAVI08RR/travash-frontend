@@ -10,11 +10,13 @@ import { industriesSection } from './industriesSection'
 import { post, blogSection } from './post'
 import { contactSection } from './contactSection'
 import { homePage } from './homePage'
+import { caseStudy } from './caseStudy'
 
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
   homePage,
+  caseStudy,
   post,
   // Section objects
   heroSection,

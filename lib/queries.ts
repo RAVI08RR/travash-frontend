@@ -167,3 +167,104 @@ export const recentPostsQuery = groq`
     coverImage ${imageFragment}
   }
 `
+
+// Fetch single case study by slug
+export const caseStudyBySlugQuery = groq`
+  *[_type == "caseStudy" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    eyebrow,
+    category,
+    industry,
+    client,
+    location,
+    shortDescription,
+    heroImage ${imageFragment},
+    projectMeta[] { label, value },
+    metrics[] { value, label, description },
+    executiveSummary {
+      title,
+      subtitle,
+      paragraphs
+    },
+    challenge {
+      title,
+      subtitle,
+      content,
+      points
+    },
+    featureImage ${imageFragment},
+    complexity {
+      title,
+      intro,
+      items[] { title, description, icon }
+    },
+    approach {
+      title,
+      intro,
+      steps[] { stepNumber, title, description }
+    },
+    solution {
+      title,
+      intro,
+      items[] { title, description }
+    },
+    solutionArchitecture {
+      title,
+      intro,
+      image ${imageFragment},
+      caption
+    },
+    technologyStack[] {
+      category,
+      technologies,
+      description
+    },
+    impact {
+      title,
+      subtitle,
+      content,
+      outcomes
+    },
+    beforeAfter {
+      title,
+      subtitle,
+      beforeTitle,
+      afterTitle,
+      before,
+      after
+    },
+    testimonial {
+      quote,
+      author,
+      role,
+      company,
+      image ${imageFragment}
+    },
+    whyItMatters {
+      title,
+      subtitle,
+      items
+    },
+    nextStep {
+      heading,
+      content,
+      primaryCTA { label, href },
+      secondaryCTA { label, href }
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage ${imageFragment}
+    }
+  }
+`
+
+// Query for generating static params
+export const allCaseStudySlugsQuery = groq`
+  *[_type == "caseStudy" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+

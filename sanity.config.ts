@@ -183,6 +183,9 @@ export default defineConfig({
 
             S.divider(),
 
+            // Case Studies (Detail Pages)
+            S.documentTypeListItem('caseStudy').title('Case Studies (Detail Pages)'),
+
             // Blog Posts
             S.documentTypeListItem('post').title('Blog Posts'),
           ]),

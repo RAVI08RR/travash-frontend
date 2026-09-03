@@ -53,7 +53,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/work/passport-verification',
+    ctaHref: '/case-studies/satyapaan',
   },
   {
     projectName: 'Smart Healthcare Data Platform',
