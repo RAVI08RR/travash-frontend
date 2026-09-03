@@ -30,7 +30,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       : data.featureImage?.asset?.url || '/home-img/satyapaan-min 2.png'
 
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
       {/* Dynamic Background Glows matching Net Solutions aesthetic */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[140px] pointer-events-none" />
@@ -99,7 +99,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
               </motion.p>
             )}
 
-            {/* CTAs */}
+            {/* CTAs with strict height: 66px and border-radius: 5px */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -108,14 +108,14 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
             >
               <Link
                 href="#outcomes"
-                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#04477E] hover:bg-gray-100 font-bold px-7 text-sm transition-all duration-200 shadow-md active:scale-95"
+                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#04477E] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md active:scale-95"
               >
                 <span>View Results &amp; Architecture</span>
                 <ArrowUpRight className="w-4 h-4 ml-1.5" />
               </Link>
               <Link
                 href="#contact"
-                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-7 text-sm transition-all duration-200"
+                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200"
               >
                 Consult Our Engineers
               </Link>

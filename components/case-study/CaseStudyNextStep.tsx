@@ -24,7 +24,7 @@ export default function CaseStudyNextStep({
   },
 }: CaseStudyNextStepProps) {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.97, y: 30 }}
@@ -50,7 +50,7 @@ export default function CaseStudyNextStep({
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href={primaryCTA.href || '#contact'}
-                className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#002E54] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md w-full sm:w-auto active:scale-95"
+                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#002E54] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md w-full sm:w-auto active:scale-95"
               >
                 <span>{primaryCTA.label}</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -59,7 +59,7 @@ export default function CaseStudyNextStep({
               {secondaryCTA && (
                 <Link
                   href={secondaryCTA.href || '#contact'}
-                  className="btn-global h-[60px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200 w-full sm:w-auto"
+                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200 w-full sm:w-auto"
                 >
                   <MessageSquareCode className="w-4 h-4 mr-2" />
                   <span>{secondaryCTA.label}</span>

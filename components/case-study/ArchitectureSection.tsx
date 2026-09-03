@@ -18,7 +18,7 @@ export default function ArchitectureSection({
   caption = 'Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture',
 }: ArchitectureProps) {
   return (
-    <section id="architecture" className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section id="architecture" className="py-12 sm:py-16 lg:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

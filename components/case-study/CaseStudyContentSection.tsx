@@ -32,7 +32,7 @@ export default function CaseStudyContentSection({
   return (
     <section
       id={id}
-      className={`py-16 sm:py-20 lg:py-24 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden ${className}`}
+      className={`py-12 sm:py-16 lg:py-20 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden ${className}`}
     >
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
