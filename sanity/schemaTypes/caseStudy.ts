@@ -504,23 +504,17 @@ export const caseStudy = defineType({
           type: 'reference',
           to: [{ type: 'industry' }],
         },
-        {
-          type: 'string',
-        },
       ],
     }),
     defineField({
       name: 'technologies',
       title: 'Technologies Used',
       type: 'array',
-      description: 'Technologies used in this project (references technology documents or tags)',
+      description: 'Technologies used in this project (references technology documents)',
       of: [
         {
           type: 'reference',
           to: [{ type: 'technology' }],
-        },
-        {
-          type: 'string',
         },
       ],
     }),
