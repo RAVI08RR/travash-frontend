@@ -10,6 +10,7 @@
   --color-teal: #14B8A6;
   --color-teal-dark: #0d9488;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --header-height: 80px;
 }
 
 /* Base resets */
@@ -46,8 +47,14 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
@@ -57,7 +64,7 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 

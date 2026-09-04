@@ -712,3 +712,83 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
   'i4c-bank-portal': DEFAULT_I4C_DATA,
   ugo: DEFAULT_UGO_DATA,
 }
+
+export function buildCaseStudySections(data: CaseStudyData) {
+  const sections: { id: string; label: string; number: string; title?: string }[] = []
+  let index = 1
+  const num = () => String(index++).padStart(2, '0')
+
+  if (data.metrics?.length || data.executiveSummary) {
+    sections.push({
+      id: 'overview',
+      label: 'Overview',
+      number: num(),
+      title: data.executiveSummary?.title || 'Overview & Executive Summary',
+    })
+  }
+
+  if (data.complexity?.items?.length) {
+    sections.push({
+      id: 'complexity',
+      label: 'Complexity',
+      number: num(),
+      title: data.complexity.title || 'The Complexity',
+    })
+  }
+
+  if (data.challenge) {
+    sections.push({
+      id: 'challenge',
+      label: 'Challenge',
+      number: num(),
+      title: data.challenge.title || 'The Challenge',
+    })
+  }
+
+  if (data.approach) {
+    sections.push({
+      id: 'approach',
+      label: 'Approach',
+      number: num(),
+      title: data.approach.title || 'Travash Approach',
+    })
+  }
+
+  if (data.solution || data.solutionArchitecture) {
+    sections.push({
+      id: 'solution',
+      label: 'Solution',
+      number: num(),
+      title: data.solution?.title || 'The Solution',
+    })
+  }
+
+  if (data.technologyStack && data.technologyStack.length > 0) {
+    sections.push({
+      id: 'technology',
+      label: 'Technology',
+      number: num(),
+      title: 'Enterprise Technology Stack',
+    })
+  }
+
+  if (data.impact || data.beforeAfter) {
+    sections.push({
+      id: 'impact',
+      label: 'Impact',
+      number: num(),
+      title: data.impact?.title || 'Impact & Results',
+    })
+  }
+
+  if (data.testimonial || data.whyItMatters) {
+    sections.push({
+      id: 'perspective',
+      label: 'Perspective',
+      number: num(),
+      title: 'Client Perspective',
+    })
+  }
+
+  return sections
+}
