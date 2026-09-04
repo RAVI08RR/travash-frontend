@@ -48,6 +48,139 @@ function TravashStudioLogo() {
   )
 }
 
+const customStructure = (S: any) =>
+  S.list()
+    .title('Content')
+    .items([
+      // Expandable Home Page with Submenu Sections
+      S.listItem()
+        .title('Home Page')
+        .id('homePage')
+        .child(
+          S.list()
+            .title('Home Page Sections')
+            .items([
+              S.listItem()
+                .title('Hero Section')
+                .id('heroSection')
+                .child(
+                  S.document()
+                    .title('Hero Section')
+                    .schemaType('heroSection')
+                    .documentId('heroSection')
+                ),
+              S.listItem()
+                .title('Capabilities')
+                .id('capabilitiesSection')
+                .child(
+                  S.document()
+                    .title('Capabilities')
+                    .schemaType('capabilitiesSection')
+                    .documentId('capabilitiesSection')
+                ),
+              S.listItem()
+                .title('Case Studies')
+                .id('caseStudySection')
+                .child(
+                  S.document()
+                    .title('Case Studies')
+                    .schemaType('caseStudySection')
+                    .documentId('caseStudySection')
+                ),
+              S.listItem()
+                .title('Stats')
+                .id('statsSection')
+                .child(
+                  S.document()
+                    .title('Stats')
+                    .schemaType('statsSection')
+                    .documentId('statsSection')
+                ),
+              S.listItem()
+                .title('Intro Video')
+                .id('introVideoSection')
+                .child(
+                  S.document()
+                    .title('Intro Video')
+                    .schemaType('introVideoSection')
+                    .documentId('introVideoSection')
+                ),
+              S.listItem()
+                .title('Testimonials')
+                .id('testimonialSection')
+                .child(
+                  S.document()
+                    .title('Testimonials')
+                    .schemaType('testimonialSection')
+                    .documentId('testimonialSection')
+                ),
+              S.listItem()
+                .title('About Us')
+                .id('aboutSection')
+                .child(
+                  S.document()
+                    .title('About Us')
+                    .schemaType('aboutSection')
+                    .documentId('aboutSection')
+                ),
+              S.listItem()
+                .title('Industries We Serve')
+                .id('industriesSection')
+                .child(
+                  S.document()
+                    .title('Industries We Serve')
+                    .schemaType('industriesSection')
+                    .documentId('industriesSection')
+                ),
+              S.listItem()
+                .title('Contact Us')
+                .id('contactSection')
+                .child(
+                  S.document()
+                    .title('Contact Us')
+                    .schemaType('contactSection')
+                    .documentId('contactSection')
+                ),
+              S.divider(),
+              S.listItem()
+                .title('All Home Page Fields (Full Document)')
+                .id('homePageFull')
+                .child(
+                  S.document()
+                    .title('Home Page (All Fields)')
+                    .schemaType('homePage')
+                    .documentId('homePage')
+                ),
+            ])
+        ),
+
+      // Singleton: Site Settings
+      S.listItem()
+        .title('Site Settings (Navbar & Footer)')
+        .id('siteSettings')
+        .child(
+          S.document()
+            .title('Site Settings')
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+        ),
+
+      // Services
+      S.documentTypeListItem('service').title('Services'),
+
+      // Case Studies
+      S.documentTypeListItem('caseStudy').title('Case Studies'),
+
+      // Technologies
+      S.documentTypeListItem('technology').title('Technologies'),
+
+      // Industries
+      S.documentTypeListItem('industry').title('Industries'),
+
+      // Blog Posts
+      S.documentTypeListItem('post').title('Blog Posts'),
+    ])
+
 export default defineConfig({
   basePath: '/studio',
   projectId,
@@ -64,138 +197,7 @@ export default defineConfig({
   },
   plugins: [
     structureTool({
-      structure: (S) =>
-        S.list()
-          .title('Content')
-          .items([
-            // Expandable Home Page with Submenu Sections
-            S.listItem()
-              .title('Home Page')
-              .id('homePage')
-              .child(
-                S.list()
-                  .title('Home Page Sections')
-                  .items([
-                    S.listItem()
-                      .title('Hero Section')
-                      .id('heroSection')
-                      .child(
-                        S.document()
-                          .title('Hero Section')
-                          .schemaType('heroSection')
-                          .documentId('heroSection')
-                      ),
-                    S.listItem()
-                      .title('Capabilities')
-                      .id('capabilitiesSection')
-                      .child(
-                        S.document()
-                          .title('Capabilities')
-                          .schemaType('capabilitiesSection')
-                          .documentId('capabilitiesSection')
-                      ),
-                    S.listItem()
-                      .title('Case Studies')
-                      .id('caseStudySection')
-                      .child(
-                        S.document()
-                          .title('Case Studies')
-                          .schemaType('caseStudySection')
-                          .documentId('caseStudySection')
-                      ),
-                    S.listItem()
-                      .title('Stats')
-                      .id('statsSection')
-                      .child(
-                        S.document()
-                          .title('Stats')
-                          .schemaType('statsSection')
-                          .documentId('statsSection')
-                      ),
-                    S.listItem()
-                      .title('Intro Video')
-                      .id('introVideoSection')
-                      .child(
-                        S.document()
-                          .title('Intro Video')
-                          .schemaType('introVideoSection')
-                          .documentId('introVideoSection')
-                      ),
-                    S.listItem()
-                      .title('Testimonials')
-                      .id('testimonialSection')
-                      .child(
-                        S.document()
-                          .title('Testimonials')
-                          .schemaType('testimonialSection')
-                          .documentId('testimonialSection')
-                      ),
-                    S.listItem()
-                      .title('About Us')
-                      .id('aboutSection')
-                      .child(
-                        S.document()
-                          .title('About Us')
-                          .schemaType('aboutSection')
-                          .documentId('aboutSection')
-                      ),
-                    S.listItem()
-                      .title('Industries We Serve')
-                      .id('industriesSection')
-                      .child(
-                        S.document()
-                          .title('Industries We Serve')
-                          .schemaType('industriesSection')
-                          .documentId('industriesSection')
-                      ),
-                    S.listItem()
-                      .title('Contact Us')
-                      .id('contactSection')
-                      .child(
-                        S.document()
-                          .title('Contact Us')
-                          .schemaType('contactSection')
-                          .documentId('contactSection')
-                      ),
-                    S.divider(),
-                    S.listItem()
-                      .title('All Home Page Fields (Full Document)')
-                      .id('homePageFull')
-                      .child(
-                        S.document()
-                          .title('Home Page (All Fields)')
-                          .schemaType('homePage')
-                          .documentId('homePage')
-                      ),
-                  ])
-              ),
-
-            // Singleton: Site Settings
-            S.listItem()
-              .title('Site Settings (Navbar & Footer)')
-              .id('siteSettings')
-              .child(
-                S.document()
-                  .title('Site Settings')
-                  .schemaType('siteSettings')
-                  .documentId('siteSettings')
-              ),
-
-            // Services
-            S.documentTypeListItem('service').title('Services'),
-
-            // Case Studies
-            S.documentTypeListItem('caseStudy').title('Case Studies'),
-
-            // Technologies
-            S.documentTypeListItem('technology').title('Technologies'),
-
-            // Industries
-            S.documentTypeListItem('industry').title('Industries'),
-
-            // Blog Posts
-            S.documentTypeListItem('post').title('Blog Posts'),
-          ]),
+      structure: customStructure,
     }),
     visionTool(),
   ],
