@@ -49,19 +49,19 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
   const cards =
     data?.cards && data.cards.length > 0
       ? data.cards.map((c, i) => ({
-          iconSrc: c.icon?.asset?.url || c.iconSrc || DEFAULT_CARDS[i % DEFAULT_CARDS.length].iconSrc,
-          title: c.title || DEFAULT_CARDS[i % DEFAULT_CARDS.length].title,
-          description: c.description || DEFAULT_CARDS[i % DEFAULT_CARDS.length].description,
-          ctaLabel: c.ctaLabel || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaLabel,
-          ctaHref: c.ctaHref || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaHref,
-        }))
+        iconSrc: c.icon?.asset?.url || c.iconSrc || DEFAULT_CARDS[i % DEFAULT_CARDS.length].iconSrc,
+        title: c.title || DEFAULT_CARDS[i % DEFAULT_CARDS.length].title,
+        description: c.description || DEFAULT_CARDS[i % DEFAULT_CARDS.length].description,
+        ctaLabel: c.ctaLabel || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaLabel,
+        ctaHref: c.ctaHref || DEFAULT_CARDS[i % DEFAULT_CARDS.length].ctaHref,
+      }))
       : DEFAULT_CARDS
 
   const heading = data?.heading || 'Capabilities That Move Business Forward'
 
   return (
     <section className="py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">

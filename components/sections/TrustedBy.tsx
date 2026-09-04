@@ -61,11 +61,11 @@ export default function TrustedBy({ label, logos }: TrustedByProps) {
   const dynamicLogos =
     logos && logos.length > 0
       ? logos.map((l) => ({
-          name: l.alt || 'Client Logo',
-          src: l.image?.asset?.url || '',
-          width: 140,
-          height: 48,
-        })).filter((l) => Boolean(l.src))
+        name: l.alt || 'Client Logo',
+        src: l.image?.asset?.url || '',
+        width: 140,
+        height: 48,
+      })).filter((l) => Boolean(l.src))
       : []
 
   const activeLogos = dynamicLogos.length > 0 ? dynamicLogos : LOCAL_LOGOS
@@ -73,7 +73,7 @@ export default function TrustedBy({ label, logos }: TrustedByProps) {
 
   return (
     <section className="bg-[#F0F5FA] py-12 lg:py-16 border-t border-gray-100/60 overflow-hidden">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="section-heading-title">
             {label || 'Trusted by Startups, Enterprises & Public Sector'}

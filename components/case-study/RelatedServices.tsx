@@ -34,7 +34,7 @@ const DEFAULT_RELATED_SERVICES = [
 export default function RelatedServices() {
   return (
     <section className="py-16 sm:py-24 bg-[#FAFCFF] font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-t border-[#E8EEF5]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-14">
           <span className="text-xs font-bold uppercase tracking-wider text-[#02487D] bg-[#EDF5FD] px-3 py-1 rounded-full inline-block mb-3">

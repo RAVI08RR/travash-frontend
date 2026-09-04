@@ -40,7 +40,7 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
 
   return (
     <section className="py-10 sm:py-14 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* 4 Cards Grid across the page */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {metrics.slice(0, 4).map((metric, idx) => {
@@ -58,8 +58,8 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
                 {/* Metric Value / Title */}
                 <h3
                   className={`${metric.value.length > 15
-                      ? 'text-lg sm:text-xl'
-                      : 'text-2xl sm:text-3xl lg:text-[32px]'
+                    ? 'text-lg sm:text-xl'
+                    : 'text-2xl sm:text-3xl lg:text-[32px]'
                     } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
                 >
                   {metric.value}

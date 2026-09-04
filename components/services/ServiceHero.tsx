@@ -20,7 +20,7 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
     <section
       className="relative min-h-[580px] lg:min-h-[640px] flex items-center pt-10 pb-16 sm:pt-36 sm:pb-20 lg:pt-20 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(2, 46, 84, 0.92) 0%, rgba(2, 72, 125, 0.88) 60%, rgba(3, 94, 158, 0.90) 100%), url('${bgImage}')`,
+        backgroundImage: `url('${bgImage}')`,
       }}
     >
       {/* Ambient glowing radial lights for rich depth */}
@@ -30,7 +30,7 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
       {/* Subtle geometric grid backdrop overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         {/* Breadcrumb Navigation */}
         <motion.nav
           initial={{ opacity: 0, y: -10 }}

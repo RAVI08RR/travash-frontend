@@ -42,13 +42,13 @@ const SocialIcons: Record<string, () => React.ReactElement> = {
 
 const DEFAULT_MENU_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about' },
+  { label: 'About us', href: '/about-us' },
   { label: 'Services', href: '/services' },
-  { label: 'Blogs', href: '/blog' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Contact us', href: '/contact' },
-  { label: 'Works', href: '/work' },
   { label: 'Technologies', href: '/technologies' },
+  { label: 'Works', href: '/portfolio' },
+  { label: 'Careers', href: '/career' },
+  { label: 'Blogs', href: '/blogs' },
+  { label: 'Contact us', href: '/contact-us' },
 ]
 
 const DEFAULT_SERVICE_LINKS = [

@@ -37,7 +37,7 @@ export default function ServiceCapabilities({
       id="capabilities"
       className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,11 +88,10 @@ export default function ServiceCapabilities({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-30px' }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className={`border rounded-2xl transition-all duration-200 overflow-hidden ${
-                    isOpen
+                  className={`border rounded-2xl transition-all duration-200 overflow-hidden ${isOpen
                       ? 'bg-white border-[#02487D]/40 shadow-sm'
                       : 'bg-white border-gray-200/90 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   {/* Accordion Header */}
                   <button
@@ -102,18 +101,16 @@ export default function ServiceCapabilities({
                     className="w-full p-5 sm:p-6 flex items-center justify-between gap-4 text-left cursor-pointer transition-colors"
                   >
                     <span
-                      className={`text-base sm:text-lg font-bold leading-snug transition-colors ${
-                        isOpen ? 'text-[#02487D]' : 'text-gray-900'
-                      }`}
+                      className={`text-base sm:text-lg font-bold leading-snug transition-colors ${isOpen ? 'text-[#02487D]' : 'text-gray-900'
+                        }`}
                     >
                       {cap.title}
                     </span>
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
-                        isOpen
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${isOpen
                           ? 'bg-[#02487D] text-white rotate-180'
                           : 'bg-[#EEF4FB] text-[#02487D]'
-                      }`}
+                        }`}
                     >
                       <ChevronDown className="w-4 h-4" />
                     </div>

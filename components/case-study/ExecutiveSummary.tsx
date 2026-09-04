@@ -16,7 +16,7 @@ export default function ExecutiveSummary({
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-t border-[#F1F5F9]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column (Approx 35%): Sticky Section Headline on Desktop */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">

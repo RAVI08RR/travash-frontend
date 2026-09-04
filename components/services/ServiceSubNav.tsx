@@ -74,7 +74,7 @@ export default function ServiceSubNav() {
       aria-label="Service sections navigation"
       className="sticky top-20 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-xs transition-all duration-300 font-['Plus_Jakarta_Sans',sans-serif]"
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth">
             {NAV_ITEMS.map((item) => {
@@ -84,11 +84,10 @@ export default function ServiceSubNav() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => scrollToSection(e, item.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                    isActive
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${isActive
                       ? 'bg-[#0B4785] text-white shadow-xs'
                       : 'text-gray-600 hover:text-[#0B4785] hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </a>

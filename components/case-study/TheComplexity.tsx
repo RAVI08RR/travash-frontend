@@ -45,7 +45,7 @@ export default function TheComplexity({
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-t border-[#F1F5F9]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column (Approx 35%): Sticky Section Title on Desktop */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
@@ -66,22 +66,22 @@ export default function TheComplexity({
                 </p>
               )}
 
-            {/* 2x2 Clean Card Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-              {complexityItems.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-[#F8FAFC] rounded-xl p-6 sm:p-7 border border-[#E2E8F0]/70 flex flex-col justify-start hover:border-[#02487D]/30 hover:bg-[#F1F5F9]/60 transition-all duration-200"
-                >
-                  <h3 className="text-xs sm:text-[13px] font-bold tracking-wider text-[#02487D] uppercase mb-2.5">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+              {/* 2x2 Clean Card Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                {complexityItems.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-[#F8FAFC] rounded-xl p-6 sm:p-7 border border-[#E2E8F0]/70 flex flex-col justify-start hover:border-[#02487D]/30 hover:bg-[#F1F5F9]/60 transition-all duration-200"
+                  >
+                    <h3 className="text-xs sm:text-[13px] font-bold tracking-wider text-[#02487D] uppercase mb-2.5">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </FadeUpWeb>
           </div>
         </div>

@@ -24,7 +24,7 @@ export default function About({ data }: { data?: AboutSectionData }) {
 
   return (
     <section className="py-12 lg:py-16 bg-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: Team photo matching screenshot 5 */}
           <div className="lg:col-span-6 relative flex items-center justify-center">

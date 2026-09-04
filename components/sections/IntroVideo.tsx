@@ -41,7 +41,7 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
           </div>
         </div>
 
-        <div className="relative max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 text-center font-['Plus_Jakarta_Sans',sans-serif]">
+        <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 text-center font-['Plus_Jakarta_Sans',sans-serif]">
           {/* Eyebrow & Heading */}
           <div className="mb-8 lg:mb-10">
             <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest mb-3 block">
@@ -52,76 +52,61 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
             </h2>
           </div>
 
-          {/* Video Container with max-w-5xl centered */}
-          <div className="max-w-5xl mx-auto">
+          {/* Video Container with balanced max-w-3xl */}
+          <div className="max-w-3xl mx-auto">
             <div
-              onClick={() => setIsPlaying(true)}
-              className="relative w-full aspect-[16/9] rounded-[28px] overflow-hidden shadow-[0_8px_35px_rgba(11,71,133,0.14)] border border-gray-200 cursor-pointer group transition-transform duration-300 hover:scale-[1.01]"
+              onClick={() => !isPlaying && setIsPlaying(true)}
+              className="relative w-full aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(11,71,133,0.12)] border border-gray-200 group transition-transform duration-300 hover:scale-[1.01]"
             >
-            {!isPlaying ? (
-              <>
-                <Image
-                  src={posterUrl}
-                  alt={data?.heading || 'Meet Your Next Technology Partner video poster'}
-                  fill
-                  priority
-                  className="object-cover"
-                />
+              {!isPlaying ? (
+                <div className="cursor-pointer w-full h-full relative">
+                  <Image
+                    src={posterUrl}
+                    alt={data?.heading || 'Meet Your Next Technology Partner video poster'}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
 
-                {/* Play Button from public/home-img/Group 1000003271.png */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 relative rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
-                    <Image
-                      src="/home-img/Group 1000003271.png"
-                      alt="Play video"
-                      width={96}
-                      height={96}
-                      className="object-contain"
-                    />
+                  {/* Play Button from public/home-img/Group 1000003271.png */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 relative rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
+                      <Image
+                        src="/home-img/Group 1000003271.png"
+                        alt="Play video"
+                        width={80}
+                        height={80}
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
-              </>
-            ) : (
-              <iframe
-                src={embedUrl}
-                title={data?.heading || 'Meet Your Next Technology Partner'}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
-            )}
+              ) : (
+                <div className="relative w-full h-full bg-black">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setIsPlaying(false)
+                    }}
+                    className="absolute top-3 right-3 z-20 p-1.5 rounded-full bg-black/70 hover:bg-black text-white/90 hover:text-white transition-colors shadow-md"
+                    aria-label="Close video"
+                    title="Close video"
+                  >
+                    <X size={18} />
+                  </button>
+                  <iframe
+                    src={embedUrl}
+                    title={data?.heading || 'Meet Your Next Technology Partner'}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-      {/* Fullscreen Video Modal if needed */}
-      {isPlaying && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md"
-          onClick={() => setIsPlaying(false)}
-        >
-          <div
-            className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setIsPlaying(false)}
-              className="absolute top-4 right-4 z-30 p-2 rounded-full bg-black/60 hover:bg-black text-white/90 hover:text-white transition-colors"
-              aria-label="Close video"
-            >
-              <X size={24} />
-            </button>
-            <iframe
-              src={embedUrl}
-              title={data?.heading || 'Meet Your Next Technology Partner - Travash'}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full border-0"
-            />
-          </div>
-        </div>
-      )}
+      </section>
     </>
   )
 }

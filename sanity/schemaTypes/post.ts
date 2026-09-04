@@ -34,6 +34,26 @@ export const post = defineType({
       name: 'category',
       title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          { title: 'AI & Automation', value: 'AI & Automation' },
+          { title: 'Software Engineering', value: 'Software Engineering' },
+          { title: 'Cloud & Infrastructure', value: 'Cloud & Infrastructure' },
+          { title: 'Cybersecurity', value: 'Cybersecurity' },
+          { title: 'Data & Analytics', value: 'Data & Analytics' },
+          { title: 'Digital Transformation', value: 'Digital Transformation' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author Details',
+      type: 'object',
+      fields: [
+        defineField({ name: 'name', title: 'Author Name', type: 'string', initialValue: 'Travash Editorial Team' }),
+        defineField({ name: 'role', title: 'Role', type: 'string', initialValue: 'Technology Practice Lead' }),
+        defineField({ name: 'avatar', title: 'Author Avatar', type: 'image', options: { hotspot: true } }),
+      ],
     }),
     defineField({
       name: 'publishedAt',
@@ -41,8 +61,20 @@ export const post = defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured Post',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags / Topics',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
       name: 'body',
-      title: 'Body',
+      title: 'Body Content (Portable Text)',
       type: 'array',
       of: [
         { type: 'block' },
@@ -51,8 +83,24 @@ export const post = defineType({
           options: { hotspot: true },
           fields: [
             { name: 'alt', title: 'Alt Text', type: 'string' },
+            { name: 'caption', title: 'Caption', type: 'string' },
           ],
         },
+      ],
+    }),
+    defineField({
+      name: 'relatedPosts',
+      title: 'Related Posts',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'post' }] }],
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'object',
+      fields: [
+        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
+        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
       ],
     }),
   ],
@@ -85,7 +133,7 @@ export const blogSection = defineType({
       name: 'ctaHref',
       title: 'View All CTA URL',
       type: 'string',
-      initialValue: '/blog',
+      initialValue: '/blogs',
     }),
   ],
 })

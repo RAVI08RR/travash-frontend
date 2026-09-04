@@ -20,9 +20,9 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
   return (
     <section
       id="solution"
-      className="py-14 sm:py-18 lg:py-24 bg-[#02487D] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden"
+      className="py-14 sm:py-18 lg:py-24 bg-[#E7F2F7] text-black font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden"
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Original Eradicate.webp Image */}
           <motion.div
@@ -52,10 +52,10 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
             transition={{ duration: 0.6, delay: 0.15 }}
             className="lg:col-span-7 flex flex-col items-start"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight leading-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-black tracking-tight leading-tight mb-4">
               {solution.heading || 'How Travash Solves It'}
             </h2>
-            <p className="text-white/85 text-base sm:text-lg leading-relaxed font-normal mb-8 max-w-2xl">
+            <p className="text-black/85 text-base sm:text-lg leading-relaxed font-normal mb-8 max-w-2xl">
               {solution.description ||
                 'We do not just visualize data; we fix the plumbing underneath it. We deploy senior data architects who untangle your fragmented systems and build a secure, centralized single source of truth.'}
             </p>
@@ -72,16 +72,16 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: '-30px' }}
                       transition={{ duration: 0.4, delay: idx * 0.1 }}
-                      className="flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:bg-white/15 transition-all duration-200"
+                      className="flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] backdrop-blur-md border border-white/15 hover:bg-white/15 transition-all duration-200"
                     >
                       <div className="w-11 h-11 rounded-xl bg-white text-[#02487D] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
-                        <h3 className="text-base sm:text-lg font-bold text-white mb-1 leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-black mb-1 leading-snug">
                           {benefit.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
+                        <p className="text-xs sm:text-sm text-black/80 leading-relaxed font-normal">
                           {benefit.description}
                         </p>
                       </div>

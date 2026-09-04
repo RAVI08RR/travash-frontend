@@ -17,7 +17,7 @@ export default function ServiceTrust({ trust }: { trust: ServiceTrustSection }) 
         backgroundImage: `linear-gradient(180deg, rgba(11, 11, 11, 0.70) 0%, rgba(11, 11, 11, 0.75) 100%), url('${bgImage}')`,
       }}
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -34,7 +34,7 @@ export default function PortfolioFilters({
 
   return (
     <div className="w-full bg-white border-b border-[#E2E8F0] sticky top-16 sm:top-20 z-20 backdrop-blur-md bg-white/95 transition-all shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
         {/* Top Controls: Search Bar & Industry Dropdown */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-4">
           {/* Search Bar */}
@@ -110,17 +110,15 @@ export default function PortfolioFilters({
                 key={type}
                 type="button"
                 onClick={() => onSelectType(type)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                  isActive
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${isActive
                     ? 'bg-[#02487D] text-white shadow-sm ring-2 ring-[#02487D]/20'
                     : 'bg-[#F1F5F9] text-[#334155] hover:bg-[#E2E8F0] hover:text-[#0F172A]'
-                }`}
+                  }`}
               >
                 <span>{type}</span>
                 <span
-                  className={`text-[11px] px-1.5 py-0.5 rounded-full font-bold ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-white text-[#64748B]'
-                  }`}
+                  className={`text-[11px] px-1.5 py-0.5 rounded-full font-bold ${isActive ? 'bg-white/20 text-white' : 'bg-white text-[#64748B]'
+                    }`}
                 >
                   {count}
                 </span>

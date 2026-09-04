@@ -91,11 +91,10 @@ export default function CaseStudyLayout({
                 type="button"
                 onClick={() => handleSectionClick(section.id)}
                 aria-current={isActive ? 'true' : undefined}
-                className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  isActive
+                className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${isActive
                     ? 'bg-[#02487D] text-white shadow-xs'
                     : 'bg-[#F1F5F9] text-[#475569] hover:bg-[#E2E8F0]'
-                }`}
+                  }`}
               >
                 <span className="opacity-70 mr-1.5 font-mono">{section.number}</span>
                 {section.label}
@@ -106,7 +105,7 @@ export default function CaseStudyLayout({
       </div>
 
       {/* Main Container with Desktop Two-Column Layout (>= 1024px) */}
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-8 lg:gap-14 items-start">
           {/* Left Column: Premium Sticky Navigation (strictly inside container) */}
           <aside

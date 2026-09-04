@@ -116,5 +116,33 @@ export const siteSettings = defineType({
       type: 'string',
       initialValue: '© 2024 Travash. All rights reserved.',
     }),
+    defineField({
+      name: 'companyStats',
+      title: 'Global Company Stats',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'value', title: 'Value (e.g. 250+)', type: 'string' },
+            { name: 'label', title: 'Label', type: 'string' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'globalCTA',
+      title: 'Global CTA Banner',
+      type: 'object',
+      fields: [
+        { name: 'eyebrow', title: 'Eyebrow', type: 'string' },
+        { name: 'heading', title: 'Heading', type: 'string' },
+        { name: 'description', title: 'Description', type: 'text' },
+        { name: 'primaryLabel', title: 'Primary Button Label', type: 'string' },
+        { name: 'primaryHref', title: 'Primary Button URL', type: 'string' },
+        { name: 'secondaryLabel', title: 'Secondary Button Label', type: 'string' },
+        { name: 'secondaryHref', title: 'Secondary Button URL', type: 'string' },
+      ],
+    }),
   ],
 })

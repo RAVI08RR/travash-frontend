@@ -30,6 +30,30 @@ const nextConfig: NextConfig = {
   ],
   // Also exclude from server bundling
   serverExternalPackages: ['@sanity/client'],
+  async redirects() {
+    return [
+      {
+        source: '/about',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        source: '/careers',
+        destination: '/career',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/contact',
+        destination: '/contact-us',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

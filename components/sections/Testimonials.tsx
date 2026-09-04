@@ -68,14 +68,14 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
   const activeList =
     data?.testimonials && data.testimonials.length > 0
       ? data.testimonials.map((t, i) => {
-          const fb = TESTIMONIALS[i % TESTIMONIALS.length]
-          return {
-            quote: t.quote || fb.quote,
-            authorName: t.authorName || fb.authorName,
-            authorTitle: t.authorTitle || fb.authorTitle,
-            authorPhoto: t.authorPhoto?.asset?.url || fb.authorPhoto,
-          }
-        })
+        const fb = TESTIMONIALS[i % TESTIMONIALS.length]
+        return {
+          quote: t.quote || fb.quote,
+          authorName: t.authorName || fb.authorName,
+          authorTitle: t.authorTitle || fb.authorTitle,
+          authorPhoto: t.authorPhoto?.asset?.url || fb.authorPhoto,
+        }
+      })
       : TESTIMONIALS
 
   const current = activeList[currentIdx % activeList.length]
@@ -98,7 +98,7 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
 
   return (
     <section className="py-12 lg:py-16 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
             {data?.heading || 'Trusted by Businesses Worldwide'}
@@ -144,9 +144,8 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
             <button
               key={i}
               onClick={() => setCurrentIdx(i)}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                i === currentIdx ? 'w-2.5 h-2.5 bg-[#0B4785]' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-              }`}
+              className={`rounded-full transition-all duration-300 cursor-pointer ${i === currentIdx ? 'w-2.5 h-2.5 bg-[#0B4785]' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
+                }`}
               aria-label={`Go to testimonial ${i + 1}`}
             />
           ))}

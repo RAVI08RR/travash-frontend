@@ -57,7 +57,7 @@ export default function BlogSection({
 
   return (
     <section className="py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
             {heading || 'Latest Insights from Travash'}

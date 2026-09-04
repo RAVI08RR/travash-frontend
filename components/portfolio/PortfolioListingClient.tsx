@@ -196,7 +196,7 @@ export default function PortfolioListingClient({
       />
 
       {/* Main Grid Section */}
-      <section className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <PortfolioGrid
           projects={filteredProjects}
           onClearFilters={handleClearFilters}

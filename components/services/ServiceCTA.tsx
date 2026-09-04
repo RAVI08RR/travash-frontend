@@ -53,7 +53,7 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
         backgroundImage: `linear-gradient(180deg, rgba(6, 96, 149, 0.92) 0%, rgba(4, 76, 118, 0.95) 100%), url('${bgImage}')`,
       }}
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Title & Strategic Guidance Points */}
           <motion.div

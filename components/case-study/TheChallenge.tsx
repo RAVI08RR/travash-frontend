@@ -29,7 +29,7 @@ export default function TheChallenge({
 
   return (
     <section className="py-16 sm:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-y border-[#EDF2F7]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left Column: Title, Bold Headline, Description (Sticky on Desktop) */}
           <div className="lg:col-span-5 flex flex-col lg:sticky lg:top-28 self-start">

@@ -22,13 +22,13 @@ export default function EngagementModels({
       id="engagement-models"
       className="relative py-16 sm:py-20 lg:py-28 font-['Plus_Jakarta_Sans',sans-serif] bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(7, 24, 48, 0.92) 0%, rgba(3, 17, 34, 0.95) 100%), url('${backgroundImage}')`,
+        backgroundImage: `url('${backgroundImage}')`,
       }}
     >
       {/* Radial glow background */}
       <div className="absolute -top-24 left-1/3 w-96 h-96 bg-[#0284C7]/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,11 +68,10 @@ export default function EngagementModels({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className={`rounded-2xl p-7 flex flex-col justify-between shadow-xl transition-all duration-300 relative group border ${
-                  isPopular
-                    ? 'bg-white border-[#38BDF8] ring-2 ring-[#38BDF8]/20'
-                    : 'bg-white border-white/10 hover:border-white/30'
-                }`}
+                className={`rounded-2xl p-7 flex flex-col justify-between shadow-xl transition-all duration-300 relative group border ${isPopular
+                  ? 'bg-white border-[#38BDF8] ring-2 ring-[#38BDF8]/20'
+                  : 'bg-white border-white/10 hover:border-white/30'
+                  }`}
               >
                 <div>
                   {/* Top Row: Icon & Badge */}
@@ -90,11 +89,10 @@ export default function EngagementModels({
 
                     {model.badge && (
                       <span
-                        className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
-                          isPopular
-                            ? 'bg-[#02487D] text-white'
-                            : 'bg-gray-100 text-gray-700'
-                        }`}
+                        className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${isPopular
+                          ? 'bg-[#02487D] text-white'
+                          : 'bg-gray-100 text-gray-700'
+                          }`}
                       >
                         {model.badge}
                       </span>

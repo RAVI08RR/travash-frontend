@@ -59,7 +59,7 @@ export default function Contact({ data }: { data?: ContactData }) {
     <>
       <Toaster position="top-right" richColors />
       <section className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden" id="contact">
-        <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Single Unified Card Container matching screenshot 4 */}
           <div className="bg-[#EEF4FB] rounded-3xl lg:rounded-[32px] overflow-hidden shadow-sm grid lg:grid-cols-12 items-stretch">
             {/* Left: Support agent image flush with left border */}

@@ -23,7 +23,7 @@ export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
       <div className="absolute -bottom-32 right-10 w-[420px] h-[420px] bg-[#0284C7]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         {/* Breadcrumb Navigation */}
         <motion.nav
           initial={{ opacity: 0, y: -10 }}

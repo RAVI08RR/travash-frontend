@@ -26,15 +26,15 @@ export default function CaseStudyContentSection({
     variant === 'gray'
       ? 'bg-[#F8FAFC]'
       : variant === 'blue'
-      ? 'bg-[#F0F5FA]'
-      : 'bg-white'
+        ? 'bg-[#F0F5FA]'
+        : 'bg-white'
 
   return (
     <section
       id={id}
       className={`py-12 sm:py-16 lg:py-20 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 ${className}`}
     >
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left Column (Approx 35%): Sticky Section Heading on Desktop */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">

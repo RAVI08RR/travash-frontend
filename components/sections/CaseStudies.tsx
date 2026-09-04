@@ -150,24 +150,24 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
   const activeStudies =
     data?.caseStudies && data.caseStudies.length > 0
       ? data.caseStudies.map((s, i) => {
-          const fallback = CASE_STUDIES[i % CASE_STUDIES.length]
-          return {
-            projectName: s.projectName || fallback.projectName,
-            clientType: s.clientType || fallback.clientType,
-            image: s.image?.asset?.url || fallback.image,
-            outcomes:
-              s.outcomes && s.outcomes.length > 0
-                ? s.outcomes.map((o, idx) => ({
-                    value: o.value,
-                    label: o.label,
-                    bg: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].bg,
-                    border: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].border,
-                  }))
-                : fallback.outcomes,
-            ctaLabel: s.ctaLabel || fallback.ctaLabel,
-            ctaHref: s.ctaHref || fallback.ctaHref,
-          }
-        })
+        const fallback = CASE_STUDIES[i % CASE_STUDIES.length]
+        return {
+          projectName: s.projectName || fallback.projectName,
+          clientType: s.clientType || fallback.clientType,
+          image: s.image?.asset?.url || fallback.image,
+          outcomes:
+            s.outcomes && s.outcomes.length > 0
+              ? s.outcomes.map((o, idx) => ({
+                value: o.value,
+                label: o.label,
+                bg: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].bg,
+                border: OUTCOME_STYLES[idx % OUTCOME_STYLES.length].border,
+              }))
+              : fallback.outcomes,
+          ctaLabel: s.ctaLabel || fallback.ctaLabel,
+          ctaHref: s.ctaHref || fallback.ctaHref,
+        }
+      })
       : CASE_STUDIES
 
   const current = activeStudies[currentIdx % activeStudies.length]
@@ -201,7 +201,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
   return (
     <section className="py-12 lg:py-5 
     bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">

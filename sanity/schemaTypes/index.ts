@@ -15,15 +15,22 @@ import { service } from './service'
 import { technology } from './technology'
 import { industry } from './industry'
 
+import { aboutPage } from './aboutPage'
+import { job } from './job'
+import { technologyCategory } from './technologyCategory'
+
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
   homePage,
+  aboutPage,
   caseStudy,
   service,
   technology,
+  technologyCategory,
   industry,
   post,
+  job,
   // Section objects
   heroSection,
   capabilitiesSection,

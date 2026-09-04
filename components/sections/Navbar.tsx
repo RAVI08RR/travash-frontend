@@ -25,11 +25,11 @@ interface NavbarProps {
 const DEFAULT_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services', hasDropdown: true },
-  { label: 'Industries', href: '/industries' },
-  { label: 'Our Work', href: '/work' },
-  { label: 'About', href: '/about' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Technologies', href: '/technologies' },
+  { label: 'Our Work', href: '/portfolio' },
+  { label: 'About', href: '/about-us' },
+  { label: 'Careers', href: '/career' },
+  { label: 'Blog', href: '/blogs' },
 ]
 
 export default function Navbar({ settings }: NavbarProps) {
@@ -38,7 +38,7 @@ export default function Navbar({ settings }: NavbarProps) {
 
   const navLinks = settings?.navLinks || DEFAULT_LINKS
   const ctaLabel = settings?.ctaLabel || 'Contact us'
-  const ctaHref = settings?.ctaHref || '/contact'
+  const ctaHref = settings?.ctaHref || '/contact-us'
   const logoUrl = settings?.logo?.asset?.url || 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg'
 
   return (

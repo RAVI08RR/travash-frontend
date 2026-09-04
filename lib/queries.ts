@@ -507,13 +507,225 @@ export const allIndustriesQuery = groq`
 
 // Query all technologies
 export const allTechnologiesQuery = groq`
-  *[_type == "technology"] | order(name asc) {
+  *[_type == "technology"] | order(order asc, name asc) {
     _id,
     name,
     "slug": slug.current,
     category,
-    icon ${imageFragment}
+    "categoryTitle": categoryRef->title,
+    icon ${imageFragment},
+    description,
+    website,
+    featured,
+    order
   }
 `
+
+// Query all technology categories
+export const technologyCategoriesQuery = groq`
+  *[_type == "technologyCategory"] | order(order asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    order
+  }
+`
+
+// About Page query
+export const aboutPageQuery = groq`
+  {
+    "aboutPage": *[_type == "aboutPage"][0] {
+      hero {
+        eyebrow,
+        heading,
+        description,
+        heroImage ${imageFragment}
+      },
+      story {
+        heading,
+        content
+      },
+      timeline[] {
+        year,
+        title,
+        description
+      },
+      missionVision {
+        missionTitle,
+        missionDescription,
+        visionTitle,
+        visionDescription
+      },
+      values[] {
+        title,
+        description,
+        iconName
+      },
+      leadership[] {
+        name,
+        role,
+        experienceYears,
+        bio,
+        image ${imageFragment},
+        linkedinUrl
+      },
+      teams {
+        heading,
+        description
+      },
+      culture {
+        heading,
+        description
+      },
+      seo {
+        metaTitle,
+        metaDescription
+      }
+    },
+    "siteSettings": *[_type == "siteSettings"][0] {
+      ...,
+      logo ${imageFragment},
+      footerLogo ${imageFragment}
+    }
+  }
+`
+
+// Jobs Queries
+export const jobsQuery = groq`
+  *[_type == "job" && active != false] | order(order asc, publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    category,
+    employmentType,
+    location,
+    experience,
+    salary,
+    shortDescription,
+    active,
+    publishedAt
+  }
+`
+
+export const jobBySlugQuery = groq`
+  *[_type == "job" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    category,
+    employmentType,
+    location,
+    experience,
+    salary,
+    shortDescription,
+    overview,
+    responsibilities,
+    requirements,
+    preferredSkills,
+    benefits,
+    active,
+    publishedAt,
+    seo {
+      metaTitle,
+      metaDescription
+    }
+  }
+`
+
+export const allJobSlugsQuery = groq`
+  *[_type == "job" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+
+// Blog Queries
+export const blogsQuery = groq`
+  *[_type == "post"] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage ${imageFragment},
+    category,
+    publishedAt,
+    featured,
+    tags,
+    author {
+      name,
+      role,
+      avatar ${imageFragment}
+    }
+  }
+`
+
+export const featuredBlogQuery = groq`
+  *[_type == "post" && featured == true][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage ${imageFragment},
+    category,
+    publishedAt,
+    author {
+      name,
+      role,
+      avatar ${imageFragment}
+    }
+  }
+`
+
+export const blogBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage ${imageFragment},
+    category,
+    publishedAt,
+    tags,
+    author {
+      name,
+      role,
+      avatar ${imageFragment}
+    },
+    body,
+    relatedPosts[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      coverImage ${imageFragment},
+      category,
+      publishedAt
+    },
+    seo {
+      metaTitle,
+      metaDescription
+    }
+  }
+`
+
+export const allBlogSlugsQuery = groq`
+  *[_type == "post" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+
+export const blogCategoriesQuery = groq`
+  array::unique(*[_type == "post" && defined(category)].category)
+`
+
+// Site Settings & Contact Query
+export const siteSettingsQuery = groq`
+  *[_type == "siteSettings"][0] {
+    ...,
+    logo ${imageFragment},
+    footerLogo ${imageFragment}
+  }
+`
+
 
 
