@@ -25,12 +25,18 @@ import { category } from './category'
 import { tag } from './tag'
 import { author } from './author'
 
+// Portfolio system schemas
+import { portfolioProject } from './portfolioProject'
+import { portfolioService } from './portfolioService'
+
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
   homePage,
   aboutPage,
   caseStudy,
+  portfolioProject,
+  portfolioService,
   service,
   technology,
   technologyCategory,

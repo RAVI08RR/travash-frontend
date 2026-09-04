@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Banking & Financial Services",
+    "slug": "banking-financial-services"
+  },
+  {
+    "title": "Government & Public Sector",
+    "slug": "government-public-sector"
+  },
+  {
+    "title": "Travel & Hospitality",
+    "slug": "travel-hospitality"
+  },
+  {
+    "title": "Artificial Intelligence",
+    "slug": "artificial-intelligence"
+  },
+  {
+    "title": "Real Estate",
+    "slug": "real-estate"
+  },
+  {
+    "title": "E-Commerce",
+    "slug": "e-commerce"
+  },
+  {
+    "title": "Healthcare",
+    "slug": "healthcare"
+  },
+  {
+    "title": "Technology",
+    "slug": "technology"
+  },
+  {
+    "title": "Industrial",
+    "slug": "industrial"
+  },
+  {
+    "title": "Hospitality and Travel",
+    "slug": "hospitality-and-travel"
+  },
+  {
+    "title": "Health & Wellness",
+    "slug": "health-wellness"
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "source": "/i4c-bank-portal/",
+    "destination": "/portfolio/i4c-bank-portal/",
+    "permanent": true
+  },
+  {
+    "source": "/i-verify/",
+    "destination": "/portfolio/i-verify/",
+    "permanent": true
+  },
+  {
+    "source": "/satyapaan/",
+    "destination": "/portfolio/satyapaan/",
+    "permanent": true
+  },
+  {
+    "source": "/darpan/",
+    "destination": "/portfolio/darpan/",
+    "permanent": true
+  },
+  {
+    "source": "/ugo/",
+    "destination": "/portfolio/ugo/",
+    "permanent": true
+  },
+  {
+    "source": "/nigaah-videosurvelience/",
+    "destination": "/portfolio/nigaah-videosurvelience/",
+    "permanent": true
+  },
+  {
+    "source": "/crowdcounting/",
+    "destination": "/portfolio/crowdcounting/",
+    "permanent": true
+  },
+  {
+    "source": "/direct-owners/",
+    "destination": "/portfolio/direct-owners/",
+    "permanent": true
+  },
+  {
+    "source": "/spencer/",
+    "destination": "/portfolio/spencer/",
+    "permanent": true
+  },
+  {
+    "source": "/dovehouse/",
+    "destination": "/portfolio/dovehouse/",
+    "permanent": true
+  },
+  {
+    "source": "/alexander-johnson-group/",
+    "destination": "/portfolio/alexander-johnson-group/",
+    "permanent": true
+  },
+  {
+    "source": "/asak/",
+    "destination": "/portfolio/asak/",
+    "permanent": true
+  },
+  {
+    "source": "/arabian-hills/",
+    "destination": "/portfolio/arabian-hills/",
+    "permanent": true
+  },
+  {
+    "source": "/ledray/",
+    "destination": "/portfolio/ledray/",
+    "permanent": true
+  },
+  {
+    "source": "/indispare/",
+    "destination": "/portfolio/indispare/",
+    "permanent": true
+  },
+  {
+    "source": "/konvino/",
+    "destination": "/portfolio/konvino/",
+    "permanent": true
+  },
+  {
+    "source": "/dine-desk/",
+    "destination": "/portfolio/dine-desk/",
+    "permanent": true
+  },
+  {
+    "source": "/medimee/",
+    "destination": "/portfolio/medimee/",
+    "permanent": true
+  },
+  {
+    "source": "/pekt/",
+    "destination": "/portfolio/pekt/",
+    "permanent": true
+  },
+  {
+    "source": "/skipr/",
+    "destination": "/portfolio/skipr/",
+    "permanent": true
+  },
+  {
+    "source": "/gratus/",
+    "destination": "/portfolio/gratus/",
+    "permanent": true
+  },
+  {
+    "source": "/gemba/",
+    "destination": "/portfolio/gemba/",
+    "permanent": true
+  },
+  {
+    "source": "/wiggett-app/",
+    "destination": "/portfolio/wiggett-app/",
+    "permanent": true
+  },
+  {
+    "source": "/kalsi-estate/",
+    "destination": "/portfolio/kalsi-estate/",
+    "permanent": true
+  },
+  {
+    "source": "/grid-properties/",
+    "destination": "/portfolio/grid-properties/",
+    "permanent": true
+  },
+  {
+    "source": "/soul-trips/",
+    "destination": "/portfolio/soul-trips/",
+    "permanent": true
+  },
+  {
+    "source": "/wp-json/",
+    "destination": "/portfolio/wp-json/",
+    "permanent": true
+  },
+  {
+    "source": "/ai-data-engineering/",
+    "destination": "/portfolio/ai-data-engineering/",
+    "permanent": true
+  },
+  {
+    "source": "/data-analytics-solutions/",
+    "destination": "/portfolio/data-analytics-solutions/",
+    "permanent": true
+  },
+  {
+    "source": "/software-engineering/",
+    "destination": "/portfolio/software-engineering/",
+    "permanent": true
+  },
+  {
+    "source": "/dedicated-talent-and-teams/",
+    "destination": "/portfolio/dedicated-talent-and-teams/",
+    "permanent": true
+  },
+  {
+    "source": "/quality-assurance-testing/",
+    "destination": "/portfolio/quality-assurance-testing/",
+    "permanent": true
+  },
+  {
+    "source": "/enterprise-applications/",
+    "destination": "/portfolio/enterprise-applications/",
+    "permanent": true
+  },
+  {
+    "source": "/digital-experiences-web-mobile/",
+    "destination": "/portfolio/digital-experiences-web-mobile/",
+    "permanent": true
+  },
+  {
+    "source": "/cloud-devops/",
+    "destination": "/portfolio/cloud-devops/",
+    "permanent": true
+  },
+  {
+    "source": "/staff-augmentation/",
+    "destination": "/portfolio/staff-augmentation/",
+    "permanent": true
+  },
+  {
+    "source": "/technologies/",
+    "destination": "/portfolio/technologies/",
+    "permanent": true
+  },
+  {
+    "source": "/home/",
+    "destination": "/portfolio/home/",
+    "permanent": true
+  },
+  {
+    "source": "/terms-and-condition/",
+    "destination": "/portfolio/terms-and-condition/",
+    "permanent": true
+  }
+]

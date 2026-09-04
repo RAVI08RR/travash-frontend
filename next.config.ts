@@ -59,23 +59,30 @@ const nextConfig: NextConfig = {
       const fs = require('fs')
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const path = require('path')
-      const redirectsPath = path.resolve(process.cwd(), 'migration/redirects.json')
-      if (fs.existsSync(redirectsPath)) {
-        const raw = JSON.parse(fs.readFileSync(redirectsPath, 'utf8'))
-        const seen = new Set(defaultRedirects.map((r) => r.source))
-        for (const item of raw) {
-          if (
-            item.source &&
-            item.destination &&
-            item.source !== item.destination &&
-            !seen.has(item.source)
-          ) {
-            seen.add(item.source)
-            defaultRedirects.push({
-              source: item.source,
-              destination: item.destination,
-              permanent: true,
-            })
+      const seen = new Set(defaultRedirects.map((r) => r.source))
+
+      const filesToLoad = [
+        path.resolve(process.cwd(), 'migration/redirects.json'),
+        path.resolve(process.cwd(), 'migration/portfolio/redirects.json'),
+      ]
+
+      for (const filePath of filesToLoad) {
+        if (fs.existsSync(filePath)) {
+          const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+          for (const item of raw) {
+            if (
+              item.source &&
+              item.destination &&
+              item.source !== item.destination &&
+              !seen.has(item.source)
+            ) {
+              seen.add(item.source)
+              defaultRedirects.push({
+                source: item.source,
+                destination: item.destination,
+                permanent: true,
+              })
+            }
           }
         }
       }

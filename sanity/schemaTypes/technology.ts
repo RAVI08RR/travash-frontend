@@ -6,17 +6,21 @@ export const technology = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'title',
+      title: 'Technology Title',
+      type: 'string',
+    }),
+    defineField({
       name: 'name',
       title: 'Technology Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'name',
+        source: (doc: any) => doc.title || doc.name,
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),

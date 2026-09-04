@@ -22,8 +22,8 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
       ? rawImage
       : rawImage?.asset?.url || '/images/services/analytics.webp'
 
-  // Destination URL
-  const href = project.caseStudyUrl || `/case-studies/${project.slug}`
+  // Destination URL (Standardized Next.js Portfolio Route)
+  const href = `/portfolio/${project.slug}`
 
   // Display Title & Description
   const title = project.portfolioTitle || project.title

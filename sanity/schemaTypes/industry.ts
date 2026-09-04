@@ -6,17 +6,21 @@ export const industry = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'title',
+      title: 'Industry Title',
+      type: 'string',
+    }),
+    defineField({
       name: 'name',
       title: 'Industry Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'name',
+        source: (doc: any) => doc.title || doc.name,
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),

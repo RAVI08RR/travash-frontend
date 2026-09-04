@@ -1,0 +1,74 @@
+[
+  {
+    "title": "AI",
+    "slug": "ai"
+  },
+  {
+    "title": "Web App",
+    "slug": "web-app"
+  },
+  {
+    "title": "Facial Recognition",
+    "slug": "facial-recognition"
+  },
+  {
+    "title": "Data Extraction",
+    "slug": "data-extraction"
+  },
+  {
+    "title": "Workflow Automation",
+    "slug": "workflow-automation"
+  },
+  {
+    "title": "AFIS",
+    "slug": "afis"
+  },
+  {
+    "title": "DARPAN",
+    "slug": "darpan"
+  },
+  {
+    "title": "React",
+    "slug": "react"
+  },
+  {
+    "title": "Mobile App",
+    "slug": "mobile-app"
+  },
+  {
+    "title": "Machine Learning",
+    "slug": "machine-learning"
+  },
+  {
+    "title": "Next.js",
+    "slug": "next-js"
+  },
+  {
+    "title": "Computer Vision",
+    "slug": "computer-vision"
+  },
+  {
+    "title": "Docker",
+    "slug": "docker"
+  },
+  {
+    "title": "Kubernetes",
+    "slug": "kubernetes"
+  },
+  {
+    "title": "AWS",
+    "slug": "aws"
+  },
+  {
+    "title": "Microservices",
+    "slug": "microservices"
+  },
+  {
+    "title": "Python",
+    "slug": "python"
+  },
+  {
+    "title": "PostgreSQL",
+    "slug": "postgresql"
+  }
+]

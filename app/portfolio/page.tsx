@@ -1,7 +1,9 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { client } from '@/lib/sanity'
-import { portfolioPageQuery } from '@/lib/queries'
+import {
+  getAllPortfolioProjects,
+  getPortfolioIndustries,
+} from '@/lib/portfolioQueries'
 import {
   DEFAULT_PORTFOLIO_PROJECTS,
   DEFAULT_INDUSTRIES,
@@ -35,31 +37,43 @@ export const metadata: Metadata = {
 
 export default async function PortfolioPage() {
   // Fetch from Sanity CMS with robust fallback
-  let data: any = null
+  let projects: PortfolioProject[] = []
+  let industries: IndustryItem[] = []
 
   try {
-    data = await client.fetch(portfolioPageQuery)
+    const sanityProjects = await getAllPortfolioProjects()
+    if (sanityProjects && Array.isArray(sanityProjects) && sanityProjects.length > 0) {
+      projects = sanityProjects
+    }
   } catch (err) {
-    console.warn('Sanity portfolio fetch fallback triggered:', err)
+    console.warn('Sanity portfolio projects fetch fallback triggered:', err)
   }
 
-  // Merge Sanity projects or use default 26-project curated catalog
-  const projects: PortfolioProject[] =
-    data?.projects && Array.isArray(data.projects) && data.projects.length > 0
-      ? data.projects
-      : DEFAULT_PORTFOLIO_PROJECTS
+  if (projects.length === 0) {
+    projects = DEFAULT_PORTFOLIO_PROJECTS
+  }
 
-  // Merge Sanity industries or use default industries
-  const industries: IndustryItem[] =
-    data?.industries && Array.isArray(data.industries) && data.industries.length > 0
-      ? data.industries
-      : DEFAULT_INDUSTRIES
+  try {
+    const sanityIndustries = await getPortfolioIndustries()
+    if (sanityIndustries && Array.isArray(sanityIndustries) && sanityIndustries.length > 0) {
+      industries = sanityIndustries.map((ind: any) => ({
+        name: ind.title || ind.name,
+        slug: ind.slug,
+        description: ind.description,
+        projectCount: ind.projectCount || 0,
+      }))
+    }
+  } catch (err) {
+    console.warn('Sanity portfolio industries fetch fallback triggered:', err)
+  }
 
-  const siteSettings = data?.siteSettings || null
+  if (industries.length === 0) {
+    industries = DEFAULT_INDUSTRIES
+  }
 
   return (
     <>
-      <Navbar settings={siteSettings} />
+      <Navbar />
       <main id="main-content" className="min-h-screen bg-white">
         {/* Hero Section */}
         <PortfolioHero totalCount={projects.length} />
@@ -88,7 +102,7 @@ export default async function PortfolioPage() {
         {/* Contact & Consultation Section */}
         <Contact />
       </main>
-      <Footer settings={siteSettings} />
+      <Footer />
     </>
   )
 }
