@@ -649,7 +649,7 @@ async function seed() {
         label: 'View Analytics Case Studies',
         href: '#case-studies',
       },
-      heroImageAlt: 'Data Analytics and Intelligence Dashboard',
+      heroImageAlt: 'Stop Drowning in Data - Travash Data Analytics',
       highlights: [
         'Enterprise Data Engineering',
         'Real-Time Analytics',
@@ -658,7 +658,7 @@ async function seed() {
       ],
     },
     problemSection: {
-      label: 'The Problem',
+      label: 'The Problem:',
       title: 'Outdated Spreadsheets & Data Silos',
       headline: 'You are making critical decisions based on outdated spreadsheets.',
       description:
@@ -697,13 +697,13 @@ async function seed() {
           icon: 'users',
           title: 'Top 1% Data Talent',
           description:
-            'Instantly scale your engineering velocity with a dedicated pod of elite data engineers, distributed database architects, and BI specialists.',
+            'Instantly scale your capacity with a dedicated development team of elite data engineers and BI analysts.',
         },
         {
           icon: 'eye',
           title: 'Real-Time Visibility',
           description:
-            'We replace manual reporting with automated, real-time analytics, giving your executive team absolute clarity on business health at a single glance.',
+            'We replace manual reporting with automated, real-time analytics, giving your executive team absolute clarity on business health at a glance.',
         },
       ],
       cta: {
@@ -713,129 +713,128 @@ async function seed() {
     },
     capabilities: [
       {
-        title: 'Data Engineering & Pipelines',
+        title: 'Data Engineering',
         shortDescription:
-          'Secure, high-volume automated data pipelines engineered for petabyte-scale throughput and zero data loss.',
-        problem: 'Your data is dirty, duplicated, and scattered across dozens of incompatible legacy databases.',
+          'We build the critical plumbing—secure, high-volume data pipelines—that makes accurate analytics possible.',
+        problem: 'Your data is dirty, duplicated, and scattered across dozens of incompatible legacy systems.',
         solution:
-          'We architect scalable data infrastructure using Big Data technologies like Spark, Kafka, and NoSQL. We build automated ETL pipelines that clean and route data into a centralized, secure data warehouse.',
+          'We architect scalable data infrastructure using Big Data technologies like Hadoop, Spark, and NoSQL. We build automated ETL pipelines that clean and route data into a centralized, secure data warehouse.',
         businessImpact:
-          'Creates an unshakeable foundation of high-quality data, ensuring your business intelligence tools report verified truth.',
+          'Creates an unshakeable foundation of high-quality data, ensuring your business intelligence tools are reporting the actual truth.',
         icon: 'database',
-        technologies: ['Apache Spark', 'Kafka', 'Python', 'SQL', 'Airflow', 'dbt'],
+        technologies: ['Apache Spark', 'Hadoop', 'Kafka', 'Python', 'SQL', 'Airflow', 'dbt'],
         optionalCTA: { label: 'Explore Engineering', href: '#contact' },
       },
       {
-        title: 'Business Intelligence (BI) Platforms',
+        title: 'Business Intelligence (BI)',
         shortDescription:
-          'Intuitive semantic layers and interactive dashboards that democratize analytics across non-technical leadership.',
+          'We deploy enterprise-grade BI platforms that empower your teams to query massive datasets without needing a degree in computer science.',
         problem:
-          'Non-technical leaders cannot get answers to strategic questions without submitting a ticket to IT and waiting days.',
+          'Non-technical leaders cannot get answers to strategic questions without submitting a ticket to the IT department and waiting days.',
         solution:
-          'We implement and customize leading BI engines (like Power BI, Tableau, and Looker) or architect bespoke analytics interfaces with natural querying.',
+          'We implement and customize leading BI engines (like Power BI, Tableau, or custom builds). We design intuitive semantic layers so anyone can explore data naturally.',
         businessImpact:
-          'Democratizes data across your organization, drastically cutting the time from strategic question to data-backed answer.',
+          'Democratizes data across your organization, drastically cutting the time it takes to move from a strategic question to a data-backed answer.',
         icon: 'pie-chart',
-        technologies: ['Power BI', 'Tableau', 'Looker', 'Custom React Charts'],
+        technologies: ['Power BI', 'Tableau', 'Looker', 'Custom Semantic Models'],
         optionalCTA: { label: 'Explore BI', href: '#contact' },
       },
       {
-        title: 'Data Warehousing & Modern Data Lakes',
+        title: 'CI/CD (Continuous Integration & Continuous Deployment)',
         shortDescription:
-          'Elastic cloud repositories structured for sub-second analytical queries across millions of transactions.',
-        problem:
-          'Traditional relational databases choke and lock tables when heavy analytical reports run during peak business hours.',
+          'We build the automated highways that take your code from a developer\'s laptop to production in minutes.',
+        problem: 'Code sits in testing environments for weeks waiting for manual QA and security approvals.',
         solution:
-          'We design decoupled, modern cloud data warehouses using Snowflake, Databricks, BigQuery, and Redshift with separated storage and compute.',
+          'We engineer automated CI/CD pipelines. Every code commit is automatically built, security-scanned, and tested before being safely deployed to staging or production.',
         businessImpact:
-          'Executes complex multi-year trend queries in seconds with zero performance degradation to customer-facing transactional systems.',
+          'Empowers your engineers to deploy multiple times a day with total confidence, massively accelerating feature releases.',
         icon: 'server',
-        technologies: ['Snowflake', 'Databricks', 'AWS Redshift', 'Google BigQuery', 'PostgreSQL'],
-        optionalCTA: { label: 'Explore Warehousing', href: '#contact' },
+        technologies: ['Jenkins', 'GitLab CI', 'GitHub Actions', 'ArgoCD'],
+        optionalCTA: { label: 'Explore CI/CD', href: '#contact' },
       },
       {
-        title: 'Cloud Data Platforms (AWS, Azure & GCP)',
+        title: 'AWS (Amazon Web Services)',
         shortDescription:
-          'Multi-cloud data ecosystems built with auto-scaling compute, serverless microservices, and enterprise IAM security.',
+          'We design, deploy, and manage highly resilient cloud architectures on the world\'s most comprehensive cloud platform.',
         problem:
-          'Legacy on-premise servers lack the elastic compute power required for high-throughput AI model training and streaming data ingestion.',
+          'Your AWS environment has grown organically over years, leading to tangled permissions, unused resources, and bloated monthly invoices.',
         solution:
-          'Our certified cloud architects design and migrate your infrastructure to AWS, Microsoft Azure, or Google Cloud Platform, optimizing for cost and uptime.',
+          'Our certified AWS architects optimize your infrastructure. We implement EC2 auto-scaling, secure S3 data lakes, and serverless architectures to maximize performance.',
         businessImpact:
-          'Cuts cloud infrastructure spend by up to 35% through rightsizing and FinOps governance while achieving 99.99% availability.',
+          'Slashes your AWS spend, tightens identity access management (IAM), and ensures 99.99% uptime.',
         icon: 'cloud',
-        technologies: ['AWS S3 & EMR', 'Azure Synapse', 'Google Cloud Platform', 'Terraform', 'Kubernetes'],
-        optionalCTA: { label: 'Explore Cloud', href: '#contact' },
+        technologies: ['AWS S3', 'EC2 Auto-scaling', 'EMR', 'Redshift', 'Lambda'],
+        optionalCTA: { label: 'Explore AWS', href: '#contact' },
       },
       {
-        title: 'Data Governance, Compliance & Security',
+        title: 'Microsoft Azure',
         shortDescription:
-          'Granular role-based access control, automated audit trails, and strict adherence to global privacy mandates.',
-        problem:
-          'Ungoverned data lakes lead to security compliance violations, unauthorized access, and sensitive customer data leakage.',
+          'We engineer enterprise-grade hybrid and public cloud solutions utilizing the Microsoft ecosystem.',
+        problem: 'You rely heavily on enterprise Microsoft tools but struggle to scale them securely in a hybrid cloud environment.',
         solution:
-          'We implement enterprise data cataloging, automated lineage tracking, data masking, and strict encryption at rest and in transit.',
+          'We leverage Azure’s advanced capabilities, deploying secure Kubernetes services (AKS), Azure DevOps pipelines, and seamless Active Directory integrations.',
         businessImpact:
-          'Guarantees full compliance with GDPR, SOC 2, HIPAA, and regional sovereign security regulations with complete audit defensibility.',
+          'Provides a highly secure, compliant environment that natively integrates with your existing enterprise software stack.',
         icon: 'shield',
-        technologies: ['Apache Ranger', 'HashiCorp Vault', 'AWS IAM', 'Data Lineage Tools'],
-        optionalCTA: { label: 'Explore Governance', href: '#contact' },
+        technologies: ['Azure Synapse', 'AKS', 'Azure DevOps', 'Active Directory'],
+        optionalCTA: { label: 'Explore Azure', href: '#contact' },
       },
       {
-        title: 'AI & ML Data Readiness',
+        title: 'Google Cloud (GCP)',
         shortDescription:
-          'Feature store architecture, clean labeled datasets, and low-latency feature serving for predictive AI models.',
+          'We build data-heavy, high-compute platforms leveraging Google’s elite machine learning and analytics infrastructure.',
         problem:
-          'Machine learning models fail in production because training datasets are stale, poorly structured, and out of sync with live databases.',
+          'Your data engineering and AI models are choking on standard cloud infrastructure due to low compute speed and high latency.',
         solution:
-          'We build feature engineering pipelines, automated validation gates, and vector embeddings storage to prepare your data for LLMs and ML models.',
+          'We architect data pipelines and microservices on GCP, utilizing BigQuery, Vertex AI, and Google Kubernetes Engine (GKE) for extreme performance.',
         businessImpact:
-          'Reduces model training preparation cycles by 60% and guarantees reliable inference accuracy for production AI systems.',
+          'Accelerates data processing and machine learning workflows, giving you the fastest possible insights from your enterprise data.',
         icon: 'cpu',
-        technologies: ['Vector DBs', 'Python ML Stack', 'Vertex AI', 'AWS SageMaker', 'PyTorch'],
-        optionalCTA: { label: 'Explore AI Readiness', href: '#contact' },
+        technologies: ['Google BigQuery', 'Vertex AI', 'GKE', 'Dataflow'],
+        optionalCTA: { label: 'Explore GCP', href: '#contact' },
+      },
+      {
+        title: 'DevSecOps & Cloud Security',
+        shortDescription:
+          'We bring financial accountability to the variable spend model of the cloud.',
+        problem: 'Your cloud bill is a black box, and costs are scaling much faster than your actual business revenue.',
+        solution:
+          'We conduct rigorous FinOps audits. We identify orphaned resources, right-size your compute instances, and architect serverless functions to ensure you only pay for what you use.',
+        businessImpact:
+          'Instantly reclaims wasted IT budget, providing predictable, optimized monthly cloud expenditures.',
+        icon: 'shield',
+        technologies: ['FinOps Audits', 'Terraform', 'Vault', 'Kubernetes Security'],
+        optionalCTA: { label: 'Explore DevSecOps', href: '#contact' },
       },
     ],
     process: {
-      heading: 'Our Data Engineering Process',
+      heading: 'Our Infrastructure Engineering Process',
       description:
-        'We do not guess with your mission-critical data. We follow a strict, enterprise-grade engineering methodology to ensure complete stability, data integrity, and zero downtime.',
+        'We do not guess with your infrastructure. We follow a strict, enterprise-grade methodology to ensure absolute stability.',
       steps: [
         {
           number: '01',
-          title: 'Data Discovery & Architecture Audit',
+          title: 'Cloud Readiness & Security Audit',
           description:
-            'We audit your existing databases, third-party APIs, legacy schemas, and security posture to identify bottlenecks, duplicate records, and exact target requirements.',
+            'We audit your existing codebase, database structures, and security posture to identify the exact cloud architecture you need.',
         },
         {
           number: '02',
-          title: 'Architecture & Pipeline Blueprinting',
+          title: 'Blueprinting & Infrastructure as Code',
           description:
-            'We engineer a decoupled technical blueprint specifying ingestion rates, storage layers, transformation logic, and infrastructure as code (Terraform).',
+            'We design the architecture and write it as code (Terraform/Ansible) so your infrastructure is version-controlled, repeatable, and secure.',
         },
         {
           number: '03',
-          title: 'Data Ingestion & Pipeline Engineering',
+          title: 'Phased Execution & Containerization',
           description:
-            'We construct automated high-throughput ETL/ELT pipelines with built-in validation gates, exception alerts, and dead-letter queues.',
+            'We migrate or deploy in tightly controlled sprints, utilizing Docker and Kubernetes to ensure applications run perfectly in any environment.',
         },
         {
           number: '04',
-          title: 'Data Warehouse & Semantic Modeling',
+          title: 'Continuous Monitoring',
           description:
-            'We deploy the cloud data warehouse, organize dimensional star/snowflake schemas, and build semantic layers for self-service business intelligence.',
-        },
-        {
-          number: '05',
-          title: 'Validation, Governance & Security Testing',
-          description:
-            'We run parallel reconciliation tests against legacy databases, verify checksums, and configure role-based access control (RBAC) and data masking.',
-        },
-        {
-          number: '06',
-          title: 'Continuous Telemetry & Cost Optimization',
-          description:
-            'Post-deployment, we configure automated health alerts, query latency monitoring, and FinOps policies to prevent compute overspend.',
+            'Post-deployment, we implement advanced telemetry and auto-healing scripts to catch and resolve anomalies before your users ever notice.',
         },
       ],
     },
@@ -847,72 +846,72 @@ async function seed() {
     ],
     engagementModels: [
       {
-        title: 'Dedicated Engineering Team',
+        title: 'Dedicated Team',
         description:
-          'A dedicated pod of senior data engineers, distributed database architects, and BI analysts embedded into your sprint cycles.',
-        icon: 'users',
-        badge: 'Most Popular',
+          'A fully managed offshore or blended pod (Ukraine + USA) of DevOps engineers and Cloud Architects acting as your internal site reliability team.',
+        icon: '/images/services/boosting.svg',
+        badge: 'Popular',
         cta: { label: 'Hire Dedicated Team', href: '#contact' },
       },
       {
-        title: 'Fixed Fee Milestone Projects',
+        title: 'Fixed Fee',
         description:
-          'For strictly scoped enterprise projects like complete data warehouse migrations or new BI platform rollouts with guaranteed deliverables.',
-        icon: 'file-check',
+          'For strictly scoped projects, like a complete lift-and-shift migration, we agree on a fixed price and timeline.',
+        icon: '/images/services/boosting.svg',
         badge: 'Fixed Scope',
         cta: { label: 'Scope a Project', href: '#contact' },
       },
       {
-        title: 'Time & Material Consulting',
+        title: 'Time & Material (Spot Consulting)',
         description:
-          'Flexible on-demand access to principal data architects for infrastructure audits, emergency troubleshooting, and technical roadmaps.',
-        icon: 'clock',
+          'A fully managed offshore or blended pod (Ukraine + USA) of DevOps engineers and Cloud Architects acting as your internal site reliability team.',
+        icon: '/images/services/boosting.svg',
         badge: 'Flexible',
         cta: { label: 'Book Advisory', href: '#contact' },
       },
       {
         title: 'Staff Augmentation',
         description:
-          'Instantly inject senior, pre-vetted data engineers and PySpark/SQL specialists directly into your existing agile engineering squads.',
-        icon: 'user-plus',
-        badge: 'Fast Scale',
+          'A fully managed offshore or blended pod (Ukraine + USA) of DevOps engineers and Cloud Architects acting as your internal site reliability team.',
+        icon: '/images/services/boosting.svg',
+        badge: 'Rapid Scale',
         cta: { label: 'Augment Staff', href: '#contact' },
       },
     ],
     technologyStack: [
       {
-        category: 'Data Engineering & Streaming',
-        technologies: ['Apache Spark', 'Apache Kafka', 'Python', 'SQL', 'Apache Airflow', 'dbt'],
-        description: 'Distributed streaming and batch computation for real-time and scheduled pipeline execution.',
+        category: 'Cloud Platforms',
+        technologies: ['AWS', 'Microsoft Azure', 'Google Cloud'],
+        description: 'Enterprise multi-cloud ecosystems with auto-scaling compute and high-availability architecture.',
       },
       {
-        category: 'Cloud Warehouses & Databases',
-        technologies: ['Snowflake', 'Databricks', 'Google BigQuery', 'AWS Redshift', 'PostgreSQL', 'MongoDB'],
-        description: 'Decoupled cloud storage and compute engines optimized for ultra-low analytical query latency.',
+        category: 'Containerization & Orchestration',
+        technologies: ['Docker', 'Kubernetes'],
+        description: 'Microservices containerization with zero-downtime rolling deployments and automated cluster healing.',
       },
       {
-        category: 'Business Intelligence & Dashboards',
-        technologies: ['Power BI', 'Tableau', 'Looker', 'Metabase', 'Custom D3/React Visualizations'],
-        description: 'Enterprise reporting layers empowering decision-makers to interact naturally with live data.',
+        category: 'CI/CD & Automation',
+        technologies: ['Jenkins', 'GitLab', 'Ansible', 'HashiCorp Terraform'],
+        description: 'Version-controlled infrastructure as code and automated deployment pipelines with zero human error.',
       },
       {
-        category: 'Cloud Infrastructure & DevOps',
-        technologies: ['AWS', 'Microsoft Azure', 'Google Cloud Platform', 'Docker', 'Kubernetes', 'Terraform'],
-        description: 'Resilient cloud infrastructure with infrastructure as code and automated deployment pipelines.',
+        category: 'Monitoring & Security',
+        technologies: ['DataGrip', 'Prometheus', 'Grafana', 'Cloudflare'],
+        description: 'Real-time infrastructure observability, log aggregation, automated alerts, and edge DDoS protection.',
       },
     ],
     trustSection: {
-      heading: 'Why Global Leaders Trust Travash',
+      heading: 'Why Global Leaders Trust Us',
       description:
-        'Founded in 2005, Travash operates as a trusted technology engineering partner for organizations running mission-critical operations at scale. Global enterprises and public-sector authorities rely on our technical rigor to architect secure data foundations, protect sensitive records, and build high-performance systems.',
+        'Founded in 2005, Travash operates as a trusted technology partner for organizations that operate at a massive international scale. Global giants like MasterCard, VISA, Facebook, Autodesk, and UBS trust our elite engineering talent to protect and scale their most critical infrastructure. We bring the execution rigor required for long-term, high-stakes technology partnerships.',
       stats: [
         { value: '2005', label: 'Year Founded', description: '20+ Years of Enterprise Engineering Rigor' },
-        { value: '100+', label: 'Production Platforms Shipped', description: 'Tested Across High-Concurrency Workloads' },
+        { value: '100+', label: 'Enterprise Systems Shipped', description: 'Tested Across High-Concurrency Workloads' },
         { value: '99.99%', label: 'Infrastructure Uptime', description: 'Zero Data Loss Engineering Standard' },
-        { value: '1.96M+', label: 'Verified Records Handled', description: 'Trusted with State-Scale Public Registries' },
+        { value: 'Global', label: 'Enterprise Giants', description: 'MasterCard, VISA, Facebook, Autodesk, UBS' },
       ],
       trustPoints: [
-        'Senior data engineers and certified cloud architects across AWS, Azure, and GCP',
+        'Senior data architects and certified engineers across AWS, Azure, and Google Cloud',
         'Strict zero-trust security standards, end-to-end data encryption, and role-based access control',
         'Transparent sprint execution with dedicated technical project management',
         'Proven track record scaling mission-critical public and enterprise platforms',
@@ -920,56 +919,51 @@ async function seed() {
     },
     testimonial: {
       quote:
-        'Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens hard-earned money. Travash stands shoulder-to-shoulder with us on the frontlines.',
+        'Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens\' hard-earned rupees. Travash stands shoulder-to-shoulder with us on the frontlines, using technology to protect the nation.',
       author: 'Senior Leadership & National Coordinator',
-      role: 'National Cyber Fraud Mitigation Portal',
-      company: 'Public Safety Initiative',
+      role: 'Cyber Crime Coordination',
+      company: 'National Anti-Fraud Network',
       badge: 'National Infrastructure Partner',
     },
     faqs: [
       {
-        question: "How do you ensure our proprietary data doesn't leak into public AI models?",
+        question: 'How do you ensure our proprietary data doesn\'t leak into public AI models?',
         answer:
           'We enforce strict zero-trust network boundaries and enterprise data governance. All data processing pipelines, vector databases, and analytics platforms run entirely within your private cloud Virtual Private Cloud (VPC) or dedicated on-premise infrastructure. We configure private endpoints, data masking, and strict API controls so your sensitive business data is never shared with public LLMs or third-party training corpuses.',
       },
       {
-        question: 'Should our enterprise use a single cloud provider or a multi-cloud data strategy?',
+        question: 'Should we use a single cloud provider or a multi-cloud strategy?',
         answer:
-          'The answer depends on your existing software ecosystem, data sovereignty mandates, and latency requirements. For most enterprises, standardizing on one primary cloud provider (such as AWS, Azure, or GCP) simplifies IAM security and drastically reduces data egress costs. However, we architect data platforms using cloud-agnostic tools like Snowflake, Databricks, and Terraform, ensuring you retain the flexibility to deploy workloads across multiple clouds without vendor lock-in.',
+          'The answer depends on your existing software ecosystem, data sovereignty mandates, and latency requirements. For most enterprises, standardizing on one primary cloud provider (such as AWS, Azure, or GCP) simplifies IAM security and drastically reduces data egress costs. However, we architect infrastructure using cloud-agnostic tools like Terraform, Docker, and Kubernetes, ensuring you retain the flexibility to deploy workloads across multiple clouds without vendor lock-in.',
       },
       {
-        question: 'How does modern data pipeline automation actually save our business money?',
+        question: 'How does DevOps actually save us money?',
         answer:
-          'Automated pipelines replace hundreds of hours of manual report compilation by analysts, eliminate human transcription errors, and prevent costly operational mistakes caused by outdated spreadsheets. Furthermore, by modernizing your architecture with decoupled storage and serverless compute, you only pay for compute resources during query execution rather than maintaining expensive, idle database instances 24/7.',
+          'DevOps automation eliminates hundreds of hours of manual deployment and configuration toil, drastically reduces production downtime incidents, and right-sizes your cloud compute infrastructure. Through automated CI/CD pipelines, containerization, and FinOps monitoring, your development team releases features up to 5x faster while cutting idle infrastructure costs.',
       },
       {
-        question: 'Can you migrate our legacy databases and data warehouses without system downtime?',
+        question: 'Can you migrate our legacy monolithic application without rewriting it?',
         answer:
-          'Yes. We utilize phased migration strategies and Change Data Capture (CDC) replication to keep your new cloud data warehouse continuously synchronized with your existing legacy systems in real-time. We run automated reconciliation and checksum validation scripts in parallel until total parity is confirmed, allowing you to cut over seamlessly with zero interruption to active business operations.',
-      },
-      {
-        question: 'How quickly can Travash deploy a dedicated team of data engineers to our project?',
-        answer:
-          'Depending on your technical stack and seniority requirements, we can assemble and onboard a dedicated pod of pre-vetted senior data engineers, BI specialists, and cloud architects within 1 to 2 weeks. Our engineers seamlessly integrate into your agile rituals, Jira/GitHub workflows, and communication channels.',
+          'Yes. We utilize phased strangler-fig migration patterns and containerization (Docker & Kubernetes) to lift and optimize your legacy monolithic services without disrupting ongoing production operations. We break components into modular microservices gradually while ensuring data consistency and continuous uptime.',
       },
     ],
     finalCTA: {
-      heading: 'Ready to turn your enterprise data into a competitive advantage?',
+      heading: 'Ready to build infrastructure that accelerates your business?',
       description:
-        'Talk with our senior data engineering team to assess your current architecture, eliminate costly silos, and build a practical roadmap for scalable analytics.',
+        'Connect with our certified architects to review your roadmap, audit your cloud spend, or scale your engineering capacity.',
       primaryCTA: {
-        label: 'Book a Data Architecture Audit',
+        label: 'Book a Consultation',
         href: '#contact',
       },
       secondaryCTA: {
-        label: 'Talk to Our Data Experts',
-        href: '#contact',
+        label: 'Explore Case Studies',
+        href: '#case-studies',
       },
     },
     seo: {
-      metaTitle: 'Data & Analytics Solutions | Enterprise Data Engineering | Travash',
+      metaTitle: 'AI Development Company | Enterprise AI, ML & Data Solutions | Travash',
       metaDescription:
-        'Transform raw enterprise data into actionable intelligence. Travash architects scalable data pipelines, cloud warehouses, and BI dashboards that drive revenue.',
+        'Travash offers UI/UX design services and data analytics solutions in India, creating user-centric, visually appealing designs that boost engagement and digital success.',
     },
   }
   await client.createOrReplace(dataAnalyticsServiceDoc)

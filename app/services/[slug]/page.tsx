@@ -9,7 +9,6 @@ import Footer from '@/components/sections/Footer'
 import Contact from '@/components/sections/Contact'
 
 import ServiceHero from '@/components/services/ServiceHero'
-import ServiceSubNav from '@/components/services/ServiceSubNav'
 import ServiceProblem from '@/components/services/ServiceProblem'
 import ServiceSolutionOverview from '@/components/services/ServiceSolutionOverview'
 import ServiceCapabilities from '@/components/services/ServiceCapabilities'
@@ -131,9 +130,6 @@ export default async function ServiceDetailPage({
           </div>
         )}
 
-        {/* Sticky Sub-Navigation Bar */}
-        <ServiceSubNav />
-
         {/* 2. Business Problem Section */}
         {service.problemSection && (
           <div id="the-problem">
@@ -153,6 +149,7 @@ export default async function ServiceDetailPage({
           <ServiceCapabilities
             capabilities={service.capabilities}
             serviceTitle={service.menuTitle || service.title}
+            capabilitiesImage={service.capabilitiesImage}
           />
         )}
 
@@ -171,7 +168,10 @@ export default async function ServiceDetailPage({
 
         {/* 7. Flexible Engagement Models */}
         {service.engagementModels && service.engagementModels.length > 0 && (
-          <EngagementModels models={service.engagementModels} />
+          <EngagementModels
+            models={service.engagementModels}
+            backgroundImage={service.engagementBgImage}
+          />
         )}
 
         {/* 8. Technology Ecosystem */}
@@ -194,13 +194,12 @@ export default async function ServiceDetailPage({
           <ServiceFAQ faqs={service.faqs} serviceTitle={service.title} />
         )}
 
-        {/* 12. Final Call to Action */}
-        {service.finalCTA && (
+        {/* 12. Final Call to Action & Consultation Form */}
+        {service.finalCTA ? (
           <ServiceCTA cta={service.finalCTA} />
+        ) : (
+          <Contact />
         )}
-
-        {/* 13. Contact Form with Context */}
-        <Contact />
       </main>
       <Footer settings={siteSettings} />
     </>

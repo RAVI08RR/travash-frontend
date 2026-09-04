@@ -109,11 +109,13 @@ p {
 .btn-global {
   border-radius: 5px !important;
   height: 66px !important;
-  width: 258px;
+  min-width: 220px;
+  width: auto;
   max-width: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 /* Trusted By Client Logos: grayscale(100%) -> hover grayscale(0%) */

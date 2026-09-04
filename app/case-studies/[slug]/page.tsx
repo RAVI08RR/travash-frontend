@@ -9,7 +9,6 @@ import Footer from '@/components/sections/Footer'
 import Contact from '@/components/sections/Contact'
 
 import CaseStudyHero from '@/components/case-study/CaseStudyHero'
-import CaseStudySubNav from '@/components/case-study/CaseStudySubNav'
 import CaseStudyMetrics from '@/components/case-study/CaseStudyMetrics'
 import CaseStudyContentSection from '@/components/case-study/CaseStudyContentSection'
 import ProjectVisual from '@/components/case-study/ProjectVisual'
@@ -135,9 +134,6 @@ export default async function CaseStudyPage({
       <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
         {/* 1-3. Hero Section with Project Metadata & Badge */}
         <CaseStudyHero data={caseStudy} />
-
-        {/* Sticky Sub-navigation Bar matching Net Solutions */}
-        <CaseStudySubNav />
 
         {/* 4. Executive Summary */}
         {caseStudy.executiveSummary && (

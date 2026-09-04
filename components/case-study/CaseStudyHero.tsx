@@ -30,7 +30,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       : data.featureImage?.asset?.url || '/home-img/satyapaan-min 2.png'
 
   return (
-    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+    <section className="relative pt-10 pb-12 sm:pt-32 sm:pb-16 lg:pt-20 lg:pb-20 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
       {/* Dynamic Background Glows matching Net Solutions aesthetic */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[140px] pointer-events-none" />

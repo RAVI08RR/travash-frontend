@@ -44,7 +44,7 @@ export default function Navbar({ settings }: NavbarProps) {
   return (
     <>
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.03)]">
-        <nav className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <nav className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <Image
@@ -53,7 +53,7 @@ export default function Navbar({ settings }: NavbarProps) {
               width={160}
               height={42}
               priority
-              className="h-10 w-auto object-contain"
+              className="h-7 sm:h-9 md:h-10 w-auto max-w-[120px] sm:max-w-[150px] md:max-w-none object-contain transition-all"
             />
           </Link>
 
@@ -139,13 +139,13 @@ export default function Navbar({ settings }: NavbarProps) {
           className={`absolute right-0 top-0 bottom-0 w-80 bg-white shadow-2xl flex flex-col transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
-          <div className="flex items-center justify-between p-6 border-b border-gray-100">
+          <div className="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100">
             <Image
               src={logoUrl}
               alt="Travash"
               width={130}
               height={36}
-              className="h-8 w-auto object-contain"
+              className="h-7 w-auto max-w-[110px] object-contain"
             />
             <button
               onClick={() => setMenuOpen(false)}

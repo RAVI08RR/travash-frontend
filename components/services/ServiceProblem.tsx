@@ -1,87 +1,82 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { AlertTriangle } from 'lucide-react'
+import { AlertTriangle, CheckCircle2 } from 'lucide-react'
 import type { ServiceProblemSection } from '@/lib/service-data'
 
 export default function ServiceProblem({ problem }: { problem: ServiceProblemSection }) {
+  const imageSrc =
+    (typeof problem.image === 'string' ? problem.image : problem.image?.asset?.url) ||
+    '/images/services/critical.webp'
+
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section id="problem" className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left Column (Sticky Title) */}
-          <div className="lg:col-span-4 lg:sticky lg:top-36">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6 }}
-            >
-              {problem.label && (
-                <span className="text-xs font-bold uppercase tracking-widest text-[#E53E3E] block mb-2">
-                  {problem.label}
-                </span>
-              )}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
-                {problem.title || 'Outdated Spreadsheets & Data Silos'}
-              </h2>
-            </motion.div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Problem Narrative */}
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 flex flex-col justify-center"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-2">
+              {problem.label || 'The Problem:'}
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-semibold text-[#3D3C3C] tracking-tight leading-[1.2] mb-6">
+              {problem.headline || problem.title || 'You are making critical decisions based on outdated spreadsheets.'}
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed font-normal mb-8">
+              {problem.description}
+            </p>
 
-          {/* Right Column (Editorial Narrative + Pain Point Cards) */}
-          <div className="lg:col-span-8 flex flex-col gap-6">
-            {problem.headline && (
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6 }}
-                className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-snug tracking-tight"
-              >
-                {problem.headline}
-              </motion.h3>
-            )}
-
-            {problem.description && (
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-gray-700 text-base sm:text-lg leading-relaxed font-normal"
-              >
-                {problem.description}
-              </motion.p>
-            )}
-
-            {/* Pain Points Grid */}
+            {/* Pain Points List */}
             {problem.painPoints && problem.painPoints.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {problem.painPoints.map((point, idx) => (
-                  <motion.div
+                  <div
                     key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-[#FFF8F8] border border-[#FED7D7]/80 rounded-2xl p-5 sm:p-6 flex items-start gap-4 transition-all duration-300 hover:border-[#E53E3E]/50 hover:shadow-xs group"
+                    className="p-4 rounded-xl bg-[#F8FAFC] border border-gray-200/80 flex items-start gap-3"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#FFF5F5] text-[#E53E3E] border border-[#FED7D7] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                      <AlertTriangle className="w-5 h-5" />
+                    <div className="w-6 h-6 rounded-md bg-[#FEE2E2] text-[#DC2626] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <AlertTriangle className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <h4 className="text-base font-bold text-gray-900 mb-1 leading-snug">
+                      <h4 className="text-sm font-bold text-gray-900 mb-1 leading-snug">
                         {point.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+                      <p className="text-xs text-gray-600 leading-relaxed font-normal">
                         {point.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             )}
-          </div>
+          </motion.div>
+
+          {/* Right Column: Original Reference Image critical.webp */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, x: 25 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-6 flex justify-center"
+          >
+            <div className="relative w-full max-w-xl aspect-[16/11] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group">
+              <Image
+                src={imageSrc}
+                alt="Critical decisions based on outdated spreadsheets"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-103"
+                sizes="(max-width: 1024px) 100vw, 600px"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
