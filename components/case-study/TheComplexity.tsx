@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { FadeUpWeb } from '@/components/case-study/ScrollReveal'
 
 interface ComplexityItem {
   title: string
@@ -47,33 +47,24 @@ export default function TheComplexity({
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-t border-[#F1F5F9]">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          {/* Left Column (Approx 35%): Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-4"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12]">
-              {title}
-            </h2>
-          </motion.div>
+          {/* Left Column (Approx 35%): Sticky Section Title on Desktop */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+            <FadeUpWeb>
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12]">
+                {title}
+              </h2>
+            </FadeUpWeb>
+          </div>
 
-          {/* Right Column (Approx 65%): Intro & 2x2 Card Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="lg:col-span-8 flex flex-col"
-          >
-            {/* Intro paragraph */}
-            {intro && (
-              <p className="text-sm sm:text-base text-[#475569] leading-relaxed mb-8 max-w-3xl">
-                {intro}
-              </p>
-            )}
+          {/* Right Column (Approx 65%): Intro & 2x2 Card Grid with Web Fade-Up */}
+          <div className="lg:col-span-8 flex flex-col">
+            <FadeUpWeb delay={0.15}>
+              {/* Intro paragraph */}
+              {intro && (
+                <p className="text-sm sm:text-base text-[#475569] leading-relaxed mb-8 max-w-3xl">
+                  {intro}
+                </p>
+              )}
 
             {/* 2x2 Clean Card Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
@@ -91,7 +82,8 @@ export default function TheComplexity({
                 </div>
               ))}
             </div>
-          </motion.div>
+            </FadeUpWeb>
+          </div>
         </div>
       </div>
     </section>

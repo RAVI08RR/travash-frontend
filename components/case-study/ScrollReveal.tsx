@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface ScrollRevealProps {
@@ -10,6 +10,7 @@ interface ScrollRevealProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   distance?: number
   duration?: number
+  breakpoint?: number
 }
 
 export default function ScrollReveal({
@@ -17,9 +18,24 @@ export default function ScrollReveal({
   className = '',
   delay = 0,
   direction = 'up',
-  distance = 28,
-  duration = 0.6,
+  distance = 24,
+  duration = 0.5,
+  breakpoint = 768,
 }: ScrollRevealProps) {
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= breakpoint)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [breakpoint])
+
+  // On mobile: keep normal, static rendering without opacity 0 or transform delays
+  if (!isDesktop) {
+    return <div className={className}>{children}</div>
+  }
+
   const getInitialPosition = () => {
     switch (direction) {
       case 'up':
@@ -53,3 +69,5 @@ export default function ScrollReveal({
     </motion.div>
   )
 }
+
+export const FadeUpWeb = ScrollReveal

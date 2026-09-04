@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { FadeUpWeb } from '@/components/case-study/ScrollReveal'
 import { X } from 'lucide-react'
 
 interface TheChallengeProps {
@@ -31,64 +31,56 @@ export default function TheChallenge({
     <section className="py-16 sm:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-y border-[#EDF2F7]">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left Column: Title, Bold Headline, Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 flex flex-col"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-5">
-              {title}
-            </h2>
+          {/* Left Column: Title, Bold Headline, Description (Sticky on Desktop) */}
+          <div className="lg:col-span-5 flex flex-col lg:sticky lg:top-28 self-start">
+            <FadeUpWeb>
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-5">
+                {title}
+              </h2>
 
-            {headline && (
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] leading-snug mb-4">
-                {headline}
-              </h3>
-            )}
+              {headline && (
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] leading-snug mb-4">
+                  {headline}
+                </h3>
+              )}
 
-            {description && (
-              <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
-                {description}
-              </p>
-            )}
-          </motion.div>
+              {description && (
+                <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
+                  {description}
+                </p>
+              )}
+            </FadeUpWeb>
+          </div>
 
           {/* Right Column: Checklist with Red Cross Badges and Concluding Takeaway */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="lg:col-span-7 flex flex-col"
-          >
-            <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-5">
-              OFFICIALS NEEDED TO IDENTIFY:
-            </h4>
+          <div className="lg:col-span-7 flex flex-col">
+            <FadeUpWeb delay={0.15}>
+              <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-5">
+                OFFICIALS NEEDED TO IDENTIFY:
+              </h4>
 
-            {/* List with red circular "x" badges */}
-            <div className="flex flex-col gap-3.5 mb-8">
-              {challengePoints.map((point, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#B44B4B] text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
-                    <X className="w-3 h-3 stroke-[3]" />
+              {/* List with red circular "x" badges */}
+              <div className="flex flex-col gap-3.5 mb-8">
+                {challengePoints.map((point, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#B44B4B] text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
+                      <X className="w-3 h-3 stroke-[3]" />
+                    </div>
+                    <span className="text-sm sm:text-base text-[#334155] font-normal">
+                      {point}
+                    </span>
                   </div>
-                  <span className="text-sm sm:text-base text-[#334155] font-normal">
-                    {point}
-                  </span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Concluding takeaway note */}
-            {takeaway && (
-              <p className="text-sm sm:text-base text-[#64748B] leading-relaxed pt-2 border-t border-[#E2E8F0]/60">
-                {takeaway}
-              </p>
-            )}
-          </motion.div>
+              {/* Concluding takeaway note */}
+              {takeaway && (
+                <p className="text-sm sm:text-base text-[#64748B] leading-relaxed pt-2 border-t border-[#E2E8F0]/60">
+                  {takeaway}
+                </p>
+              )}
+            </FadeUpWeb>
+          </div>
         </div>
       </div>
     </section>

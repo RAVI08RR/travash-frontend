@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { FadeUpWeb } from '@/components/case-study/ScrollReveal'
 
 interface CaseStudyContentSectionProps {
   id?: string
@@ -32,18 +32,13 @@ export default function CaseStudyContentSection({
   return (
     <section
       id={id}
-      className={`py-12 sm:py-16 lg:py-20 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden ${className}`}
+      className={`py-12 sm:py-16 lg:py-20 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 ${className}`}
     >
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left Column (Approx 35%): Sticky Section Heading matching Net Solutions */}
-          <div className="lg:col-span-4 lg:sticky lg:top-36">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
+          {/* Left Column (Approx 35%): Sticky Section Heading on Desktop */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+            <FadeUpWeb>
               {eyebrow && (
                 <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
                   {eyebrow}
@@ -57,19 +52,15 @@ export default function CaseStudyContentSection({
                   {subtitle}
                 </p>
               )}
-            </motion.div>
+            </FadeUpWeb>
           </div>
 
-          {/* Right Column (Approx 65%): Content / Cards / Grid with Staggered Scroll Entrance */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-8 flex flex-col gap-6"
-          >
-            {children}
-          </motion.div>
+          {/* Right Column (Approx 65%): Content / Cards / Grid with Web Fade-Up */}
+          <div className="lg:col-span-8">
+            <FadeUpWeb delay={0.15} className="flex flex-col gap-6">
+              {children}
+            </FadeUpWeb>
+          </div>
         </div>
       </div>
     </section>
