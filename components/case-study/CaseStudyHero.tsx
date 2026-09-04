@@ -44,7 +44,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
               : data.title.split(':')[0] || 'Satyapaan'
 
   return (
-    <section className="pt-10 pb-12 sm:pt-28 sm:pb-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] overflow-hidden">
+    <section className="pt-5 pb-12 sm:pt-28 sm:pb-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] overflow-hidden">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation: Home > Works > Satyapaan */}
         <motion.nav
