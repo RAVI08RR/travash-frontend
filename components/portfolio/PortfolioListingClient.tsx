@@ -12,6 +12,32 @@ interface PortfolioListingClientProps {
   industries: IndustryItem[]
 }
 
+function getProjectIndustry(p: any): string {
+  if (!p) return ''
+  if (typeof p.industry === 'string') return p.industry
+  if (p.industry?.title) return p.industry.title
+  if (p.industry?.name) return p.industry.name
+  if (p.industryName) return p.industryName
+  if (Array.isArray(p.industries) && p.industries[0]) {
+    const first = p.industries[0]
+    return typeof first === 'string' ? first : first.title || first.name || ''
+  }
+  return ''
+}
+
+function getProjectType(p: any): string {
+  if (!p) return 'Web Application'
+  if (typeof p.projectType === 'string' && p.projectType) return p.projectType
+  if (typeof p.category === 'string' && p.category) return p.category
+  if (p.category?.title) return p.category.title
+  if (Array.isArray(p.services) && p.services[0]) {
+    const s = p.services[0]
+    return typeof s === 'string' ? s : s?.title || s?.name || 'Web Application'
+  }
+  if (typeof p.serviceType === 'string' && p.serviceType) return p.serviceType
+  return 'Web Application'
+}
+
 export default function PortfolioListingClient({
   initialProjects,
   industries,
@@ -97,28 +123,38 @@ export default function PortfolioListingClient({
     })
 
     initialProjects.forEach((p) => {
+      const pInd = getProjectIndustry(p)
+
       // Check industry match
       const matchesIndustry =
         selectedIndustry === 'All' ||
-        p.industry === selectedIndustry ||
-        (p.industries && p.industries.includes(selectedIndustry))
+        pInd.toLowerCase() === selectedIndustry.toLowerCase() ||
+        (Array.isArray(p.industries) &&
+          p.industries.some((ind: any) =>
+            (typeof ind === 'string' ? ind : ind?.title || ind?.name || '')
+              .toLowerCase()
+              .includes(selectedIndustry.toLowerCase())
+          ))
 
       // Check search match
       const q = searchQuery.toLowerCase().trim()
+      const techs = (p.technologies || []).map((t: any) =>
+        typeof t === 'string' ? t.toLowerCase() : (t?.title || t?.name || '').toLowerCase()
+      )
+
       const matchesQuery =
         !q ||
-        p.title.toLowerCase().includes(q) ||
+        (p.title && p.title.toLowerCase().includes(q)) ||
         (p.portfolioTitle && p.portfolioTitle.toLowerCase().includes(q)) ||
         (p.cardDescription && p.cardDescription.toLowerCase().includes(q)) ||
         (p.shortDescription && p.shortDescription.toLowerCase().includes(q)) ||
-        (p.technologies &&
-          p.technologies.some((t) =>
-            typeof t === 'string' ? t.toLowerCase().includes(q) : t?.name?.toLowerCase().includes(q)
-          ))
+        Boolean((p as any).excerpt && String((p as any).excerpt).toLowerCase().includes(q)) ||
+        pInd.toLowerCase().includes(q) ||
+        techs.some((t: string) => t.includes(q))
 
       if (matchesIndustry && matchesQuery) {
         counts['All'] = (counts['All'] || 0) + 1
-        const type = p.projectType || 'Web Application'
+        const type = getProjectType(p)
         if (counts[type] !== undefined) {
           counts[type] = counts[type] + 1
         }
@@ -131,18 +167,26 @@ export default function PortfolioListingClient({
   // Filter the projects for the grid
   const filteredProjects = useMemo(() => {
     return initialProjects.filter((p) => {
+      const pType = getProjectType(p)
+      const pInd = getProjectIndustry(p)
+
       // 1. Primary Project Type Filter
       if (selectedType !== 'All') {
-        const type = p.projectType || 'Web Application'
-        if (type !== selectedType) {
+        if (pType !== selectedType) {
           return false
         }
       }
 
       // 2. Industry Filter
       if (selectedIndustry !== 'All') {
-        const matchesMainIndustry = p.industry === selectedIndustry
-        const matchesArray = p.industries && p.industries.includes(selectedIndustry)
+        const matchesMainIndustry = pInd.toLowerCase() === selectedIndustry.toLowerCase()
+        const matchesArray =
+          Array.isArray(p.industries) &&
+          p.industries.some((ind: any) =>
+            (typeof ind === 'string' ? ind : ind?.title || ind?.name || '')
+              .toLowerCase()
+              .includes(selectedIndustry.toLowerCase())
+          )
         if (!matchesMainIndustry && !matchesArray) {
           return false
         }
@@ -151,22 +195,24 @@ export default function PortfolioListingClient({
       // 3. Search Query Filter
       if (searchQuery.trim().length > 0) {
         const q = searchQuery.toLowerCase().trim()
-        const inTitle = p.title.toLowerCase().includes(q)
+        const inTitle = p.title?.toLowerCase().includes(q) || false
         const inPortfolioTitle = p.portfolioTitle?.toLowerCase().includes(q) || false
         const inCardDesc = p.cardDescription?.toLowerCase().includes(q) || false
         const inShortDesc = p.shortDescription?.toLowerCase().includes(q) || false
-        const inCategory = p.category?.toLowerCase().includes(q) || false
-        const inIndustry = p.industry?.toLowerCase().includes(q) || false
-        const inTech =
-          p.technologies?.some((t) =>
-            typeof t === 'string' ? t.toLowerCase().includes(q) : t?.name?.toLowerCase().includes(q)
-          ) || false
+        const inExcerpt = (p as any).excerpt ? String((p as any).excerpt).toLowerCase().includes(q) : false
+        const inCategory = pType.toLowerCase().includes(q)
+        const inIndustry = pInd.toLowerCase().includes(q)
+        const inTech = (p.technologies || []).some((t: any) => {
+          const name = typeof t === 'string' ? t : t?.title || t?.name || ''
+          return name.toLowerCase().includes(q)
+        })
 
         if (
           !inTitle &&
           !inPortfolioTitle &&
           !inCardDesc &&
           !inShortDesc &&
+          !inExcerpt &&
           !inCategory &&
           !inIndustry &&
           !inTech

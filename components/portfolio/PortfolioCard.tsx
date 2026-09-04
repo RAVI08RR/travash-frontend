@@ -34,13 +34,33 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
 
   // Format technologies
   const techList: string[] = (project.technologies || [])
-    .map((t) => (typeof t === 'string' ? t : t?.name || ''))
+    .map((t: any) => (typeof t === 'string' ? t : t?.title || t?.name || ''))
     .filter(Boolean)
 
-  // Top industry / category badge
-  const primaryBadge = project.category || project.projectType || 'Software Engineering'
-  const industryBadge =
-    project.industry || (project.industries && project.industries[0]) || null
+  // Top industry / category badge (guaranteed string)
+  const primaryBadge: string =
+    (typeof project.category === 'string'
+      ? project.category
+      : (project.category as any)?.title || (project.category as any)?.name) ||
+    project.projectType ||
+    (Array.isArray((project as any).services) && (project as any).services[0]
+      ? typeof (project as any).services[0] === 'string'
+        ? (project as any).services[0]
+        : (project as any).services[0]?.title || (project as any).services[0]?.name
+      : null) ||
+    'Software Engineering'
+
+  const industryBadge: string | null =
+    (typeof project.industry === 'string'
+      ? project.industry
+      : (project.industry as any)?.title || (project.industry as any)?.name) ||
+    (Array.isArray(project.industries) && project.industries[0]
+      ? typeof project.industries[0] === 'string'
+        ? project.industries[0]
+        : (project.industries[0] as any)?.title || (project.industries[0] as any)?.name
+      : null) ||
+    (project as any).industryName ||
+    null
 
   return (
     <div className="group flex flex-col bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:border-[#02487D]/30 hover:shadow-[0_16px_36px_-8px_rgba(2,72,125,0.12)] transition-all duration-300 transform hover:-translate-y-1">
