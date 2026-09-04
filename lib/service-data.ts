@@ -869,12 +869,140 @@ export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
   },
 }
 
+export const DEFAULT_CLOUD_DEVOPS_SERVICE: ServiceData = {
+  title: 'Cloud & DevOps Engineering',
+  slug: 'cloud',
+  menuTitle: 'Cloud & DevOps',
+  shortDescription:
+    'Architect resilient multi-cloud infrastructure, automate zero-downtime CI/CD deployment pipelines, and optimize infrastructure spend across AWS, Azure, and GCP.',
+  hero: {
+    eyebrow: 'Resilient Cloud & Automated DevOps',
+    title: 'Modernize Your Cloud. Scale Without Outages or Excessive Costs.',
+    description:
+      'We design high-availability Kubernetes environments, automated Terraform infrastructure, and continuous delivery pipelines that help enterprises deploy faster with zero disruption.',
+    primaryCTA: { label: 'Book Cloud Architecture Consultation', href: '#contact' },
+    secondaryCTA: { label: 'View Cloud Case Studies', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_DIGITAL_EXPERIENCES_SERVICE: ServiceData = {
+  title: 'Digital Experiences & UI/UX',
+  slug: 'digital',
+  menuTitle: 'Digital Experiences',
+  shortDescription:
+    'Engineer high-conversion digital experiences, accessible web applications, and intuitive user interfaces backed by user-centric design and modern frontend engineering.',
+  hero: {
+    eyebrow: 'Modern Web & User Experience',
+    title: 'Transforming User Journeys into High-Impact Digital Experiences.',
+    description:
+      'From complex SaaS dashboards to high-velocity consumer web applications, we combine brand aesthetics, micro-interactions, and robust engineering to captivate users.',
+    primaryCTA: { label: 'Explore Digital Experience Capabilities', href: '#contact' },
+    secondaryCTA: { label: 'View Experience Portfolio', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_PLATFORM_ENGINEERING_SERVICE: ServiceData = {
+  title: 'Platform Engineering',
+  slug: 'platform-engineering',
+  menuTitle: 'Platform Engineering',
+  shortDescription:
+    'Build scalable multi-tenant SaaS foundations, internal developer platforms (IDP), and unified API layers that empower product teams to ship software faster.',
+  hero: {
+    eyebrow: 'Scalable SaaS & Developer Platforms',
+    title: 'Engineered for High Velocity. Architected for Multi-Tenant Scale.',
+    description:
+      'Eliminate architectural bottlenecks and redundant scaffolding. We engineer developer platforms, self-healing services, and unified microservices platforms.',
+    primaryCTA: { label: 'Consult Platform Engineers', href: '#contact' },
+    secondaryCTA: { label: 'Explore Platform Architectures', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_ENTERPRISE_APPS_SERVICE: ServiceData = {
+  title: 'Enterprise Applications & Modernization',
+  slug: 'enterprise',
+  menuTitle: 'Enterprise Applications',
+  shortDescription:
+    'Modernize legacy monoliths into agile microservices, integrate mission-critical ERPs and CRMs, and automate complex enterprise operational workflows.',
+  hero: {
+    eyebrow: 'Mission-Critical Business Systems',
+    title: 'Modernize Legacy Complexity into Resilient Enterprise Engines.',
+    description:
+      'Bridge core legacy databases, modern cloud services, and bespoke ERP/CRM workflows with zero data loss, guaranteed continuity, and enterprise compliance.',
+    primaryCTA: { label: 'Schedule Modernization Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Enterprise Projects', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_DEDICATED_TEAMS_SERVICE: ServiceData = {
+  title: 'Dedicated Talent & Agile Teams',
+  slug: 'dedicated-teams',
+  menuTitle: 'Dedicated Teams',
+  shortDescription:
+    'Scale your engineering bandwidth with pre-vetted senior software engineers, AI researchers, and DevOps architects embedded directly into your delivery sprints.',
+  hero: {
+    eyebrow: 'Elastic Engineering Scale',
+    title: 'Elite Engineering Squads Embedded Seamlessly in Your Sprints.',
+    description:
+      'Eliminate months of hiring delays. Integrate battle-tested full-stack developers, tech leads, and QA specialists who work aligned to your time zone and agile practices.',
+    primaryCTA: { label: 'Assemble Your Squad', href: '#contact' },
+    secondaryCTA: { label: 'Review Engagement Models', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_QA_TESTING_SERVICE: ServiceData = {
+  title: 'Quality Assurance & Automated Testing',
+  slug: 'qa',
+  menuTitle: 'QA & Testing',
+  shortDescription:
+    'Ensure flawless software dependability with automated end-to-end testing frameworks, performance stress testing, and continuous security regression suites.',
+  hero: {
+    eyebrow: 'Zero-Defect Software Delivery',
+    title: 'Bulletproof Reliability Through Continuous Automated Quality Engineering.',
+    description:
+      'Ship software with supreme confidence. We architect comprehensive test suites, API contracts, cross-browser validation, and security vulnerability scans.',
+    primaryCTA: { label: 'Request QA Audit', href: '#contact' },
+    secondaryCTA: { label: 'Explore Quality Frameworks', href: '/portfolio' },
+  },
+}
+
+export const DEFAULT_STAFF_AUGMENTATION_SERVICE: ServiceData = {
+  title: 'Staff Augmentation & Specialized Talent',
+  slug: 'staff-augmentation',
+  menuTitle: 'Staff Augmentation',
+  shortDescription:
+    'Access top-tier senior software talent on-demand to bridge specialized skill gaps in AI, cloud architecture, mobile engineering, and data systems.',
+  hero: {
+    eyebrow: 'On-Demand Senior Talent',
+    title: 'Accelerate Roadmaps with Specialized Senior Tech Specialists.',
+    description:
+      'Plug critical technology skill gaps on demand. Scale capacity rapidly with flexible contracts and zero administrative overhead.',
+    primaryCTA: { label: 'Request Talent Profiles', href: '#contact' },
+    secondaryCTA: { label: 'View Available Profiles', href: '/portfolio' },
+  },
+}
+
 export const FALLBACK_SERVICES: Record<string, ServiceData> = {
   'data-analytics-solutions': DEFAULT_DATA_ANALYTICS_SERVICE,
   'data-analytics': DEFAULT_DATA_ANALYTICS_SERVICE,
   analytics: DEFAULT_DATA_ANALYTICS_SERVICE,
   'ai-data-engineering': DEFAULT_AI_DATA_ENGINEERING_SERVICE,
   'ai-data': DEFAULT_AI_DATA_ENGINEERING_SERVICE,
+  'ai-automation': DEFAULT_AI_DATA_ENGINEERING_SERVICE,
   'software-engineering': DEFAULT_SOFTWARE_ENGINEERING_SERVICE,
   software: DEFAULT_SOFTWARE_ENGINEERING_SERVICE,
+  cloud: DEFAULT_CLOUD_DEVOPS_SERVICE,
+  'cloud-devops': DEFAULT_CLOUD_DEVOPS_SERVICE,
+  digital: DEFAULT_DIGITAL_EXPERIENCES_SERVICE,
+  'digital-experiences': DEFAULT_DIGITAL_EXPERIENCES_SERVICE,
+  'platform-engineering': DEFAULT_PLATFORM_ENGINEERING_SERVICE,
+  platform: DEFAULT_PLATFORM_ENGINEERING_SERVICE,
+  enterprise: DEFAULT_ENTERPRISE_APPS_SERVICE,
+  'enterprise-applications': DEFAULT_ENTERPRISE_APPS_SERVICE,
+  'dedicated-teams': DEFAULT_DEDICATED_TEAMS_SERVICE,
+  'dedicated-talent': DEFAULT_DEDICATED_TEAMS_SERVICE,
+  qa: DEFAULT_QA_TESTING_SERVICE,
+  'quality-assurance': DEFAULT_QA_TESTING_SERVICE,
+  'staff-augmentation': DEFAULT_STAFF_AUGMENTATION_SERVICE,
+  staffing: DEFAULT_STAFF_AUGMENTATION_SERVICE,
 }
+
