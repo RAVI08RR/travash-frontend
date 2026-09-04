@@ -74,18 +74,18 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
 
   const publishedDateFormatted = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
     : null
 
   const updatedDateFormatted = post.updatedAt
     ? new Date(post.updatedAt).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      })
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    })
     : null
 
   // Estimated reading time (~220 wpm)
@@ -97,8 +97,8 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
     post.categories && post.categories.length > 0
       ? post.categories[0]
       : post.category
-      ? { title: post.category, slug: post.category.toLowerCase().replace(/\s+/g, '-') }
-      : null
+        ? { title: post.category, slug: post.category.toLowerCase().replace(/\s+/g, '-') }
+        : null
 
   // Share URLs
   const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://travash.com/blogs/${post.slug}`
@@ -232,7 +232,7 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
                 <Link
                   key={idx}
                   href={`/blogs/tag/${tagSlug}`}
-                  className="px-3 py-1 rounded-lg bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-xs font-semibold text-gray-700 dark:text-gray-300 hover:border-[#004771] hover:text-[#004771] transition-colors"
+                  className="px-3 py-1 rounded-lg bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-xs font-semibold text-[#0B1E3D] hover:border-[#004771] hover:text-[#004771] transition-colors"
                 >
                   #{tagTitle}
                 </Link>

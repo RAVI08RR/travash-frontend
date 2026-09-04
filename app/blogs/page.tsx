@@ -98,8 +98,8 @@ export default async function BlogListingPage() {
       ? fetchedCategories
       : DEFAULT_CATEGORIES
 
-  const featuredPost = posts[0]
-  const remainingPosts = posts.slice(1)
+  // Choose the post marked as featured, or the latest published post
+  const featuredPost = (posts.find((p) => (p as any).featured === true) || posts[0]) as BlogPostItem
 
   return (
     <>
@@ -109,7 +109,7 @@ export default async function BlogListingPage() {
         <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {featuredPost && <FeaturedBlog post={featuredPost} />}
           <BlogFilters
-            posts={remainingPosts.length > 0 ? remainingPosts : posts}
+            posts={posts}
             categories={categories}
           />
         </div>
