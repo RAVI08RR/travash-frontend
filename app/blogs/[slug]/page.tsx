@@ -178,7 +178,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
       />
 
       <Navbar settings={siteSettings} />
-      <main className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-slate-950">
+      <main className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-white">
         <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
           <BlogDetailContent post={post} />
           <RelatedPosts posts={related} />

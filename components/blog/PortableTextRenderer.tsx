@@ -134,7 +134,7 @@ function ContentImage({ value }: { value: any }) {
 export const portableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6 font-normal">
+      <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-6 font-normal">
         {children}
       </p>
     ),
@@ -146,7 +146,7 @@ export const portableTextComponents: PortableTextComponents = {
       return (
         <h2
           id={id}
-          className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mt-12 mb-5 scroll-mt-28 tracking-tight"
+          className="text-2xl md:text-3xl font-bold text-slate-900 mt-12 mb-5 scroll-mt-28 tracking-tight"
         >
           {children}
         </h2>
@@ -160,41 +160,41 @@ export const portableTextComponents: PortableTextComponents = {
       return (
         <h3
           id={id}
-          className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mt-8 mb-4 scroll-mt-28"
+          className="text-xl md:text-2xl font-semibold text-slate-900 mt-8 mb-4 scroll-mt-28"
         >
           {children}
         </h3>
       )
     },
     h4: ({ children }) => (
-      <h4 className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">
+      <h4 className="text-lg md:text-xl font-semibold text-slate-900 mt-6 mb-3">
         {children}
       </h4>
     ),
     h5: ({ children }) => (
-      <h5 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white mt-5 mb-2">
+      <h5 className="text-base md:text-lg font-semibold text-slate-900 mt-5 mb-2">
         {children}
       </h5>
     ),
     h6: ({ children }) => (
-      <h6 className="text-sm md:text-base font-semibold text-slate-800 dark:text-slate-200 mt-4 mb-2 uppercase tracking-wider">
+      <h6 className="text-sm md:text-base font-semibold text-slate-800 mt-4 mb-2 uppercase tracking-wider">
         {children}
       </h6>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 pl-6 border-l-4 border-blue-600 dark:border-blue-500 italic text-lg md:text-xl text-slate-800 dark:text-slate-200 bg-blue-50/30 dark:bg-blue-950/20 py-4 pr-4 rounded-r-xl">
+      <blockquote className="my-8 pl-6 border-l-4 border-blue-600 italic text-lg md:text-xl text-slate-800 bg-blue-50/40 py-4 pr-4 rounded-r-xl">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2.5 text-base md:text-lg text-slate-700 dark:text-slate-300">
+      <ul className="list-disc pl-6 mb-6 space-y-2.5 text-base md:text-lg text-slate-700">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2.5 text-base md:text-lg text-slate-700 dark:text-slate-300">
+      <ol className="list-decimal pl-6 mb-6 space-y-2.5 text-base md:text-lg text-slate-700">
         {children}
       </ol>
     ),
@@ -204,12 +204,12 @@ export const portableTextComponents: PortableTextComponents = {
     number: ({ children }) => <li className="leading-relaxed pl-1">{children}</li>,
   },
   marks: {
-    strong: ({ children }) => <strong className="font-bold text-slate-900 dark:text-white">{children}</strong>,
+    strong: ({ children }) => <strong className="font-bold text-slate-900">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     underline: ({ children }) => <span className="underline underline-offset-4">{children}</span>,
     'strike-through': ({ children }) => <span className="line-through">{children}</span>,
     code: ({ children }) => (
-      <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm text-blue-600 dark:text-sky-400 font-medium">
+      <code className="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-sm text-blue-600 font-medium">
         {children}
       </code>
     ),
@@ -220,7 +220,7 @@ export const portableTextComponents: PortableTextComponents = {
           href={value?.href || '#'}
           target={value?.blank || isExternal ? '_blank' : undefined}
           rel={value?.blank || isExternal ? 'noopener noreferrer' : undefined}
-          className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 font-medium transition-colors"
+          className="text-blue-600 hover:text-blue-700 underline underline-offset-4 font-medium transition-colors"
         >
           {children}
         </a>
@@ -241,7 +241,7 @@ export default function PortableTextRenderer({ value }: { value: any }) {
   }
 
   return (
-    <div className="blog-article-content prose prose-slate max-w-none dark:prose-invert">
+    <div className="blog-article-content prose prose-slate max-w-none">
       <PortableText value={value} components={portableTextComponents} />
     </div>
   )

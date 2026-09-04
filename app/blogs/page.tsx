@@ -104,7 +104,7 @@ export default async function BlogListingPage() {
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="bg-white dark:bg-slate-950">
+      <main className="bg-white dark:bg-white min-h-screen">
         <BlogHero />
         <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {featuredPost && <FeaturedBlog post={featuredPost} />}

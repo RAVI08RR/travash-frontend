@@ -70,9 +70,9 @@ export default async function CategoryArchivePage({ params }: CategoryPageProps)
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="bg-white dark:bg-slate-950">
+      <main className="bg-white dark:bg-white min-h-screen">
         {/* Category Hero Header */}
-        <section className="pt-28 pb-16 bg-[#F8FAFC] dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800">
+        <section className="pt-28 pb-16 bg-[#F8FAFC] dark:bg-white border-b border-gray-200 dark:border-gray-100">
           <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
             <Link
               href="/blogs"
@@ -91,7 +91,7 @@ export default async function CategoryArchivePage({ params }: CategoryPageProps)
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1E3D] dark:text-white tracking-tight mb-4 capitalize">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0b4785]  tracking-tight mb-4 capitalize">
               {categoryTitle}
             </h1>
 

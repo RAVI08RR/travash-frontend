@@ -151,18 +151,18 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
       )}
 
       {/* Article Title */}
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1E3D] dark:text-white tracking-tight leading-[1.2] mb-6">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1E3D] tracking-tight leading-[1.2] mb-6">
         {post.title}
       </h1>
 
       {/* Author & Meta Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 dark:border-slate-800 text-xs sm:text-sm text-gray-600 dark:text-slate-400 mb-8">
+      <div className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs sm:text-sm text-gray-600 mb-8">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-[#004771] text-white flex items-center justify-center font-bold text-sm shadow-xs">
             {post.author?.name ? post.author.name.charAt(0).toUpperCase() : 'T'}
           </div>
           <div>
-            <div className="font-bold text-[#0B1E3D] dark:text-white">
+            <div className="font-bold text-[#0B1E3D]">
               {post.author?.name || 'Travash Editorial Team'}
             </div>
             <div className="text-xs text-gray-500">
@@ -173,13 +173,13 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
 
         <div className="flex flex-wrap items-center gap-4 text-xs">
           {publishedDateFormatted && (
-            <div className="flex items-center gap-1.5 text-gray-600 dark:text-slate-400">
+            <div className="flex items-center gap-1.5 text-gray-600">
               <Calendar className="w-4 h-4 text-[#14B8A6]" />
               <time dateTime={post.publishedAt}>{publishedDateFormatted}</time>
             </div>
           )}
 
-          <div className="flex items-center gap-1.5 text-gray-600 dark:text-slate-400">
+          <div className="flex items-center gap-1.5 text-gray-600">
             <Clock className="w-4 h-4 text-[#004771]" />
             <span>{readingTime}</span>
           </div>
@@ -193,7 +193,7 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
       </div>
 
       {/* Hero Featured Image */}
-      <div className="relative aspect-[16/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg mb-12 border border-gray-200 dark:border-slate-800 bg-gray-100">
+      <div className="relative aspect-[16/9] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg mb-12 border border-gray-200 bg-gray-100">
         <Image
           src={imageUrl}
           alt={post.title}
@@ -205,12 +205,12 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
       </div>
 
       {/* Article Body Content */}
-      <div className="article-body font-normal text-slate-800 dark:text-slate-200">
+      <div className="article-body font-normal text-slate-800">
         {contentBlocks && Array.isArray(contentBlocks) && contentBlocks.length > 0 ? (
           <PortableTextRenderer value={contentBlocks} />
         ) : (
-          <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300 space-y-6">
-            <p className="text-lg sm:text-xl font-medium text-[#0B1E3D] dark:text-white leading-relaxed">
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+            <p className="text-lg sm:text-xl font-medium text-[#0B1E3D] leading-relaxed">
               {post.excerpt}
             </p>
             <p className="leading-relaxed">
@@ -243,8 +243,8 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
       )}
 
       {/* Social Sharing & Original URL Footer */}
-      <div className="mt-8 p-6 rounded-2xl bg-[#F8FAFC] dark:bg-slate-900 border border-gray-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-gray-700 dark:text-slate-300">
+      <div className="mt-8 p-6 rounded-2xl bg-[#F8FAFC] border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-gray-700">
           <Share2 className="w-4 h-4 text-[#004771]" />
           <span>Share this article:</span>
         </div>
@@ -254,7 +254,7 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:bg-[#0077b5] hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-white border border-gray-200 hover:bg-[#0077b5] hover:text-white text-gray-700 transition-colors"
             title="Share on LinkedIn"
           >
             <LinkedInIcon className="w-4 h-4" />
@@ -263,7 +263,7 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
             href={`https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(shareUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:bg-black hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-white border border-gray-200 hover:bg-black hover:text-white text-gray-700 transition-colors"
             title="Share on X"
           >
             <TwitterIcon className="w-4 h-4" />
@@ -272,14 +272,14 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:bg-[#1877f2] hover:text-white transition-colors"
+            className="p-2.5 rounded-xl bg-white border border-gray-200 hover:bg-[#1877f2] hover:text-white text-gray-700 transition-colors"
             title="Share on Facebook"
           >
             <FacebookIcon className="w-4 h-4" />
           </a>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:border-[#004771] text-xs font-semibold text-gray-700 dark:text-slate-200 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-gray-200 hover:border-[#004771] text-xs font-semibold text-gray-700 transition-colors"
           >
             {copied ? (
               <>
@@ -295,18 +295,18 @@ export default function BlogDetailContent({ post }: BlogDetailProps) {
 
       {/* Author Bio Box */}
       {post.author && (
-        <div className="mt-8 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 flex items-start gap-4">
+        <div className="mt-8 p-6 rounded-2xl bg-white border border-gray-200 flex items-start gap-4 shadow-xs">
           <div className="w-12 h-12 rounded-full bg-[#004771] text-white flex-shrink-0 flex items-center justify-center font-bold text-lg">
             {post.author.name ? post.author.name.charAt(0).toUpperCase() : 'T'}
           </div>
           <div>
-            <h4 className="text-base font-bold text-[#0B1E3D] dark:text-white">
+            <h4 className="text-base font-bold text-[#0B1E3D]">
               Written by {post.author.name || 'Travash Editorial Team'}
             </h4>
             <p className="text-xs text-gray-500 mb-2">
               {post.author.role || 'Technology Practice Lead'}
             </p>
-            <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed">
               {post.author.bio ||
                 'Travash practitioners specialize in building high-scale cloud platforms, mission-critical custom applications, and enterprise AI automation architectures.'}
             </p>

@@ -8,13 +8,13 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
   if (!posts || posts.length === 0) return null
 
   return (
-    <section className="mt-20 pt-16 border-t border-gray-200 dark:border-slate-800 font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="mt-20 pt-16 border-t border-gray-200 font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-5xl mx-auto">
         <div className="mb-10 text-center sm:text-left">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
             CONTINUE EXPLORING
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1E3D] dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1E3D] tracking-tight">
             Related Insights & Engineering Perspectives
           </h2>
         </div>
