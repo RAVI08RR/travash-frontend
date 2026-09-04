@@ -19,6 +19,12 @@ import { aboutPage } from './aboutPage'
 import { job } from './job'
 import { technologyCategory } from './technologyCategory'
 
+// Blog system schemas
+import { blogPost } from './blogPost'
+import { category } from './category'
+import { tag } from './tag'
+import { author } from './author'
+
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
@@ -29,6 +35,10 @@ export const schemaTypes = [
   technology,
   technologyCategory,
   industry,
+  blogPost,
+  category,
+  tag,
+  author,
   post,
   job,
   // Section objects

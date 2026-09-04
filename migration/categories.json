@@ -1,0 +1,122 @@
+[
+  {
+    "_id": "category-93",
+    "_type": "category",
+    "title": "Blog Zinest",
+    "slug": {
+      "_type": "slug",
+      "current": "blog-zinest"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-9",
+    "_type": "category",
+    "title": "Content Marketing",
+    "slug": {
+      "_type": "slug",
+      "current": "content-marketing"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-8",
+    "_type": "category",
+    "title": "Customer Success",
+    "slug": {
+      "_type": "slug",
+      "current": "customer-success"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-11",
+    "_type": "category",
+    "title": "Educate Consumers",
+    "slug": {
+      "_type": "slug",
+      "current": "educate-consumers"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-4",
+    "_type": "category",
+    "title": "Programming Language",
+    "slug": {
+      "_type": "slug",
+      "current": "programming-language"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-39",
+    "_type": "category",
+    "title": "QA Testing",
+    "slug": {
+      "_type": "slug",
+      "current": "qa-testing"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-13",
+    "_type": "category",
+    "title": "Real Estate",
+    "slug": {
+      "_type": "slug",
+      "current": "real-estate"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-10",
+    "_type": "category",
+    "title": "Service Announcement",
+    "slug": {
+      "_type": "slug",
+      "current": "service-announcement"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-6",
+    "_type": "category",
+    "title": "Technology & Software Insights | Innovation & software development",
+    "slug": {
+      "_type": "slug",
+      "current": "technology-software"
+    },
+    "description": "These titles and descriptions are designed to fit within the pixel limits typically recommended for SEO, optimizing both user experience and search engine visibility."
+  },
+  {
+    "_id": "category-3",
+    "_type": "category",
+    "title": "UI/UX Design",
+    "slug": {
+      "_type": "slug",
+      "current": "ui-ux-design"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-1",
+    "_type": "category",
+    "title": "Uncategorized",
+    "slug": {
+      "_type": "slug",
+      "current": "uncategorized"
+    },
+    "description": ""
+  },
+  {
+    "_id": "category-12",
+    "_type": "category",
+    "title": "Unleashing Digital Marketing Mastery: Insights on Digital Transformation, Email Strategies & More for Modern Marketers",
+    "slug": {
+      "_type": "slug",
+      "current": "marketing"
+    },
+    "description": ""
+  }
+]

@@ -727,5 +727,183 @@ export const siteSettingsQuery = groq`
   }
 `
 
+// Unified Blog Queries (supports both new blogPost and existing post documents)
+export const allBlogsUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"]] | order(publishedAt desc) {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "featuredImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}),
+    publishedAt,
+    updatedAt,
+    featured,
+    wordpressId,
+    originalWordPressUrl,
+    "categories": select(
+      defined(categories[0]._ref) => categories[]->{ _id, title, "slug": slug.current, description },
+      defined(categories[0].title) => categories[] { _id, title, "slug": slug.current, description },
+      defined(category) => [{ "title": category, "slug": category }]
+    ),
+    "tags": select(
+      defined(tags[0]._ref) => tags[]->{ _id, title, "slug": slug.current },
+      defined(tags[0].title) => tags[] { _id, title, "slug": slug.current },
+      tags
+    ),
+    "author": select(
+      defined(author._ref) => author->{ _id, name, "slug": slug.current, image ${imageFragment}, bio },
+      defined(author.name) => {
+        "name": author.name,
+        "role": author.role,
+        "image": coalesce(author.image ${imageFragment}, author.avatar ${imageFragment})
+      }
+    )
+  }
+`
+
+export const blogBySlugUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"] && slug.current == $slug][0] {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "featuredImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}),
+    publishedAt,
+    updatedAt,
+    featured,
+    wordpressId,
+    originalWordPressUrl,
+    keywords,
+    "content": coalesce(content, body),
+    "categories": select(
+      defined(categories[0]._ref) => categories[]->{ _id, title, "slug": slug.current, description },
+      defined(categories[0].title) => categories[] { _id, title, "slug": slug.current, description },
+      defined(category) => [{ "title": category, "slug": category }]
+    ),
+    "tags": select(
+      defined(tags[0]._ref) => tags[]->{ _id, title, "slug": slug.current },
+      defined(tags[0].title) => tags[] { _id, title, "slug": slug.current },
+      tags
+    ),
+    "author": select(
+      defined(author._ref) => author->{ _id, name, "slug": slug.current, image ${imageFragment}, bio },
+      defined(author.name) => {
+        "name": author.name,
+        "role": author.role,
+        "image": coalesce(author.image ${imageFragment}, author.avatar ${imageFragment})
+      }
+    ),
+    seo {
+      metaTitle,
+      metaDescription,
+      canonicalUrl,
+      ogTitle,
+      ogDescription,
+      ogImage ${imageFragment},
+      noIndex
+    }
+  }
+`
+
+export const featuredBlogsUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"] && featured == true] | order(publishedAt desc) {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "featuredImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}),
+    publishedAt,
+    updatedAt,
+    featured,
+    "categories": select(
+      defined(categories[0]._ref) => categories[]->{ _id, title, "slug": slug.current },
+      defined(category) => [{ "title": category, "slug": category }]
+    ),
+    "author": select(
+      defined(author._ref) => author->{ name, image ${imageFragment} },
+      defined(author.name) => { "name": author.name, "image": author.avatar ${imageFragment} }
+    )
+  }
+`
+
+export const relatedBlogsUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"] && slug.current != $currentSlug] | order(publishedAt desc) [0...$limit] {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "featuredImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}),
+    publishedAt,
+    "categories": select(
+      defined(categories[0]._ref) => categories[]->{ title, "slug": slug.current },
+      defined(category) => [{ "title": category, "slug": category }]
+    ),
+    "author": select(
+      defined(author._ref) => author->{ name, image ${imageFragment} },
+      defined(author.name) => { "name": author.name, "image": author.avatar ${imageFragment} }
+    )
+  }
+`
+
+export const allCategoriesQuery = groq`
+  *[_type == "category"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    "count": count(*[_type == "blogPost" && references(^._id)])
+  }
+`
+
+export const allTagsQuery = groq`
+  *[_type == "tag"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    "count": count(*[_type == "blogPost" && references(^._id)])
+  }
+`
+
+export const allAuthorsQuery = groq`
+  *[_type == "author"] | order(name asc) {
+    _id,
+    name,
+    "slug": slug.current,
+    image ${imageFragment},
+    bio
+  }
+`
+
+export const searchBlogsUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"] && (title match $searchTerm || excerpt match $searchTerm || keywords[] match $searchTerm)] | order(publishedAt desc) {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "featuredImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}),
+    publishedAt,
+    "categories": select(
+      defined(categories[0]._ref) => categories[]->{ title, "slug": slug.current },
+      defined(category) => [{ "title": category, "slug": category }]
+    ),
+    "author": select(
+      defined(author._ref) => author->{ name, image ${imageFragment} },
+      defined(author.name) => { "name": author.name, "image": author.avatar ${imageFragment} }
+    )
+  }
+`
+
+export const allBlogSlugsUnifiedQuery = groq`
+  *[_type in ["blogPost", "post"] && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+
+
 
 

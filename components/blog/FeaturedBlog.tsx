@@ -2,9 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, ArrowRight, Sparkles } from 'lucide-react'
 import { BlogPostItem } from './BlogCard'
+import { getSanityImageUrl } from '@/lib/sanity.image'
 
 export default function FeaturedBlog({ post }: { post: BlogPostItem }) {
-  const imageUrl = post.coverImage?.asset?.url || '/home-img/Group 1000003287.png'
+  const imageSource = post.featuredImage || post.coverImage
+  const imageUrl = getSanityImageUrl(imageSource, 1200, 750)
+
   const dateFormatted = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         month: 'long',
@@ -12,6 +15,11 @@ export default function FeaturedBlog({ post }: { post: BlogPostItem }) {
         year: 'numeric',
       })
     : 'Featured Article'
+
+  const categoryName =
+    post.categories && post.categories.length > 0
+      ? post.categories[0].title
+      : post.category || 'Featured'
 
   return (
     <div className="max-w-6xl mx-auto mb-16 font-['Plus_Jakarta_Sans',sans-serif]">
@@ -31,9 +39,9 @@ export default function FeaturedBlog({ post }: { post: BlogPostItem }) {
               <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
               <span>Featured Article</span>
             </span>
-            {post.category && (
+            {categoryName && (
               <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#0B1E3D] text-xs font-bold uppercase tracking-wider shadow-xs">
-                {post.category}
+                {categoryName}
               </span>
             )}
           </div>

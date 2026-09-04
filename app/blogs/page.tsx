@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { client } from '@/lib/sanity'
-import { blogsQuery, blogCategoriesQuery, siteSettingsQuery } from '@/lib/queries'
+import { siteSettingsQuery } from '@/lib/queries'
+import { getAllBlogs, getCategories } from '@/lib/sanity.client'
 
 import Navbar from '@/components/sections/Navbar'
 import BlogHero from '@/components/blog/BlogHero'
@@ -10,13 +11,23 @@ import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
 import { BlogPostItem } from '@/components/blog/BlogCard'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Blogs & Engineering Insights — AI, Cloud & Architecture | Travash',
   description:
     'Explore thought leadership, software engineering perspectives, cybersecurity best practices, and AI automation insights from Travash practitioners.',
+  alternates: {
+    canonical: 'https://travash.com/blogs',
+  },
+  openGraph: {
+    title: 'Blogs & Engineering Insights — AI, Cloud & Architecture | Travash',
+    description:
+      'Explore thought leadership, software engineering perspectives, cybersecurity best practices, and AI automation insights from Travash practitioners.',
+    url: 'https://travash.com/blogs',
+    siteName: 'Travash Software Solutions',
+    type: 'website',
+  },
 }
 
 const DEFAULT_POSTS: BlogPostItem[] = [
@@ -74,43 +85,33 @@ const DEFAULT_CATEGORIES = [
   'Data & Analytics',
 ]
 
-async function getBlogData() {
-  try {
-    const [fetchedPosts, fetchedCategories, siteSettings] = await Promise.all([
-      client.fetch(blogsQuery),
-      client.fetch(blogCategoriesQuery),
-      client.fetch(siteSettingsQuery),
-    ])
-
-    const posts = fetchedPosts && fetchedPosts.length > 0 ? fetchedPosts : DEFAULT_POSTS
-    const categories =
-      fetchedCategories && fetchedCategories.length > 0
-        ? fetchedCategories
-        : DEFAULT_CATEGORIES
-
-    return { posts, categories, siteSettings }
-  } catch {
-    return {
-      posts: DEFAULT_POSTS,
-      categories: DEFAULT_CATEGORIES,
-      siteSettings: null,
-    }
-  }
-}
-
 export default async function BlogListingPage() {
-  const { posts, categories, siteSettings } = await getBlogData()
+  const [fetchedBlogs, fetchedCategories, siteSettings] = await Promise.all([
+    getAllBlogs(),
+    getCategories(),
+    client.fetch(siteSettingsQuery).catch(() => null),
+  ])
+
+  const posts = fetchedBlogs && fetchedBlogs.length > 0 ? (fetchedBlogs as BlogPostItem[]) : DEFAULT_POSTS
+  const categories =
+    fetchedCategories && fetchedCategories.length > 0
+      ? fetchedCategories
+      : DEFAULT_CATEGORIES
+
   const featuredPost = posts[0]
   const remainingPosts = posts.slice(1)
 
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="bg-white">
+      <main className="bg-white dark:bg-slate-950">
         <BlogHero />
         <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {featuredPost && <FeaturedBlog post={featuredPost} />}
-          <BlogFilters posts={remainingPosts.length > 0 ? remainingPosts : posts} categories={categories} />
+          <BlogFilters
+            posts={remainingPosts.length > 0 ? remainingPosts : posts}
+            categories={categories}
+          />
         </div>
         <Contact />
       </main>

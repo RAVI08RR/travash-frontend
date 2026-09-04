@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "author-1",
+    "_type": "author",
+    "name": "tssblog",
+    "slug": {
+      "_type": "slug",
+      "current": "tssblog"
+    },
+    "bio": ""
+  }
+]

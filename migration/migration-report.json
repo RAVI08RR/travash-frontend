@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-09-04T15:17:21.934Z",
+  "wordpressApiUrl": "https://travash.com/wp-json/wp/v2",
+  "sanityProjectId": "s2k81yej",
+  "sanityDataset": "production",
+  "totals": {
+    "wpPostsFound": 61,
+    "wpCategoriesFound": 12,
+    "wpTagsFound": 22,
+    "wpAuthorsFound": 1,
+    "blogsMigrated": 61,
+    "blogsSkipped": 0,
+    "blogsFailed": 0,
+    "categoriesMigrated": 12,
+    "tagsMigrated": 22,
+    "authorsMigrated": 1,
+    "imagesFound": 218,
+    "imagesUploaded": 215,
+    "imagesFailed": 3
+  },
+  "failedImages": [
+    {
+      "post": "Software Development Efficiency: Code Review Best Practices",
+      "url": "https://travash.com/blog/wp-content/uploads/2024/06/image-2-1024x576.png"
+    },
+    {
+      "post": "Software Development Efficiency: Code Review Best Practices",
+      "url": "https://travash.com/blog/wp-content/uploads/2024/06/image-1-1024x655.png"
+    },
+    {
+      "post": "Best Software Company In India",
+      "url": "https://travash.com/blog/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-03-at-4.54.11-PM.jpeg"
+    }
+  ],
+  "failedBlogs": [],
+  "completedAt": "2026-09-04T15:26:30.768Z"
+}

@@ -1,25 +1,31 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, ArrowRight } from 'lucide-react'
+import { getSanityImageUrl } from '@/lib/sanity.image'
 
 export interface BlogPostItem {
   _id?: string
   title: string
   slug: string
   excerpt?: string
-  coverImage?: { asset?: { url: string } }
+  featuredImage?: any
+  coverImage?: any
   category?: string
+  categories?: Array<{ title: string; slug?: string }>
   publishedAt?: string
-  tags?: string[]
+  tags?: Array<{ title: string; slug?: string }> | string[]
   author?: {
     name?: string
     role?: string
-    avatar?: { asset?: { url: string } }
+    image?: any
+    avatar?: any
   }
 }
 
 export default function BlogCard({ post }: { post: BlogPostItem }) {
-  const imageUrl = post.coverImage?.asset?.url || '/home-img/Group 1000003287.png'
+  const imageSource = post.featuredImage || post.coverImage
+  const imageUrl = getSanityImageUrl(imageSource, 800, 450)
+  
   const dateFormatted = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -27,6 +33,11 @@ export default function BlogCard({ post }: { post: BlogPostItem }) {
         year: 'numeric',
       })
     : 'Recent'
+
+  const categoryName =
+    post.categories && post.categories.length > 0
+      ? post.categories[0].title
+      : post.category || 'Insights'
 
   return (
     <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-xs hover:shadow-lg hover:border-gray-200 transition-all duration-300 flex flex-col group">
@@ -39,10 +50,10 @@ export default function BlogCard({ post }: { post: BlogPostItem }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        {post.category && (
+        {categoryName && (
           <div className="absolute top-3 left-3 z-10">
             <span className="px-2.5 py-1 rounded-md bg-[#004771]/90 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider shadow-xs">
-              {post.category}
+              {categoryName}
             </span>
           </div>
         )}

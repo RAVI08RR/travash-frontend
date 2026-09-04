@@ -1,0 +1,200 @@
+[
+  {
+    "_id": "tag-37",
+    "_type": "tag",
+    "title": "AI",
+    "slug": {
+      "_type": "slug",
+      "current": "ai"
+    }
+  },
+  {
+    "_id": "tag-90",
+    "_type": "tag",
+    "title": "Android app",
+    "slug": {
+      "_type": "slug",
+      "current": "android-app"
+    }
+  },
+  {
+    "_id": "tag-91",
+    "_type": "tag",
+    "title": "app development",
+    "slug": {
+      "_type": "slug",
+      "current": "app-development"
+    }
+  },
+  {
+    "_id": "tag-7",
+    "_type": "tag",
+    "title": "Customer Success",
+    "slug": {
+      "_type": "slug",
+      "current": "customer-success"
+    }
+  },
+  {
+    "_id": "tag-41",
+    "_type": "tag",
+    "title": "Digital Marketing",
+    "slug": {
+      "_type": "slug",
+      "current": "digital-marketing"
+    }
+  },
+  {
+    "_id": "tag-42",
+    "_type": "tag",
+    "title": "Digital Success",
+    "slug": {
+      "_type": "slug",
+      "current": "digital-success"
+    }
+  },
+  {
+    "_id": "tag-38",
+    "_type": "tag",
+    "title": "Ghibli AI",
+    "slug": {
+      "_type": "slug",
+      "current": "ghibli-ai"
+    }
+  },
+  {
+    "_id": "tag-30",
+    "_type": "tag",
+    "title": "India",
+    "slug": {
+      "_type": "slug",
+      "current": "india"
+    }
+  },
+  {
+    "_id": "tag-28",
+    "_type": "tag",
+    "title": "IT companies",
+    "slug": {
+      "_type": "slug",
+      "current": "it-companies"
+    }
+  },
+  {
+    "_id": "tag-29",
+    "_type": "tag",
+    "title": "IT companies in India",
+    "slug": {
+      "_type": "slug",
+      "current": "it-companies-in-india"
+    }
+  },
+  {
+    "_id": "tag-35",
+    "_type": "tag",
+    "title": "IT firms",
+    "slug": {
+      "_type": "slug",
+      "current": "it-firms"
+    }
+  },
+  {
+    "_id": "tag-31",
+    "_type": "tag",
+    "title": "IT Services",
+    "slug": {
+      "_type": "slug",
+      "current": "it-services"
+    }
+  },
+  {
+    "_id": "tag-88",
+    "_type": "tag",
+    "title": "IT solutions",
+    "slug": {
+      "_type": "slug",
+      "current": "it-solutions"
+    }
+  },
+  {
+    "_id": "tag-25",
+    "_type": "tag",
+    "title": "Mobile app development",
+    "slug": {
+      "_type": "slug",
+      "current": "mobile-app-development"
+    }
+  },
+  {
+    "_id": "tag-40",
+    "_type": "tag",
+    "title": "QA testing",
+    "slug": {
+      "_type": "slug",
+      "current": "qa-testing"
+    }
+  },
+  {
+    "_id": "tag-34",
+    "_type": "tag",
+    "title": "Recruitment Solutions",
+    "slug": {
+      "_type": "slug",
+      "current": "recruitment-solutions"
+    }
+  },
+  {
+    "_id": "tag-32",
+    "_type": "tag",
+    "title": "Software development",
+    "slug": {
+      "_type": "slug",
+      "current": "software-development"
+    }
+  },
+  {
+    "_id": "tag-33",
+    "_type": "tag",
+    "title": "software solutions",
+    "slug": {
+      "_type": "slug",
+      "current": "software-solutions"
+    }
+  },
+  {
+    "_id": "tag-89",
+    "_type": "tag",
+    "title": "UI design",
+    "slug": {
+      "_type": "slug",
+      "current": "ui-design"
+    }
+  },
+  {
+    "_id": "tag-24",
+    "_type": "tag",
+    "title": "UI/UX design",
+    "slug": {
+      "_type": "slug",
+      "current": "ui-ux-design"
+    }
+  },
+  {
+    "_id": "tag-26",
+    "_type": "tag",
+    "title": "web app development",
+    "slug": {
+      "_type": "slug",
+      "current": "web-app-development"
+    }
+  },
+  {
+    "_id": "tag-27",
+    "_type": "tag",
+    "title": "website development",
+    "slug": {
+      "_type": "slug",
+      "current": "website-development"
+    }
+  }
+]

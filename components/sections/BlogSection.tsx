@@ -68,15 +68,21 @@ export default function BlogSection({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {displayPosts.map((post, idx) => {
             const fallback = PDF_POSTS[idx] || PDF_POSTS[0]
-            const img = post.coverImage?.asset?.url || post.imageUrl || fallback.imageUrl
+            const img =
+              post.coverImage?.asset?.url ||
+              (post as any).featuredImage?.asset?.url ||
+              post.imageUrl ||
+              fallback.imageUrl
+
+            const postSlug = post.slug?.current || (post as any).slug || '#'
 
             return (
               <article
                 key={post._id || idx}
-                className="group flex flex-col bg-white  overflow-hidden   transition-all duration-300"
+                className="group flex flex-col bg-white overflow-hidden transition-all duration-300"
               >
                 {/* Visual */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+                <div className="relative aspect-[16/10] overflow-hidden bg-gray-100 rounded-xl">
                   <Image
                     src={img!}
                     alt={post.title}
@@ -88,12 +94,12 @@ export default function BlogSection({
 
                 {/* Body */}
                 <div className="pt-5 flex flex-col gap-3 flex-1 justify-between">
-                  <h3 className="text-base sm:text-lg font-bold text-[#0B4785] leading-snug group-hover:text-[#14B8A6] transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-[#0B4785] leading-snug group-hover:text-[#14B8A6] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
                   <Link
-                    href={`/blog/${post.slug?.current || '#'}`}
+                    href={`/blogs/${postSlug}`}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-[#0B4785] group-hover:text-[#14B8A6] pt-2"
                   >
                     Read More

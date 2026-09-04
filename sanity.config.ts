@@ -177,8 +177,14 @@ const customStructure = (S: any) =>
       // Industries
       S.documentTypeListItem('industry').title('Industries'),
 
-      // Blog Posts
-      S.documentTypeListItem('post').title('Blog Posts'),
+      S.divider(),
+
+      // Blog System
+      S.documentTypeListItem('blogPost').title('Blog Posts (WordPress Migrated)'),
+      S.documentTypeListItem('category').title('Blog Categories'),
+      S.documentTypeListItem('tag').title('Blog Tags'),
+      S.documentTypeListItem('author').title('Blog Authors'),
+      S.documentTypeListItem('post').title('Legacy Posts'),
     ])
 
 export default defineConfig({
