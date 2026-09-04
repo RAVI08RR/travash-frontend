@@ -429,6 +429,107 @@ export const caseStudy = defineType({
         { name: 'ogImage', title: 'Open Graph Image', type: 'image' },
       ],
     }),
+    // Portfolio Listing Fields
+    defineField({
+      name: 'portfolioVisible',
+      title: 'Show in Portfolio Page',
+      type: 'boolean',
+      description: 'Turn on to display this project on the /portfolio listing page',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured Project',
+      type: 'boolean',
+      description: 'Pin this project to the Featured section on the Portfolio page',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'portfolioOrder',
+      title: 'Portfolio Display Order',
+      type: 'number',
+      description: 'Lower numbers appear first (e.g. 1, 2, 3...)',
+      initialValue: 100,
+    }),
+    defineField({
+      name: 'portfolioTitle',
+      title: 'Portfolio Card Title',
+      type: 'string',
+      description: 'Optional shorter title for the portfolio card (falls back to main title)',
+    }),
+    defineField({
+      name: 'cardDescription',
+      title: 'Portfolio Card Description',
+      type: 'text',
+      rows: 3,
+      description: 'Brief 1-2 sentence description for the portfolio card (falls back to shortDescription)',
+    }),
+    defineField({
+      name: 'cardImage',
+      title: 'Portfolio Card Thumbnail',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Specific thumbnail image for the portfolio card (falls back to featureImage/heroImage)',
+    }),
+    defineField({
+      name: 'cardImageAlt',
+      title: 'Card Image Alt Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'projectType',
+      title: 'Project Type / Service Category',
+      type: 'string',
+      description: 'Used for primary filter tabs on the Portfolio page',
+      options: {
+        list: [
+          { title: 'Web Application', value: 'Web Application' },
+          { title: 'Mobile Application', value: 'Mobile Application' },
+          { title: 'Website Development', value: 'Website Development' },
+          { title: 'AI / Artificial Intelligence', value: 'AI / Artificial Intelligence' },
+          { title: 'Custom Software', value: 'Custom Software' },
+          { title: 'E-Commerce', value: 'E-Commerce' },
+          { title: 'Enterprise Platform', value: 'Enterprise Platform' },
+        ],
+      },
+      initialValue: 'Web Application',
+    }),
+    defineField({
+      name: 'industries',
+      title: 'Industries',
+      type: 'array',
+      description: 'Select matching industries for secondary filter matching',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'industry' }],
+        },
+        {
+          type: 'string',
+        },
+      ],
+    }),
+    defineField({
+      name: 'technologies',
+      title: 'Technologies Used',
+      type: 'array',
+      description: 'Technologies used in this project (references technology documents or tags)',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'technology' }],
+        },
+        {
+          type: 'string',
+        },
+      ],
+    }),
+    defineField({
+      name: 'caseStudyUrl',
+      title: 'Custom / Fallback Case Study URL',
+      type: 'string',
+      description: 'Optional override URL if this project links to a custom or external URL instead of /case-studies/[slug]',
+    }),
   ],
   preview: {
     select: {

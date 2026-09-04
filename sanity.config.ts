@@ -181,11 +181,17 @@ export default defineConfig({
                   .documentId('siteSettings')
               ),
 
-            // Services (Detail Pages)
-            S.documentTypeListItem('service').title('Services (Detail Pages)'),
+            // Services
+            S.documentTypeListItem('service').title('Services'),
 
-            // Case Studies (Detail Pages)
-            S.documentTypeListItem('caseStudy').title('Case Studies (Detail Pages)'),
+            // Case Studies
+            S.documentTypeListItem('caseStudy').title('Case Studies'),
+
+            // Technologies
+            S.documentTypeListItem('technology').title('Technologies'),
+
+            // Industries
+            S.documentTypeListItem('industry').title('Industries'),
 
             // Blog Posts
             S.documentTypeListItem('post').title('Blog Posts'),

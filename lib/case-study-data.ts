@@ -100,34 +100,30 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   shortDescription:
     'Satyaapan is a web-based passport verification platform developed by Travash to help Telangana State Police automate high-volume identity screening, identify potential anomalies and route applications requiring further investigation to authorized officials.',
   projectMeta: [
-    { label: 'Industry', value: 'Government / Public Sector' },
-    { label: 'Solution', value: 'Enterprise AI + Passport Verification' },
-    { label: 'Region', value: 'India' },
+    { label: 'CLIENT', value: 'Telangana State Police' },
+    { label: 'SOLUTION', value: 'Satyaapan – Passport Verification System' },
+    { label: 'INDUSTRY', value: 'Government / Public Safety' },
     {
-      label: 'Core Capabilities',
-      value: 'AI, Automated Data Extraction, Facial Recognition, Verification Automation',
+      label: 'CAPABILITIES',
+      value: 'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation',
     },
   ],
   metrics: [
     {
       value: '1.96 Million',
-      label: 'Passport Applications Processed',
-      description: 'Centralized high-throughput verification at state scale',
+      label: 'Passport applications processed',
     },
     {
       value: '800+',
-      label: 'High-Risk Records Identified',
-      description: 'Adverse cases intercepted before passport issuance',
+      label: 'High-risk adverse cases identified and intercepted',
     },
     {
-      value: 'AI-Assisted',
-      label: 'Verification Workflow',
-      description: 'Automated data extraction, facial recognition & real-time matching',
+      value: 'AI–Assisted Verification',
+      label: 'Automated data extraction, facial recognition and real-time matching',
     },
     {
-      value: 'Telangana Police',
-      label: 'Client / Technology Partner',
-      description: 'Securing public registry and identity integrity',
+      value: 'Telangana State Police',
+      label: 'client-badge',
     },
   ],
   executiveSummary: {
@@ -140,45 +136,41 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   },
   challenge: {
     title: 'The Challenge',
-    subtitle: 'Officials needed to identify critical security risks while processing surging volumes of applications.',
+    subtitle: 'High–Volume Passport Verification Was Creating an Administrative Bottleneck',
     content:
-      'Traditional passport verification relied heavily on manual document inspection and fragmented record cross-referencing across departments, creating operational bottlenecks and risk of oversight.',
+      'The existing verification process relied heavily on manual checks, making it difficult to efficiently screen large volumes of applications.',
     points: [
-      'Duplicate passport attempts and identity spoofing across jurisdictions',
-      'Fraudulent identities or false biographical information submitted in applications',
-      'Relevant cross-department matches against state and national criminal records',
-      'Applications requiring further in-depth field investigation and escalation',
+      'Duplicate passport attempts',
+      'Fraudulent identities or false information',
+      'Relevant matches against criminal records',
+      'Applications requiring further investigation',
     ],
   },
   featureImage: '/home-img/satyapaan-min 2.png',
   complexity: {
     title: 'The Complexity',
     intro:
-      'Satyaapan needed to operate within a sensitive public-safety workflow where application volume, identity verification and appropriate escalation were all critical.',
+      'Satyaapan needed to operate within a sensitive public–safety workflow where application volume, identity verification and appropriate escalation were all critical.',
     items: [
       {
-        title: 'High Application Volume',
+        title: 'HIGH APPLICATION VOLUME',
         description:
-          'The platform needed to operate at massive scale that ultimately reached 1.96 million processed applications without performance degradation.',
-        icon: 'volume',
+          'The platform needed to operate at a scale that ultimately reached 1.96 million processed applications.',
       },
       {
-        title: 'Identity Matching',
+        title: 'IDENTITY MATCHING',
         description:
-          'Applicant information needed to be evaluated for duplicate records and potentially fraudulent identity scenarios across historical data.',
-        icon: 'identity',
+          'Applicant information needed to be evaluated for duplicate and potentially fraudulent identity scenarios.',
       },
       {
-        title: 'Multiple Verification Sources',
+        title: 'MULTIPLE VERIFICATION SOURCES',
         description:
-          'The workflow required seamless interoperability with law enforcement databases including DARPAN and AFIS (Automated Fingerprint Identification System).',
-        icon: 'sources',
+          'The workflow incorporated relevant records and technologies including DARPAN and AFIS – Automated Fingerprint Identification System.',
       },
       {
-        title: 'Exception Handling & Escalation',
+        title: 'EXCEPTION HANDLING',
         description:
-          'Potential anomalies needed to be flagged automatically while authorized officers remained strictly responsible for investigation and clearance.',
-        icon: 'exception',
+          'Potential anomalies needed to be identified automatically while authorized officers remained responsible for further investigation.',
       },
     ],
   },
@@ -346,4 +338,377 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
     metaDescription:
       'Explore the Satyapaan case study by Travash—how Telangana State Police processed 1.96 million passport applications and intercepted 800+ adverse cases with AI verification.',
   },
+}
+
+export const DEFAULT_DARPAN_DATA: CaseStudyData = {
+  title: 'Darpan: AI Facial Recognition & Missing Person Retrieval Engine',
+  slug: { current: 'darpan' },
+  eyebrow: 'CASE STUDY',
+  category: 'Artificial Intelligence',
+  industry: 'Government & Public Sector',
+  client: 'State Law Enforcement & Public Safety',
+  location: 'India',
+  shortDescription:
+    'Darpan is a deep learning computer vision system developed to match missing persons and unidentified individuals in real-time across millions of state photo records with high biometric accuracy.',
+  projectMeta: [
+    { label: 'Industry', value: 'Government / Public Sector' },
+    { label: 'Solution', value: 'Deep Learning + Computer Vision' },
+    { label: 'Platform', value: 'Mobile & Cloud Infrastructure' },
+    { label: 'Capabilities', value: 'Facial Recognition, Video Telemetry, Real-time Search' },
+  ],
+  metrics: [
+    { value: '800+', label: 'Reunited Families', description: 'Verified identity matches' },
+    { value: '65%', label: 'Turnaround Speedup', description: 'Compared to manual record checks' },
+    { value: '99.2%', label: 'Match Confidence', description: 'Deep biometric feature vectors' },
+    { value: '<2s', label: 'Search Latency', description: 'Across 10M+ facial embeddings' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    subtitle: 'Reuniting missing individuals with loved ones using cutting-edge computer vision.',
+    paragraphs: [
+      'Locating missing children and unidentified individuals across vast geographical regions traditionally involved manual flyer distribution, disjointed police logbooks, and weeks of administrative delay.',
+      'Travash built Darpan, an AI-powered biometric facial recognition platform that extracts high-dimensional facial embeddings from field photos and cross-matches them against historical police databases in seconds.',
+    ],
+  },
+  challenge: {
+    title: 'The Challenge',
+    subtitle: 'High noise, poor photo quality, and aging variations across historical photo records.',
+    content:
+      'Field officers frequently capture photos under poor lighting, steep angles, or with low-resolution smartphone cameras. Matching these against archival photos required deep learning models resilient to age progression and illumination shifts.',
+    points: [
+      'Varying lighting conditions, image blur, and off-axis camera angles in field conditions',
+      'Age progression matching between childhood photos and adolescent records',
+      'Massive database size requiring sub-second vector search response times',
+      'Strict zero-trust security and data privacy safeguards for sensitive citizen data',
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'A secure mobile app integrated with cloud vector databases and deep neural embeddings.',
+    items: [
+      {
+        title: 'Mobile-First Officer Interface',
+        description: 'Empowers field officers to snap photos and instantly trigger biometric search queries.',
+      },
+      {
+        title: 'Deep Facial Embedding Engine',
+        description: 'Convolutional neural networks trained to identify invariant facial landmarks despite aging.',
+      },
+      {
+        title: 'Vector Similarity Indexing',
+        description: 'High-speed approximate nearest neighbor (ANN) search across millions of profiles in milliseconds.',
+      },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Mobile & Frontend',
+      technologies: ['Flutter', 'React', 'Tailwind CSS'],
+      description: 'Cross-platform mobile application and secure administrative console.',
+    },
+    {
+      category: 'AI & Computer Vision',
+      technologies: ['Python', 'TensorFlow', 'OpenCV', 'PyTorch'],
+      description: 'Facial detection, landmark alignment, and embedding extraction pipelines.',
+    },
+    {
+      category: 'Database & Cloud',
+      technologies: ['Milvus Vector DB', 'PostgreSQL', 'Docker', 'Kubernetes'],
+      description: 'High-throughput vector indexing, relational audit logging, and scalable container orchestration.',
+    },
+  ],
+  testimonial: {
+    quote:
+      'Darpan has given our officers a miraculous tool. Being able to photograph an unidentified child on the street and instantly locate their family across the state has transformed how we approach public safety.',
+    author: 'Superintendent of Police',
+    role: 'Crime Investigation Department',
+    company: 'Law Enforcement',
+  },
+  seo: {
+    metaTitle: 'Darpan: AI Facial Recognition Case Study | Travash Software Solutions',
+    metaDescription:
+      'Discover how Travash developed Darpan, an AI facial recognition and missing person retrieval engine for state law enforcement.',
+  },
+}
+
+export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
+  title: 'i-Verify: Next-Gen Background Screening & Biometric Trust Platform',
+  slug: { current: 'i-verify' },
+  eyebrow: 'CASE STUDY',
+  category: 'Enterprise Software',
+  industry: 'Government & Banking',
+  client: 'Enterprise Verification Consortium',
+  location: 'India & UAE',
+  shortDescription:
+    'i-Verify provides a high-security automated candidate background check and credential verification platform with real-time public registry cross-referencing.',
+  projectMeta: [
+    { label: 'Industry', value: 'Technology / HR / Public Sector' },
+    { label: 'Solution', value: 'Automated Document AI & Identity Verification' },
+    { label: 'Platform', value: 'Enterprise Web Portal' },
+    { label: 'Capabilities', value: 'OCR, Document AI, Tamper Detection, API Integrations' },
+  ],
+  metrics: [
+    { value: '500K+', label: 'Verifications Processed', description: 'Automated candidate checks' },
+    { value: '85%', label: 'Turnaround Reduction', description: 'From 10 days down to 24 hours' },
+    { value: '99.8%', label: 'OCR Precision', description: 'Structured entity extraction' },
+    { value: 'Zero', label: 'Compliance Breaches', description: 'Full SOC-2 & ISO 27001 posture' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    subtitle: 'Digitizing corporate and institutional trust through automated verification pipelines.',
+    paragraphs: [
+      'Traditional background checks took up to two weeks of manual email chains, telephone calls, and physical certificate verification, stalling corporate hiring and government clearances.',
+      'Travash built i-Verify to automate educational credential validation, police registry checks, credit bureau scoring, and employment verification through encrypted API bridges and machine-learning document inspection.',
+    ],
+  },
+  challenge: {
+    title: 'The Challenge',
+    subtitle: 'Eliminating fraudulent credentials and reducing weeks of onboarding latency.',
+    content:
+      'Employers and government contractors were vulnerable to forged diplomas, manipulated ID scans, and delayed background reports. The system required automated fraud detection coupled with authorized institutional integration.',
+    points: [
+      'Widespread prevalence of digitally altered PDF documents and fake seals',
+      'Long waiting periods causing high candidate drop-off rates during hiring',
+      'Fragmented data sources across universities, courts, and credit bureaus',
+      'Strict regulatory data sovereignty and privacy mandates',
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'An intelligent pipeline combining optical character recognition with cryptographically verified API calls.',
+    items: [
+      {
+        title: 'Document Forensic Analysis',
+        description: 'Identifies pixel alterations, font inconsistencies, and metadata tampering in uploaded certificates.',
+      },
+      {
+        title: 'Automated Registry Connectors',
+        description: 'Direct API integrations with national identity, court records, and university repositories.',
+      },
+      {
+        title: 'Applicant Self-Service Portal',
+        description: 'Frictionless mobile onboarding allowing candidates to upload documents and consent in under 3 minutes.',
+      },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Frontend & UI',
+      technologies: ['React', 'Next.js', 'Tailwind CSS'],
+      description: 'Responsive enterprise web application with real-time audit dashboards.',
+    },
+    {
+      category: 'Backend & AI',
+      technologies: ['Node.js', 'Python', 'Tesseract OCR', 'FastAPI'],
+      description: 'High-concurrency microservices, document extraction, and cryptographic hash verification.',
+    },
+    {
+      category: 'Database & Security',
+      technologies: ['MongoDB', 'Redis', 'AWS KMS', 'HashiCorp Vault'],
+      description: 'Field-level encrypted data storage, tokenized access, and immutable audit logs.',
+    },
+  ],
+  testimonial: {
+    quote:
+      'i-Verify slashed our onboarding verification time from two weeks to under 24 hours. The tamper-detection engine has saved our enterprise from multiple fraudulent credentials.',
+    author: 'Head of People Operations',
+    role: 'Global Technology Enterprise',
+    company: 'Enterprise Client',
+  },
+  seo: {
+    metaTitle: 'i-Verify: Background Screening Platform Case Study | Travash Software Solutions',
+    metaDescription:
+      'Explore how Travash built i-Verify, an automated background check and credential verification platform processing 500K+ verifications.',
+  },
+}
+
+export const DEFAULT_I4C_DATA: CaseStudyData = {
+  title: 'I4C National Bank Portal: Pan-India Financial Fraud Mitigation',
+  slug: { current: 'i4c-bank-portal' },
+  eyebrow: 'CASE STUDY',
+  category: 'Cyber Fraud Mitigation',
+  industry: 'Banking & Financial Services',
+  client: 'National Anti-Fraud Network',
+  location: 'Pan-India',
+  shortDescription:
+    'The I4C portal serves as the nationwide frontline application connecting law enforcement agencies and financial institutions to coordinate immediate fund freezes upon reported cyber theft.',
+  projectMeta: [
+    { label: 'Industry', value: 'Banking & Financial Services / Public Sector' },
+    { label: 'Solution', value: 'Real-Time Inter-Bank Fraud Intercept Platform' },
+    { label: 'Platform', value: 'High-Concurrency Enterprise Web Platform' },
+    { label: 'Capabilities', value: 'Sub-Minute Account Freezes, Real-Time Telemetry, Bank API Bridges' },
+  ],
+  metrics: [
+    { value: '₹100M+', label: 'Fraud Intercepted', description: 'Stolen funds saved from cash-out' },
+    { value: '<60s', label: 'Inter-Bank Freeze', description: 'Average response time across participating banks' },
+    { value: '150+', label: 'Financial Institutions', description: 'Connected banks, NBFCs, and UPI payment apps' },
+    { value: '99.99%', label: 'Platform Uptime', description: 'Zero downtime during nationwide transaction surges' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    subtitle: 'Halting cyber criminals in real time to protect citizens and financial systems.',
+    paragraphs: [
+      'Financial cyber fraud relies on swift multi-layered money transfers, where stolen funds are bounced through dozens of intermediary mule accounts within minutes.',
+      'Travash engineered the I4C coordination portal to act as the nerve center uniting police departments, banks, and payment gateways, enabling automated instant account freeze orders before funds can be withdrawn at ATMs.',
+    ],
+  },
+  challenge: {
+    title: 'The Challenge',
+    subtitle: 'The 60-minute golden hour: stopping money laundering across disparate banking rails.',
+    content:
+      'When a cyber theft occurs, victims report it to the helpline. However, by the time traditional paperwork reached a bank branch, the money had already vanished. A real-time unified communication protocol was urgently required.',
+    points: [
+      'Rapid velocity of mule account hopping across multiple banks and UPI gateways',
+      'Heterogeneous banking core systems with differing API structures and security protocols',
+      'Massive concurrency during peak hours with thousands of incident tickets logged per hour',
+      'Need for ironclad chain of custody and forensic evidentiary logs for prosecution',
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'A high-throughput event-driven platform routing freeze requests straight to bank risk engines.',
+    items: [
+      {
+        title: 'Instant Mule Trail Mapping',
+        description: 'Automated transaction trace identifying downstream recipient accounts across different banks.',
+      },
+      {
+        title: 'Direct Bank API Dispatch',
+        description: 'Standardized ISO 20022 and banking webhooks triggering immediate lien-marking on compromised accounts.',
+      },
+      {
+        title: 'Law Enforcement Dashboard',
+        description: 'Single-pane-of-glass interface for cyber police officers to track recovery status and generate court evidence.',
+      },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Frontend',
+      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Redux Toolkit'],
+      description: 'Zero-latency live operational dashboard with real-time websocket updates.',
+    },
+    {
+      category: 'Backend & Event Streaming',
+      technologies: ['Java', 'Spring Boot', 'Apache Kafka', 'Node.js'],
+      description: 'Distributed event-driven architecture handling millions of bank transactions per hour.',
+    },
+    {
+      category: 'Databases & Resilience',
+      technologies: ['PostgreSQL', 'Redis Cluster', 'Elasticsearch'],
+      description: 'ACID-compliant transaction storage, in-memory caching, and sub-second audit log indexing.',
+    },
+  ],
+  testimonial: {
+    quote:
+      'Travash engineered the backbone of our national fight against cyber fraud. Thanks to their robust infrastructure and rapid account-freeze capabilities, we are saving millions of citizens hard-earned rupees every single month.',
+    author: 'Senior Leadership & National Coordinator',
+    role: 'Cyber Crime Coordination',
+    company: 'National Anti-Fraud Network',
+  },
+  seo: {
+    metaTitle: 'I4C National Bank Portal Case Study | Travash Software Solutions',
+    metaDescription:
+      'Learn how Travash built the I4C portal, enabling rapid inter-bank cyber fraud intercepts and saving over ₹100M in stolen funds.',
+  },
+}
+
+export const DEFAULT_UGO_DATA: CaseStudyData = {
+  title: 'UGO: Intelligent Fleet Routing & Supply Chain Dispatch Platform',
+  slug: { current: 'ugo' },
+  eyebrow: 'CASE STUDY',
+  category: 'Logistics & Supply Chain',
+  industry: 'E-Commerce & Retail',
+  client: 'Logistics Network Partner',
+  location: 'Hyderabad, India',
+  shortDescription:
+    'UGO is an end-to-end fleet tracking and dispatch coordination system powering commercial transport operations with sub-second telemetry and dynamic routing.',
+  projectMeta: [
+    { label: 'Industry', value: 'Logistics / Supply Chain / E-Commerce' },
+    { label: 'Solution', value: 'Dynamic Fleet Routing & Driver Telematics' },
+    { label: 'Platform', value: 'Mobile App & Dispatcher Web Console' },
+    { label: 'Capabilities', value: 'GPS Tracking, Route Optimization, Automated Proof-of-Delivery' },
+  ],
+  metrics: [
+    { value: '35%', label: 'Fuel Savings', description: 'Through dynamic TSP route optimization' },
+    { value: '99.9%', label: 'On-Time Dispatch', description: 'Real-time vehicle availability management' },
+    { value: '10K+', label: 'Daily Trips Coordinated', description: 'Across regional urban and highway corridors' },
+    { value: '<50ms', label: 'Telemetry Ping Latency', description: 'Continuous MQTT & WebSocket stream' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    subtitle: 'Transforming commercial logistics from chaotic dispatching into automated mathematical efficiency.',
+    paragraphs: [
+      'Commercial delivery networks struggled with traffic congestion, delayed departures, unoptimized multi-stop delivery routes, and blind spots in driver communications.',
+      'Travash engineered UGO, a comprehensive logistics operations platform featuring driver mobile apps, real-time GPS telemetry, and automated multi-stop route optimization.',
+    ],
+  },
+  challenge: {
+    title: 'The Challenge',
+    subtitle: 'Dynamic road conditions, variable delivery windows, and high fuel burn.',
+    content:
+      'Fleet managers previously relied on manual phone calls and static paper manifests. Deliveries were routinely missed due to unexpected bottlenecks, resulting in escalating vehicle operating costs.',
+    points: [
+      'High fuel consumption due to redundant routing and congested urban paths',
+      'Lack of real-time visibility into vehicle locations and driver break times',
+      'Disputes regarding delivery times and customer handoffs',
+      'Need for an intuitive mobile application that drivers could use without extensive training',
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'An integrated mobile and web ecosystem connecting drivers, warehouse managers, and end customers.',
+    items: [
+      {
+        title: 'Algorithmic Route Optimization',
+        description: 'Computes optimal multi-stop delivery sequences factoring in real-time traffic and delivery deadlines.',
+      },
+      {
+        title: 'Driver Companion Application',
+        description: 'Turn-by-turn navigation, shipment barcodes scanning, and digital signature capture.',
+      },
+      {
+        title: 'Fleet Command Center',
+        description: 'Live interactive map showing vehicle speeds, fuel metrics, engine diagnostics, and ETA alerts.',
+      },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Mobile Applications',
+      technologies: ['React Native', 'Android', 'iOS', 'Expo'],
+      description: 'Offline-capable mobile apps with background GPS and camera barcode scanning.',
+    },
+    {
+      category: 'Backend & Routing Engine',
+      technologies: ['Node.js', 'Go', 'Python', 'Google Maps Platform'],
+      description: 'High-speed routing algorithms, graph traversal, and vehicle telemetry ingestion.',
+    },
+    {
+      category: 'Database & IoT',
+      technologies: ['PostgreSQL', 'PostGIS', 'Redis', 'AWS IoT Core'],
+      description: 'Geospatial querying, temporal telemetry storage, and low-power message brokering.',
+    },
+  ],
+  testimonial: {
+    quote:
+      'UGO transformed our fleet operations. Our drivers spend 35% less on fuel, our dispatchers manage twice the volume of shipments, and our customer satisfaction ratings have skyrocketed.',
+    author: 'Chief Operating Officer',
+    role: 'Supply Chain Operations',
+    company: 'Logistics Partner',
+  },
+  seo: {
+    metaTitle: 'UGO: Fleet Routing & Supply Chain Case Study | Travash Software Solutions',
+    metaDescription:
+      'Learn how Travash built UGO, an intelligent fleet routing and dispatch platform delivering 35% fuel savings and 99.9% on-time delivery.',
+  },
+}
+
+export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
+  satyapaan: DEFAULT_SATYAPAAN_DATA,
+  darpan: DEFAULT_DARPAN_DATA,
+  'i-verify': DEFAULT_IVERIFY_DATA,
+  i4c: DEFAULT_I4C_DATA,
+  'i4c-bank-portal': DEFAULT_I4C_DATA,
+  ugo: DEFAULT_UGO_DATA,
 }

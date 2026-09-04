@@ -1,74 +1,81 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import type { CaseStudyData } from '@/lib/case-study-data'
+
+function PoliceShieldIcon() {
+  return (
+    <div className="w-14 h-16 relative flex items-center justify-center mx-auto mt-2">
+      <Image
+        src="/casestudy-img/Telangana_Police_Logo-150x177.png"
+        alt="Telangana State Police"
+        width={56}
+        height={66}
+        className="w-auto h-full object-contain drop-shadow-sm"
+      />
+    </div>
+  )
+}
 
 export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
   const metrics = data.metrics || [
     {
-      value: '1.96M',
-      label: 'Passport Applications Processed',
-      description: 'Centralized high-throughput verification at state scale',
+      value: '1.96 Million',
+      label: 'Passport applications processed',
     },
     {
       value: '800+',
-      label: 'High-Risk Records Identified',
-      description: 'Adverse cases intercepted before passport issuance',
+      label: 'High-risk adverse cases identified and intercepted',
     },
     {
-      value: 'AI-Assisted',
-      label: 'Verification Workflow',
-      description: 'Automated data extraction, facial recognition & real-time matching',
+      value: 'AI–Assisted Verification',
+      label: 'Automated data extraction, facial recognition and real-time matching',
     },
     {
-      value: 'SIAC Certified',
-      label: 'Security & Registry Compliance',
-      description: 'Securing public registry and identity integrity statewide',
+      value: data.client || 'Telangana State Police',
+      label: 'client-badge',
     },
   ]
 
   return (
-    <section id="outcomes" className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section className="py-10 sm:py-14 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-          {/* Left Column: Heading just like Net Solutions "Outcomes" */}
-          <div className="lg:col-span-4 lg:sticky lg:top-36">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
-              Measurable Results
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
-              Key Outcomes
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
-              High-impact quantitative milestones achieved by deploying automated digital screening across public safety workflows.
-            </p>
-          </div>
+        {/* 4 Cards Grid across the page */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {metrics.slice(0, 4).map((metric, idx) => {
+            const isClientBadge = idx === 3 || metric.label === 'client-badge'
 
-          {/* Right Column: High-Impact Bold Stat Cards Grid */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
-            {metrics.map((metric, idx) => (
+            return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col justify-start border-l-2 border-[#0B4785] pl-6 py-1"
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="bg-[#F8F8F8] rounded-2xl border border-[#E8EEF5] shadow-[0_4px_24px_rgba(2,46,84,0.04)] p-6 sm:p-7 text-center flex flex-col items-center justify-center min-h-[175px] hover:border-[#02487D]/30 hover:shadow-[0_8px_30px_rgba(2,72,125,0.08)] transition-all duration-300"
               >
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-none mb-3 font-sans">
+                {/* Metric Value / Title */}
+                <h3
+                  className={`${metric.value.length > 15
+                      ? 'text-lg sm:text-xl'
+                      : 'text-2xl sm:text-3xl lg:text-[32px]'
+                    } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
+                >
                   {metric.value}
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#0B4785] leading-snug mb-1.5">
-                  {metric.label}
                 </h3>
-                {metric.description && (
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-normal">
-                    {metric.description}
+
+                {/* Subtitle / Police Shield */}
+                {isClientBadge ? (
+                  <PoliceShieldIcon />
+                ) : (
+                  <p className="text-xs sm:text-sm text-[#475569] leading-snug max-w-[240px]">
+                    {metric.label}
                   </p>
                 )}
               </motion.div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

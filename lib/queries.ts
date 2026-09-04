@@ -268,6 +268,102 @@ export const caseStudyBySlugQuery = groq`
   }
 `
 
+// Portfolio Page Query — fetches all portfolio case studies, industries, technologies, and shared sections
+export const portfolioPageQuery = groq`
+  {
+    "projects": *[_type == "caseStudy" && coalesce(portfolioVisible, true) == true] | order(coalesce(portfolioOrder, 100) asc, _createdAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      portfolioTitle,
+      cardDescription,
+      shortDescription,
+      category,
+      industry,
+      projectType,
+      "industries": coalesce(
+        industries[]->name,
+        industries
+      ),
+      "technologies": coalesce(
+        technologies[]->name,
+        technologies
+      ),
+      featured,
+      portfolioOrder,
+      portfolioVisible,
+      caseStudyUrl,
+      cardImage ${imageFragment},
+      cardImageAlt,
+      featureImage ${imageFragment},
+      heroImage ${imageFragment},
+      metrics[] { value, label }
+    },
+    "industries": *[_type == "industry"] | order(name asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      description
+    },
+    "technologies": *[_type == "technology"] | order(name asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      category,
+      icon ${imageFragment}
+    },
+    "pageData": {
+      "stats": coalesce(
+        *[_id == "statsSection"][0],
+        *[_type == "statsSection"][0],
+        *[_type == "homePage"][0].stats
+      ) {
+        stats[] { value, label }
+      },
+      "testimonials": coalesce(
+        *[_id == "testimonialSection"][0],
+        *[_type == "testimonialSection"][0],
+        *[_type == "homePage"][0].testimonials
+      ) {
+        heading,
+        testimonials[] {
+          quote,
+          authorName,
+          authorTitle,
+          authorCompany,
+          authorPhoto ${imageFragment}
+        }
+      },
+      "contact": coalesce(
+        *[_id == "contactSection"][0],
+        *[_type == "contactSection"][0],
+        *[_type == "homePage"][0].contact
+      ) {
+        heading,
+        subheading,
+        sideImage ${imageFragment},
+        submitLabel,
+        successMessage,
+        notifyEmail
+      }
+    },
+    "siteSettings": *[_type == "siteSettings"][0] {
+      logo ${imageFragment},
+      navLinks[] { label, href },
+      ctaLabel,
+      ctaHref,
+      footerLogo ${imageFragment},
+      socialLinks[] { platform, url },
+      menuLinks[] { label, href },
+      serviceLinks[] { label, href },
+      offices[] { label, address },
+      contactEmail,
+      contactPhone,
+      copyrightText
+    }
+  }
+`
+
 // Query for generating static params for case studies
 export const allCaseStudySlugsQuery = groq`
   *[_type == "caseStudy" && defined(slug.current)] {
@@ -396,6 +492,27 @@ export const serviceBySlugQuery = groq`
 export const allServiceSlugsQuery = groq`
   *[_type == "service" && defined(slug.current)] {
     "slug": slug.current
+  }
+`
+
+// Query all industries for portfolio filter
+export const allIndustriesQuery = groq`
+  *[_type == "industry"] | order(name asc) {
+    _id,
+    name,
+    "slug": slug.current,
+    description
+  }
+`
+
+// Query all technologies
+export const allTechnologiesQuery = groq`
+  *[_type == "technology"] | order(name asc) {
+    _id,
+    name,
+    "slug": slug.current,
+    category,
+    icon ${imageFragment}
   }
 `
 

@@ -602,3 +602,279 @@ export const DEFAULT_DATA_ANALYTICS_SERVICE: ServiceData = {
       'Travash offers UI/UX design services and data analytics solutions in India, creating user-centric, visually appealing designs that boost engagement and digital success.',
   },
 }
+
+export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
+  title: 'AI & Data Engineering',
+  slug: 'ai-data-engineering',
+  menuTitle: 'AI & Data Engineering',
+  shortDescription:
+    'Custom artificial intelligence models, computer vision systems, predictive algorithms, and automated workflows engineered for production environments.',
+  hero: {
+    eyebrow: 'APPLIED AI & MACHINE LEARNING',
+    title: 'Production-Grade AI, Computer Vision & Intelligent Automation',
+    description:
+      'From facial recognition platforms to automated document verification and predictive telemetry, we build robust AI systems that solve high-stakes business challenges.',
+    primaryCTA: { label: 'Schedule AI Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore Case Studies', href: '#case-studies' },
+    highlights: ['Computer Vision & Facial biometrics', 'Edge AI & Deep Neural Networks', 'Zero-Trust Private AI Boundaries'],
+  },
+  problemSection: {
+    label: 'THE CHALLENGE',
+    title: 'Why AI Projects Fail In Production',
+    headline: 'Most AI initiatives get trapped in experimental notebooks and never scale reliably.',
+    description:
+      'Building a prototype AI script is easy; deploying it to handle millions of real-time images or noisy data inputs with 99.9% uptime requires enterprise-grade data engineering and disciplined MLOps.',
+    painPoints: [
+      {
+        title: 'Data Drift & Model Decay',
+        description: 'Models degrade quickly when real-world production inputs diverge from training distributions.',
+      },
+      {
+        title: 'High Latency & Compute Overheads',
+        description: 'Unoptimized neural networks cause heavy cloud GPU bills and sluggish user response times.',
+      },
+      {
+        title: 'Data Leakage & Compliance Vulnerability',
+        description: 'Sending proprietary client data to public LLM endpoints breaches enterprise privacy regulations.',
+      },
+      {
+        title: 'Lack of Automated Retraining',
+        description: 'Manual data annotation and retraining pipelines stall innovation and drain engineering time.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'Engineering AI That Generates Measurable Business Value',
+    description:
+      'Travash brings 20+ years of software rigor to modern artificial intelligence. We architect private, secure, and blazing-fast AI pipelines built for real-world enterprise operations.',
+    benefits: [
+      {
+        icon: 'brain',
+        title: 'Private VPC Deployment',
+        description: 'All AI models run in isolated VPC environments with zero third-party exposure.',
+      },
+      {
+        icon: 'shield',
+        title: 'Sub-Second Edge Inference',
+        description: 'Quantized neural networks optimized with ONNX and TensorRT for real-time mobile and edge devices.',
+      },
+      {
+        icon: 'database',
+        title: 'Continuous MLOps Pipelines',
+        description: 'Automated data versioning, drift detection, and continuous model re-training pipelines.',
+      },
+    ],
+  },
+  capabilities: [
+    {
+      title: 'Computer Vision & Biometric Recognition',
+      shortDescription: 'High-precision facial recognition, object detection, and video stream telemetry.',
+      problem: 'Manual photo surveillance and verification fail under high volumes and low resolution.',
+      solution: 'Custom CNN architectures and vector embeddings matching identities in milliseconds across state-scale records.',
+      businessImpact: 'Powers platforms like Satyapaan and Darpan with 99.4% biometric precision.',
+      icon: 'camera',
+      technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'YOLOv8', 'Milvus'],
+      optionalCTA: { label: 'Explore Computer Vision', href: '#contact' },
+    },
+    {
+      title: 'Automated Document Intelligence & OCR',
+      shortDescription: 'Instant structured extraction from passports, invoices, contracts, and legal IDs.',
+      problem: 'Human verification of paper credentials creates weeks of onboarding latency and human error.',
+      solution: 'Multi-modal document AI with automated anti-tampering forensic checks and structured JSON output.',
+      businessImpact: 'Reduces verification turnaround times by up to 85% with zero compliance infractions.',
+      icon: 'file-text',
+      technologies: ['Tesseract OCR', 'LayoutLM', 'Python', 'FastAPI'],
+      optionalCTA: { label: 'Explore Document AI', href: '#contact' },
+    },
+    {
+      title: 'Predictive Analytics & Anomaly Detection',
+      shortDescription: 'Time-series forecasting, cyber fraud prevention, and real-time behavioral anomaly scoring.',
+      problem: 'Reactive monitoring catches fraud and hardware failures only after the financial loss has occurred.',
+      solution: 'Real-time event stream processing identifying unusual transaction velocity and malicious anomalies.',
+      businessImpact: 'Prevents millions in cyber fraud as demonstrated in the I4C banking portal.',
+      icon: 'trending-up',
+      technologies: ['Apache Kafka', 'Scikit-Learn', 'Python', 'PostgreSQL'],
+      optionalCTA: { label: 'Explore Anomaly Detection', href: '#contact' },
+    },
+  ],
+  process: {
+    heading: 'Our AI & Data Engineering Methodology',
+    description: 'We follow a strict empirical process from data feasibility to production deployment.',
+    steps: [
+      { number: '01', title: 'Data Audit & Feasibility Study', description: 'Evaluate training data quality, distribution balance, and technical feasibility.' },
+      { number: '02', title: 'Model Architecture & Validation', description: 'Develop and benchmark model topologies against rigorous precision-recall metrics.' },
+      { number: '03', title: 'Containerization & MLOps Pipeline', description: 'Package models into optimized Docker microservices with automated health checks.' },
+      { number: '04', title: 'Telemetry & Continuous Retraining', description: 'Monitor live inference metrics, detect data drift, and automate retraining loops.' },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'AI & Deep Learning',
+      technologies: ['PyTorch', 'TensorFlow', 'OpenCV', 'Hugging Face'],
+      description: 'Foundational frameworks for training and fine-tuning specialized neural networks.',
+    },
+    {
+      category: 'Data Engineering & Streaming',
+      technologies: ['Apache Kafka', 'Apache Spark', 'Python', 'FastAPI'],
+      description: 'High-throughput stream processing and distributed data pipelines.',
+    },
+    {
+      category: 'Vector DBs & Storage',
+      technologies: ['Milvus', 'Redis', 'PostgreSQL', 'MinIO'],
+      description: 'Sub-millisecond similarity search across high-dimensional vector embeddings.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to build production-grade AI that drives measurable results?',
+    description: 'Speak with our AI architects to evaluate your use case, audit data readiness, or build a proof-of-concept.',
+    primaryCTA: { label: 'Schedule AI Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Browse Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'AI & Data Engineering Services | Travash Software Solutions',
+    metaDescription: 'Custom AI development, computer vision, and high-performance data engineering by Travash.',
+  },
+}
+
+export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
+  title: 'Software Engineering',
+  slug: 'software-engineering',
+  menuTitle: 'Software Engineering',
+  shortDescription:
+    'High-performance web applications, resilient microservices, cloud-native architectures, and dedicated engineering pods built for scale.',
+  hero: {
+    eyebrow: 'ENTERPRISE PLATFORM ENGINEERING',
+    title: 'Mission-Critical Software, High-Concurrency APIs & Scalable Cloud Systems',
+    description:
+      'We design and develop enterprise web platforms, mobile products, and microservices backends with rock-solid security, test coverage, and clean architecture.',
+    primaryCTA: { label: 'Discuss Your Project', href: '#contact' },
+    secondaryCTA: { label: 'Explore Portfolio', href: '/portfolio' },
+    highlights: ['Microservices & Event-Driven Architecture', '99.99% Production Uptime Standards', 'Full-Stack Dedicated Pods'],
+  },
+  problemSection: {
+    label: 'THE CHALLENGE',
+    title: 'Tackling Architecture Bottlenecks and Technical Debt',
+    headline: 'Legacy architectures and slow release cycles prevent modern enterprises from scaling.',
+    description:
+      'As user traffic and business complexity grow, monolithic legacy codebases cause sluggish page loads, frequent downtime, and prohibitive maintenance costs.',
+    painPoints: [
+      {
+        title: 'Monolithic Scalability Limits',
+        description: 'Single points of failure where one bottleneck brings down the entire customer-facing platform.',
+      },
+      {
+        title: 'Slow Feature Velocity',
+        description: 'Spaghetti code and lack of automated CI/CD pipelines drag development cycles into months.',
+      },
+      {
+        title: 'Security & Regulatory Gaps',
+        description: 'Outdated libraries and unencrypted data paths fail modern zero-trust audits.',
+      },
+      {
+        title: 'High Infrastructure Costs',
+        description: 'Unoptimized server provisioning and inefficient database queries multiply monthly cloud bills.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'Enterprise Software Engineered for Speed, Scale & Stability',
+    description:
+      'Travash delivers robust, clean, and maintainable software systems. We adhere strictly to domain-driven design, comprehensive automated testing, and cloud-native standards.',
+    benefits: [
+      {
+        icon: 'code',
+        title: 'Modern Architecture',
+        description: 'Modular microservices and headless frontend architectures decoupling business logic for rapid iteration.',
+      },
+      {
+        icon: 'zap',
+        title: 'Sub-100ms API Latency',
+        description: 'Optimized database indexing, in-memory caching (Redis), and asynchronous queuing.',
+      },
+      {
+        icon: 'lock',
+        title: 'Zero-Trust Security',
+        description: 'End-to-end data encryption, role-based access control (RBAC), and automated vulnerability scanning.',
+      },
+    ],
+  },
+  capabilities: [
+    {
+      title: 'Custom Enterprise Web Platforms',
+      shortDescription: 'High-throughput web applications designed for demanding operational workflows.',
+      problem: 'Off-the-shelf software fails to accommodate unique enterprise business logic and compliance.',
+      solution: 'Custom Next.js, React, and Java/Node backends tailored precisely to client business operations.',
+      businessImpact: 'Automates complex internal operations and delivers frictionless customer experiences.',
+      icon: 'globe',
+      technologies: ['React', 'Next.js', 'TypeScript', 'Java', 'Node.js'],
+      optionalCTA: { label: 'Discuss Web Platforms', href: '#contact' },
+    },
+    {
+      title: 'Microservices & API Modernization',
+      shortDescription: 'Decoupling monolithic platforms into resilient, independently scalable services.',
+      problem: 'Single points of failure and tightly coupled deployments risk total system crashes.',
+      solution: 'Strangler-fig migration patterns moving legacy systems to containerized Docker/Kubernetes microservices.',
+      businessImpact: 'Zero-downtime rolling deployments and 4x faster feature release velocity.',
+      icon: 'cpu',
+      technologies: ['Java Spring Boot', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL'],
+      optionalCTA: { label: 'Modernize Your Architecture', href: '#contact' },
+    },
+    {
+      title: 'Cross-Platform Mobile Engineering',
+      shortDescription: 'Native-feel iOS and Android applications built for high performance and offline reliability.',
+      problem: 'Building two disparate native codebases doubles development costs and causes feature discrepancies.',
+      solution: 'Unified React Native and Flutter mobile applications with background sync and biometric authentication.',
+      businessImpact: 'Powers mission-critical field apps like UGO with real-time GPS tracking.',
+      icon: 'smartphone',
+      technologies: ['React Native', 'Flutter', 'iOS', 'Android', 'AWS IoT'],
+      optionalCTA: { label: 'Explore Mobile Engineering', href: '#contact' },
+    },
+  ],
+  process: {
+    heading: 'Our Engineering Methodology',
+    description: 'Transparent 2-week agile sprints with continuous deployment and strict QA.',
+    steps: [
+      { number: '01', title: 'Architecture Blueprint', description: 'System design, database schemas, and API contracts defined upfront.' },
+      { number: '02', title: 'Iterative Sprint Execution', description: 'Test-driven development with bi-weekly client demos and staging releases.' },
+      { number: '03', title: 'Automated CI/CD & Security', description: 'Continuous integration pipelines with automated unit, integration, and security scans.' },
+      { number: '04', title: 'Production Launch & SLA Support', description: 'Seamless zero-downtime cutover and 24/7 proactive infrastructure telemetry.' },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Frontend Platforms',
+      technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+      description: 'Modern component-driven web user interfaces with server-side rendering.',
+    },
+    {
+      category: 'Backend & APIs',
+      technologies: ['Java', 'Node.js', 'Go', 'Python', 'GraphQL', 'REST'],
+      description: 'Robust server environments built for high concurrency and zero memory leaks.',
+    },
+    {
+      category: 'Databases & Messaging',
+      technologies: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Kafka'],
+      description: 'Relational ACID transactions, fast cache layers, and distributed messaging.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Build scalable software that accelerates your competitive advantage',
+    description: 'Connect with our engineering leads to review your architecture or scale your developer capacity.',
+    primaryCTA: { label: 'Schedule Technical Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'Enterprise Software Engineering | Travash Software Solutions',
+    metaDescription: 'Full-stack software engineering, microservices architecture, and cloud systems by Travash.',
+  },
+}
+
+export const FALLBACK_SERVICES: Record<string, ServiceData> = {
+  'data-analytics-solutions': DEFAULT_DATA_ANALYTICS_SERVICE,
+  'data-analytics': DEFAULT_DATA_ANALYTICS_SERVICE,
+  analytics: DEFAULT_DATA_ANALYTICS_SERVICE,
+  'ai-data-engineering': DEFAULT_AI_DATA_ENGINEERING_SERVICE,
+  'ai-data': DEFAULT_AI_DATA_ENGINEERING_SERVICE,
+  'software-engineering': DEFAULT_SOFTWARE_ENGINEERING_SERVICE,
+  software: DEFAULT_SOFTWARE_ENGINEERING_SERVICE,
+}

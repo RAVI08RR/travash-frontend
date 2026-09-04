@@ -2,7 +2,11 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
 import { caseStudyBySlugQuery, allCaseStudySlugsQuery, homePageQuery } from '@/lib/queries'
-import { DEFAULT_SATYAPAAN_DATA, type CaseStudyData } from '@/lib/case-study-data'
+import {
+  DEFAULT_SATYAPAAN_DATA,
+  FALLBACK_CASE_STUDIES,
+  type CaseStudyData,
+} from '@/lib/case-study-data'
 
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
@@ -10,6 +14,9 @@ import Contact from '@/components/sections/Contact'
 
 import CaseStudyHero from '@/components/case-study/CaseStudyHero'
 import CaseStudyMetrics from '@/components/case-study/CaseStudyMetrics'
+import ExecutiveSummary from '@/components/case-study/ExecutiveSummary'
+import TheComplexity from '@/components/case-study/TheComplexity'
+import TheChallenge from '@/components/case-study/TheChallenge'
 import CaseStudyContentSection from '@/components/case-study/CaseStudyContentSection'
 import ProjectVisual from '@/components/case-study/ProjectVisual'
 import ComplexityGrid from '@/components/case-study/ComplexityGrid'
@@ -21,6 +28,7 @@ import BeforeAfterComparison from '@/components/case-study/BeforeAfterComparison
 import ClientPerspective from '@/components/case-study/ClientPerspective'
 import WhyItMatters from '@/components/case-study/WhyItMatters'
 import CaseStudyNextStep from '@/components/case-study/CaseStudyNextStep'
+import RelatedServices from '@/components/case-study/RelatedServices'
 
 import { AlertTriangle, CheckCircle2 } from 'lucide-react'
 
@@ -37,7 +45,7 @@ export async function generateMetadata({
 
   try {
     const study: CaseStudyData | null = await client.fetch(caseStudyBySlugQuery, { slug })
-    const data = study || (slug === 'satyapaan' ? DEFAULT_SATYAPAAN_DATA : null)
+    const data = study || FALLBACK_CASE_STUDIES[slug] || null
 
     if (!data) {
       return {
@@ -85,7 +93,13 @@ export async function generateStaticParams() {
   } catch {
     // Fallback
   }
-  return [{ slug: 'satyapaan' }]
+  return [
+    { slug: 'satyapaan' },
+    { slug: 'darpan' },
+    { slug: 'i-verify' },
+    { slug: 'i4c-bank-portal' },
+    { slug: 'ugo' },
+  ]
 }
 
 async function getCaseStudyData(slug: string) {
@@ -96,7 +110,7 @@ async function getCaseStudyData(slug: string) {
     ])
 
     const caseStudy: CaseStudyData | null =
-      study || (slug === 'satyapaan' ? DEFAULT_SATYAPAAN_DATA : null)
+      study || FALLBACK_CASE_STUDIES[slug] || null
 
     return {
       caseStudy,
@@ -104,7 +118,7 @@ async function getCaseStudyData(slug: string) {
     }
   } catch {
     return {
-      caseStudy: slug === 'satyapaan' ? DEFAULT_SATYAPAAN_DATA : null,
+      caseStudy: FALLBACK_CASE_STUDIES[slug] || null,
       siteSettings: null,
     }
   }
@@ -132,82 +146,40 @@ export default async function CaseStudyPage({
     <>
       <Navbar settings={siteSettings} />
       <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
-        {/* 1-3. Hero Section with Project Metadata & Badge */}
+        {/* 1. Hero Section with Dual-Tone Divider & Metadata Stack (Screenshot 1) */}
         <CaseStudyHero data={caseStudy} />
 
-        {/* 4. Executive Summary */}
-        {caseStudy.executiveSummary && (
-          <CaseStudyContentSection
-            id="overview"
-            eyebrow="Overview"
-            title={caseStudy.executiveSummary.title || 'Executive Summary'}
-            subtitle={caseStudy.executiveSummary.subtitle}
-            variant="white"
-          >
-            <div className="flex flex-col gap-4 text-gray-700 text-base sm:text-lg lg:text-[18px] leading-relaxed font-normal">
-              {caseStudy.executiveSummary.paragraphs.map((p, idx) => (
-                <p key={idx}>{p}</p>
-              ))}
-            </div>
-          </CaseStudyContentSection>
-        )}
-
-        {/* 5. Key Metrics / Outcomes Grid */}
+        {/* 2. Key Metrics 4-Card Row (Screenshot 2) */}
         <CaseStudyMetrics data={caseStudy} />
 
-        {/* 6-7. The Challenge */}
-        {caseStudy.challenge && (
-          <CaseStudyContentSection
-            id="the-challenge"
-            eyebrow="The Problem"
-            title={caseStudy.challenge.title || 'The Challenge'}
-            subtitle={caseStudy.challenge.subtitle}
-            variant="gray"
-          >
-            {caseStudy.challenge.content && (
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed font-normal mb-2">
-                {caseStudy.challenge.content}
-              </p>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              {caseStudy.challenge.points.map((pt, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white border border-gray-200/90 rounded-2xl p-5 flex items-start gap-3.5 shadow-xs transition-all hover:border-[#E53E3E]/40"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#FFF5F5] text-[#E53E3E] border border-[#FED7D7] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <AlertTriangle className="w-4 h-4" />
-                  </div>
-                  <span className="text-sm text-gray-800 font-medium leading-relaxed">
-                    {pt}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </CaseStudyContentSection>
+        {/* 3. Executive Summary (Screenshot 2) */}
+        {caseStudy.executiveSummary && (
+          <ExecutiveSummary
+            title={caseStudy.executiveSummary.title || 'Executive Summary'}
+            paragraphs={caseStudy.executiveSummary.paragraphs}
+          />
         )}
 
-        {/* 8. Large Visual / Project Visual */}
-        <ProjectVisual
-          imageSrc={featureImageSrc}
-          alt={caseStudy.title}
-          caption="Satyaapan Centralized Identity Verification Portal — Built by Travash Software Solutions"
-        />
-
-        {/* 9-10. The Complexity */}
+        {/* 4. The Complexity (Screenshot 3) */}
         {caseStudy.complexity && (
-          <CaseStudyContentSection
-            id="complexity"
-            eyebrow="Operational Scope"
+          <TheComplexity
             title={caseStudy.complexity.title || 'The Complexity'}
-            subtitle={caseStudy.complexity.intro}
-            variant="white"
-          >
-            <ComplexityGrid items={caseStudy.complexity.items} />
-          </CaseStudyContentSection>
+            intro={caseStudy.complexity.intro}
+            items={caseStudy.complexity.items}
+          />
         )}
 
-        {/* 11-12. Travash Approach */}
+        {/* 5. The Challenge (Screenshot 4) */}
+        {caseStudy.challenge && (
+          <TheChallenge
+            title={caseStudy.challenge.title || 'The Challenge'}
+            headline={caseStudy.challenge.subtitle}
+            description={caseStudy.challenge.content}
+            points={caseStudy.challenge.points}
+          />
+        )}
+
+        {/* 6. Travash Approach */}
         {caseStudy.approach && (
           <CaseStudyContentSection
             id="approach"
@@ -322,7 +294,10 @@ export default async function CaseStudyPage({
           />
         )}
 
-        {/* 22-23. Contact / Lead Generation Section */}
+        {/* 22. Related Services Flow */}
+        <RelatedServices />
+
+        {/* 23. Contact / Lead Generation Section */}
         <Contact
           data={{
             heading: 'Ready to Automate & Solve Bottlenecks?',

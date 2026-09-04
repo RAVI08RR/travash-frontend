@@ -12,6 +12,8 @@ import { contactSection } from './contactSection'
 import { homePage } from './homePage'
 import { caseStudy } from './caseStudy'
 import { service } from './service'
+import { technology } from './technology'
+import { industry } from './industry'
 
 export const schemaTypes = [
   // Singletons / documents
@@ -19,6 +21,8 @@ export const schemaTypes = [
   homePage,
   caseStudy,
   service,
+  technology,
+  industry,
   post,
   // Section objects
   heroSection,

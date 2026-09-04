@@ -2,7 +2,11 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
 import { serviceBySlugQuery, allServiceSlugsQuery, homePageQuery } from '@/lib/queries'
-import { DEFAULT_DATA_ANALYTICS_SERVICE, type ServiceData } from '@/lib/service-data'
+import {
+  DEFAULT_DATA_ANALYTICS_SERVICE,
+  FALLBACK_SERVICES,
+  type ServiceData,
+} from '@/lib/service-data'
 
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
@@ -34,7 +38,7 @@ export async function generateMetadata({
 
   try {
     const study: ServiceData | null = await client.fetch(serviceBySlugQuery, { slug })
-    const data = study || (slug === 'data-analytics-solutions' ? DEFAULT_DATA_ANALYTICS_SERVICE : null)
+    const data = study || FALLBACK_SERVICES[slug] || null
 
     if (!data) {
       return {
@@ -82,7 +86,12 @@ export async function generateStaticParams() {
   } catch {
     // Fallback
   }
-  return [{ slug: 'data-analytics-solutions' }]
+  return [
+    { slug: 'data-analytics' },
+    { slug: 'data-analytics-solutions' },
+    { slug: 'ai-data-engineering' },
+    { slug: 'software-engineering' },
+  ]
 }
 
 async function getServiceData(slug: string) {
@@ -93,7 +102,7 @@ async function getServiceData(slug: string) {
     ])
 
     const service: ServiceData | null =
-      fetchedService || (slug === 'data-analytics-solutions' ? DEFAULT_DATA_ANALYTICS_SERVICE : null)
+      fetchedService || FALLBACK_SERVICES[slug] || null
 
     return {
       service,
@@ -101,7 +110,7 @@ async function getServiceData(slug: string) {
     }
   } catch {
     return {
-      service: slug === 'data-analytics-solutions' ? DEFAULT_DATA_ANALYTICS_SERVICE : null,
+      service: FALLBACK_SERVICES[slug] || null,
       siteSettings: null,
     }
   }

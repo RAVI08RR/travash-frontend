@@ -3,186 +3,234 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ChevronRight, Building2, ShieldCheck, MapPin, Cpu, ArrowUpRight } from 'lucide-react'
+import defaultHeroThumb from '@/public/casestudy-img/Satyaapan-Passport-Verification-System.png'
 import type { CaseStudyData } from '@/lib/case-study-data'
 
-const META_ICONS: Record<string, typeof Building2> = {
-  Industry: Building2,
-  Solution: ShieldCheck,
-  Region: MapPin,
-  'Core Capabilities': Cpu,
-}
-
 export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
-  const metadata = data.projectMeta || [
-    { label: 'Industry', value: data.industry || 'Government / Public Sector' },
-    { label: 'Solution', value: 'Enterprise AI + Passport Verification' },
-    { label: 'Region', value: data.location || 'India' },
-    {
-      label: 'Core Capabilities',
-      value: 'AI, Automated Data Extraction, Facial Recognition, Verification Automation',
-    },
-  ]
-
   const featureVisual =
     typeof data.featureImage === 'string'
       ? data.featureImage
-      : data.featureImage?.asset?.url || '/home-img/satyapaan-min 2.png'
+      : data.featureImage?.asset?.url ||
+      (typeof data.heroImage === 'string'
+        ? data.heroImage
+        : data.heroImage?.asset?.url) ||
+      defaultHeroThumb
+
+  // Extract metadata values with defaults matching the design
+  const clientName = data.client || 'Telangana State Police'
+  const solutionName =
+    data.projectMeta?.find((m) => m.label.toLowerCase() === 'solution')?.value ||
+    'Satyaapan – Passport Verification System'
+  const industryName =
+    data.industry ||
+    data.projectMeta?.find((m) => m.label.toLowerCase() === 'industry')?.value ||
+    'Government / Public Safety'
+  const capabilitiesValue =
+    data.projectMeta?.find((m) => m.label.toLowerCase().includes('capabilit'))?.value ||
+    'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
+
+  // Extract project name for breadcrumbs (e.g. "Satyapaan")
+  const breadcrumbName =
+    data.slug?.current === 'satyapaan'
+      ? 'Satyapaan'
+      : data.slug?.current === 'darpan'
+        ? 'Darpan'
+        : data.slug?.current === 'i-verify'
+          ? 'i-Verify'
+          : data.slug?.current === 'i4c-bank-portal' || data.slug?.current === 'i4c'
+            ? 'I4C'
+            : data.slug?.current === 'ugo'
+              ? 'UGO'
+              : data.title.split(':')[0] || 'Satyapaan'
 
   return (
-    <section className="relative pt-10 pb-12 sm:pt-32 sm:pb-16 lg:pt-20 lg:pb-20 bg-gradient-to-br from-[#002E54] via-[#04477E] to-[#0B4785] text-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
-      {/* Dynamic Background Glows matching Net Solutions aesthetic */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.06)_0%,transparent_70%)] pointer-events-none" />
-
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Breadcrumbs */}
+    <section className="pt-10 pb-12 sm:pt-28 sm:pb-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] overflow-hidden">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation: Home > Works > Satyapaan */}
         <motion.nav
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 text-xs sm:text-sm text-white/70 mb-6 sm:mb-8"
+          transition={{ duration: 0.3 }}
+          className="flex items-center gap-2 text-xs sm:text-sm text-[#64748B] mb-6 sm:mb-8 font-normal"
+          aria-label="Breadcrumb"
         >
-          <Link href="/" className="hover:text-white transition-colors">
+          <Link href="/" className="hover:text-[#02487D] transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-          <Link href="/#case-studies" className="hover:text-white transition-colors">
-            Case Studies
+          <span className="text-[#94A3B8]">&gt;</span>
+          <Link href="/portfolio" className="hover:text-[#02487D] transition-colors">
+            Works
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-          <span className="text-[#14B8A6] font-semibold truncate max-w-[200px] sm:max-w-none">
-            {data.client || 'Satyapaan'}
+          <span className="text-[#94A3B8]">&gt;</span>
+          <span className="text-[#64748B] font-normal truncate">
+            {breadcrumbName}
           </span>
         </motion.nav>
 
-        {/* 2-Column Hero Grid: Left Content, Right Visual */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Title, Category, Summary, Specs */}
-          <div className="lg:col-span-7 flex flex-col items-start">
-            {/* Category / Client Pill Badges */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-wrap items-center gap-2.5 mb-5"
-            >
-              <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider">
-                {data.category || 'Enterprise AI / Public Sector'}
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#14B8A6]/20 border border-[#14B8A6]/30 text-[#2DD4BF] text-xs font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2DD4BF] animate-pulse" />
-                Verified Live Deployment
-              </span>
-            </motion.div>
-
-            {/* Main H1 Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-tight leading-[1.12] mb-6"
-            >
-              {data.title}
-            </motion.h1>
-
-            {/* Introductory Description */}
-            {data.shortDescription && (
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-white/85 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-normal"
-              >
-                {data.shortDescription}
-              </motion.p>
+        {/* Top Header Block: H1 Title and Subtitle Description */}
+        <div className="max-w-5xl mb-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1.5px] leading-[1.16] mb-5"
+          >
+            {data.title.includes(':') ? (
+              <>
+                <span>{data.title.split(':')[0]}:</span>
+                <br className="hidden sm:inline" />{' '}
+                <span>{data.title.split(':')[1]}</span>
+              </>
+            ) : (
+              data.title
             )}
+          </motion.h1>
 
-            {/* CTAs with strict height: 66px and border-radius: 5px */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          {data.shortDescription && (
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-4 mb-10"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-sm sm:text-base md:text-[17px] text-[#475569] leading-relaxed font-normal max-w-4xl"
             >
-              <Link
-                href="#outcomes"
-                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#04477E] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md active:scale-95"
-              >
-                <span>View Results &amp; Architecture</span>
-                <ArrowUpRight className="w-4 h-4 ml-1.5" />
-              </Link>
-              <Link
-                href="#contact"
-                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200"
-              >
-                Consult Our Engineers
-              </Link>
+              {data.shortDescription}
+            </motion.p>
+          )}
+        </div>
+
+        {/* Dual-Tone Accent Dividing Bar: Blue left segment + Vibrant Green extended bar */}
+        <div className="w-full flex items-center h-[3.5px] mb-10 sm:mb-12">
+          <div className="w-28 sm:w-44 h-full bg-[#0A3866]" />
+          <div className="flex-1 h-full bg-[#22C55E]" />
+        </div>
+
+        {/* 2-Column Grid: Left Metadata Details, Right Featured Showcase Visual */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          {/* Left Column: Client, Solution, Industry, Capabilities */}
+          <div className="lg:col-span-6 flex flex-col gap-6 sm:gap-7">
+            {/* 1. CLIENT */}
+            <motion.div
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="flex items-start gap-4"
+            >
+              <div className="w-12 h-12 flex-shrink-0 relative">
+                <Image
+                  src="/casestudy-img/client.svg"
+                  alt="Client"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
+                  CLIENT
+                </span>
+                <span className="text-base sm:text-lg font-bold text-[#0F172A]">
+                  {clientName}
+                </span>
+              </div>
             </motion.div>
 
-            {/* Project Specifications Glass Grid */}
+            {/* 2. SOLUTION */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/15"
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="flex items-start gap-4"
             >
-              {metadata.map((item, idx) => {
-                const Icon = META_ICONS[item.label] || ShieldCheck
-                return (
-                  <div key={idx} className="flex flex-col gap-1">
-                    <span className="text-[11px] uppercase tracking-wider text-white/60 font-semibold flex items-center gap-1.5">
-                      <Icon className="w-3.5 h-3.5 text-[#14B8A6]" />
-                      {item.label}
-                    </span>
-                    <span className="text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-2">
-                      {item.value}
-                    </span>
-                  </div>
-                )
-              })}
+              <div className="w-12 h-12 flex-shrink-0 relative">
+                <Image
+                  src="/casestudy-img/solution.svg"
+                  alt="Solution"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
+                  SOLUTION
+                </span>
+                <span className="text-base sm:text-lg font-bold text-[#0F172A]">
+                  {solutionName}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* 3. INDUSTRY */}
+            <motion.div
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              className="flex items-start gap-4"
+            >
+              <div className="w-12 h-12 flex-shrink-0 relative">
+                <Image
+                  src="/casestudy-img/Industry.svg"
+                  alt="Industry"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
+                  INDUSTRY
+                </span>
+                <span className="text-base sm:text-lg font-bold text-[#0F172A]">
+                  {industryName}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* 4. CAPABILITIES */}
+            <motion.div
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              className="flex items-start gap-4"
+            >
+              <div className="w-12 h-12 flex-shrink-0 relative">
+                <Image
+                  src="/casestudy-img/Capabilities.svg"
+                  alt="Capabilities"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
+                  CAPABILITIES
+                </span>
+                <span className="text-sm sm:text-[15px] font-bold text-[#0F172A] leading-snug">
+                  {capabilitiesValue}
+                </span>
+              </div>
             </motion.div>
           </div>
 
-          {/* Right Column: Hero Showcase Visual with Device Mockup Frame */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5 relative"
-          >
-            <div className="relative w-full aspect-[4/3] rounded-[28px] overflow-hidden border border-white/20 shadow-2xl bg-black/20 backdrop-blur-xs group">
+          {/* Right Column: Featured Image Showcase */}
+          <div className="lg:col-span-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative aspect-16/10 w-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 bg-[#F8FAFC]"
+            >
               <Image
                 src={featureVisual}
                 alt={data.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 550px"
                 priority
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-
-              {/* Floating Overlay Badge */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-white/40 shadow-lg text-gray-900 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#EEF4FB] text-[#0B4785] flex items-center justify-center font-bold">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-gray-900 leading-tight">
-                      {data.client || 'Telangana State Police'}
-                    </h4>
-                    <p className="text-[11px] text-gray-500 font-medium">
-                      Automated Identity Screening
-                    </p>
-                  </div>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-[#EEFBF3] text-[#16A34A] text-[11px] font-bold border border-[#C6F5D8]">
-                  Production
-                </span>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
