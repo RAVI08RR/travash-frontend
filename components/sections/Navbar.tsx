@@ -74,6 +74,7 @@ export default function Navbar({ settings }: NavbarProps) {
                     {servicesOpen && (
                       <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                         {[
+                          { name: 'Data & Analytics Solutions', href: '/services/data-analytics-solutions' },
                           { name: 'AI & Data Engineering', href: '/services/ai-data' },
                           { name: 'Platform Engineering', href: '/services/platform-engineering' },
                           { name: 'Dedicated Tech Teams', href: '/services/dedicated-teams' },

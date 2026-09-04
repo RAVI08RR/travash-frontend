@@ -181,7 +181,8 @@ export default defineConfig({
                   .documentId('siteSettings')
               ),
 
-            S.divider(),
+            // Services (Detail Pages)
+            S.documentTypeListItem('service').title('Services (Detail Pages)'),
 
             // Case Studies (Detail Pages)
             S.documentTypeListItem('caseStudy').title('Case Studies (Detail Pages)'),

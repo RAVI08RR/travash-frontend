@@ -253,6 +253,13 @@ export const caseStudyBySlugQuery = groq`
       primaryCTA { label, href },
       secondaryCTA { label, href }
     },
+    relatedServices[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      menuTitle,
+      shortDescription
+    },
     seo {
       metaTitle,
       metaDescription,
@@ -261,10 +268,135 @@ export const caseStudyBySlugQuery = groq`
   }
 `
 
-// Query for generating static params
+// Query for generating static params for case studies
 export const allCaseStudySlugsQuery = groq`
   *[_type == "caseStudy" && defined(slug.current)] {
     "slug": slug.current
   }
 `
+
+// Query for a single service by slug with resolved references
+export const serviceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug][0] {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    menuTitle,
+    shortDescription,
+    icon ${imageFragment},
+    hero {
+      eyebrow,
+      title,
+      description,
+      primaryCTA { label, href },
+      secondaryCTA { label, href },
+      heroImage ${imageFragment},
+      heroImageAlt,
+      highlights
+    },
+    problemSection {
+      label,
+      title,
+      headline,
+      description,
+      painPoints[] {
+        title,
+        description
+      }
+    },
+    solutionOverview {
+      heading,
+      description,
+      benefits[] {
+        icon,
+        title,
+        description
+      },
+      cta { label, href }
+    },
+    capabilities[] {
+      title,
+      shortDescription,
+      problem,
+      solution,
+      businessImpact,
+      icon,
+      technologies,
+      optionalCTA { label, href }
+    },
+    process {
+      heading,
+      description,
+      steps[] {
+        number,
+        title,
+        description,
+        icon
+      }
+    },
+    relatedCaseStudies[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      category,
+      client,
+      shortDescription,
+      heroImage ${imageFragment},
+      featureImage ${imageFragment},
+      metrics[] { value, label, description }
+    },
+    engagementModels[] {
+      title,
+      description,
+      icon,
+      badge,
+      cta { label, href }
+    },
+    technologyStack[] {
+      category,
+      technologies,
+      description
+    },
+    trustSection {
+      heading,
+      description,
+      stats[] { value, label, description },
+      trustPoints
+    },
+    testimonial {
+      quote,
+      author,
+      role,
+      company,
+      badge,
+      image ${imageFragment}
+    },
+    faqs[] {
+      question,
+      answer
+    },
+    finalCTA {
+      heading,
+      description,
+      primaryCTA { label, href },
+      secondaryCTA { label, href }
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage ${imageFragment},
+      canonicalUrl,
+      noIndex
+    }
+  }
+`
+
+// Query for generating static params for all services
+export const allServiceSlugsQuery = groq`
+  *[_type == "service" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+
 

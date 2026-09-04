@@ -408,6 +408,18 @@ export const caseStudy = defineType({
       ],
     }),
     defineField({
+      name: 'relatedServices',
+      title: 'Related Services',
+      type: 'array',
+      description: 'Select services related to this case study (e.g. AI & Data Engineering, Data & Analytics)',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+        },
+      ],
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO & Metadata',
       type: 'object',
