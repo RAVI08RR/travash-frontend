@@ -256,16 +256,25 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
             ],
     },
     technologyStack:
-      techList.length > 0
-        ? [
-            {
-              category: 'Platform & Engineering',
-              technologies: techList,
-              description:
-                'Engineered using industry-standard enterprise frameworks for security, performance, and long-term maintainability.',
-            },
-          ]
-        : undefined,
+      raw?.technologyStack && Array.isArray(raw.technologyStack) && raw.technologyStack.length > 0
+        ? raw.technologyStack
+        : FALLBACK_CASE_STUDIES[slug]?.technologyStack ||
+          (techList.length > 0
+            ? [
+                {
+                  category: 'Core Architecture',
+                  technologies: techList.slice(0, 2),
+                },
+                {
+                  category: 'Data & Infrastructure',
+                  technologies: techList.slice(2, 4),
+                },
+                {
+                  category: 'Interface & Services',
+                  technologies: techList.slice(4),
+                },
+              ].filter((c) => c.technologies.length > 0)
+            : undefined),
     impact: {
       title: 'The Impact',
       subtitle: 'Measurable Operational Enhancements and Business Value',
