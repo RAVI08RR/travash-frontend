@@ -25,6 +25,7 @@ import ApproachSteps from '@/components/case-study/ApproachSteps'
 import SolutionGrid from '@/components/case-study/SolutionGrid'
 import ArchitectureSection from '@/components/case-study/ArchitectureSection'
 import TechnologyStack from '@/components/case-study/TechnologyStack'
+import TheImpact from '@/components/case-study/TheImpact'
 import BeforeAfterComparison from '@/components/case-study/BeforeAfterComparison'
 import ClientPerspective from '@/components/case-study/ClientPerspective'
 import WhyItMatters from '@/components/case-study/WhyItMatters'
@@ -342,49 +343,18 @@ export default async function CaseStudyPage({
         />
 
         {/* 10. Enterprise Technology Stack */}
-        {caseStudy.technologyStack && caseStudy.technologyStack.length > 0 && (
-          <CaseStudyContentSection
-            id="technology-stack"
-            eyebrow="Technical Infrastructure"
-            title="Enterprise Technology Stack"
-            subtitle="To deliver a robust custom software solution capable of processing millions of records securely, we utilised a highly resilient tech stack:"
-            variant="white"
-          >
-            <TechnologyStack items={caseStudy.technologyStack} />
-          </CaseStudyContentSection>
-        )}
+        <TechnologyStack items={caseStudy.technologyStack} />
 
         {/* 11. The Impact */}
-        {caseStudy.impact && (
-          <CaseStudyContentSection
-            id="impact"
-            eyebrow="Key Results"
-            title={caseStudy.impact.title || 'The Impact'}
-            subtitle={caseStudy.impact.subtitle}
-            variant="gray"
-          >
-            {caseStudy.impact.content && (
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed font-normal mb-2">
-                {caseStudy.impact.content}
-              </p>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              {caseStudy.impact.outcomes.map((outcome, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white border border-gray-200/90 rounded-2xl p-5 flex items-start gap-3.5 shadow-xs"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#EEFBF3] text-[#16A34A] border border-[#C6F5D8] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <span className="text-sm text-gray-800 font-semibold leading-relaxed">
-                    {outcome}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </CaseStudyContentSection>
-        )}
+        <TheImpact
+          title={caseStudy.impact?.title || 'The Impact'}
+          content={
+            caseStudy.impact?.content ||
+            (Array.isArray(caseStudy.impact?.outcomes) && caseStudy.impact.outcomes.length > 0
+              ? `Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow ${caseStudy.impact.outcomes.join('. ')}.`
+              : undefined)
+          }
+        />
 
         {/* 12. Before vs. After Comparison */}
         {caseStudy.beforeAfter && (

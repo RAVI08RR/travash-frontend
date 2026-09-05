@@ -14,90 +14,81 @@ interface BeforeAfterProps {
 
 export default function BeforeAfterComparison({
   title = 'Before vs. After',
-  subtitle = 'Transformation from manual / fragmented processes to AI-assisted digital verification.',
-  beforeTitle = 'BEFORE SATYAPAAN',
-  afterTitle = 'AFTER SATYAPAAN',
+  subtitle = 'Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow',
+  beforeTitle = 'BEFORE SATYAAPAN',
+  afterTitle = 'AFTER SATYAAPAN',
   before,
   after,
 }: BeforeAfterProps) {
   return (
-    <section id="transformation" className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section id="transformation" className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16"
-        >
-          <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
-            Operational Transformation
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
-              {subtitle}
-            </p>
-          )}
-        </motion.div>
-
-        {/* 2 Comparison Columns with Scroll Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-6xl mx-auto">
-          {/* Left Column: Before */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Column: Heading */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#FFF5F5] border border-[#FED7D7] rounded-3xl p-7 sm:p-9 lg:p-10 shadow-xs flex flex-col justify-between"
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-4 lg:sticky lg:top-28 self-start"
           >
-            <div>
-              <div className="flex items-center gap-2.5 mb-6">
-                <span className="w-3 h-3 rounded-full bg-[#E53E3E]" />
-                <h3 className="text-sm sm:text-base font-bold text-[#9B2C2C] tracking-wider uppercase">
-                  {beforeTitle}
-                </h3>
-              </div>
-              <ul className="flex flex-col gap-4">
-                {before.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3.5">
-                    <XCircle className="w-5 h-5 text-[#E53E3E] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-800 leading-relaxed font-normal">
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12]">
+              {title}
+            </h2>
           </motion.div>
 
-          {/* Right Column: After */}
+          {/* Right Column: Subtitle + 2 Comparison Cards matching screenshot 1 */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-3xl p-7 sm:p-9 lg:p-10 shadow-xs flex flex-col justify-between"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-8 flex flex-col gap-5"
           >
-            <div>
-              <div className="flex items-center gap-2.5 mb-6">
-                <span className="w-3 h-3 rounded-full bg-[#16A34A]" />
-                <h3 className="text-sm sm:text-base font-bold text-[#166534] tracking-wider uppercase">
-                  {afterTitle}
-                </h3>
+            {subtitle && (
+              <h3 className="text-base sm:text-lg font-bold text-[#0F172A] leading-snug">
+                {subtitle}
+              </h3>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {/* Left Column: Before */}
+              <div className="rounded-2xl overflow-hidden shadow-xs border border-gray-100/80 bg-[#F4F6FB] flex flex-col">
+                <div className="bg-[#0B3B66] text-white px-5 py-3 text-center">
+                  <span className="text-xs sm:text-[13px] font-bold tracking-wider uppercase">
+                    {beforeTitle}
+                  </span>
+                </div>
+                <div className="p-6 sm:p-7 flex flex-col gap-3.5 flex-1 justify-start">
+                  {before.map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <XCircle className="w-4 h-4 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-[#475569] leading-relaxed font-normal">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <ul className="flex flex-col gap-4">
-                {after.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-3.5">
-                    <CheckCircle2 className="w-5 h-5 text-[#16A34A] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-800 leading-relaxed font-semibold">
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+
+              {/* Right Column: After */}
+              <div className="rounded-2xl overflow-hidden shadow-xs border border-gray-100/80 bg-[#F4F6FB] flex flex-col">
+                <div className="bg-[#0B3B66] text-white px-5 py-3 text-center">
+                  <span className="text-xs sm:text-[13px] font-bold tracking-wider uppercase">
+                    {afterTitle}
+                  </span>
+                </div>
+                <div className="p-6 sm:p-7 flex flex-col gap-3.5 flex-1 justify-start">
+                  {after.map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-[#0B3B66] flex-shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-[#0F172A] leading-relaxed font-medium">
+                        {point}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
