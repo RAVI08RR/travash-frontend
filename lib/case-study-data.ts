@@ -1,3 +1,18 @@
+export interface TechnicalHighlight {
+  label: string
+  value: string
+  subtext: string
+  icon?: 'zap' | 'lock' | 'shield' | 'layers' | 'cpu' | 'database' | 'globe' | 'check' | 'clock' | 'smartphone' | 'chart'
+}
+
+export interface WalkthroughStep {
+  stepNumber?: string
+  title: string
+  description: string
+  subItems?: { label: string; text: string }[]
+  callout?: { title: string; text: string; badge?: string }
+}
+
 export interface CaseStudyData {
   _id?: string
   title: string
@@ -21,6 +36,8 @@ export interface CaseStudyData {
     subtitle?: string
     content?: string
     points: string[]
+    pointsLabel?: string
+    takeaway?: string
   }
   featureImage?: { asset?: { url: string } } | string
   complexity?: {
@@ -43,6 +60,7 @@ export interface CaseStudyData {
     intro?: string
     image?: { asset?: { url: string } }
     caption?: string
+    isSatyaapan?: boolean
   }
   technologyStack?: {
     category: string
@@ -73,6 +91,7 @@ export interface CaseStudyData {
   whyItMatters?: {
     title?: string
     subtitle?: string
+    description?: string
     items: string[]
   }
   nextStep?: {
@@ -81,6 +100,10 @@ export interface CaseStudyData {
     primaryCTA?: { label: string; href: string }
     secondaryCTA?: { label: string; href: string }
   }
+  technicalHighlights?: TechnicalHighlight[]
+  walkthroughSteps?: WalkthroughStep[]
+  gallery?: any[]
+  content?: any
   seo?: {
     metaTitle?: string
     metaDescription?: string
@@ -88,6 +111,305 @@ export interface CaseStudyData {
   }
 }
 
+// ----------------------------------------------------------------------
+// 1. Pixl: AI Voice Agent (Real Estate & PropTech)
+// ----------------------------------------------------------------------
+export const DEFAULT_PIXL_DATA: CaseStudyData = {
+  _id: 'caseStudy-pixl',
+  title: 'How We Built a Human-Sounding Voice AI Agent that Quadrupled Site Visits for Pixl',
+  slug: { current: 'pixl' },
+  eyebrow: 'CASE STUDY',
+  category: 'Enterprise AI & Voice Automation',
+  industry: 'Real Estate & PropTech',
+  client: 'Pixl',
+  location: 'Global / UAE & USA',
+  shortDescription:
+    'How Travash engineered a bespoke, low-latency AI Voice Calling Agent that connects with inbound prospects in under 3 seconds, qualifies buyer intent, and quadrupled confirmed site visits for Pixl.',
+  heroImage: { asset: { url: '/casestudy-img/casestudy-img-satayapan.webp' } },
+  featureImage: '/casestudy-img/casestudy-img-satayapan.webp',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Pixl' },
+    { label: 'SOLUTION', value: 'Bespoke Conversational Voice AI Agent' },
+    { label: 'INDUSTRY', value: 'Real Estate & PropTech' },
+    {
+      label: 'CAPABILITIES',
+      value: 'Conversational LLMs • Voice AI (STT/TTS) • RAG Knowledge Base • Telephony SIP • Automated CRM Sync',
+    },
+  ],
+  metrics: [
+    {
+      value: '< 3s',
+      label: 'Speed-to-Lead Response Time',
+      description: 'Dropped from 4.2 hours to sub-3-second instant outbound calls',
+    },
+    {
+      value: '+310%',
+      label: 'Confirmed Site Visits',
+      description: 'Increase in booked appointments month-over-month',
+    },
+    {
+      value: '72%',
+      label: 'Administrative Workload Drop',
+      description: 'Eliminated repetitive qualification overhead for sales consultants',
+    },
+    {
+      value: '100%',
+      label: 'HubSpot CRM Automation',
+      description: 'Transcripts, summaries, scores, and recordings logged with zero manual entry',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Snapshot',
+    subtitle: 'If you manage sales in real estate, time is your biggest competitor.',
+    paragraphs: [
+      'When a prospective buyer submits an enquiry on Facebook, Google, or a property portal, they are at peak interest. If your team calls them within three minutes, your chances of booking a viewing are exceptionally high. Wait an hour, and that lead has already moved on to three other listings.',
+      'Our client, Pixl, a rapidly scaling real estate agency handling high-volume residential and commercial developments, hit an operational bottleneck: lead decay during off-hours, sales fatigue from repetitive qualification calls, and inconsistent CRM records. Travash engineered a bespoke, low-latency AI Voice Calling Agent that listens, pauses naturally, answers complex property specifications on the fly, and guides every conversation toward confirmed calendar site visits.',
+    ],
+  },
+  challenge: {
+    title: 'The Backstory',
+    subtitle: 'The Speed-to-Lead Dilemma in High-Volume Real Estate Sales',
+    content: 'Pixl encountered three critical operational bottlenecks that capped conversion velocity:',
+    points: [
+      'Lead Decay: Enquiries flooded in 24/7, but human sales agents could only respond during office hours, leaving hot prospects waiting for hours.',
+      'Administrative Fatigue: Experienced consultants spent over 65% of their working day asking basic qualification questions instead of closing deals.',
+      'Inconsistent CRM Data: Busy agents took sketchy notes or forgot to update HubSpot altogether, leaving management with incomplete pipeline visibility.',
+    ],
+  },
+  complexity: {
+    title: 'Engineering Complexity',
+    intro:
+      'Replacing human sales calls with an automated agent requires sub-second telephony latency, contextual reasoning, and dynamic speech synthesis.',
+    items: [
+      {
+        title: 'SUB-SECOND SPEED-TO-LEAD',
+        description: 'Outbound calls must be triggered within 3 seconds of web submission while the prospect is still looking at the property listing.',
+      },
+      {
+        title: 'NATURAL SPEECH CADENCES',
+        description: 'Eliminates robotic IVR menus through neural TTS, voice activity detection (VAD), and natural conversational pauses.',
+      },
+      {
+        title: 'DYNAMIC RAG KNOWLEDGE',
+        description: 'Vector-indexed access to live floor plans, pricing tiers, zoning rules, and local neighborhood amenities.',
+      },
+      {
+        title: 'LIVE SIP HANDOVER',
+        description: 'Executes instantaneous live telephony handovers to human sales consultants when ultra-high-budget intent is detected.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'A Voice Agent that Chats Like a Real Person with Single-Minded Focus on Site Visit Conversion.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Multi-Channel Ingestion',
+        description: 'Configure real-time webhooks capturing inbound lead payloads from Facebook Ads, Google Ads, portals, WhatsApp, and websites.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Sub-Second Voice Orchestration',
+        description: 'Trigger automated outbound telephony via Twilio SIP trunking within 3 seconds of lead creation.',
+      },
+      {
+        stepNumber: '03',
+        title: 'RAG Knowledge Retrieval',
+        description: 'Pair GPT-4 with Pinecone vector search to access real-time property inventory, pricing tiers, and community specifications.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Intelligent Lead Qualification',
+        description: 'Autonomously score leads across budget, location, purchasing timeline (0–30 days vs 1–3 months), and financing status.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Calendar Booking & CRM Sync',
+        description: 'Confirm site visits directly into agent calendars and push structured summaries, recordings, and scores to HubSpot.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'End-to-End Voice AI Orchestration Converting Raw Inquiries into Confirmed Calendar Bookings',
+    items: [
+      {
+        title: 'Multi-Channel Lead Ingestion',
+        description: 'Custom webhooks capture lead payloads across ad networks, portals, WhatsApp, and websites within milliseconds.',
+      },
+      {
+        title: 'Sub-Second Speed-to-Lead',
+        description: 'AI agent dials the prospective buyer within 3 seconds of enquiry submission while interest is at its absolute peak.',
+      },
+      {
+        title: 'Natural Context-Aware Dialogue',
+        description: 'Powered by GPT-4 and vector search, answering intricate property specifications and layout questions accurately on the fly.',
+      },
+      {
+        title: 'Automated Calendar Booking & SIP Handover',
+        description: 'Negotiates available viewing slots on team calendars in real time, or executes sub-second SIP transfer to human consultants.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Solution Architecture',
+    intro:
+      'Multichannel Ingestion → Voice AI Orchestrator (<3s) → Natural Dialogue (LLMs + RAG) → Lead Qualification → SIP Transfer / Calendar Booking → Automated HubSpot Sync.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Pixl Low-Latency Conversational Voice AI & CRM Orchestration Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Conversational Intelligence',
+      technologies: ['OpenAI GPT-4', 'GPT-4.1 Turbo', 'Contextual Prompt Chains'],
+      description: 'Contextual reasoning, intent recognition, and multi-turn real estate dialogue management.',
+    },
+    {
+      category: 'Knowledge Retrieval (RAG)',
+      technologies: ['Pinecone Vector DB', 'Weaviate', 'Semantic Embeddings'],
+      description: 'Sub-50ms property specification, layout, and pricing retrieval.',
+    },
+    {
+      category: 'Voice & Speech AI',
+      technologies: ['Deepgram STT', 'Neural TTS', 'Voice Activity Detection (VAD)'],
+      description: 'Human-like cadences, zero robotic pauses, and natural interruption handling.',
+    },
+    {
+      category: 'Telephony & Automation',
+      technologies: ['Twilio SIP Trunking', 'n8n Enterprise', 'FastAPI', 'HubSpot API'],
+      description: 'Telephony routing, microservice orchestration, and automated two-way CRM sync.',
+    },
+  ],
+  impact: {
+    title: 'Measurable Business Impact',
+    subtitle: 'In the first 90 days following deployment, Pixl transformed its sales pipeline into an automated growth engine.',
+    content:
+      'Operational efficiencies delivered a complete return on technology investment within 60 days. Sales representatives reclaimed 25+ hours per week to focus 100% of their working time on conducting viewings and closing deals.',
+    outcomes: [
+      'Speed-to-lead plummeted from 4.2 hours to < 3 seconds (instant outbound outreach)',
+      'Inbound lead coverage scaled from 38% (office hours only) to 100% (24/7/365 availability)',
+      '+310% increase in confirmed site visits booked month-over-month',
+      'Sales consultants reclaimed 25+ hours per week previously spent on repetitive vetting',
+      'Cost per qualified lead dropped by 64%',
+      '100% automated CRM data logging in HubSpot with zero manual entry',
+    ],
+  },
+  beforeAfter: {
+    title: 'Operational Metrics: Before vs. After',
+    subtitle: 'From Manual Delays to Instant Conversational Execution',
+    beforeTitle: 'BEFORE TRAVASH',
+    afterTitle: 'AFTER TRAVASH',
+    before: [
+      '4.2 Hours average speed-to-lead response time',
+      '~38% inbound lead coverage (limited to office hours)',
+      'Baseline site visit appointment rate',
+      '15 minutes of manual CRM data entry per call',
+      'High cost per qualified lead due to severe lead decay',
+    ],
+    after: [
+      '< 3 Seconds instant outbound speed-to-lead',
+      '100% coverage (24/7/365 across all marketing channels)',
+      '+310% increase in confirmed appointments booked',
+      '0 minutes CRM time (100% automated sync with audio & transcripts)',
+      '64% reduction in acquisition cost per qualified lead',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Deploying Travash Voice AI transformed our sales floor. Our consultants stopped chasing unvetted leads and now spend 100% of their working hours conducting viewings and closing deals. It paid for itself in under 60 days.',
+    author: 'Pixl Sales Leadership',
+    role: 'Head of Sales Operations',
+    company: 'Pixl Real Estate',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for High-Ticket Sales',
+    subtitle: 'Does Your Business Suffer from Lead Decay and Administrative Gridlock?',
+    items: [
+      'Eliminating lead decay by reaching buyers while their inquiry is top of mind',
+      'Relieving top-performing sales consultants from routine qualification calls',
+      'Achieving 100% pipeline visibility with automated structured CRM data',
+      'Operating 24/7 across global investor time zones with zero incremental staff costs',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Ready to automate your sales pipeline and eliminate manual admin? Travash partners with growing companies to design, build, and deploy production-ready AI agents, automated workflow engines, and enterprise integrations tailored specifically to your operational goals.',
+    primaryCTA: { label: 'Schedule an AI Strategy Call', href: '#contact' },
+    secondaryCTA: { label: 'Request Voice AI Architecture Demo', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Speed-to-Lead', value: '< 3s', subtext: 'Trigger-to-call telephony latency', icon: 'zap' },
+    { label: 'Intelligence', value: 'GPT-4 + RAG', subtext: 'Contextual inventory knowledge base', icon: 'cpu' },
+    { label: 'CRM Sync', value: '100% Auto', subtext: 'Instant HubSpot structured payload', icon: 'database' },
+    { label: 'Coverage', value: '24/7/365', subtext: 'Zero lead decay across all time zones', icon: 'globe' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Multi-Channel Lead Ingestion & Webhook Dispatch',
+      description:
+        'The moment a prospect submits an enquiry through Facebook Lead Ads, Google Search, property portals, WhatsApp, or the Pixl website, the payload is captured instantly by custom webhooks and routed to the Voice Calling Engine.',
+      subItems: [
+        { label: 'Instant Dispatch', text: 'Zero queue delay with sub-50ms webhook ingress.' },
+        { label: 'Payload Normalization', text: 'Sanitizes prospect name, phone, channel source, and initial property interest.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Sub-Second Speed-to-Lead Outbound Call',
+      description:
+        'Within 3 seconds of receiving the enquiry, the AI Voice Agent initiates an outbound phone call via Twilio SIP trunking. The buyer receives a call while their phone is still in hand, capitalizing on peak buying intent.',
+      subItems: [
+        { label: 'Natural Opening', text: '"Hello! Thank you for your interest in Pixl. I noticed you were looking at our 2-bedroom layouts—how can I help you find the right fit?"' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Natural, Context-Aware Dialogue via RAG Vector Engine',
+      description:
+        'Using Large Language Models paired with Retrieval-Augmented Generation over Pinecone, the AI acts as a knowledgeable consultant, answering intricate questions on floor plans, pricing tiers, and local amenities.',
+      subItems: [
+        { label: 'Qualification Checks', text: 'Systematically assesses buying vs renting, preferred locality, budget, timeline, and financing needs.' },
+      ],
+    },
+    {
+      stepNumber: '04',
+      title: 'Automated Real-Time Lead Scoring',
+      description:
+        'Based on multi-turn dialogue analysis, the AI dynamically categorizes the lead into Hot (immediate 0-30 day intent), Warm (1-3 months, flexible), or Cold (research phase).',
+      callout: {
+        title: 'Dynamic Lead Tiering',
+        text: 'Hot leads trigger instant calendar booking or immediate live SIP transfer to human closers.',
+        badge: 'Zero Delay',
+      },
+    },
+    {
+      stepNumber: '05',
+      title: 'Calendar Booking & Sub-Second SIP Handover',
+      description:
+        'For site visits, the AI checks team calendars in real time, negotiates convenient viewing slots, and locks the appointment. For urgent high-ticket buyers, it executes a sub-second SIP transfer directly to a human consultant with pre-call screen notes.',
+      subItems: [
+        { label: 'Calendar Sync', text: 'Google Calendar / Outlook real-time slot reservation.' },
+        { label: 'SIP Transfer', text: 'Sub-second transfer with context briefing on consultant screen.' },
+      ],
+    },
+    {
+      stepNumber: '06',
+      title: '100% Automated HubSpot CRM Synchronization',
+      description:
+        'Immediately after the call, the system pushes a structured record into HubSpot CRM including full audio recording link, text transcript, AI call summary, lead score, and confirmed site visit date.',
+      subItems: [
+        { label: 'Zero Manual Entry', text: 'Eliminates 15 minutes of administrative overhead per call.' },
+      ],
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 2. Satyaapan: AI-Powered Passport Verification (Government / Public Safety)
+// ----------------------------------------------------------------------
 export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   _id: 'caseStudy-satyapaan',
   title: 'AI-Powered Passport Verification at Scale: 1.96 Million Applications Processed',
@@ -99,78 +421,91 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   location: 'Telangana, India',
   shortDescription:
     'Satyaapan is a web-based passport verification platform developed by Travash to help Telangana State Police automate high-volume identity screening, identify potential anomalies and route applications requiring further investigation to authorized officials.',
+  heroImage: { asset: { url: '/home-img/satyapaan-min 2.png' } },
+  featureImage: '/home-img/satyapaan-min 2.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Telangana State Police' },
     { label: 'SOLUTION', value: 'Satyaapan – Passport Verification System' },
     { label: 'INDUSTRY', value: 'Government / Public Safety' },
     {
       label: 'CAPABILITIES',
-      value: 'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation',
+      value: 'Web Application Development • AI-Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation',
     },
   ],
   metrics: [
     {
       value: '1.96 Million',
       label: 'Passport applications processed',
+      description: 'Handled at state scale with automated verification checks',
     },
     {
       value: '800+',
-      label: 'High-risk adverse cases identified and intercepted',
+      label: 'High-risk adverse cases intercepted',
+      description: 'Identified fraudulent identities and duplicate applications',
     },
     {
-      value: 'AI–Assisted Verification',
+      value: 'AI-Assisted Verification',
       label: 'Automated data extraction, facial recognition and real-time matching',
+      description: 'Integrated directly with state law enforcement databases',
     },
     {
       value: 'Telangana State Police',
-      label: 'client-badge',
+      label: 'Client Partner',
+      description: 'Public safety digital transformation initiative',
     },
   ],
   executiveSummary: {
     title: 'Executive Summary',
-    subtitle: 'Passport verification at scale required significant administrative effort while maintaining strong identity and security checks.',
+    subtitle: 'Passport verification at scale requires both operational efficiency and rigorous identity screening.',
     paragraphs: [
-      'Passport verification at scale required significant administrative effort while maintaining strong identity and security checks. Travash developed Satyaapan, a centralized web application that combines automated data extraction, facial recognition and real-time matching to support passport verification.',
-      'Clear applications can proceed through a structured clearance workflow, while potential anomalies are placed on hold and routed to the relevant officer or manager for investigation. The platform has successfully processed 1.96 million passport applications and helped identify and intercept 800+ high-risk adverse cases.',
+      'Processing millions of passport applications requires immense administrative resources and flawless security protocols. Historically, relying on manual verification created a severe operational gridlock for the government. Officials struggled to efficiently verify if applicants were attempting to secure duplicate passports using fraudulent identities or fake details.',
+      'Travash Software Solutions engineered Satyaapan, an advanced web application whose name translates directly to "Truth Verification". The platform combines automated data extraction, facial recognition, real-time matching against relevant internal records and an automated clearance or hold workflow. Applications that pass verification proceed through an automated clearance process, while potential anomalies are placed on hold and routed to the relevant officer for investigation.',
+      'The platform has successfully processed 1,960,000 passport applications and helped identify and intercept 800+ high-risk adverse cases.',
     ],
   },
   challenge: {
     title: 'The Challenge',
-    subtitle: 'High–Volume Passport Verification Was Creating an Administrative Bottleneck',
+    subtitle: 'High-Volume Passport Verification Was Creating an Administrative Bottleneck',
     content:
-      'The existing verification process relied heavily on manual checks, making it difficult to efficiently screen large volumes of applications.',
+      'Processing passport applications at significant scale required considerable administrative effort while maintaining strong verification controls. Officials needed to determine whether applicants were:',
     points: [
-      'Duplicate passport attempts',
-      'Fraudulent identities or false information',
-      'Relevant matches against criminal records',
-      'Applications requiring further investigation',
+      'Attempting to obtain duplicate passports using fabricated credentials',
+      'Using fraudulent identities, forged documentation, or false details',
+      'Matching records associated with criminal activity or state watchlists',
+      'Submitting applications requiring further investigation by Special Branch officers',
     ],
+    pointsLabel: 'OFFICIALS NEEDED TO IDENTIFY:',
+    takeaway:
+      'The challenge was to reduce repetitive manual screening without removing human involvement from sensitive investigation decisions.',
   },
-  featureImage: '/home-img/satyapaan-min 2.png',
   complexity: {
     title: 'The Complexity',
     intro:
-      'Satyaapan needed to operate within a sensitive public–safety workflow where application volume, identity verification and appropriate escalation were all critical.',
+      'Satyaapan needed to operate within a sensitive public-safety workflow where application volume, identity verification and appropriate escalation were all critical.',
     items: [
       {
         title: 'HIGH APPLICATION VOLUME',
-        description:
-          'The platform needed to operate at a scale that ultimately reached 1.96 million processed applications.',
+        description: 'The platform needed to support passport verification at a scale that ultimately reached 1.96 million processed applications.',
       },
       {
-        title: 'IDENTITY MATCHING',
-        description:
-          'Applicant information needed to be evaluated for duplicate and potentially fraudulent identity scenarios.',
+        title: 'IDENTITY VERIFICATION',
+        description: 'Applicant information had to be evaluated to identify potentially fraudulent identities and duplicate application attempts.',
+      },
+      {
+        title: 'FACIAL RECOGNITION',
+        description: 'Biometric facial matching cross-referenced against digital images of persons of interest related to crime.',
       },
       {
         title: 'MULTIPLE VERIFICATION SOURCES',
-        description:
-          'The workflow incorporated relevant records and technologies including DARPAN and AFIS – Automated Fingerprint Identification System.',
+        description: 'The workflow incorporated relevant records and integrations, including DARPAN technology and AFIS (Automated Fingerprint Identification System).',
       },
       {
-        title: 'EXCEPTION HANDLING',
-        description:
-          'Potential anomalies needed to be identified automatically while authorized officers remained responsible for further investigation.',
+        title: 'AUTOMATED APPLICATION ROUTING',
+        description: 'The platform needed to distinguish applications that could proceed from applications that should be placed on hold.',
+      },
+      {
+        title: 'HUMAN INVESTIGATION',
+        description: 'Potential anomalies had to be escalated to the relevant manager or officer rather than treated as an automated final decision.',
       },
     ],
   },
@@ -181,91 +516,75 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
       {
         stepNumber: '01',
         title: 'Discover',
-        description:
-          'Understand the end-to-end passport verification process, operational bottlenecks, regulatory standards, and the exact information officials needed to evaluate applications.',
+        description: 'Understand the passport verification process, operational bottlenecks and the information officials needed to evaluate applications.',
       },
       {
         stepNumber: '02',
         title: 'Architect',
-        description:
-          'Design a centralized, fault-tolerant web application capable of supporting automated data extraction, identity screening, biometric matching, and multi-tier role-based routing.',
+        description: 'Design a centralized web application capable of supporting automated data extraction, identity screening and application routing.',
       },
       {
         stepNumber: '03',
-        title: 'Integrate',
-        description:
-          'Connect the platform securely with required verification technologies including DARPAN, AFIS, and relevant internal police intelligence records.',
+        title: 'Implement',
+        description: 'Build biometric and database integrations linking RPO data feeds with internal law enforcement registries.',
       },
       {
         stepNumber: '04',
-        title: 'Automate',
-        description:
-          'Deploy AI-assisted processing, advanced facial recognition, and real-time data matching to eliminate repetitive manual screening.',
+        title: 'Validate & Deploy',
+        description: 'Execute state-wide field testing across Special Branch verification centers to ensure sub-second response times.',
       },
       {
         stepNumber: '05',
         title: 'Escalate',
-        description:
-          'Establish an automated dual-track workflow: clear applications proceed smoothly, while potential anomalies are placed on immediate hold for officer review.',
+        description: 'Allow clear applications to proceed while routing potential anomalies to authorized officials for further investigation.',
       },
     ],
   },
   solution: {
     title: 'The Solution',
-    intro: 'Satyaapan – An Intelligent Digital Verification Workflow',
+    intro: 'Automated Identity Screening with Intelligent Escalation',
     items: [
       {
-        title: 'Automated Application Ingestion',
-        description:
-          'Passport application data from external portals enters a structured, encrypted digital workflow ready for instantaneous processing.',
+        title: 'Automated Data Extraction',
+        description: 'Batch processing extracts text information from application documents without manual transcription.',
       },
       {
-        title: 'Intelligent Data Extraction',
-        description:
-          'Relevant applicant personal information, historical references, and document data are extracted automatically with high accuracy.',
+        title: 'Facial Recognition & Record Matching',
+        description: 'Biometric scan cross-references both text and facial images against internal government databases and digital records of persons of interest.',
       },
       {
-        title: 'Facial Recognition & Real-Time Matching',
-        description:
-          'Applicant facial imagery and biographical profiles are cross-checked in real-time against police watchlists and criminal records.',
-      },
-      {
-        title: 'Automated Clearance / Hold Workflow',
-        description:
-          'Clear applications transition directly through structured approval, while flagged anomalies trigger audit trails and investigator alerts.',
+        title: 'Automated Clearance or Hold Workflow',
+        description: 'Passed applications generate a digital clearance report; flagged applications are placed on strict hold and routed to investigating officers.',
       },
     ],
   },
   solutionArchitecture: {
     title: 'Solution Architecture',
     intro:
-      'A multi-tier enterprise architecture engineered for high availability, zero-trust security, and real-time interoperability between public safety databases.',
+      'Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged).',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
     caption: 'Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture',
+    isSatyaapan: true,
   },
   technologyStack: [
     {
-      category: 'Backend & Core Services',
-      technologies: ['Java', 'PHP / Laravel', 'RESTful Microservices', 'Secure API Gateways'],
+      category: 'Backend Architecture',
+      technologies: ['Java', 'PHP-Laravel', 'RESTful Microservices'],
       description: 'High-throughput enterprise application logic and secure session management.',
     },
     {
-      category: 'Database & Data Storage',
-      technologies: ['MySQL Enterprise', 'Encrypted Blob Storage', 'Redis In-Memory Cache'],
-      description: 'ACID-compliant relational storage for millions of applicant verification records.',
+      category: 'Database Infrastructure',
+      technologies: ['MySQL Enterprise', 'Encrypted Storage'],
+      description: 'Adhering to strict government data privacy, security, and integrity standards.',
     },
     {
-      category: 'Frontend & Official Portal',
-      technologies: ['HTML5', 'CSS3', 'Modern JavaScript / jQuery', 'Responsive Admin Portal'],
-      description: 'Fast, accessible verification interface designed for law enforcement officers.',
+      category: 'Frontend Interface',
+      technologies: ['HTML5', 'CSS3', 'jQuery'],
+      description: 'Fast, responsive interface designed for Special Branch law enforcement personnel.',
     },
     {
-      category: 'Integrations & AI Automation',
-      technologies: [
-        'DARPAN System Integration',
-        'AFIS (Automated Fingerprint Identification)',
-        'Advanced Facial Recognition',
-        'Automated Data Extraction Engine',
-      ],
+      category: 'Advanced Integrations & Biometrics',
+      technologies: ['DARPAN Technology', 'AFIS (Automated Fingerprint Identification System)', 'Advanced Facial Recognition', 'Automated OCR'],
       description: 'Biometric and law enforcement registry integration with real-time matching algorithms.',
     },
   ],
@@ -273,73 +592,2045 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
     title: 'The Impact',
     subtitle: 'Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow',
     content:
-      'By replacing manual document cross-checking with AI-assisted verification, Telangana State Police achieved unprecedented turnaround speeds while significantly strengthening border and passport integrity.',
+      'By deploying Satyaapan, Travash resolved one of the state’s most complex security challenges. We automated a highly sensitive process, enabling the government to seamlessly manage nearly two million passport applications through a centralized platform.',
     outcomes: [
-      'Reduced manual effort and accelerated verification turnaround times by over 65%',
-      'Improved accuracy and consistency across every verification request statewide',
-      'Automated repetitive checks to eliminate severe administrative bottlenecks',
-      'Enabled seamless processing of 1.96 million high-volume passport applications',
-      'Freed specialized law enforcement teams to focus on complex cases and critical security decisions',
-      'Created a scalable, future-proof public safety workflow adaptable to other civic verification needs',
+      '1,960,000 passport applications successfully processed at state-wide scale',
+      '800+ high-risk adverse cases identified and intercepted before passport issuance',
+      'Automated routine screening of text documents, facial biometrics, and criminal records',
+      'Clear separation between routine approvals and exception cases requiring investigation',
+      'More focused human investigation directing officer attention toward genuine anomalies',
+      'Centralized verification workflow replacing fragmented paper-based communication',
     ],
   },
   beforeAfter: {
-    title: 'Before vs. After',
-    subtitle: 'Transformation from manual / fragmented processes to AI-assisted digital verification.',
+    title: 'Before vs. After Comparison',
+    subtitle: 'From Manual Verification to Intelligent Screening',
     beforeTitle: 'BEFORE SATYAPAAN',
-    before: [
-      'Manual application screening requiring extensive administrative paperwork',
-      'Slow, error-prone manual document and photo review across separate registries',
-      'Difficult cross-checking against disjointed police and criminal records',
-      'Identical high-effort manual scrutiny required even for standard, clear applications',
-      'Surging passport demand exponentially increased backlog and operational strain',
-    ],
     afterTitle: 'AFTER SATYAPAAN',
+    before: [
+      'Heavy dependence on manual screening across thousands of daily files',
+      'Manual review of application information across disconnected portals',
+      'Difficult identity cross-referencing against physical criminal logbooks',
+      'Significant administrative effort required across every single application',
+      'Manual clearance handling creating massive application backlogs',
+    ],
     after: [
-      'AI-assisted verification processing applications in real-time',
-      'Automated document and biographical data extraction with high precision',
-      'Facial recognition + real-time matching against DARPAN and AFIS databases',
-      'Dual-track clearance workflow automatically routing only flagged cases to officers',
-      'Centralized enterprise platform easily scaling to support 1.96M+ applications',
+      'AI-assisted verification workflow processing applications digitally in minutes',
+      'Automated data extraction directly from RPO files and documents',
+      'Facial recognition and real-time matching against DARPAN and AFIS databases',
+      'Routine and exception cases follow distinct, automated dual-track paths',
+      'Centralized enterprise platform supporting 1.96M processed applications',
     ],
   },
   testimonial: {
     quote:
-      'Satyaapan demonstrated how thoughtful enterprise technology and AI automation can revolutionize public safety workflows. By automatically screening routine applications and immediately surfacing high-risk cases, our teams were empowered to protect state integrity with speed and precision.',
-    author: 'Public Safety & Technology Initiative',
-    role: 'Senior Law Enforcement Leadership',
+      'The Satyaapan web application built by Travash has successfully solved our biggest challenge: identifying fraudulent activity and fake records during the passport verification process. Our officers use the platform daily to securely cross-reference applications, making the entire process highly convenient and incredibly efficient.',
+    author: 'Telangana Police Department Team',
+    role: 'Law Enforcement Leadership',
     company: 'Telangana State Police',
   },
   whyItMatters: {
     title: 'Why This Matters',
-    subtitle: 'Does Your Organization Face a Similar Challenge?',
+    subtitle: 'Could Your Organization Have a Similar Challenge?',
+    description:
+      'This case study is highly relevant for civic authorities, enterprises, and public-sector leaders evaluating scalable, automated identity solutions.',
     items: [
-      'Managing high-volume identity, credential, or application verification at scale',
-      'Detecting fraud, duplicate records, or altered identities across historical datasets',
-      'Coordinating multiple legacy databases, external registries, and biometric tools',
-      'Automating routine screening while maintaining human-in-the-loop governance for high-stakes decisions',
+      'High-volume application or identity verification requiring strict compliance',
+      'Manual document and data screening causing severe administrative delays',
+      'Fraud or duplicate-record detection across vast historical databases',
+      'Facial or identity matching requirements across multiple state registries',
+      'Cases requiring automated screening followed by authorized human decision-making',
     ],
   },
   nextStep: {
     heading: 'The Next Step',
     content:
-      'The objective is not simply to introduce AI. Travash combines custom software development, web application development, AI-assisted automation and system integration to modernize high-volume operational workflows. Start with one clearly defined process or use case and determine whether the right next step is an assessment, POC or implementation.',
-    primaryCTA: {
-      label: 'Discuss a Public Safety Technology Initiative',
-      href: '#contact',
-    },
-    secondaryCTA: {
-      label: 'Discuss an AI / Automation POC',
-      href: '#contact',
-    },
+      'Looking to Modernize a High-Volume Verification or Public-Safety Workflow? Travash combines custom software development, web application development, AI-assisted automation and system integration to help organizations modernize complex operational workflows.',
+    primaryCTA: { label: 'Discuss a Public Safety Technology Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Discuss an AI / Automation POC', href: '#contact' },
   },
-  seo: {
-    metaTitle: 'AI-Powered Passport Verification Case Study | Travash Software Solutions',
-    metaDescription:
-      'Explore the Satyapaan case study by Travash—how Telangana State Police processed 1.96 million passport applications and intercepted 800+ adverse cases with AI verification.',
-  },
+  technicalHighlights: [
+    { label: 'Volume', value: '1.96M', subtext: 'Passport files verified', icon: 'shield' },
+    { label: 'Interceptions', value: '800+', subtext: 'High-risk adverse cases stopped', icon: 'lock' },
+    { label: 'Biometrics', value: 'AFIS + Face', subtext: 'DARPAN & police registries', icon: 'cpu' },
+    { label: 'Workflow', value: 'Dual-Track', subtext: 'Automated clear vs officer hold', icon: 'layers' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Automated Application Ingestion',
+      description:
+        'Instead of relying on physical paperwork, Special Branch (SB) Units download the digital applications from the Regional Passport Office portal and upload them directly onto the secure verification system.',
+      subItems: [
+        { label: 'Digital Intake', text: 'Secure SFTP / API batch ingestion directly from RPO data feeds.' },
+        { label: 'Encrypted Staging', text: 'Files staged in tamper-proof isolated memory ready for batch processing.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Intelligent Data Extraction',
+      description:
+        'Upon submission, the system utilizes automated batch processing to instantly extract the applicant’s text data from provided documents and emails, eliminating manual data entry.',
+      subItems: [
+        { label: 'Automated OCR', text: 'High-accuracy optical character extraction of biographical records.' },
+        { label: 'Format Validation', text: 'Cross-checks address, date of birth, and identity credentials.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Advanced Facial Recognition & Real-Time Matching',
+      description:
+        'The system deploys powerful facial recognition technology to scan and analyse the applicant’s digital photograph. The AI cross-references extracted text and biometric scans against internal government databases and digital crime records.',
+      subItems: [
+        { label: 'Biometric Search', text: 'Searches AFIS and DARPAN biometric repositories in sub-seconds.' },
+        { label: 'Watchlist Check', text: 'Flags persons of interest and historical duplicate passport applications.' },
+      ],
+    },
+    {
+      stepNumber: '04',
+      title: 'The Automated Decision Engine (Pass vs. Hold)',
+      description:
+        'Based on real-time data matching, the system autonomously determines the next step: clearance granted for clean records, or instant hold and officer routing for detected anomalies.',
+      callout: {
+        title: 'Automated Exception Governance',
+        text: 'Clean files receive system-generated clearance reports; flagged files freeze issuance and alert investigating officers.',
+        badge: 'Zero Compromise',
+      },
+    },
+  ],
 }
 
+// ----------------------------------------------------------------------
+// 3. Direct Owners: Vacation Rentals Custom Web Application
+// ----------------------------------------------------------------------
+export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
+  _id: 'caseStudy-directowners',
+  title: 'Revolutionizing Vacation Rentals with a Custom Web Application for Direct Owners',
+  slug: { current: 'direct-owners' },
+  eyebrow: 'CASE STUDY',
+  category: 'Bespoke Web Application & E-Commerce',
+  industry: 'Travel & Vacation Rentals',
+  client: 'Direct Owner Services Limited (USA)',
+  location: 'USA & UK',
+  shortDescription:
+    'Custom bespoke web application and e-commerce portal engineered to UK and US standards, solving the 70% rental platform gap with transparent checkout, dynamic date blocking, and interactive map search.',
+  heroImage: { asset: { url: '/images/services/eradicate.webp' } },
+  featureImage: '/images/services/eradicate.webp',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Direct Owner Services Limited (USA)' },
+    { label: 'SOLUTION', value: 'Direct Owners – Vacation Rental Web Platform' },
+    { label: 'INDUSTRY', value: 'Travel / Vacation Rentals / Real Estate' },
+    {
+      label: 'CAPABILITIES',
+      value: 'Bespoke Web App Development • E-Commerce Checkout • Dynamic Calendar Sync • Geolocation Map Routing',
+    },
+  ],
+  metrics: [
+    {
+      value: '8 Months',
+      label: 'End-to-End Development',
+      description: 'From requirements mapping to launch and international compliance QA',
+    },
+    {
+      value: '70%',
+      label: 'Market Gap Solved',
+      description: 'Addressed the critical industry flaw where vacation rental platforms lack seamless booking',
+    },
+    {
+      value: 'UK & USA',
+      label: 'International Standards',
+      description: 'Engineered strictly to strict international compliance and responsive performance',
+    },
+    {
+      value: 'Dr. David S. Burn',
+      label: 'Managing Director Endorsement',
+      description: 'Direct Owner Services Limited (USA)',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Impact Snapshot',
+    subtitle: 'Bridging the Trust and Transparency Gap in Global Vacation Rentals',
+    paragraphs: [
+      'The global vacation rental market is highly lucrative but fraught with friction. For property owners and holidaymakers alike, legacy booking portals have historically struggled with pricing transparency, clunky interfaces, and a lack of trust. Industry data revealed that 70% of existing vacation rental platforms were failing to provide a seamless booking and management experience.',
+      'Travash Software Solutions partnered with Direct Owners for an intensive 8-month development cycle. Our objective was to engineer a highly responsive, custom web application that solved the core issues of booking constraints, pricing opacity, and owner control—handling complex, real-time financial transactions, dynamic property mapping, and transparent booking timelines across the US and UK.',
+    ],
+  },
+  challenge: {
+    title: 'The Operational Challenge',
+    subtitle: 'Overcoming Pricing Opacity, Hidden Fees, and Calendar Conflicts',
+    content:
+      'Direct Owners identified a massive opportunity to revolutionize vacation rentals globally by overcoming key market hurdles:',
+    points: [
+      'Hidden fees and pricing opacity creating high user abandonment on legacy platforms',
+      'Double-booking conflicts caused by out-of-sync calendar availability tools',
+      'Disjointed communication between holidaymakers, property owners, and platform administrators',
+      'Strict regulatory, data privacy, and secure payment processing requirements across US and UK jurisdictions',
+    ],
+  },
+  complexity: {
+    title: 'Persona-Driven Architecture',
+    intro: 'The platform was architected around three distinct user personas to deliver tailored operational control:',
+    items: [
+      {
+        title: 'THE HOLIDAY MAKER',
+        description: 'Seeking transparent upfront pricing, intuitive interactive map search, and instant secure online bookings.',
+      },
+      {
+        title: 'THE PROPERTY OWNER',
+        description: 'Requiring complete control over listings, real-time calendar date blocking, and direct inquiry management.',
+      },
+      {
+        title: 'THE PLATFORM OWNER',
+        description: 'Needing global administrative oversight, automated commission handling, lead management, and scalable infrastructure.',
+      },
+      {
+        title: 'REAL-TIME DATA SYNC',
+        description: 'Synchronizing multi-device transactions and blocking calendar dates across time zones with zero latency.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'Bespoke, Persona-Driven Engineering for Transparent Global Bookings.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Persona & Journey Mapping',
+        description: 'Mapped workflows for holidaymakers, property owners, and platform administrators to eliminate booking friction.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Real-Time Checkout Architecture',
+        description: 'Engineered an integrated, encrypted payment flow allowing users to pay required booking deposits instantly.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Dynamic Availability Engine',
+        description: 'Built an automated date blocking calendar that synchronizes confirmed bookings in real time.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Geolocation Map Integration',
+        description: 'Integrated interactive map filters enabling users to visually explore rental properties across holiday destinations.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Multi-Device Optimization',
+        description: 'Executed rigorous responsiveness QA across smartphone, tablet, and desktop viewports.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Key Platform Features Engineered for Direct Owners',
+    items: [
+      {
+        title: 'Transparent Booking & Payment Processing',
+        description: 'Secure, real-time checkout system allowing users to book online and pay instantly, eliminating direct rental trust friction.',
+      },
+      {
+        title: 'Dynamic Calendar & Real-Time Date Blocking',
+        description: 'The moment a property is booked, dates are transparently displayed as blocked, eliminating double-booking risks.',
+      },
+      {
+        title: 'Interactive Map Search & Location Filters',
+        description: 'Geolocation APIs enable users to browse destinations, filter by arrival/departure dates, and explore properties on an interactive map.',
+      },
+      {
+        title: 'Promotional Offers & Featured Rentals',
+        description: 'Dynamic modules to spotlight special promotions and featured holiday homes across the homepage and search result pages.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'Multi-Device Users (Holiday Makers • Property Owners • Admin) → Direct Owners Platform → Property Search & Map Routing / Booking Engine & Payment Gateway / Owner Control Dashboard → Real-Time Synchronization → Central Data Infrastructure.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Direct Owners Secure Multi-Tenant Booking & Real-Time Calendar Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Frontend Interface',
+      technologies: ['HTML5', 'CSS3', 'jQuery', 'Responsive Mobile-First UI'],
+      description: 'Strictly responsive design delivering an app-like browsing and checkout experience across all devices.',
+    },
+    {
+      category: 'Backend Architecture',
+      technologies: ['PHP-Laravel', 'Java Application Services'],
+      description: 'High-throughput transactional logic, availability calculation, and secure booking management.',
+    },
+    {
+      category: 'Database Infrastructure',
+      technologies: ['MySQL Enterprise'],
+      description: 'ACID-compliant relational structure for property catalogs, date reservations, and user profiles.',
+    },
+    {
+      category: 'Integrations & APIs',
+      technologies: ['Geolocation APIs', 'Enterprise Payment Gateway', 'Calendar Sync Engine'],
+      description: 'Interactive map search and PCI-DSS compliant payment processing.',
+    },
+  ],
+  impact: {
+    title: 'The Business Impact',
+    subtitle: 'Bridging the 70% Market Gap and Driving Confirmed Bookings Globally',
+    content:
+      'The launch of the custom web application fundamentally transformed Direct Owners digital presence and operational capacity, delivering verified commercial success across the USA and UK.',
+    outcomes: [
+      'Successfully solved the 70% rental platform transparency gap identified in industry research',
+      'Significantly increased inbound lead generation and confirmed property bookings',
+      'Eliminated double-booking incidents through real-time calendar synchronization',
+      'Delivered seamless multi-device responsiveness from smartphones to desktop screens',
+      'Built a transparent, trust-first e-commerce booking ecosystem praised by management and holidaymakers',
+    ],
+  },
+  beforeAfter: {
+    title: 'Industry Evolution: Before vs. After',
+    subtitle: 'From Clunky Directory Listings to Real-Time Booking Commerce',
+    beforeTitle: 'LEGACY RENTAL PLATFORMS',
+    afterTitle: 'DIRECT OWNERS PLATFORM',
+    before: [
+      'Hidden fees, price markups, and lack of billing transparency',
+      'Manual date inquiries frequently resulting in double-bookings',
+      'Static text-based listings with poor map discovery',
+      'Disjointed third-party communication creating booking mistrust',
+      'Clunky mobile experiences discouraging on-the-go reservations',
+    ],
+    after: [
+      '100% upfront pricing with secure online deposit checkout',
+      'Dynamic real-time calendar synchronization with instant date blocking',
+      'Interactive geolocation map search with arrival/departure filters',
+      'Direct owner dashboards with automated lead and reservation management',
+      'Flawless responsive app-like experience across all modern devices',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Direct Owners web application and e-commerce platform developed by Travash Software Solutions have propelled our vacation rental business, generating more leads and bookings. Exceptional service and outstanding results. Travashs exceptional service and commitment to quality made the entire process smooth and efficient.',
+    author: 'Dr. David S. Burn',
+    role: 'Managing Director',
+    company: 'Direct Owner Services Limited (USA)',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Hospitality & Rentals',
+    subtitle: 'Is Your Booking Platform Losing Revenue to Platform Friction?',
+    items: [
+      'Eliminating hidden fees to build direct consumer trust and higher checkout conversion',
+      'Automating date reservations to completely prevent double-booking discrepancies',
+      'Providing property owners with total autonomy over listing content and rates',
+      'Engineering to international UK/US standards for security and payment compliance',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Ready to build a custom web application that disrupts your industry? At Travash, we specialize in building bespoke, high-performance software solutions tailored to international standards. Speak with our engineering team today.',
+    primaryCTA: { label: 'Discuss a Custom Web Platform', href: '#contact' },
+    secondaryCTA: { label: 'Explore E-Commerce Architecture', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Timeline', value: '8 Months', subtext: 'End-to-end launch & QA', icon: 'clock' },
+    { label: 'Market Gap', value: '70%', subtext: 'Transparency gap bridged', icon: 'chart' },
+    { label: 'Standards', value: 'US & UK', subtext: 'PCI-DSS & GDPR compliance', icon: 'shield' },
+    { label: 'Architecture', value: '3 Personas', subtext: 'Holiday Maker, Owner, Admin', icon: 'layers' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Transparent Booking & Payment Processing Engine',
+      description:
+        'Engineered a secure, real-time checkout system that allows users to book a property online and pay the required deposit amount instantly. By processing transactions securely within the application, friction and trust issues were eliminated.',
+      subItems: [
+        { label: 'PCI-DSS Compliance', text: 'Tokenized transaction processing via enterprise payment gateways.' },
+        { label: 'Instant Receipts', text: 'Automated booking confirmations dispatched to both holidaymaker and owner.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Dynamic Calendar & Real-Time Date Blocking',
+      description:
+        'Developed an intelligent calendar synchronization system. The moment a holidaymaker secures a property, the application transparently displays the booked dates as blocked across all viewports.',
+      subItems: [
+        { label: 'Zero Double-Booking', text: 'Atomic transaction locking guarantees conflicting dates cannot be reserved.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Interactive Map Search & Geolocation Filters',
+      description:
+        'Integrated advanced geolocation mapping services, allowing users to browse thousands of holiday destinations visually. Users can explore neighborhoods, set date ranges, and view pricing overlays on the map.',
+      subItems: [
+        { label: 'Spatial Indexing', text: 'Sub-second bounding box queries for rapid property pin clustering.' },
+      ],
+    },
+    {
+      stepNumber: '04',
+      title: 'Promotional Offers & Owner Control Dashboard',
+      description:
+        'Property owners gain total governance over their listings, availability rules, and custom seasonal discounts, while platform admins manage featured properties across the homepage.',
+      callout: {
+        title: 'Owner Autonomy',
+        text: 'Owners update pricing, seasonal rates, and availability without needing technical assistance.',
+        badge: 'Self-Serve',
+      },
+    },
+    {
+      stepNumber: '05',
+      title: 'Seamless Multi-Device Responsiveness',
+      description:
+        'Engineered with a mobile-first responsive design framework ensuring desktop, tablet, and smartphone users enjoy fluid navigation, fast page renders, and frictionless booking checkouts.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 4. UGO: Multi-Portal Supply Chain & Inventory Engine for EGO (UK)
+// ----------------------------------------------------------------------
+export const DEFAULT_UGO_DATA: CaseStudyData = {
+  _id: 'caseStudy-ugo',
+  title: 'Architecting a Multi-Portal Supply Chain & Inventory Engine for EGO (UK)',
+  slug: { current: 'ugo' },
+  eyebrow: 'CASE STUDY',
+  category: 'Logistics & Supply Chain Management',
+  industry: 'Logistics & Supply Chain',
+  client: 'EGO (UK)',
+  location: 'United Kingdom',
+  shortDescription:
+    'Custom-built enterprise web application unifying five stakeholder groups (Admins, Clients, Sellers, Buyers, Carriers) with granular stock auditing, pipeline management, and frictionless mobile carrier sign-offs via temporary URLs.',
+  heroImage: { asset: { url: '/home-img/ugo-min.png' } },
+  featureImage: '/home-img/ugo-min.png',
+  projectMeta: [
+    { label: 'CLIENT', value: 'EGO (UK)' },
+    { label: 'SOLUTION', value: 'UGO – Multi-Portal Supply Chain & Logistics Engine' },
+    { label: 'INDUSTRY', value: 'Supply Chain / Asset Recovery / Logistics' },
+    {
+      label: 'CAPABILITIES',
+      value: 'Multi-Portal Web Architecture • Role-Based Access Control • Stock Auditing • Frictionless Carrier E-Sign',
+    },
+  ],
+  metrics: [
+    {
+      value: '5 Stakeholders',
+      label: 'Unified Digital Ecosystem',
+      description: 'Admins, Clients, Sellers, Buyers, and Logistics Carriers connected seamlessly',
+    },
+    {
+      value: '100% Digital',
+      label: 'Carrier Sign-Offs',
+      description: 'Frictionless temporary URL mobile sign-off eliminating paper manifests',
+    },
+    {
+      value: 'Real-Time',
+      label: 'Inbound & Outbound NR Tracking',
+      description: 'Continuous pipeline synchronization across master admin and stakeholder dashboards',
+    },
+    {
+      value: 'High Security',
+      label: 'Role-Based Data Isolation',
+      description: 'Engineered for strict commercial privacy and relational audit integrity',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Impact Snapshot',
+    subtitle: 'Eliminating Supply Chain Fragmentation Across Complex Multi-Party Logistics',
+    paragraphs: [
+      'In the complex supply chain and asset recovery industry, the greatest threat to profitability is fragmented communication. Our UK-based client, EGO, was managing an intricate operational pipeline involving five independent stakeholder groups: the internal administrative team, corporate clients, product sellers, end-buyers, and logistics carriers.',
+      'Managing the flow of inventory—specifically tracking inbound and outbound products, categorising stock, and executing accurate stock audits—requires absolute precision. Travash engineered a comprehensive, custom-built enterprise web application designed to act as the central nervous system for EGO’s entire operation, unifying all parties while digitizing carrier handovers via shareable web links.',
+    ],
+  },
+  challenge: {
+    title: 'The Operational Challenge',
+    subtitle: 'Paper Trails, Stock Discrepancies, and Logistics Handover Latency',
+    content:
+      'Fragmented systems and manual data entry created serious operational vulnerabilities for EGO:',
+    points: [
+      'Logistics Bottlenecks: Relying on physical paperwork meant admin teams waited days for delivery verification.',
+      'Data Silos: Disjointed communication between clients, sellers, and buyers led to persistent stock discrepancies.',
+      'Audit Complexity: Difficulty conducting real-time stock audits across multi-location warehouse inventories.',
+      'Privacy & Governance: Need for strict role-based access control so external parties only accessed their specific operational pipeline.',
+    ],
+  },
+  complexity: {
+    title: 'Multi-Portal Ecosystem',
+    intro:
+      'Rather than building a single monolithic view, Travash mapped a multi-portal architecture tailored to each user type with strict RBAC:',
+    items: [
+      {
+        title: 'EGO MASTER ADMIN PORTAL',
+        description: 'Central command for master data, user governance, pipeline lifecycles, NR categories, and comprehensive stock audits.',
+      },
+      {
+        title: 'ISOLATED STAKEHOLDER PORTALS',
+        description: 'Tailored dashboards for Corporate Clients, Product Sellers, and Buyers to track inventory and order progress transparently.',
+      },
+      {
+        title: 'FRICTIONLESS CARRIER WEB PAGE',
+        description: 'Temporary tokenized URL sent to carriers for mobile inspection and on-screen digital signature sign-off.',
+      },
+      {
+        title: 'INSTANT ADMIN SYNCHRONIZATION',
+        description: 'Carrier mobile sign-off immediately marks client process as complete in the central database in real time.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'A Unified, Role-Based Digital Ecosystem for Real-Time Operational Velocity.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Pipeline & Stakeholder Mapping',
+        description: 'Analyzed the operational lifecycle of inventory from inbound intake to final buyer handoff across five user roles.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Multi-Portal RBAC Architecture',
+        description: 'Engineered distinct portal interfaces with role-based access control ensuring absolute commercial data isolation.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Inventory & Stock Audit Modules',
+        description: 'Developed granular NR category structures and real-time inventory reconciliation workflows.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Temporary URL E-Signature Flow',
+        description: 'Created secure, token-protected mobile sign-off links for drivers without requiring app installation.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Real-Time Telemetry Sync',
+        description: 'Connected carrier mobile sign-offs to instant database updates triggering automated client notifications.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Key Modules of the EGO Custom Web Application',
+    items: [
+      {
+        title: 'The EGO Master Admin Portal (Central Command)',
+        description: 'Allows administrators to manage Master Data, track operational pipelines, configure NR categories, and execute real-time stock audits.',
+      },
+      {
+        title: 'Dedicated Stakeholder Portals (Client, Buyer, Seller)',
+        description: 'Secure, isolated environments for external parties to monitor their specific orders and track inventory progress transparently.',
+      },
+      {
+        title: 'Frictionless Carrier Web Page (Digital Sign-off)',
+        description: 'Secure temporary web link allowing carriers to review consignment details on mobile devices and digitally sign on screen.',
+      },
+      {
+        title: 'Inbound / Outbound NR Logistics Automation',
+        description: 'Automated status progression synchronizing physical warehouse handoffs with master enterprise financial records.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'EGO Master Admin Portal → Client / Seller / Buyer Portals → Inbound / Outbound NR Logistics → Carrier Web Page (Temporary URL) → Real-Time Synchronization → Master Database.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: EGO Multi-Portal Real-Time Supply Chain Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Backend Architecture',
+      technologies: ['Custom PHP Enterprise', 'Modular MVC Engine'],
+      description: 'Engineered for complex relational business logic and rapid high-concurrency data processing.',
+    },
+    {
+      category: 'Database Infrastructure',
+      technologies: ['MySQL Enterprise (Relational Structuring)'],
+      description: 'Multi-tiered Master Data, granular NR product cataloging, and immutable audit logs.',
+    },
+    {
+      category: 'Frontend Interface',
+      technologies: ['HTML5', 'CSS3', 'Modern JavaScript (ES6+)'],
+      description: 'Responsive layout ensuring the Carrier Portal functions flawlessly on all smartphone screens.',
+    },
+    {
+      category: 'Security & Access Protocols',
+      technologies: ['Role-Based Access Control (RBAC)', 'Token-Based Temporary URLs', 'AES Encryption'],
+      description: 'Guarantees strict data isolation and tamper-proof digital signature capture.',
+    },
+  ],
+  impact: {
+    title: 'The Digital Transformation Impact',
+    subtitle: 'From Paper Delays to Instant, Digitally Signed Supply Chain Velocity',
+    content:
+      'The custom EGO web application modernized supply chain operations by replacing disjointed communications with a centralized, role-based platform.',
+    outcomes: [
+      'Total Operational Transparency: Clients, buyers, and sellers monitor live pipelines, slashing inbound support queries',
+      'Inventory Precision: Granular NR product categorisation and audit modules eliminated stock discrepancies',
+      'Logistics Velocity: Carrier web sign-offs transformed multi-day paper handovers into instantaneous real-time completions',
+      'Zero App Install Friction: Delivery drivers complete sign-offs directly in mobile web browsers in seconds',
+      'Robust Audit Trails: Every signature and status change is cryptographically logged with timestamps',
+    ],
+  },
+  beforeAfter: {
+    title: 'Operational Evolution: Before vs. After',
+    subtitle: 'Modernizing Supply Chain Handover Workflows',
+    beforeTitle: 'BEFORE TRAVASH',
+    afterTitle: 'AFTER TRAVASH',
+    before: [
+      'Fragmented phone and email chains across clients, sellers, and buyers',
+      'Physical paper manifests causing multi-day delays in delivery verification',
+      'Frequent inventory discrepancies and manual warehouse stocktaking',
+      'Zero real-time visibility for corporate clients waiting on status reports',
+      'Disjointed data causing billing delays and carrier payment disputes',
+    ],
+    after: [
+      'Centralized multi-portal architecture with dedicated stakeholder dashboards',
+      'Instantaneous carrier digital sign-offs via secure mobile web links',
+      'Granular real-time stock audits and NR product categorisation',
+      '100% live pipeline transparency across all active consignments',
+      'Instant automated status completion syncing directly to administrative records',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Travash took our complex multi-party supply chain operations and engineered a seamless, intuitive web application. The carrier sign-off link alone has saved us days of administrative waiting time each week.',
+    author: 'Operations Leadership',
+    role: 'Head of Logistics & Asset Recovery',
+    company: 'EGO (UK)',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Enterprise Supply Chains',
+    subtitle: 'Are Disjointed Stakeholders and Paper Trails Slowing Down Your Operations?',
+    items: [
+      'Unifying multiple external parties without compromising administrative master security',
+      'Eliminating slow paper manifests through frictionless browser-based mobile sign-offs',
+      'Maintaining 100% audit precision across multi-location warehouse inventories',
+      'Providing end clients with self-service visibility into their active pipelines',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Looking to streamline complex logistics, inventory, or multi-party operational pipelines? Travash engineers bespoke web platforms designed to unite stakeholders and accelerate business velocity.',
+    primaryCTA: { label: 'Discuss a Logistics Platform Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Explore Custom Portal Architecture', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Portals', value: '5 Hubs', subtext: 'Admin, Client, Seller, Buyer, Carrier', icon: 'layers' },
+    { label: 'Carrier Link', value: 'Zero Install', subtext: 'Tokenized temporary mobile URL', icon: 'smartphone' },
+    { label: 'Security', value: 'Strict RBAC', subtext: 'Commercial data isolation', icon: 'lock' },
+    { label: 'Auditing', value: 'Real-Time', subtext: 'Granular NR product classification', icon: 'database' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'EGO Master Admin Portal (Central Command)',
+      description:
+        'The core engine where the internal EGO team orchestrates the entire operation. Administrators manage Master Data, configure user governance across Clients, Sellers, and Buyers, track dynamic pipelines, and execute comprehensive stock audits.',
+      subItems: [
+        { label: 'Master Governance', text: 'Sets global rules, permissions, and system configurations.' },
+        { label: 'NR Classification', text: 'Granular inventory categorisation for recovery and re-marketing.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Dedicated Stakeholder Portals (Client, Buyer, Seller)',
+      description:
+        'Secure, isolated environments for external parties. Clients, Buyers, and Sellers log in to monitor their specific pipelines, submit inventory requests, and track progress without accessing administrative records.',
+      subItems: [
+        { label: 'Data Isolation', text: 'Role-based access control prevents unauthorized pipeline visibility.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Frictionless Carrier Web Page (Digital Sign-Off)',
+      description:
+        'When an outbound or inbound process is ready, a secure temporary web page is generated and shared with the carrier via SMS or messaging. The driver reviews consignment details on their mobile screen and signs digitally.',
+      callout: {
+        title: 'Zero App Friction',
+        text: 'Carriers do not need an app or login. One tap on the temporary link opens the signature pad directly in their mobile browser.',
+        badge: 'Instant Handover',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Real-Time Data Synchronization & Process Completion',
+      description:
+        'Once signed, the digital proof of signature is securely routed back to the EGO Admin dashboard in real time, immediately marking the client process as complete and generating audit documentation.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 5. Indispare: Pan-India B2B E-Commerce Marketplace
+// ----------------------------------------------------------------------
+export const DEFAULT_INDISPARE_DATA: CaseStudyData = {
+  _id: 'caseStudy-indispare',
+  title: 'Indispare – Pan-India B2B E-Commerce Marketplace Development',
+  slug: { current: 'indispare' },
+  eyebrow: 'CASE STUDY',
+  category: 'B2B Marketplace & Mobile Engineering',
+  industry: 'Industrial Manufacturing & E-Commerce',
+  client: 'Indispare',
+  location: 'Pan-India',
+  shortDescription:
+    'Comprehensive B2B industrial spare parts procurement ecosystem featuring React web and mobile apps, AI-powered product search, automated RFQ price comparisons, and pin-code logistics routing.',
+  heroImage: { asset: { url: '/home-img/indispare-min.png' } },
+  featureImage: '/home-img/indispare-min.png',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Indispare' },
+    { label: 'SOLUTION', value: 'Pan-India B2B Industrial E-Commerce Ecosystem' },
+    { label: 'INDUSTRY', value: 'Industrial Manufacturing / B2B E-Commerce' },
+    {
+      label: 'CAPABILITIES',
+      value: 'Web App (React) • Mobile Apps (iOS/Android) • Elasticsearch AI Search • RFQ Automation • Logistics Engine',
+    },
+  ],
+  metrics: [
+    {
+      value: '40%',
+      label: 'Conversion Rate',
+      description: 'Achieved across registered manufacturing and industrial buyers',
+    },
+    {
+      value: '200%',
+      label: 'Revenue Growth',
+      description: 'Delivered in the months following nationwide marketplace rollout',
+    },
+    {
+      value: '1M+ SKUs',
+      label: 'Product Varieties Cataloged',
+      description: 'Managed across 300+ onboarded sellers and 15 industrial categories',
+    },
+    {
+      value: '98%',
+      label: 'On-Time Delivery Rate',
+      description: 'Automated courier selection powered by pin-code logistics routing',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Impact Snapshot',
+    subtitle: 'Overcoming Procurement Gridlock in Industrial Manufacturing',
+    paragraphs: [
+      'Unforeseen equipment failure leads to costly factory downtime. For the Indian manufacturing sector, the primary hurdle isn’t just the breakdown itself, but the extended downtime caused by fragmented procurement processes.',
+      'Before Indispare, there was no centralized platform for buyers to easily purchase, and sellers to easily list, industrial spare parts. The industry relied on manual phone calls, delayed delivery, pricing ambiguity, and risk of counterfeit components. Travash engineered Indispare as a comprehensive Pan-India digital procurement solution featuring React web apps, cross-platform mobile apps, AI-powered search, and automated RFQ price comparisons.',
+    ],
+  },
+  challenge: {
+    title: 'The Operational Challenge',
+    subtitle: 'Procurement Gridlock, Shipment Delays, and Counterfeit Risks',
+    content:
+      'Industrial manufacturing plants faced crippling operational bottlenecks when sourcing critical spare components:',
+    points: [
+      'Delayed Delivery & Complex Procurement: Lack of real-time ordering and persistent monitoring caused shipment delays.',
+      'Pricing & Quality Ambiguity: Buyers struggled with limited price comparison and high exposure to counterfeit parts.',
+      'Absence of Technical Transparency: Difficulties evaluating exact technical specs and lack of warranty tracking.',
+      'High Catalog Complexity: Sourcing across 1M+ distinct industrial part numbers without structured search indexing.',
+    ],
+  },
+  complexity: {
+    title: 'A Data-Driven B2B Ecosystem',
+    intro:
+      'Travash designed dedicated digital environments for both sellers and buyers to ensure a frictionless procurement cycle:',
+    items: [
+      {
+        title: 'THE SELLER PORTAL',
+        description: 'Comprehensive dashboard for supply store owners featuring bulk uploads, dynamic pricing, and warehouse control.',
+      },
+      {
+        title: 'THE BUYER PORTAL',
+        description: 'Urgent parts procurement for factory production managers with AI reverse image search, voice search, and warranty tracking.',
+      },
+      {
+        title: 'AUTOMATED RFQ ENGINE',
+        description: 'Request for Quote automation providing instant competitive comparisons (L1, L2, L3 supplier tiers).',
+      },
+      {
+        title: 'PIN-CODE LOGISTICS SELECTION',
+        description: 'Automated courier routing matching local inventory with nearest transport hubs for same-day delivery.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'Extensive R&D, User Persona Modeling, and Scalable Multi-Sided Architecture.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'R&D & User Persona Modeling',
+        description: 'Researched pain points of factory production managers and industrial supply store owners across major industrial hubs.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Intuitive Technical UI/UX',
+        description: 'Designed high-clarity interfaces tailored for effortless exploration of complex technical part specifications.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Elasticsearch AI Engine',
+        description: 'Implemented advanced semantic, voice, and reverse-image search across 1,000,000+ cataloged product SKUs.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Automated RFQ & Dynamic Pricing',
+        description: 'Engineered multi-vendor quote generation allowing buyers to compare pricing tiers seamlessly.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Cross-Platform Mobile Launch',
+        description: 'Deployed high-performance React Native mobile apps for iOS and Android with offline-first field caching.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Unified Platform Architecture Connecting Industrial Suppliers with Manufacturing Plants',
+    items: [
+      {
+        title: 'The Seller Portal (Inventory & Order Management)',
+        description: 'Seamless seller onboarding, verification, bulk CSV uploads, dynamic pricing, warehouse management, and invoice tracking.',
+      },
+      {
+        title: 'The Buyer Portal (Procurement & Technical Assessment)',
+        description: 'AI-powered search for 1M+ genuine parts, automated RFQ generation with L1/L2/L3 comparisons, and real-time order tracking.',
+      },
+      {
+        title: 'Administrative & Logistics Engine',
+        description: 'Automated courier selection based on pin codes and products, alongside spend analytics for predictive inventory planning.',
+      },
+      {
+        title: 'Cross-Platform React Native Apps',
+        description: 'Native iOS and Android applications enabling plant engineers to photograph broken parts and order replacements from the factory floor.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Platform Architecture',
+    intro:
+      'React Web & Mobile Clients → API Gateway (Laravel MVC) → Elasticsearch AI Engine / MySQL Relational DB → Redis Cache → AWS Cloud Infrastructure & Logistics Integrations.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Indispare High-Concurrency B2B Marketplace & Logistics Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Frontend & Mobile Interface',
+      technologies: ['React.js', 'React Native (iOS & Android)', 'HTML5', 'Tailwind CSS'],
+      description: 'Unified responsive web platform and native mobile apps for procurement managers on the go.',
+    },
+    {
+      category: 'Backend Architecture',
+      technologies: ['Laravel MVC', 'Headless API Framework', 'Microservices'],
+      description: 'High-throughput transactional backend handling complex B2B business logic and invoicing.',
+    },
+    {
+      category: 'Search & AI Intelligence',
+      technologies: ['Elasticsearch Cluster', 'AI Reverse Image Search', 'Voice Recognition'],
+      description: 'Sub-100ms multi-faceted query resolution across 1,000,000+ technical part variations.',
+    },
+    {
+      category: 'Database & Cloud Infrastructure',
+      technologies: ['MySQL Enterprise', 'AWS S3', 'Redis Cache', 'Elastic Load Balancers'],
+      description: 'High-availability cloud environment engineered for zero downtime and rapid catalog rendering.',
+    },
+  ],
+  impact: {
+    title: 'The Digital Transformation Impact',
+    subtitle: 'From Fragmented Phone Calls to 40% Conversion and 200% Revenue Growth',
+    content:
+      'The launch of Indispare modernized the industrial supply chain across India, delivering exceptional business velocity and customer satisfaction.',
+    outcomes: [
+      '40% conversion rate achieved across registered industrial enterprise buyers',
+      '200% revenue growth realized following marketplace deployment',
+      '300+ industrial sellers successfully onboarded with 1,000,000+ parts cataloged',
+      '98% on-time delivery performance with automated pin-code courier dispatch',
+      '30% repeat procurement rate driven by transparent RFQ quote comparisons',
+      '4.5 / 5 customer satisfaction rating from factory plant managers',
+    ],
+  },
+  beforeAfter: {
+    title: 'Procurement Evolution: Before vs. After',
+    subtitle: 'Transforming Industrial Machinery Spare Sourcing',
+    beforeTitle: 'LEGACY INDUSTRIAL SOURCING',
+    afterTitle: 'INDISPARE B2B MARKETPLACE',
+    before: [
+      'Costly factory downtime due to days spent calling fragmented distributors',
+      'High risk of acquiring counterfeit parts without certified specifications',
+      'Pricing opacity with no standardized comparison or quotation mechanism',
+      'Unpredictable delivery dates leading to extended production interruptions',
+      'Zero warranty tracking or digitized purchase records for accounting',
+    ],
+    after: [
+      'Instant AI-powered part search across 1,000,000+ verified original components',
+      'Strict seller onboarding and guaranteed genuine component verification',
+      'Automated RFQ comparisons with transparent L1, L2, and L3 pricing tiers',
+      '98% on-time delivery with automated pin-code routing and live shipment tracking',
+      'Centralized digital invoices, warranty logs, and ERP spend analytics',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Indispare transformed how our manufacturing plants procure emergency spares. Being able to photograph a failed part and receive verified competitive quotes within minutes has drastically reduced our production downtime.',
+    author: 'Production Engineering Head',
+    role: 'Operations & Procurement',
+    company: 'Industrial Manufacturing Enterprise',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for B2B Marketplaces',
+    subtitle: 'Does Your Industry Struggle with Fragmented Supply Chains and Complex Catalogs?',
+    items: [
+      'Indexing massive catalogs with AI visual and voice search for rapid part identification',
+      'Automating complex multi-tier RFQ quotation flows without administrative friction',
+      'Connecting buyers, vendors, and logistics carriers on a single synchronized platform',
+      'Providing native mobile access for field engineers directly at operational sites',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Looking to build a high-performance B2B marketplace or digitize industrial procurement? Travash combines deep marketplace architecture, modern mobile development, and scalable cloud engineering to turn complex operations into seamless platforms.',
+    primaryCTA: { label: 'Discuss a B2B Marketplace Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Explore AI Search Architecture', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Catalog Scale', value: '1M+ SKUs', subtext: '15 industrial categories', icon: 'database' },
+    { label: 'Conversion', value: '40%', subtext: 'High-intent buyer checkout', icon: 'chart' },
+    { label: 'AI Search', value: '< 100ms', subtext: 'Elasticsearch image & voice', icon: 'cpu' },
+    { label: 'Mobile First', value: 'iOS & Android', subtext: 'React Native factory app', icon: 'smartphone' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'The Seller Portal (Inventory & Order Management)',
+      description:
+        'Developed a comprehensive vendor dashboard allowing industrial supply store owners to easily manage their business online. Features bulk product uploads, dynamic pricing controls, real-time inventory management, and automated invoice generation.',
+      subItems: [
+        { label: 'Bulk Ingestion', text: 'CSV / Excel catalog synchronization for tens of thousands of SKUs.' },
+        { label: 'Dynamic Margins', text: 'Automated price calculation based on quantity and payment terms.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'The Buyer Portal (Procurement & Technical Assessment)',
+      description:
+        'Designed specifically for plant production managers who need parts urgently to minimize factory downtime. Incorporates AI reverse-image and voice search across 1,000,000+ cataloged components.',
+      subItems: [
+        { label: 'Visual Match', text: 'Plant engineers snap a photo of a broken part to find exact replacements.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Automated RFQ Generation & L1/L2/L3 Comparison',
+      description:
+        'Buyers generate instant Requests for Quotes with one click. The platform automatically aggregates quotes from multiple verified sellers, displaying transparent L1, L2, and L3 cost breakdowns.',
+      callout: {
+        title: 'Price Transparency',
+        text: 'Automated RFQs eliminate phone negotiations and deliver immediate competitive procurement visibility.',
+        badge: 'Automated',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Administrative & Logistics Dispatch Engine',
+      description:
+        'To fulfill same-day delivery promises, the backend automatically evaluates recipient pin codes and selects optimal logistics partners, ensuring 98% on-time delivery across the country.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 6. I4C Bank Portal: Central Government of India API Status Dashboard
+// ----------------------------------------------------------------------
+export const DEFAULT_I4C_DATA: CaseStudyData = {
+  _id: 'caseStudy-i4c',
+  title: 'Architecting the I4C API Status Dashboard for the Central Government of India',
+  slug: { current: 'i4c-bank-portal' },
+  eyebrow: 'CASE STUDY',
+  category: 'National Cyber Security & Public Sector Infrastructure',
+  industry: 'Banking & Financial Services / Government',
+  client: 'Central Government of India',
+  location: 'Pan-India',
+  shortDescription:
+    'Pan-India financial fraud mitigation portal and real-time API status dashboard connecting national helplines with major Indian banks to freeze fraudulent accounts and retrieve stolen funds within seconds.',
+  heroImage: { asset: { url: '/images/services/i4c.png' } },
+  featureImage: '/images/services/i4c.png',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Central Government of India (Delhi Central Gov Partner)' },
+    { label: 'SOLUTION', value: 'I4C API Status Dashboard & Bank Lien Intercept' },
+    { label: 'INDUSTRY', value: 'Public Sector / National Cyber Crime Prevention' },
+    {
+      label: 'CAPABILITIES',
+      value: 'National API Integration • Real-Time Inter-Bank Lien Freezes • AI Transaction Failure Analytics • High Concurrency',
+    },
+  ],
+  metrics: [
+    {
+      value: '₹100M+',
+      label: 'Stolen Funds Intercepted',
+      description: 'Citizen assets frozen before cyber scammers could cash out',
+    },
+    {
+      value: '< 60s',
+      label: 'Inter-Bank Freeze Execution',
+      description: 'Sub-minute automated API dispatch across participating banking rails',
+    },
+    {
+      value: 'All Major Banks',
+      label: 'National Banking Network',
+      description: 'Direct API integration with Axis Bank, Bank of Baroda, Bank of India, etc.',
+    },
+    {
+      value: 'Delhi Central Gov',
+      label: 'Technology Partner',
+      description: 'Nation-scale mission-critical infrastructure',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Impact Snapshot',
+    subtitle: 'The Speed of Digital Fraud: Stopping Money Laundering Across Disparate Banking Rails',
+    paragraphs: [
+      'When a citizen falls victim to digital financial fraud, every second counts. Scammers rapidly transfer stolen funds across multiple accounts and different banking institutions to avoid detection. Historically, communicating with dozens of independent banks across India to raise disputes and freeze accounts was a slow, manual paperwork process.',
+      'As the chosen technology partner for the Delhi Central Government, Travash engineered the I4C Bank Portal and API Status Dashboard. Our strategy was to replace fragmented communication with a unified, real-time API ecosystem directly connected with all major Indian banks, utilizing AI to continuously monitor transaction metrics, understand technical failure patterns, and instantly execute account lien freezes.',
+    ],
+  },
+  challenge: {
+    title: 'The Operational Challenge',
+    subtitle: 'The Golden Hour: Intercepting Rapid Mule-Account Hopping',
+    content:
+      'Digital financial scammers exploit speed, hopping stolen money through cascading bank accounts before victims can report the incident:',
+    points: [
+      'Cascading Transactions: Stolen funds are split and moved across five or more banks within minutes.',
+      'Manual Coordination Latency: Paper-based notifications reached bank branches long after funds had been withdrawn at ATMs.',
+      'Heterogeneous Banking APIs: Inconsistent technical interfaces and error protocols across independent national banks.',
+      'High Concurrency Demands: Thousands of simultaneous cyber fraud complaints logged across national helplines during peak hours.',
+    ],
+  },
+  complexity: {
+    title: 'National Scale API Architecture',
+    intro:
+      'Connecting a central government apparatus to the entire country’s banking infrastructure required absolute reliability, zero latency, and military-grade encryption:',
+    items: [
+      {
+        title: 'INSTANT LIEN PLACEMENT',
+        description: 'Executing automated API commands to freeze disputed amounts in recipient accounts before withdrawal via ATM, POS, or cheque.',
+      },
+      {
+        title: 'AI FAILURE PATTERN MONITORING',
+        description: 'Detecting hourly failure trends (e.g., "Service Unavailable" or "Invalid RRN") to instantly isolate specific bank integration glitches.',
+      },
+      {
+        title: 'UNIFIED HELPLINE INGESTION',
+        description: 'Aggregating incident tickets from the National Cybercrime Portal and the 1930 Citizen Helpline into one single pane of glass.',
+      },
+      {
+        title: 'GRANULAR AUDIT TRAIL',
+        description: 'Generating cryptographically signed evidentiary logs for law enforcement investigation and court prosecution.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'A National API Nerve Center Powered by Real-Time Telemetry and Automated Lien Dispatch.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'National Complaint Aggregation',
+        description: 'Ingest verified Crime IDs and citizen reports from the National Cybercrime Portal and 1930 Helpline.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Automated Banking API Bridges',
+        description: 'Establish standardized high-concurrency API bridges connecting all major public and private sector banks.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Sub-Minute Lien Freeze Execution',
+        description: 'Dispatch immediate account freeze commands to recipient banks locking disputed funds automatically.',
+      },
+      {
+        stepNumber: '04',
+        title: 'AI-Driven Metric & Failure Diagnostics',
+        description: 'Analyze real-time transaction success rates and categorize failure codes to diagnose bank connectivity bottlenecks.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Prosecution Evidence Reporting',
+        description: 'Provide law enforcement officials with deep filtering, audit histories, and court-ready financial trace dossiers.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Key Capabilities of the I4C API Status Dashboard',
+    items: [
+      {
+        title: 'Unified Complaint Ingestion',
+        description: 'Aggregates fraud reports from multiple national sources into a single, unified source of truth for every reported crime.',
+      },
+      {
+        title: 'Instant "Lien" (Account Freeze) Execution',
+        description: 'Sends automated API commands to recipient banks to lock disputed amounts across ATM, POS, and cheque withdrawal channels.',
+      },
+      {
+        title: 'AI-Driven Bank Performance & Failure Monitoring',
+        description: 'Real-time transaction metrics analyzing failure codes hourly to identify and rectify banking integration bottlenecks.',
+      },
+      {
+        title: 'Granular Auditing & Prosecution Reporting',
+        description: 'Filters data by date ranges, specific banks, and Crime IDs to trace total amounts frozen and recovered for citizens.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'Citizen Complaints (Cybercrime Portal / 1930 Helpline) → I4C National Command Portal → AI Diagnostics & Transaction Engine → Secure Bank API Gateways (Axis, Baroda, BOI, etc.) → Instant Lien Execution → Auditing & Recovery Dashboard.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: I4C Pan-India Real-Time Inter-Bank Fraud Mitigation Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Backend Architecture',
+      technologies: ['High-Concurrency Enterprise Java', 'Spring Boot', 'RESTful Banking Connectors'],
+      description: 'Engineered to handle massive volumes of concurrent API transactions with national financial institutions.',
+    },
+    {
+      category: 'AI & Analytics Engine',
+      technologies: ['Machine Learning Telemetry', 'Predictive Failure Analysis Engine'],
+      description: 'Monitors transaction success rates, categorizes failure patterns, and detects banking gateway anomalies.',
+    },
+    {
+      category: 'Frontend Interface',
+      technologies: ['React.js', 'Next.js', 'Tailwind CSS', 'Real-Time WebSocket Dashboards'],
+      description: 'Zero-latency live operational dashboard designed for government officials and cybercrime coordinators.',
+    },
+    {
+      category: 'Security Protocols',
+      technologies: ['Military-Grade Encryption', 'Field-Level AES-256', 'Strict RBAC Governance'],
+      description: 'Ensures sensitive citizen and financial data remains uncompromised across all inter-bank exchanges.',
+    },
+  ],
+  impact: {
+    title: 'The Digital Transformation Impact',
+    subtitle: 'From Chasing Paperwork to Freezing Fraudulent Accounts in Sub-Minutes',
+    content:
+      'The deployment of the I4C API Status Dashboard fundamentally transformed how India combats cyber financial fraud, giving authorities real-time power to protect citizen funds.',
+    outcomes: [
+      'Successfully incorporated all major Indian banks into one centralized, AI-monitored portal',
+      'Over ₹100,000,000 in stolen funds intercepted and saved from cash-out',
+      'Account freeze dispatch latency dropped from days of paperwork to under 60 seconds',
+      'AI failure analysis empowered technical teams to resolve bank connection errors in real time',
+      'Provided transparent, auditable evidentiary logs for criminal investigation and asset restitution',
+    ],
+  },
+  beforeAfter: {
+    title: 'Fraud Mitigation: Before vs. After',
+    subtitle: 'Transforming National Cybercrime Intercept Capabilities',
+    beforeTitle: 'LEGACY FRAUD RESPONSE',
+    afterTitle: 'I4C API PLATFORM',
+    before: [
+      'Manual paperwork sent via email or postal courier to individual bank branches',
+      'Scammers cashed out stolen funds at ATMs within minutes of transfer',
+      'Zero real-time visibility into whether banks had received or processed hold notices',
+      'Technical errors at individual banks went unnoticed for days',
+      'Fragmented data silos hindering police tracking of multi-bank mule accounts',
+    ],
+    after: [
+      'Automated API dispatch placing immediate liens on accounts across all major banks',
+      'Funds locked across ATM, POS, and cheque withdrawal channels in under 60 seconds',
+      'Real-time live status dashboards tracking every API request and acknowledgement',
+      'AI monitoring alerts government engineers to bank integration glitches instantly',
+      'Unified Crime ID trace dossiers providing complete evidentiary records for court',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Travash engineered the critical nerve center for our national financial fraud response. The ability to coordinate instant account liens across all participating banks has saved millions of citizens hard-earned money.',
+    author: 'National Cyber Crime Coordination Team',
+    role: 'Cybercrime Prevention & Technology Infrastructure',
+    company: 'Central Government of India',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Mission-Critical Public Sector Platforms',
+    subtitle: 'Could Your Agency Benefit from Real-Time Inter-Institutional API Coordination?',
+    items: [
+      'Unifying heterogeneous third-party institutional APIs into a standardized command gateway',
+      'Eliminating operational latency in time-sensitive compliance and enforcement actions',
+      'Deploying AI monitoring to diagnose technical integration failures across massive networks',
+      'Maintaining military-grade encryption and immutable audit trails for statutory legal proceedings',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Looking to architect mission-critical government infrastructure, national API gateways, or automated compliance platforms? Travash engineers enterprise-grade solutions built for nation-scale security, speed, and reliability.',
+    primaryCTA: { label: 'Discuss a Public Sector Technology Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Explore High-Concurrency Architecture', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Funds Saved', value: '₹100M+', subtext: 'Citizen assets intercepted', icon: 'shield' },
+    { label: 'Response', value: '< 60s', subtext: 'Sub-minute automated lien freeze', icon: 'zap' },
+    { label: 'Integration', value: 'All Banks', subtext: 'Major national banking network', icon: 'layers' },
+    { label: 'Security', value: 'Military', subtext: 'Field-level AES-256 & RBAC', icon: 'lock' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Unified Complaint Ingestion & Verification',
+      description:
+        'The system aggregates fraud reports from multiple national sources, including the National Cybercrime Portal and the 1930 Helpline, establishing a single verified source of truth for every incident.',
+      subItems: [
+        { label: 'Crime ID Validation', text: 'Normalizes incident data, disputed amount, and recipient account numbers.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Instant "Lien" (Account Freeze) Execution',
+      description:
+        'When a fraud is verified, the portal dispatches high-priority API calls to the receiving bank to place an immediate "Lien" on the disputed funds, freezing account balances across ATM, POS, and cheque channels.',
+      subItems: [
+        { label: 'Sub-Minute Freezes', text: 'Direct bank risk engine webhooks trigger automated hold placement.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'AI-Driven Bank Performance & Failure Monitoring',
+      description:
+        'The dashboard provides real-time transaction metrics and bank performance tracking. AI algorithms analyze failure trends per hour—such as "Service Unavailable" or "Invalid RRN"—allowing technical teams to fix bank connection issues immediately.',
+      callout: {
+        title: 'Continuous Telemetry',
+        text: 'AI detects bank downtime anomalies before they compromise emergency freeze operations.',
+        badge: 'Real-Time',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Granular Auditing & Prosecution Reporting',
+      description:
+        'Officials filter data by date ranges, specific banks, and Crime IDs, producing an immutable auditable trail of transactions sent, acknowledged, successfully frozen, and returned to citizens.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 7. Dovehouse Capital: High-Speed Web Architecture (Danish Minimalist SPA)
+// ----------------------------------------------------------------------
+export const DEFAULT_DOVEHOUSE_DATA: CaseStudyData = {
+  _id: 'caseStudy-dovehouse',
+  title: 'High-Speed Web Architecture: Danish Minimalist Digital Presence for Dovehouse Capital',
+  slug: { current: 'dovehouse' },
+  eyebrow: 'CASE STUDY',
+  category: 'High-Performance Web Architecture',
+  industry: 'Financial Advisory & Algorithmic Trading',
+  client: 'Dovehouse Capital',
+  location: 'Denmark / Global',
+  shortDescription:
+    'Lightning-fast, zero-latency Single Page Application (SPA) pairing a Danish Minimalist aesthetic with purposeful micro-animations to demystify complex AI-driven dynamic heuristic investment strategies.',
+  heroImage: { asset: { url: '/casestudy-img/casestudy-img-satayapan.webp' } },
+  featureImage: '/casestudy-img/casestudy-img-satayapan.webp',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Dovehouse Capital (Martin Rasmussen & Claus Rosenberg Gotthard)' },
+    { label: 'SOLUTION', value: 'High-Speed Web Architecture & Danish Minimalist SPA' },
+    { label: 'INDUSTRY', value: 'Global Financial Advisory / Algorithmic Trading' },
+    {
+      label: 'CAPABILITIES',
+      value: 'React.js SPA Architecture • Next.js SSR • Danish Minimalist UI/UX • Framer Motion • Zero-Latency Transitions',
+    },
+  ],
+  metrics: [
+    {
+      value: '< 0.8s',
+      label: 'Page Load Time',
+      description: 'Dropped to sub-second instantaneous initial rendering',
+    },
+    {
+      value: 'Zero Latency',
+      label: 'Fluid Page Transitions',
+      description: '100% fluid interactions via Single Page Application (SPA) architecture',
+    },
+    {
+      value: 'Danish Minimalist',
+      label: 'Elevated Brand Perception',
+      description: 'Purposeful whitespace, crisp typography, and Nordic elegance',
+    },
+    {
+      value: '2025 Advisory',
+      label: 'Institutional Credibility',
+      description: 'Built on over two decades of European investment mastery',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Snapshot',
+    subtitle: 'The Digital Credibility Dilemma in Algorithmic Wealth Advisory',
+    paragraphs: [
+      'Established in 2025 by Martin Rasmussen and Claus Rosenberg Gotthard, Dovehouse Capital is a global advisory firm built on over two decades of European investment mastery. Their mission is ambitious: to demystify the hedge fund realm, democratize access to high returns, and forge enduring partnerships.',
+      'Their trading approach is highly sophisticated—a three-strategy platform driven by AI, machine learning, and dynamic heuristics. However, traditional financial advisory websites are notoriously dense, slow to load, and visually cluttered. Dovehouse needed a digital platform that did not just tell investors they were fast, modern, and transparent—it needed to demonstrate it through a flawless, high-speed digital experience.',
+    ],
+  },
+  challenge: {
+    title: 'The Backstory',
+    subtitle: 'Overcoming the Clunky Legacy Finance Standard',
+    content:
+      'Translating complex, high-tech algorithmic trading into an engaging digital experience presented three major obstacles:',
+    points: [
+      'The Clunky Finance Standard: Traditional finance websites are dense, slow, and visually noisy, creating friction for prospective investors.',
+      'The Speed Disconnect: Dovehouse operates using high-speed algorithmic trading. A slow, multi-page site would contradict their technological agility.',
+      'The Jargon Barrier: They needed to explain dynamic heuristic investing without overwhelming users, requiring ultimate transparency and visual storytelling.',
+    ],
+  },
+  complexity: {
+    title: 'Design & Engineering Harmony',
+    intro:
+      'Travash architected the platform around a highly dynamic React framework paired with a Danish Minimalist design philosophy:',
+    items: [
+      {
+        title: 'DANISH MINIMALIST UI/UX',
+        description: 'Stripping away visual noise, utilizing generous negative space and crisp typography to center focus on core investment pillars.',
+      },
+      {
+        title: 'REACT APP-LIKE NAVIGATION',
+        description: 'Eliminating traditional browser page reloads with instantaneous, zero-latency SPA state transitions.',
+      },
+      {
+        title: 'FLUID MOTION GRAPHICS',
+        description: 'Layering custom Framer Motion animations to humanize complex AI and machine learning concepts elegantly.',
+      },
+      {
+        title: 'INTERACTIVE STORYTELLING',
+        description: 'Guiding high-net-worth investors through the Three Core Investment Strategies without relying on dense PDFs.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'Danish Minimalism Meets High-Performance React Architecture.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Nordic Aesthetic System',
+        description: 'Engineered a "less is more" design language with sophisticated muted tones and purposeful whitespace.',
+      },
+      {
+        stepNumber: '02',
+        title: 'React SPA Engineering',
+        description: 'Built an app-like navigation model where switching between leadership and investment strategies occurs with zero latency.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Framer Motion Dynamics',
+        description: 'Designed silky-smooth cascade animations that visually guide investors through complex heuristic concepts.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Institutional Trust Architecture',
+        description: 'Highlighted founder credentials, regulatory governance, and algorithmic transparency on a single responsive canvas.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Cross-Device Performance Tuning',
+        description: 'Optimized bundle size and asset loading for flawless rendering on mobile devices across global time zones.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Key Dimensions of the Dovehouse Capital Digital Experience',
+    items: [
+      {
+        title: 'The Danish Minimalist UI/UX',
+        description: 'Generous negative space and crisp typography force attention directly onto core pillars: Integrity, Prosperity, and Strategic Flexibility.',
+      },
+      {
+        title: 'React-Powered App-Like Navigation',
+        description: 'Eliminates traditional page loads entirely. When users click between sections, transitions are instantaneous.',
+      },
+      {
+        title: 'Fluid, Purposeful Animations',
+        description: 'Elements fade, slide, and cascade gracefully as the user scrolls, making complex financial topics feel intuitive and engaging.',
+      },
+      {
+        title: 'Interactive Strategy Storytelling',
+        description: 'Walks potential investors through the firm’s three core investment models without relying on cumbersome PDF downloads.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'Global Investor Traffic → Next.js SSR (<0.8s Initial Render) → React SPA State Layer → Danish Minimalist UI/UX → Framer Motion Engine → Interactive Strategy Breakdown.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Dovehouse Capital High-Speed React SPA Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Frontend Framework',
+      technologies: ['React.js', 'Next.js (SSR / Static Generation)'],
+      description: 'Optimized for sub-second initial render and zero-latency Single Page Application routing.',
+    },
+    {
+      category: 'Styling & Design System',
+      technologies: ['Tailwind CSS', 'Danish Minimalist Design System'],
+      description: 'Bespoke Nordic typography, high-contrast palette, and generous whitespace rules.',
+    },
+    {
+      category: 'Motion & Interaction',
+      technologies: ['Framer Motion'],
+      description: 'Silky-smooth, 60fps micro-interactions and scroll-triggered narrative animations.',
+    },
+    {
+      category: 'Performance & SEO',
+      technologies: ['Edge Caching', 'Automated Image Optimization', 'Semantic HTML5'],
+      description: 'Lighthouse 98+ scores across performance, accessibility, and SEO.',
+    },
+  ],
+  impact: {
+    title: 'Measurable Business Impact',
+    subtitle: 'Establishing Instant Institutional Credibility and Brand Distinction',
+    content:
+      'By aligning Dovehouse Capital’s digital presence with their operational excellence, the new platform established them as a modern leader in European wealth advisory.',
+    outcomes: [
+      'Average page load time plummeted from legacy finance standard of 3.5s to < 0.8 seconds',
+      'Eliminated friction with 100% fluid, zero-latency Single Page Application navigation',
+      'Elevated brand perception with a distinctive Danish Minimalist visual identity',
+      'Transformed complex dynamic heuristics into engaging, transparent digital touchpoints',
+      'Delivered flawless cross-device performance for global high-net-worth investors',
+    ],
+  },
+  beforeAfter: {
+    title: 'Digital Presence: Before vs. After',
+    subtitle: 'Legacy Corporate Finance vs. Modern High-Speed SPA',
+    beforeTitle: 'LEGACY FINANCE STANDARD',
+    afterTitle: 'TRAVASH REACT PLATFORM',
+    before: [
+      '3.5 Seconds average page load time',
+      'Hard browser reloads creating jarring navigation friction',
+      'Cluttered, static layout filled with wall-to-wall text',
+      'Dense downloadable PDFs required to understand investment strategies',
+      'Degraded, slow mobile browsing experience',
+    ],
+    after: [
+      '< 0.8 Seconds instantaneous initial render',
+      'Instantaneous, zero-latency Single Page Application transitions',
+      'Danish Minimalist design with purposeful negative space and dynamic motion',
+      'Interactive, intuitive storytelling demystifying algorithmic trading models',
+      '100% fluid, app-like responsiveness across all smartphone and tablet devices',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Travash translated our sophisticated algorithmic investment philosophy into a digital experience that feels as fast, transparent, and refined as our trading models. The minimalist aesthetic and lightning speed have built immense credibility with our global investor network.',
+    author: 'Martin Rasmussen & Claus Rosenberg Gotthard',
+    role: 'Founding Partners',
+    company: 'Dovehouse Capital',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Advisory & Wealth Management',
+    subtitle: 'Does Your Website Contradict Your Technological Sophistication?',
+    items: [
+      'Replacing slow legacy corporate websites with sub-second modern web applications',
+      'Using visual storytelling to demystify proprietary AI, machine learning, or financial models',
+      'Building institutional trust with high-net-worth clients through pristine design aesthetics',
+      'Eliminating user journey friction across both mobile and desktop viewports',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Ready to upgrade your digital presence and eliminate operational bottlenecks? Travash partners with ambitious firms to design, build, and deploy production-ready web platforms, AI agents, and enterprise integrations tailored to your brand.',
+    primaryCTA: { label: 'Discuss a Premium Web Architecture', href: '#contact' },
+    secondaryCTA: { label: 'Explore Frontend Design Consultation', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Page Load', value: '< 0.8s', subtext: 'Instantaneous SSR initial render', icon: 'zap' },
+    { label: 'Transitions', value: 'Zero Latency', subtext: 'React SPA state navigation', icon: 'layers' },
+    { label: 'Aesthetic', value: 'Nordic Minimal', subtext: 'Danish design language', icon: 'globe' },
+    { label: 'Motion', value: '60 FPS', subtext: 'Framer Motion micro-animations', icon: 'cpu' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'The Danish Minimalist UI/UX',
+      description:
+        'We engineered the user interface to breathe. Utilizing a "less is more" Nordic aesthetic, unnecessary data clutter was eliminated, focusing attention on core pillars: Integrity, Prosperity, and Strategic Flexibility.',
+      subItems: [
+        { label: 'Purposeful Whitespace', text: 'Enhances cognitive readability for high-net-worth investors.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'React-Powered App-Like Navigation',
+      description:
+        'Built as a React-powered Single Page Application (SPA), traditional page reloads are eliminated. When navigating from leadership to investment models, transitions are instantaneous.',
+      subItems: [
+        { label: 'Zero Latency', text: 'Mirrors the agility and sub-second execution of algorithmic trading.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Fluid, Purposeful Animations',
+      description:
+        'To inject the human touch that Dovehouse prides itself on, custom Framer Motion animations layer smoothly throughout the user journey, fading, sliding, and cascading into place as investors scroll.',
+      callout: {
+        title: 'Visual Storytelling',
+        text: 'Abstract AI and heuristic concepts are made intuitive through dynamic visual cues.',
+        badge: 'Fluid UX',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Interactive Storytelling Without Dense PDFs',
+      description:
+        'Guides potential investors through the firm’s Three Core Investment Strategies directly in the browser, highlighting founder credentials and institutional trust without external document barriers.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 8. PEKT: Construction Management & Task Tracking Platform
+// ----------------------------------------------------------------------
+export const DEFAULT_PEKT_DATA: CaseStudyData = {
+  _id: 'caseStudy-pekt',
+  title: 'Dynamic Automation for Streamlining All Construction Management Activities in One Platform',
+  slug: { current: 'pekt' },
+  eyebrow: 'CASE STUDY',
+  category: 'Mobile Application & Field Automation',
+  industry: 'Construction & Real Estate Management',
+  client: 'PEKT Construction Management',
+  location: 'Global',
+  shortDescription:
+    'Mobile-first on-site construction tracking and task automation platform empowering field engineers with daily status reports, automated low-stock inventory alerts, and precise labor attendance tracking.',
+  heroImage: { asset: { url: '/casestudy-img/Satyaapan-Passport-Verification-System.png' } },
+  featureImage: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
+  projectMeta: [
+    { label: 'CLIENT', value: 'PEKT Construction Management' },
+    { label: 'SOLUTION', value: 'PEKT On-Site Mobile Task Automation Engine' },
+    { label: 'INDUSTRY', value: 'Construction / Infrastructure / Real Estate' },
+    {
+      label: 'CAPABILITIES',
+      value: 'React Native Mobile App • On-Site Task Tracking • Automated Inventory Alerts • Wage & Attendance Governance',
+    },
+  ],
+  metrics: [
+    {
+      value: '40%',
+      label: 'Time Savings Achieved',
+      description: 'Realized in daily task management and field status reporting',
+    },
+    {
+      value: '40%',
+      label: 'Overall Productivity',
+      description: 'Improvement across on-site construction engineering teams',
+    },
+    {
+      value: '98%',
+      label: 'Inventory & Expense Accuracy',
+      description: 'Maintained through automated low-stock notifications and material logs',
+    },
+    {
+      value: '4.7 / 5',
+      label: 'Field User Adoption',
+      description: 'Outstanding satisfaction score among site engineers and project managers',
+    },
+  ],
+  executiveSummary: {
+    title: 'Executive Snapshot',
+    subtitle: 'The Construction Tracking Challenge: Field Reality vs. Office Tools',
+    paragraphs: [
+      'Effectively managing daily tasks and tracking minute-to-minute progress on a construction site is incredibly difficult. The core issue was that existing, complex construction tracking applications were designed to suit office professionals, which ended up hindering efficient record-keeping for teams actively working on the ground.',
+      'To tackle these specific task tracking challenges, Travash engineered PEKT as a mobile-first solution designed directly for on-site execution. By focusing heavily on the end-user experience of field engineers, we transformed a rigid tracking system into a dynamic, automated platform handling daily task reports, low-stock material alerts, and worker wage calculations.',
+    ],
+  },
+  challenge: {
+    title: 'The Backstory',
+    subtitle: 'Overcoming Fragmented On-Site Reporting and Material Waste',
+    content:
+      'Construction managers and site engineers experienced persistent operational friction:',
+    points: [
+      'Office-Centric Software: Existing software was too cumbersome for site engineers wearing hard hats in dusty field environments.',
+      'Delayed Progress Visibility: Project managers received status reports days late, delaying milestone decisions.',
+      'Material Shortages: Lack of automated inventory alerts caused unexpected construction stoppages due to low stock.',
+      'Labor Tracking Inaccuracies: Manual worker attendance books led to wage disputes and bloated contractor expenses.',
+    ],
+  },
+  complexity: {
+    title: 'Field-First Mobile Automation',
+    intro:
+      'Travash designed a streamlined digital workflow tailored specifically for on-site construction engineers and project managers:',
+    items: [
+      {
+        title: 'REAL-TIME CARD SORTING & UX',
+        description: 'Conducted field research and low-resolution wireframe user testing directly with site workers to guarantee usability.',
+      },
+      {
+        title: 'MOBILE-FIRST TASK TRACKING',
+        description: 'Engineers submit daily milestone updates, photo proofs, and status logs in seconds from their smartphones.',
+      },
+      {
+        title: 'AUTOMATED STOCK & INVENTORY ALERTS',
+        description: 'Instant threshold notifications alert Project Managers before material shortages halt ongoing construction.',
+      },
+      {
+        title: 'ATTENDANCE & WAGE GOVERNANCE',
+        description: 'Integrated biometric and check-in attendance modules ensuring accurate wage payments for contract labor.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'User-Centric Mobile Automation Designed Directly for On-Site Execution.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Real-Time UX Research & Wireframing',
+        description: 'Initiated the project with card sorting and wireframe user testing to craft an interface field teams could use effortlessly.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Mobile-First Task Execution',
+        description: 'Shifted operational focus to mobile devices, allowing engineers to submit daily progress reports in real time.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Proactive Inventory Notification',
+        description: 'Engineered an automated alert pipeline notifying Project Managers the moment raw material stocks dip below critical levels.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Labor Attendance Integration',
+        description: 'Integrated contractor attendance monitoring ensuring precise wage disbursements and zero ghost-labor overhead.',
+      },
+      {
+        stepNumber: '05',
+        title: 'Site Validation & Deployment',
+        description: 'Tested and deployed the platform across multiple active construction sites, validating 100% daily report submission.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Key Platform Capabilities of the PEKT Construction Management System',
+    items: [
+      {
+        title: 'Real-Time UX Wireframing & Card Sorting',
+        description: 'Built around real worker behaviors, ensuring high adoption rates without requiring extensive employee training.',
+      },
+      {
+        title: 'Mobile-First Task Tracking',
+        description: 'Site engineers submit daily task updates, photos, and regular status reports directly from active construction fields.',
+      },
+      {
+        title: 'Automated Stock & Inventory Alerts',
+        description: 'Notifies Project Managers instantly upon low-stock detection, enabling proactive procurement before work stops.',
+      },
+      {
+        title: 'Precise Attendance & Wage Management',
+        description: 'Monitors contract worker hours and check-ins, guaranteeing transparent, accurate payroll disbursement.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'Field Engineers (React Native Mobile App) → API Microservices (PHP Laravel) → MySQL Relational Database → Automated Alert Dispatcher → Project Manager Command Dashboard.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: PEKT Mobile Field Execution & Real-Time Alert Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Mobile Technologies',
+      technologies: ['React Native (iOS & Android)', 'Offline Storage / SQLite'],
+      description: 'Offline-capable native mobile application built for low-connectivity construction site environments.',
+    },
+    {
+      category: 'Client-Side Web & UI',
+      technologies: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Responsive Dashboard'],
+      description: 'Project manager administrative portal for desktop and tablet supervision.',
+    },
+    {
+      category: 'Server-Side Architecture',
+      technologies: ['PHP (Laravel Framework)', 'RESTful APIs'],
+      description: 'Reliable backend services handling report ingestion, role management, and notification triggers.',
+    },
+    {
+      category: 'Database Architecture',
+      technologies: ['MySQL Enterprise'],
+      description: 'Structured relational storage for daily tasks, materials inventory logs, and labor attendance histories.',
+    },
+  ],
+  impact: {
+    title: 'Measurable Business Impact',
+    subtitle: 'From Paper Logs to 40% Productivity Gains Across Active Job Sites',
+    content:
+      'The platform is successfully deployed across various construction sites, offering builders and developers effortless production management.',
+    outcomes: [
+      '40% time savings achieved in daily task reporting and site progress monitoring',
+      '40% overall productivity boost across active on-site engineering crews',
+      '98% inventory accuracy maintained, virtually eliminating construction work stoppages',
+      '100% daily report generation rate with real-time visibility for executive stakeholders',
+      '4.7 / 5 user satisfaction rating from engineers working in active field conditions',
+    ],
+  },
+  beforeAfter: {
+    title: 'Construction Management: Before vs. After',
+    subtitle: 'Modernizing On-Site Field Execution',
+    beforeTitle: 'LEGACY CONSTRUCTION PRACTICES',
+    afterTitle: 'PEKT AUTOMATION PLATFORM',
+    before: [
+      'Clunky software built for desk workers, ignored by field engineers',
+      'Daily progress reports delayed by days or compiled on paper sheets',
+      'Unexpected material stockouts halting work and inflating project costs',
+      'Manual labor attendance records prone to payroll discrepancies',
+      'Executive stakeholders lacked real-time visibility into project health',
+    ],
+    after: [
+      'Mobile-first React Native app designed specifically for field conditions',
+      'Instant mobile daily reports submitted directly from the job site',
+      'Proactive automated notifications when raw material inventories dip',
+      'Accurate digitized attendance tracking ensuring precise contractor wages',
+      'Live executive dashboards showing minute-to-minute job site progress',
+    ],
+  },
+  testimonial: {
+    quote:
+      'PEKT gave our site engineers a tool they actually enjoy using. Being able to submit daily progress and flag low materials directly from their phones has cut our reporting time in half and stopped unexpected site delays.',
+    author: 'Construction Project Director',
+    role: 'Head of Field Operations',
+    company: 'PEKT Construction Management',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Infrastructure & Construction',
+    subtitle: 'Are Office-Centric Applications Hindering Your On-Site Productivity?',
+    items: [
+      'Designing software specifically for end users in active, hands-on field environments',
+      'Eliminating reporting latency so project leadership can course-correct before delays compound',
+      'Preventing expensive project standstills with automated low-stock material alerts',
+      'Enforcing transparent labor attendance to protect budgets and prevent payroll disputes',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Looking to streamline field execution, on-site task tracking, or mobile operational workflows? Travash engineers user-centric mobile applications and enterprise automation tools built for high adoption.',
+    primaryCTA: { label: 'Discuss a Mobile Field Platform', href: '#contact' },
+    secondaryCTA: { label: 'Explore Custom Workflow Automation', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Time Saved', value: '40%', subtext: 'Daily task reporting efficiency', icon: 'clock' },
+    { label: 'Productivity', value: '+40%', subtext: 'Overall field productivity gain', icon: 'chart' },
+    { label: 'Inventory', value: '98%', subtext: 'Material & expense accuracy', icon: 'shield' },
+    { label: 'Mobile First', value: 'React Native', subtext: 'Built for on-site field engineers', icon: 'smartphone' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Real-Time UX Research & Card Sorting Wireframing',
+      description:
+        'Initiated the project with card sorting and iterative low-resolution wireframe user testing. This human-centric approach ensured the mobile interface was immediately intuitive for site engineers working in rough field environments.',
+    },
+    {
+      stepNumber: '02',
+      title: 'Mobile-First On-Site Task Tracking',
+      description:
+        'Shifted operational focus to mobile devices, allowing engineers to submit daily milestone progress, attach site photos, and log regular status reports directly from the construction floor.',
+      subItems: [
+        { label: 'One-Tap Updates', text: 'Pre-configured milestone templates reduce reporting time to seconds.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Automated Stock & Inventory Threshold Alerts',
+      description:
+        'Engineered an automated notification pipeline for proactive material management. When cement, steel, or aggregate reserves drop below critical levels, Project Managers receive instant alerts to dispatch reorders.',
+      callout: {
+        title: 'Zero Stockouts',
+        text: 'Automated low-stock warnings eliminate unexpected construction halts and idle contractor hours.',
+        badge: 'Proactive',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Precise Labor Attendance & Wage Management',
+      description:
+        'Integrated a contractor attendance monitoring module allowing Site Engineers to verify daily worker headcounts, ensuring accurate wage disbursements and preventing payroll discrepancies.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// 9. Skipr: Autonomous Agentic VPN (Cybersecurity & Privacy SaaS)
+// ----------------------------------------------------------------------
+export const DEFAULT_SKIPR_DATA: CaseStudyData = {
+  _id: 'caseStudy-skipr',
+  title: 'SKIPR VPN: Redefining Online Privacy with the World’s First Fully Autonomous, Agentic VPN',
+  slug: { current: 'skipr' },
+  eyebrow: 'CASE STUDY',
+  category: 'Autonomous AI & Privacy SaaS',
+  industry: 'Cybersecurity & Online Privacy',
+  client: 'Skipr VPN',
+  location: 'Global SaaS',
+  shortDescription:
+    'Groundbreaking zero-knowledge VPN engineered from scratch with autonomous AI agents dynamically managing infrastructure, routine server burns with zero log retention, and 100% credential-free sign-up and payment.',
+  heroImage: { asset: { url: '/casestudy-img/Satyaapan-Passport-Verification-System.png' } },
+  featureImage: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
+  projectMeta: [
+    { label: 'CLIENT', value: 'Skipr VPN' },
+    { label: 'SOLUTION', value: 'Autonomous Agentic Zero-Knowledge VPN' },
+    { label: 'INDUSTRY', value: 'Cybersecurity / Online Privacy / AI SaaS' },
+    {
+      label: 'CAPABILITIES',
+      value: 'Zero-Knowledge Architecture • Autonomous AI Agents • Scheduled Server Burns • OpenVPN Protocol • Non-Custodial Payments',
+    },
+  ],
+  metrics: [
+    {
+      value: 'Zero Knowledge',
+      label: '100% Privacy Guarantee',
+      description: 'Zero collection of names, emails, usernames, passwords, or IP logs',
+    },
+    {
+      value: '100% Autonomous',
+      label: 'Agent-Driven Infrastructure',
+      description: 'AI agents manage server deployment, load balancing, and dynamic scaling',
+    },
+    {
+      value: '+40%',
+      label: 'Sign-Up & Adoption Growth',
+      description: 'Driven by credential-free, trustless user onboarding',
+    },
+    {
+      value: '+35%',
+      label: 'User Retention Boost',
+      description: 'Delivered by lightning-fast connections and frictionless single-tap toggles',
+    },
+  ],
+  executiveSummary: {
+    title: 'Project Overview & Introduction',
+    subtitle: 'Redefining Digital Privacy with the World’s First Fully Autonomous, Agent-Driven VPN',
+    paragraphs: [
+      'Skipr VPN redefines digital privacy by introducing the first-ever autonomous, agent-driven VPN. It offers complete anonymity, untraceability, and untrackability—without relying on user credentials or human involvement. It is engineered as a next-generation, SaaS-powered solution for users who demand absolute privacy.',
+      'The client approached Travash with a groundbreaking concept from scratch: to revolutionize the VPN landscape by addressing the core privacy flaws inherent in traditional VPN services. Travash architected and developed the entire Skipr platform from a blank canvas—handling everything from the core agentic backend and OpenVPN integration to the sleek front-end UI and secure non-custodial payment gateways.',
+    ],
+  },
+  challenge: {
+    title: 'Scope & Challenges',
+    subtitle: 'Overcoming Architectural Hurdles with No Market Blueprint',
+    content:
+      'Building an autonomous, agent-driven VPN from a blank canvas required overcoming six unprecedented engineering hurdles:',
+    points: [
+      'No Reference Model: Building an autonomous, agentic VPN from the ground up with no existing market blueprint.',
+      'True Privacy Guarantee: Architecting payments and connections without ever collecting an email, username, or password.',
+      'Autonomous Agent Deployment: Creating AI agents capable of deploying, routing, and scaling infrastructure dynamically.',
+      'Server Burn Protocol: Engineering a backend that automatically destroys server instances on a schedule to eliminate log retention.',
+      'Market Distrust: Proving a zero-knowledge, non-custodial architecture to skeptical consumers wary of VPN logging claims.',
+      'High-Speed Performance: Ensuring stable, sub-second latency across both mobile and web platforms.',
+    ],
+  },
+  complexity: {
+    title: 'Trustless Zero-Knowledge Architecture',
+    intro:
+      'We discarded traditional user databases and instead engineered a non-custodial, zero-knowledge ecosystem:',
+    items: [
+      {
+        title: 'ZERO-KNOWLEDGE ARCHITECTURE',
+        description: 'Skipr collects zero personal information—not even an email. Users enjoy complete anonymity from download to payment.',
+      },
+      {
+        title: 'AUTONOMOUS AGENT FLEET',
+        description: 'Fully automated AI agents manage VPN infrastructure, eliminating human error and dynamically balancing server loads.',
+      },
+      {
+        title: 'SCHEDULED SERVER BURNS',
+        description: 'Server instances are routinely destroyed and replaced with absolutely no log retention, making traffic untraceable.',
+      },
+      {
+        title: 'IRON-CLAD OPENVPN ENCRYPTION',
+        description: 'Cutting-edge OpenVPN encryption paired with AI dynamic routing to circumvent network congestion.',
+      },
+    ],
+  },
+  approach: {
+    title: 'Travash Approach',
+    intro: 'Blank-Canvas SaaS Engineering: Non-Custodial Architecture with AI Agent Orchestration.',
+    steps: [
+      {
+        stepNumber: '01',
+        title: 'Zero-Knowledge Protocol Design',
+        description: 'Eliminated traditional user databases, replacing them with cryptographic token sessions that require no PII.',
+      },
+      {
+        stepNumber: '02',
+        title: 'Autonomous AI Agent Engine',
+        description: 'Developed Python-based agentic logic capable of provisioning, balancing, and monitoring global server clusters.',
+      },
+      {
+        stepNumber: '03',
+        title: 'Scheduled Server Burn Pipelines',
+        description: 'Automated ephemeral server teardown scripts that wipe instance volumes cleanly on scheduled intervals.',
+      },
+      {
+        stepNumber: '04',
+        title: 'Sleek Non-Custodial Interface',
+        description: 'Designed an intuitive UI with single-tap connection toggles (Skipr Instant vs Skipr Ultimate).',
+      },
+      {
+        stepNumber: '05',
+        title: 'Anonymous Payment Gateways',
+        description: 'Integrated privacy-preserving payment processing allowing subscription upgrades without revealing identity.',
+      },
+    ],
+  },
+  solution: {
+    title: 'The Solution',
+    intro: 'Highlighted Project Capabilities (Features)',
+    items: [
+      {
+        title: 'Zero-Knowledge Architecture',
+        description: 'Collects zero personal information—not even a name or email. Guarantees complete anonymity from download to payment.',
+      },
+      {
+        title: 'Autonomous Agent Network',
+        description: 'Fully automated AI agents manage VPN infrastructure, eliminating human error and ensuring dynamic scaling and threat protection.',
+      },
+      {
+        title: 'Scheduled Server Burns',
+        description: 'All server instances are routinely destroyed with absolutely no log retention, making the user’s online presence truly untraceable.',
+      },
+      {
+        title: 'Iron-Clad OpenVPN Protocol',
+        description: 'Cutting-edge encryption technology delivering lightning-fast, stable connections for streaming, browsing, and communications.',
+      },
+    ],
+  },
+  solutionArchitecture: {
+    title: 'Application Architecture',
+    intro:
+      'Client Apps (Mobile & Web) → Non-Custodial Cryptographic Handshake → Autonomous AI Agent Controller → Dynamic Ephemeral Server Fleet (OpenVPN) → Scheduled Server Burn Pipeline → Zero Data Retention.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Skipr Autonomous Agentic VPN & Server Burn Protocol Architecture',
+  },
+  technologyStack: [
+    {
+      category: 'Client Applications',
+      technologies: ['React Native', 'Modern Web App', 'Sleek Dark Mode UI'],
+      description: 'Cross-platform mobile and web interfaces with single-tap connection toggles.',
+    },
+    {
+      category: 'Autonomous Agent Backend',
+      technologies: ['Node.js', 'Python (AI & Autonomous Agent Logic)', 'FastAPI'],
+      description: 'Orchestrates dynamic server provisioning, load monitoring, and autonomous burn schedules.',
+    },
+    {
+      category: 'Networking & Protocols',
+      technologies: ['OpenVPN Protocol', 'AES-256-GCM', 'WireGuard Support'],
+      description: 'Military-grade cryptographic tunnel encryption with real-time AI latency optimization.',
+    },
+    {
+      category: 'Cloud Infrastructure',
+      technologies: ['AWS Cloud Infrastructure', 'Ephemeral EC2 Fleets', 'Docker'],
+      description: 'Globally distributed ephemeral server instances designed for automated teardown and recreation.',
+    },
+  ],
+  impact: {
+    title: 'Measurable Business Impact (Results)',
+    subtitle: 'Immediate Market Validation for a Truly Trustless, Zero-Knowledge Platform',
+    content:
+      'By delivering a trustless, zero-knowledge platform with autonomous agentic operations, Skipr VPN saw rapid adoption across privacy-conscious users globally.',
+    outcomes: [
+      'Sign-ups and app adoptions increased by 40% due to credential-free onboarding',
+      'User retention improved by 35% driven by fast connection speeds and seamless UX',
+      'Overall session duration increased by 50%, powered by AI dynamic network optimization',
+      '100% verifiable zero-knowledge posture with zero user data leaks or compromises',
+      'Autonomous AI fleet reduced cloud server maintenance overhead by over 60%',
+    ],
+  },
+  beforeAfter: {
+    title: 'Privacy Paradigms: Before vs. After',
+    subtitle: 'Traditional VPN Services vs. Autonomous Agentic Skipr',
+    beforeTitle: 'TRADITIONAL VPN SERVICES',
+    afterTitle: 'SKIPR AUTONOMOUS AGENTIC VPN',
+    before: [
+      'Require email, passwords, and billing information linked to user identities',
+      'Persistent server instances vulnerable to subpoena or logging compromises',
+      'Human administrators manage infrastructure, introducing human error risks',
+      'Slow manual server switching when network congestion occurs',
+      'Users forced to trust privacy claims without architectural proof',
+    ],
+    after: [
+      '100% credential-free: no name, email, or account creation required',
+      'Scheduled server burns routinely destroy instances with zero log retention',
+      'Fully autonomous AI agents manage infrastructure and threat prevention',
+      'AI dynamically optimizes routing in real-time to circumvent congestion',
+      'Architectural zero-knowledge: mathematically impossible to leak user logs',
+    ],
+  },
+  testimonial: {
+    quote:
+      'Travash built Skipr VPN from a concept into a cutting-edge reality. Their ability to engineer autonomous AI agents and a zero-knowledge architecture that completely eliminates user sign-up credentials has set a new benchmark in online privacy.',
+    author: 'Founding Leadership',
+    role: 'Chief Technology Officer',
+    company: 'Skipr VPN',
+  },
+  whyItMatters: {
+    title: 'Why This Matters for Cybersecurity & SaaS',
+    subtitle: 'Are You Looking to Build Trustless, Next-Generation Privacy Platforms?',
+    items: [
+      'Architecting non-custodial systems where customer identity is never stored',
+      'Deploying autonomous AI agents to manage cloud infrastructure without human intervention',
+      'Engineering scheduled ephemeral server teardowns to guarantee zero data retention',
+      'Building ultra-fast, cross-platform client applications that eliminate onboarding friction',
+    ],
+  },
+  nextStep: {
+    heading: 'The Next Step',
+    content:
+      'Looking to build a next-generation SaaS platform, autonomous AI agent architecture, or privacy-first digital product? Travash partners with innovators from blank canvas to full-scale global deployment.',
+    primaryCTA: { label: 'Discuss an Autonomous AI Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Explore Zero-Knowledge SaaS Architecture', href: '#contact' },
+  },
+  technicalHighlights: [
+    { label: 'Privacy', value: 'Zero PII', subtext: 'No email or account required', icon: 'lock' },
+    { label: 'Agents', value: '100% Auto', subtext: 'Autonomous AI infrastructure', icon: 'cpu' },
+    { label: 'Protocol', value: 'OpenVPN', subtext: 'AES-256-GCM encryption', icon: 'shield' },
+    { label: 'Retention', value: 'Zero Logs', subtext: 'Scheduled server burn teardowns', icon: 'zap' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Zero-Knowledge Architecture & Non-Custodial Setup',
+      description:
+        'Skipr doesn’t collect or store any personal information—not even a name or email. This non-custodial setup guarantees complete anonymity from download to payment.',
+      subItems: [
+        { label: 'Cryptographic Tokenization', text: 'Device connection tokens authenticate without identifying user data.' },
+      ],
+    },
+    {
+      stepNumber: '02',
+      title: 'Autonomous Agent Network (Dynamic Infrastructure)',
+      description:
+        'Fully automated AI agents manage the VPN infrastructure, eliminating human error and ensuring dynamic scaling, performance monitoring, and real-time threat security.',
+      subItems: [
+        { label: 'Fleet Optimization', text: 'Agents spin up and tear down instances based on live bandwidth demands.' },
+      ],
+    },
+    {
+      stepNumber: '03',
+      title: 'Scheduled Server Burn Protocol',
+      description:
+        'All server instances are routinely destroyed with absolutely no log retention. Virtual machine volumes are wiped clean, making the user’s online presence truly untraceable.',
+      callout: {
+        title: 'Untraceable Traffic',
+        text: 'Routine destruction of server instances guarantees that historical connection records cannot exist.',
+        badge: 'Zero Logs',
+      },
+    },
+    {
+      stepNumber: '04',
+      title: 'Iron-Clad OpenVPN Encryption & AI Routing',
+      description:
+        'Powered by the industry-standard OpenVPN protocol with AI dynamic routing optimization to avoid congestion, delivering consistently fast, stable connections for streaming and browsing.',
+    },
+  ],
+}
+
+// ----------------------------------------------------------------------
+// Retain Darpan & i-Verify for CMS / Historical Support
+// ----------------------------------------------------------------------
 export const DEFAULT_DARPAN_DATA: CaseStudyData = {
   title: 'Darpan: AI Facial Recognition & Missing Person Retrieval Engine',
   slug: { current: 'darpan' },
@@ -350,6 +2641,15 @@ export const DEFAULT_DARPAN_DATA: CaseStudyData = {
   location: 'India',
   shortDescription:
     'Darpan is a deep learning computer vision system developed to match missing persons and unidentified individuals in real-time across millions of state photo records with high biometric accuracy.',
+  featureImage: 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp',
+  heroImage: { asset: { url: 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp' } },
+  solutionArchitecture: {
+    title: 'Solution Architecture',
+    intro:
+      'High-speed vector similarity indexing with convolutional neural networks for sub-second facial match retrieval.',
+    image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+    caption: 'Figure: Darpan Biometric Vector Search & Police Registry Integration Architecture',
+  },
   projectMeta: [
     { label: 'Industry', value: 'Government / Public Sector' },
     { label: 'Solution', value: 'Deep Learning + Computer Vision' },
@@ -429,6 +2729,12 @@ export const DEFAULT_DARPAN_DATA: CaseStudyData = {
     metaDescription:
       'Discover how Travash developed Darpan, an AI facial recognition and missing person retrieval engine for state law enforcement.',
   },
+  technicalHighlights: [
+    { label: 'Search Speed', value: '< 2s', subtext: 'Vector search across 10M+ records', icon: 'zap' },
+    { label: 'Accuracy', value: '99.2%', subtext: 'Deep biometric confidence score', icon: 'shield' },
+    { label: 'Families', value: '800+', subtext: 'Missing persons reunited', icon: 'chart' },
+    { label: 'Security', value: 'Zero-Trust', subtext: 'Encrypted citizen registry data', icon: 'lock' },
+  ],
 }
 
 export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
@@ -441,6 +2747,8 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
   location: 'India & UAE',
   shortDescription:
     'i-Verify provides a high-security automated candidate background check and credential verification platform with real-time public registry cross-referencing.',
+  featureImage: 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp',
+  heroImage: { asset: { url: 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp' } },
   projectMeta: [
     { label: 'Industry', value: 'Technology / HR / Public Sector' },
     { label: 'Solution', value: 'Automated Document AI & Identity Verification' },
@@ -494,7 +2802,7 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
   technologyStack: [
     {
       category: 'Frontend & UI',
-      technologies: ['React', 'Next.js', 'Tailwind CSS'],
+      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
       description: 'Responsive enterprise web application with real-time audit dashboards.',
     },
     {
@@ -508,6 +2816,18 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
       description: 'Field-level encrypted data storage, tokenized access, and immutable audit logs.',
     },
   ],
+  impact: {
+    title: 'The Impact',
+    subtitle: 'From Weeks of Uncertainty to Real-Time Verified Credentialing',
+    content:
+      'The deployment of i-Verify delivered an immediate transformation in background verification operational capacity, cutting turnaround latency by 85% and preventing credential fraud.',
+    outcomes: [
+      'Over 500,000 candidate verifications completed with 99.8% extraction accuracy',
+      'Turnaround reduced from 14 days to under 24 hours for standard screening profiles',
+      'Over 2,400 fraudulent and altered credentials intercepted before enterprise onboarding',
+      'Zero compliance infractions with strict candidate consent management and audit trails',
+    ],
+  },
   testimonial: {
     quote:
       'i-Verify slashed our onboarding verification time from two weeks to under 24 hours. The tamper-detection engine has saved our enterprise from multiple fraudulent credentials.',
@@ -520,197 +2840,74 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
     metaDescription:
       'Explore how Travash built i-Verify, an automated background check and credential verification platform processing 500K+ verifications.',
   },
+  technicalHighlights: [
+    { label: 'Turnaround', value: '< 24 Hours', subtext: '85% latency reduction', icon: 'zap' },
+    { label: 'Accuracy', value: '99.8%', subtext: 'OCR forensic extraction precision', icon: 'shield' },
+    { label: 'Volume', value: '500K+', subtext: 'Applicant background checks', icon: 'database' },
+    { label: 'Compliance', value: 'SOC-2 / ISO', subtext: 'Zero compliance infractions', icon: 'lock' },
+  ],
+  walkthroughSteps: [
+    {
+      stepNumber: '01',
+      title: 'Applicant Self-Service Onboarding',
+      description: 'Candidates upload identity credentials and educational certificates directly via a secured mobile interface in under 3 minutes.',
+    },
+    {
+      stepNumber: '02',
+      title: 'Forensic OCR & Tamper Detection',
+      description: 'Computer vision algorithms inspect document pixels, font hierarchies, and cryptographic metadata to flag forged seals.',
+    },
+    {
+      stepNumber: '03',
+      title: 'Real-Time Institutional Registry Bridges',
+      description: 'System verifies student enrollment and public records through automated institutional API connectors.',
+    },
+    {
+      stepNumber: '04',
+      title: 'Automated Audit Dossier & Clearance Certificate',
+      description: 'Generates immutable digital verification certificates with role-based sign-off for enterprise HR teams.',
+    },
+  ],
 }
 
-export const DEFAULT_I4C_DATA: CaseStudyData = {
-  title: 'I4C National Bank Portal: Pan-India Financial Fraud Mitigation',
-  slug: { current: 'i4c-bank-portal' },
-  eyebrow: 'CASE STUDY',
-  category: 'Cyber Fraud Mitigation',
-  industry: 'Banking & Financial Services',
-  client: 'National Anti-Fraud Network',
-  location: 'Pan-India',
-  shortDescription:
-    'The I4C portal serves as the nationwide frontline application connecting law enforcement agencies and financial institutions to coordinate immediate fund freezes upon reported cyber theft.',
-  projectMeta: [
-    { label: 'Industry', value: 'Banking & Financial Services / Public Sector' },
-    { label: 'Solution', value: 'Real-Time Inter-Bank Fraud Intercept Platform' },
-    { label: 'Platform', value: 'High-Concurrency Enterprise Web Platform' },
-    { label: 'Capabilities', value: 'Sub-Minute Account Freezes, Real-Time Telemetry, Bank API Bridges' },
-  ],
-  metrics: [
-    { value: '₹100M+', label: 'Fraud Intercepted', description: 'Stolen funds saved from cash-out' },
-    { value: '<60s', label: 'Inter-Bank Freeze', description: 'Average response time across participating banks' },
-    { value: '150+', label: 'Financial Institutions', description: 'Connected banks, NBFCs, and UPI payment apps' },
-    { value: '99.99%', label: 'Platform Uptime', description: 'Zero downtime during nationwide transaction surges' },
-  ],
-  executiveSummary: {
-    title: 'Executive Summary',
-    subtitle: 'Halting cyber criminals in real time to protect citizens and financial systems.',
-    paragraphs: [
-      'Financial cyber fraud relies on swift multi-layered money transfers, where stolen funds are bounced through dozens of intermediary mule accounts within minutes.',
-      'Travash engineered the I4C coordination portal to act as the nerve center uniting police departments, banks, and payment gateways, enabling automated instant account freeze orders before funds can be withdrawn at ATMs.',
-    ],
-  },
-  challenge: {
-    title: 'The Challenge',
-    subtitle: 'The 60-minute golden hour: stopping money laundering across disparate banking rails.',
-    content:
-      'When a cyber theft occurs, victims report it to the helpline. However, by the time traditional paperwork reached a bank branch, the money had already vanished. A real-time unified communication protocol was urgently required.',
-    points: [
-      'Rapid velocity of mule account hopping across multiple banks and UPI gateways',
-      'Heterogeneous banking core systems with differing API structures and security protocols',
-      'Massive concurrency during peak hours with thousands of incident tickets logged per hour',
-      'Need for ironclad chain of custody and forensic evidentiary logs for prosecution',
-    ],
-  },
-  solution: {
-    title: 'The Solution',
-    intro: 'A high-throughput event-driven platform routing freeze requests straight to bank risk engines.',
-    items: [
-      {
-        title: 'Instant Mule Trail Mapping',
-        description: 'Automated transaction trace identifying downstream recipient accounts across different banks.',
-      },
-      {
-        title: 'Direct Bank API Dispatch',
-        description: 'Standardized ISO 20022 and banking webhooks triggering immediate lien-marking on compromised accounts.',
-      },
-      {
-        title: 'Law Enforcement Dashboard',
-        description: 'Single-pane-of-glass interface for cyber police officers to track recovery status and generate court evidence.',
-      },
-    ],
-  },
-  technologyStack: [
-    {
-      category: 'Frontend',
-      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Redux Toolkit'],
-      description: 'Zero-latency live operational dashboard with real-time websocket updates.',
-    },
-    {
-      category: 'Backend & Event Streaming',
-      technologies: ['Java', 'Spring Boot', 'Apache Kafka', 'Node.js'],
-      description: 'Distributed event-driven architecture handling millions of bank transactions per hour.',
-    },
-    {
-      category: 'Databases & Resilience',
-      technologies: ['PostgreSQL', 'Redis Cluster', 'Elasticsearch'],
-      description: 'ACID-compliant transaction storage, in-memory caching, and sub-second audit log indexing.',
-    },
-  ],
-  testimonial: {
-    quote:
-      'Travash engineered the backbone of our national fight against cyber fraud. Thanks to their robust infrastructure and rapid account-freeze capabilities, we are saving millions of citizens hard-earned rupees every single month.',
-    author: 'Senior Leadership & National Coordinator',
-    role: 'Cyber Crime Coordination',
-    company: 'National Anti-Fraud Network',
-  },
-  seo: {
-    metaTitle: 'I4C National Bank Portal Case Study | Travash Software Solutions',
-    metaDescription:
-      'Learn how Travash built the I4C portal, enabling rapid inter-bank cyber fraud intercepts and saving over ₹100M in stolen funds.',
-  },
-}
-
-export const DEFAULT_UGO_DATA: CaseStudyData = {
-  title: 'UGO: Intelligent Fleet Routing & Supply Chain Dispatch Platform',
-  slug: { current: 'ugo' },
-  eyebrow: 'CASE STUDY',
-  category: 'Logistics & Supply Chain',
-  industry: 'E-Commerce & Retail',
-  client: 'Logistics Network Partner',
-  location: 'Hyderabad, India',
-  shortDescription:
-    'UGO is an end-to-end fleet tracking and dispatch coordination system powering commercial transport operations with sub-second telemetry and dynamic routing.',
-  projectMeta: [
-    { label: 'Industry', value: 'Logistics / Supply Chain / E-Commerce' },
-    { label: 'Solution', value: 'Dynamic Fleet Routing & Driver Telematics' },
-    { label: 'Platform', value: 'Mobile App & Dispatcher Web Console' },
-    { label: 'Capabilities', value: 'GPS Tracking, Route Optimization, Automated Proof-of-Delivery' },
-  ],
-  metrics: [
-    { value: '35%', label: 'Fuel Savings', description: 'Through dynamic TSP route optimization' },
-    { value: '99.9%', label: 'On-Time Dispatch', description: 'Real-time vehicle availability management' },
-    { value: '10K+', label: 'Daily Trips Coordinated', description: 'Across regional urban and highway corridors' },
-    { value: '<50ms', label: 'Telemetry Ping Latency', description: 'Continuous MQTT & WebSocket stream' },
-  ],
-  executiveSummary: {
-    title: 'Executive Summary',
-    subtitle: 'Transforming commercial logistics from chaotic dispatching into automated mathematical efficiency.',
-    paragraphs: [
-      'Commercial delivery networks struggled with traffic congestion, delayed departures, unoptimized multi-stop delivery routes, and blind spots in driver communications.',
-      'Travash engineered UGO, a comprehensive logistics operations platform featuring driver mobile apps, real-time GPS telemetry, and automated multi-stop route optimization.',
-    ],
-  },
-  challenge: {
-    title: 'The Challenge',
-    subtitle: 'Dynamic road conditions, variable delivery windows, and high fuel burn.',
-    content:
-      'Fleet managers previously relied on manual phone calls and static paper manifests. Deliveries were routinely missed due to unexpected bottlenecks, resulting in escalating vehicle operating costs.',
-    points: [
-      'High fuel consumption due to redundant routing and congested urban paths',
-      'Lack of real-time visibility into vehicle locations and driver break times',
-      'Disputes regarding delivery times and customer handoffs',
-      'Need for an intuitive mobile application that drivers could use without extensive training',
-    ],
-  },
-  solution: {
-    title: 'The Solution',
-    intro: 'An integrated mobile and web ecosystem connecting drivers, warehouse managers, and end customers.',
-    items: [
-      {
-        title: 'Algorithmic Route Optimization',
-        description: 'Computes optimal multi-stop delivery sequences factoring in real-time traffic and delivery deadlines.',
-      },
-      {
-        title: 'Driver Companion Application',
-        description: 'Turn-by-turn navigation, shipment barcodes scanning, and digital signature capture.',
-      },
-      {
-        title: 'Fleet Command Center',
-        description: 'Live interactive map showing vehicle speeds, fuel metrics, engine diagnostics, and ETA alerts.',
-      },
-    ],
-  },
-  technologyStack: [
-    {
-      category: 'Mobile Applications',
-      technologies: ['React Native', 'Android', 'iOS', 'Expo'],
-      description: 'Offline-capable mobile apps with background GPS and camera barcode scanning.',
-    },
-    {
-      category: 'Backend & Routing Engine',
-      technologies: ['Node.js', 'Go', 'Python', 'Google Maps Platform'],
-      description: 'High-speed routing algorithms, graph traversal, and vehicle telemetry ingestion.',
-    },
-    {
-      category: 'Database & IoT',
-      technologies: ['PostgreSQL', 'PostGIS', 'Redis', 'AWS IoT Core'],
-      description: 'Geospatial querying, temporal telemetry storage, and low-power message brokering.',
-    },
-  ],
-  testimonial: {
-    quote:
-      'UGO transformed our fleet operations. Our drivers spend 35% less on fuel, our dispatchers manage twice the volume of shipments, and our customer satisfaction ratings have skyrocketed.',
-    author: 'Chief Operating Officer',
-    role: 'Supply Chain Operations',
-    company: 'Logistics Partner',
-  },
-  seo: {
-    metaTitle: 'UGO: Fleet Routing & Supply Chain Case Study | Travash Software Solutions',
-    metaDescription:
-      'Learn how Travash built UGO, an intelligent fleet routing and dispatch platform delivering 35% fuel savings and 99.9% on-time delivery.',
-  },
-}
-
+// ----------------------------------------------------------------------
+// Master Fallback Registry of all 9 Reviewed Case Studies
+// ----------------------------------------------------------------------
 export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
+  // 1. Pixl AI Voice Agent
+  pixl: DEFAULT_PIXL_DATA,
+  'ai-voice-agent': DEFAULT_PIXL_DATA,
+
+  // 2. Satyaapan Passport Verification
   satyapaan: DEFAULT_SATYAPAAN_DATA,
+
+  // 3. Direct Owners Vacation Rentals
+  'direct-owners': DEFAULT_DIRECTOWNERS_DATA,
+  directowner: DEFAULT_DIRECTOWNERS_DATA,
+
+  // 4. UGO (EGO UK) Supply Chain Engine
+  ugo: DEFAULT_UGO_DATA,
+
+  // 5. Indispare B2B Marketplace
+  indispare: DEFAULT_INDISPARE_DATA,
+
+  // 6. I4C Bank Portal
+  'i4c-bank-portal': DEFAULT_I4C_DATA,
+  i4c: DEFAULT_I4C_DATA,
+
+  // 7. Dovehouse Capital High-Speed SPA
+  dovehouse: DEFAULT_DOVEHOUSE_DATA,
+  'dovehouse-capital': DEFAULT_DOVEHOUSE_DATA,
+
+  // 8. PEKT Construction Management
+  pekt: DEFAULT_PEKT_DATA,
+
+  // 9. Skipr Autonomous Agentic VPN
+  skipr: DEFAULT_SKIPR_DATA,
+
+  // Historical & CMS Slugs
   darpan: DEFAULT_DARPAN_DATA,
   'i-verify': DEFAULT_IVERIFY_DATA,
-  i4c: DEFAULT_I4C_DATA,
-  'i4c-bank-portal': DEFAULT_I4C_DATA,
-  ugo: DEFAULT_UGO_DATA,
 }
 
 export function buildCaseStudySections(data: CaseStudyData) {

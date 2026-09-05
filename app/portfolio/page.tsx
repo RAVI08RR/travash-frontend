@@ -43,25 +43,46 @@ export default async function PortfolioPage() {
   try {
     const sanityProjects = await getAllPortfolioProjects()
     if (sanityProjects && Array.isArray(sanityProjects) && sanityProjects.length > 0) {
-      projects = sanityProjects
+      const excludedSlugs = new Set([
+        'wp-json',
+        'home',
+        'terms-and-condition',
+        'technologies',
+        'ai-data-engineering',
+        'data-analytics-solutions',
+        'software-engineering',
+        'dedicated-talent-and-teams',
+        'quality-assurance-testing',
+        'enterprise-applications',
+        'digital-experiences-web-mobile',
+        'cloud-devops',
+        'staff-augmentation',
+      ])
+      projects = sanityProjects.filter((p: any) => p && p.slug && !excludedSlugs.has(p.slug))
     }
   } catch (err) {
     console.warn('Sanity portfolio projects fetch fallback triggered:', err)
   }
 
-  if (projects.length === 0) {
-    projects = DEFAULT_PORTFOLIO_PROJECTS
-  }
+  // Prioritize verified case studies from DEFAULT_PORTFOLIO_PROJECTS at the top
+  const defaultSlugMap = new Map(DEFAULT_PORTFOLIO_PROJECTS.map((p) => [p.slug, p]))
+  const remainingSanityProjects = projects.filter((p: any) => !defaultSlugMap.has(p.slug))
+  projects = [...DEFAULT_PORTFOLIO_PROJECTS, ...remainingSanityProjects]
 
   try {
     const sanityIndustries = await getPortfolioIndustries()
     if (sanityIndustries && Array.isArray(sanityIndustries) && sanityIndustries.length > 0) {
-      industries = sanityIndustries.map((ind: any) => ({
-        name: ind.title || ind.name,
-        slug: ind.slug,
-        description: ind.description,
-        projectCount: ind.projectCount || 0,
-      }))
+      industries = sanityIndustries
+        .filter((ind: any) => {
+          const name = ind.title || ind.name || ''
+          return name && !/^[A-Za-z0-9_-]{18,}$/.test(name)
+        })
+        .map((ind: any) => ({
+          name: ind.title || ind.name,
+          slug: ind.slug,
+          description: ind.description,
+          projectCount: ind.projectCount || 0,
+        }))
     }
   } catch (err) {
     console.warn('Sanity portfolio industries fetch fallback triggered:', err)

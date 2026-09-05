@@ -6,12 +6,14 @@ import { ArrowRight } from 'lucide-react'
 interface WhyItMattersProps {
   title?: string
   subtitle?: string
+  description?: string
   items: string[]
 }
 
 export default function WhyItMatters({
   title = 'Why This Matters',
   subtitle = 'Does Your Organization Face a Similar Challenge?',
+  description,
   items,
 }: WhyItMattersProps) {
   return (
@@ -32,12 +34,16 @@ export default function WhyItMatters({
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
               {title}
             </h2>
-            <p className="text-base sm:text-lg font-bold text-gray-900 leading-snug">
-              {subtitle}
-            </p>
-            <p className="text-sm text-gray-600 leading-relaxed font-normal mt-3">
-              This case study is highly relevant for civic authorities, enterprises, and public-sector leaders evaluating scalable, automated identity solutions.
-            </p>
+            {subtitle && (
+              <p className="text-base sm:text-lg font-bold text-gray-900 leading-snug">
+                {subtitle}
+              </p>
+            )}
+            {description && (
+              <p className="text-sm text-gray-600 leading-relaxed font-normal mt-3">
+                {description}
+              </p>
+            )}
           </motion.div>
 
           {/* Right Column: Challenge Items */}

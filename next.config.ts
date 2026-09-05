@@ -95,3 +95,4 @@ const nextConfig: NextConfig = {
 }
 
 export default nextConfig
+// refreshed for case study detail updates and html sanitization

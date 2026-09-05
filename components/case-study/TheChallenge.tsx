@@ -2,30 +2,40 @@
 
 import { FadeUpWeb } from '@/components/case-study/ScrollReveal'
 import { X } from 'lucide-react'
+import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
 
 interface TheChallengeProps {
   title?: string
   headline?: string
   description?: string
   points?: string[]
+  pointsLabel?: string
   takeaway?: string
 }
 
 const DEFAULT_CHALLENGE_POINTS = [
-  'Duplicate passport attempts',
-  'Fraudulent identities or false information',
-  'Relevant matches against criminal records',
-  'Applications requiring further investigation',
+  'Operational bottlenecks hindering rapid execution',
+  'Manual processes leading to latency and errors',
+  'Fragmented systems limiting pipeline visibility',
+  'Scalability constraints under surging demand',
 ]
 
 export default function TheChallenge({
   title = 'The Challenge',
-  headline = 'High–Volume Passport Verification Was Creating an Administrative Bottleneck',
-  description = 'The existing verification process relied heavily on manual checks, making it difficult to efficiently screen large volumes of applications.',
+  headline,
+  description,
   points = DEFAULT_CHALLENGE_POINTS,
-  takeaway = 'The challenge was to reduce repetitive manual screening without removing human involvement from sensitive investigation decisions.',
+  pointsLabel = 'Key Operational Challenges:',
+  takeaway,
 }: TheChallengeProps) {
-  const challengePoints = points && points.length > 0 ? points : DEFAULT_CHALLENGE_POINTS
+  const cleanDescription = sanitizeScrapedText(description, '')
+
+  const rawPoints = points && points.length > 0 ? points : DEFAULT_CHALLENGE_POINTS
+  const challengePoints = rawPoints
+    .map((p) => sanitizeScrapedText(p, ''))
+    .filter((p) => p && !isScrapedJunkOrCss(p) && !p.includes('@media'))
+
+  const displayPoints = challengePoints.length > 0 ? challengePoints : DEFAULT_CHALLENGE_POINTS
 
   return (
     <section className="py-16 sm:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-y border-[#EDF2F7]">
@@ -38,26 +48,28 @@ export default function TheChallenge({
                 {title}
               </h2>
 
-              {headline && (
+              {headline && !isScrapedJunkOrCss(headline) && (
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] leading-snug mb-4">
                   {headline}
                 </h3>
               )}
 
-              {description && (
+              {cleanDescription && !isScrapedJunkOrCss(cleanDescription) && !cleanDescription.includes('@media') && (
                 <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
-                  {description}
+                  {cleanDescription}
                 </p>
               )}
             </FadeUpWeb>
           </div>
 
-          {/* Right Column: Checklist with Red Cross Badges and Concluding Takeaway */}
+          {/* Right Column: Checklist with Red Cross Badges and Optional Takeaway */}
           <div className="lg:col-span-7 flex flex-col">
             <FadeUpWeb delay={0.15}>
-              <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-5">
-                OFFICIALS NEEDED TO IDENTIFY:
-              </h4>
+              {pointsLabel && (
+                <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-5">
+                  {pointsLabel}
+                </h4>
+              )}
 
               {/* List with red circular "x" badges */}
               <div className="flex flex-col gap-3.5 mb-8">
@@ -73,7 +85,7 @@ export default function TheChallenge({
                 ))}
               </div>
 
-              {/* Concluding takeaway note */}
+              {/* Concluding takeaway note if provided */}
               {takeaway && (
                 <p className="text-sm sm:text-base text-[#64748B] leading-relaxed pt-2 border-t border-[#E2E8F0]/60">
                   {takeaway}

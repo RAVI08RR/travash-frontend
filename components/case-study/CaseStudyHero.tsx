@@ -3,45 +3,73 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { getSanityImageUrl } from '@/lib/sanity.image'
 import defaultHeroThumb from '@/public/casestudy-img/Satyaapan-Passport-Verification-System.png'
 import type { CaseStudyData } from '@/lib/case-study-data'
+import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
 
 export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
+  // Resolve Sanity CDN image, direct URL, or fallback
+  const resolvedSanityUrl =
+    getSanityImageUrl(data.featureImage, 1400) ||
+    getSanityImageUrl(data.heroImage, 1400)
+
+  const slugFallback =
+    data.slug?.current === 'satyapaan'
+      ? '/casestudy-img/casestudy-img-satayapan.webp'
+      : data.slug?.current === 'i-verify'
+        ? 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp'
+        : data.slug?.current === 'darpan'
+          ? 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp'
+          : defaultHeroThumb
+
   const featureVisual =
-    typeof data.featureImage === 'string'
-      ? data.featureImage
-      : data.featureImage?.asset?.url ||
-      (typeof data.heroImage === 'string'
-        ? data.heroImage
-        : data.heroImage?.asset?.url) ||
-      defaultHeroThumb
+    resolvedSanityUrl && !resolvedSanityUrl.includes('Group 1000003287.png')
+      ? resolvedSanityUrl
+      : typeof data.featureImage === 'string' && data.featureImage
+        ? data.featureImage
+        : (typeof data.featureImage === 'object' ? data.featureImage?.asset?.url : undefined) ||
+          (typeof data.heroImage === 'string' && data.heroImage
+            ? data.heroImage
+            : typeof data.heroImage === 'object'
+              ? data.heroImage?.asset?.url
+              : undefined) ||
+          slugFallback
+
+  const title = data?.title || 'Case Study'
 
   // Extract metadata values with defaults matching the design
-  const clientName = data.client || 'Telangana State Police'
+  const clientName =
+    typeof data?.client === 'string'
+      ? data.client
+      : (data?.client as any)?.title || (data?.client as any)?.name || 'Telangana State Police'
   const solutionName =
-    data.projectMeta?.find((m) => m.label.toLowerCase() === 'solution')?.value ||
-    'Satyaapan – Passport Verification System'
+    data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'solution')?.value ||
+    title
   const industryName =
-    data.industry ||
-    data.projectMeta?.find((m) => m.label.toLowerCase() === 'industry')?.value ||
-    'Government / Public Safety'
+    typeof data?.industry === 'string'
+      ? data.industry
+      : (data?.industry as any)?.title ||
+        (data?.industry as any)?.name ||
+        data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'industry')?.value ||
+        'Government / Public Safety'
   const capabilitiesValue =
-    data.projectMeta?.find((m) => m.label.toLowerCase().includes('capabilit'))?.value ||
+    data?.projectMeta?.find((m) => (m.label || '').toLowerCase().includes('capabilit'))?.value ||
     'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
 
   // Extract project name for breadcrumbs (e.g. "Satyapaan")
   const breadcrumbName =
-    data.slug?.current === 'satyapaan'
+    data?.slug?.current === 'satyapaan'
       ? 'Satyapaan'
-      : data.slug?.current === 'darpan'
+      : data?.slug?.current === 'darpan'
         ? 'Darpan'
-        : data.slug?.current === 'i-verify'
+        : data?.slug?.current === 'i-verify'
           ? 'i-Verify'
-          : data.slug?.current === 'i4c-bank-portal' || data.slug?.current === 'i4c'
+          : data?.slug?.current === 'i4c-bank-portal' || data?.slug?.current === 'i4c'
             ? 'I4C'
-            : data.slug?.current === 'ugo'
+            : data?.slug?.current === 'ugo'
               ? 'UGO'
-              : data.title.split(':')[0] || 'Satyapaan'
+              : title.split(':')[0] || 'Case Study'
 
   return (
     <section className="pt-5 pb-12 sm:pt-5 sm:pb-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] overflow-hidden">
@@ -75,27 +103,31 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1.5px] leading-[1.16] mb-5"
           >
-            {data.title.includes(':') ? (
+            {title.includes(':') ? (
               <>
-                <span>{data.title.split(':')[0]}:</span>
+                <span>{title.split(':')[0]}:</span>
                 <br className="hidden sm:inline" />{' '}
-                <span>{data.title.split(':')[1]}</span>
+                <span>{title.split(':')[1]}</span>
               </>
             ) : (
-              data.title
+              title
             )}
           </motion.h1>
 
-          {data.shortDescription && (
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-sm sm:text-base md:text-[17px] text-[#475569] leading-relaxed font-normal max-w-4xl"
-            >
-              {data.shortDescription}
-            </motion.p>
-          )}
+          {(() => {
+            const cleanShortDesc = sanitizeScrapedText(data.shortDescription, '')
+            if (!cleanShortDesc || isScrapedJunkOrCss(cleanShortDesc) || cleanShortDesc.includes('@media')) return null
+            return (
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-sm sm:text-base md:text-[17px] text-[#475569] leading-relaxed font-normal max-w-4xl"
+              >
+                {cleanShortDesc}
+              </motion.p>
+            )
+          })()}
         </div>
 
         {/* Dual-Tone Accent Dividing Bar: Blue left segment + Vibrant Green extended bar */}

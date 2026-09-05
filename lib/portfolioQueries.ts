@@ -31,7 +31,8 @@ export const allPortfolioProjectsQuery = groq`
     publishedAt,
     "industry": select(
       defined(industry._ref) => industry->{ _id, title, "name": coalesce(title, name), "slug": slug.current },
-      defined(industry) => { "title": industry, "name": industry, "slug": industry },
+      defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ _id, title, "name": coalesce(title, name), "slug": slug.current },
+      defined(industry) && !(industry match "^[A-Za-z0-9_-]{18,}$") => { "title": industry, "name": industry, "slug": industry },
       defined(industries[0]._ref) => industries[0]->{ _id, title, "name": coalesce(title, name), "slug": slug.current },
       null
     ),
@@ -39,13 +40,15 @@ export const allPortfolioProjectsQuery = groq`
     "services": select(
       defined(services[0]._ref) => services[]->{ _id, title, "slug": slug.current },
       defined(services[0].title) => services[] { _id, title, "slug": slug.current },
+      defined(services[0]) && count(*[_type == "portfolioService" && _id in ^.services]) > 0 => *[_type == "portfolioService" && _id in ^.services]{ _id, title, "slug": slug.current },
       defined(serviceType) => [{ "title": serviceType, "slug": serviceType }],
       defined(category) => [{ "title": category, "slug": category }],
       []
     ),
     "technologies": select(
       defined(technologies[0]._ref) => technologies[]->{ _id, title, "name": coalesce(title, name), "slug": slug.current, icon ${imageFragment} },
-      defined(technologies[0].title) => technologies[] { _id, title, "name": title, "slug": slug.current },
+      defined(technologies[0].title) => technologies[] { _id, title, "name": coalesce(title, name), "slug": slug.current },
+      defined(technologies[0]) && count(*[_type == "technology" && _id in ^.technologies]) > 0 => *[_type == "technology" && _id in ^.technologies]{ _id, title, "name": coalesce(title, name), "slug": slug.current },
       defined(technologies) => technologies,
       []
     ),
@@ -55,6 +58,8 @@ export const allPortfolioProjectsQuery = groq`
     client,
     location,
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "heroImage": coalesce(heroImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
     "metrics": coalesce(metrics[] { value, label, description }, []),
     isFeatured,
     displayOrder
@@ -78,7 +83,8 @@ export const portfolioProjectBySlugQuery = groq`
     updatedAt,
     "industry": select(
       defined(industry._ref) => industry->{ _id, title, "name": coalesce(title, name), "slug": slug.current, description },
-      defined(industry) => { "title": industry, "name": industry, "slug": industry },
+      defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ _id, title, "name": coalesce(title, name), "slug": slug.current, description },
+      defined(industry) && !(industry match "^[A-Za-z0-9_-]{18,}$") => { "title": industry, "name": industry, "slug": industry },
       defined(industries[0]._ref) => industries[0]->{ _id, title, "name": coalesce(title, name), "slug": slug.current },
       null
     ),
@@ -87,13 +93,15 @@ export const portfolioProjectBySlugQuery = groq`
     "services": select(
       defined(services[0]._ref) => services[]->{ _id, title, "slug": slug.current, description },
       defined(services[0].title) => services[] { _id, title, "slug": slug.current },
+      defined(services[0]) && count(*[_type == "portfolioService" && _id in ^.services]) > 0 => *[_type == "portfolioService" && _id in ^.services]{ _id, title, "slug": slug.current, description },
       defined(serviceType) => [{ "title": serviceType, "slug": serviceType }],
       defined(category) => [{ "title": category, "slug": category }],
       []
     ),
     "technologies": select(
       defined(technologies[0]._ref) => technologies[]->{ _id, title, "name": coalesce(title, name), "slug": slug.current, icon ${imageFragment} },
-      defined(technologies[0].title) => technologies[] { _id, title, "name": title, "slug": slug.current },
+      defined(technologies[0].title) => technologies[] { _id, title, "name": coalesce(title, name), "slug": slug.current },
+      defined(technologies[0]) && count(*[_type == "technology" && _id in ^.technologies]) > 0 => *[_type == "technology" && _id in ^.technologies]{ _id, title, "name": coalesce(title, name), "slug": slug.current },
       defined(technologies) => technologies,
       []
     ),
@@ -103,6 +111,9 @@ export const portfolioProjectBySlugQuery = groq`
     client,
     location,
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "heroImage": coalesce(heroImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
+    "featureImage": coalesce(featureImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
     "gallery": coalesce(gallery[] ${imageFragment}, []),
     content,
     sections[] {
@@ -179,20 +190,24 @@ export const portfolioProjectBySlugQuery = groq`
 
 // Featured projects for homepage and spotlights
 export const featuredPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && (isFeatured == true || featured == true) && coalesce(status, "published") == "published"] | order(coalesce(displayOrder, portfolioOrder, 100) asc) [0...6] {
+  *[_type in ["portfolioProject", "caseStudy"] && (isFeatured == true || featured == true) && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true] | order(coalesce(displayOrder, portfolioOrder, 100) asc) [0...6] {
     _id,
     title,
     "slug": slug.current,
     "excerpt": coalesce(excerpt, shortDescription, cardDescription),
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "heroImage": coalesce(heroImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
     "industry": select(
       defined(industry._ref) => industry->{ title, "name": coalesce(title, name), "slug": slug.current },
-      defined(industry) => { "title": industry, "name": industry, "slug": industry },
+      defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ title, "name": coalesce(title, name), "slug": slug.current },
+      defined(industry) && !(industry match "^[A-Za-z0-9_-]{18,}$") => { "title": industry, "name": industry, "slug": industry },
       null
     ),
     "services": select(
       defined(services[0]._ref) => services[]->{ title, "slug": slug.current },
       defined(services[0].title) => services[] { title, "slug": slug.current },
+      defined(services[0]) && count(*[_type == "portfolioService" && _id in ^.services]) > 0 => *[_type == "portfolioService" && _id in ^.services]{ title, "slug": slug.current },
       []
     ),
     year,
@@ -207,7 +222,7 @@ export const portfolioIndustriesQuery = groq`
     "title": coalesce(title, name),
     "slug": slug.current,
     description,
-    "projectCount": count(*[_type == "portfolioProject" && (references(^._id) || industry == ^.name || industry == ^.title)])
+    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || industry == ^.name || industry == ^.title || industry == ^._id)])
   }
 `
 
@@ -218,7 +233,7 @@ export const portfolioServicesQuery = groq`
     title,
     "slug": slug.current,
     description,
-    "projectCount": count(*[_type == "portfolioProject" && references(^._id)])
+    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || ^._id in services)])
   }
 `
 
@@ -230,21 +245,24 @@ export const portfolioTechnologiesQuery = groq`
     "slug": slug.current,
     category,
     icon ${imageFragment},
-    "projectCount": count(*[_type == "portfolioProject" && references(^._id)])
+    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || ^._id in technologies)])
   }
 `
 
 // Related portfolio projects (by matching industry or services, excluding current slug)
 export const relatedPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && slug.current != $currentSlug && coalesce(status, "published") == "published"] | order(_createdAt desc) [0...3] {
+  *[_type in ["portfolioProject", "caseStudy"] && slug.current != $currentSlug && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true] | order(_createdAt desc) [0...3] {
     _id,
     title,
     "slug": slug.current,
     "excerpt": coalesce(excerpt, shortDescription, cardDescription),
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "heroImage": coalesce(heroImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
     "industry": select(
       defined(industry._ref) => industry->{ title, "name": coalesce(title, name), "slug": slug.current },
-      defined(industry) => { "title": industry, "name": industry, "slug": industry },
+      defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ title, "name": coalesce(title, name), "slug": slug.current },
+      defined(industry) && !(industry match "^[A-Za-z0-9_-]{18,}$") => { "title": industry, "name": industry, "slug": industry },
       null
     ),
     client,
@@ -254,7 +272,7 @@ export const relatedPortfolioProjectsQuery = groq`
 
 // Search query
 export const searchPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && (
+  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true && (
     title match $searchTerm + "*" ||
     excerpt match $searchTerm + "*" ||
     description match $searchTerm + "*" ||
@@ -265,9 +283,12 @@ export const searchPortfolioProjectsQuery = groq`
     "slug": slug.current,
     "excerpt": coalesce(excerpt, shortDescription),
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
+    "heroImage": coalesce(heroImage ${imageFragment}, featuredImage ${imageFragment}, cardImage ${imageFragment}),
     "industry": select(
       defined(industry._ref) => industry->{ title, "name": coalesce(title, name), "slug": slug.current },
-      defined(industry) => { "title": industry, "name": industry, "slug": industry },
+      defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ title, "name": coalesce(title, name), "slug": slug.current },
+      defined(industry) && !(industry match "^[A-Za-z0-9_-]{18,}$") => { "title": industry, "name": industry, "slug": industry },
       null
     )
   }

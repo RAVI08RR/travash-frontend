@@ -44,7 +44,9 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
         {/* 4 Cards Grid across the page */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {metrics.slice(0, 4).map((metric, idx) => {
-            const isClientBadge = idx === 3 || metric.label === 'client-badge'
+            const val = String(metric?.value || '')
+            const isPoliceShield =
+              data?.slug?.current === 'satyapaan' && (idx === 3 || metric.label === 'client-badge')
 
             return (
               <motion.div
@@ -57,20 +59,21 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
               >
                 {/* Metric Value / Title */}
                 <h3
-                  className={`${metric.value.length > 15
-                    ? 'text-lg sm:text-xl'
-                    : 'text-2xl sm:text-3xl lg:text-[32px]'
-                    } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
+                  className={`${
+                    val.length > 15
+                      ? 'text-lg sm:text-xl'
+                      : 'text-2xl sm:text-3xl lg:text-[32px]'
+                  } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
                 >
-                  {metric.value}
+                  {val}
                 </h3>
 
                 {/* Subtitle / Police Shield */}
-                {isClientBadge ? (
+                {isPoliceShield ? (
                   <PoliceShieldIcon />
                 ) : (
                   <p className="text-xs sm:text-sm text-[#475569] leading-snug max-w-[240px]">
-                    {metric.label}
+                    {metric.label === 'client-badge' ? data.client || 'Enterprise Deployment' : metric.label}
                   </p>
                 )}
               </motion.div>

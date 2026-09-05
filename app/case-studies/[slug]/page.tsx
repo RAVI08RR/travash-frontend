@@ -2,15 +2,16 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
 import { caseStudyBySlugQuery, allCaseStudySlugsQuery, homePageQuery } from '@/lib/queries'
+import { portfolioProjectBySlugQuery } from '@/lib/portfolioQueries'
 import {
   DEFAULT_SATYAPAAN_DATA,
   FALLBACK_CASE_STUDIES,
   type CaseStudyData,
 } from '@/lib/case-study-data'
+import { DEFAULT_PORTFOLIO_PROJECTS } from '@/lib/portfolio-data'
 
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
-import Contact from '@/components/sections/Contact'
 
 import CaseStudyHero from '@/components/case-study/CaseStudyHero'
 import CaseStudyMetrics from '@/components/case-study/CaseStudyMetrics'
@@ -27,8 +28,9 @@ import TechnologyStack from '@/components/case-study/TechnologyStack'
 import BeforeAfterComparison from '@/components/case-study/BeforeAfterComparison'
 import ClientPerspective from '@/components/case-study/ClientPerspective'
 import WhyItMatters from '@/components/case-study/WhyItMatters'
-import CaseStudyNextStep from '@/components/case-study/CaseStudyNextStep'
-import RelatedServices from '@/components/case-study/RelatedServices'
+import TechnicalWalkthrough from '@/components/case-study/TechnicalWalkthrough'
+import { cleanCaseStudyContent, sanitizeScrapedText } from '@/lib/case-study-cleaner'
+import { getSanityImageUrl } from '@/lib/sanity.image'
 
 import { AlertTriangle, CheckCircle2 } from 'lucide-react'
 
@@ -95,22 +97,124 @@ export async function generateStaticParams() {
   }
   return [
     { slug: 'satyapaan' },
+    { slug: 'pixl' },
+    { slug: 'ai-voice-agent' },
+    { slug: 'direct-owners' },
+    { slug: 'ugo' },
+    { slug: 'indispare' },
+    { slug: 'i4c-bank-portal' },
+    { slug: 'i4c' },
+    { slug: 'dovehouse' },
+    { slug: 'dovehouse-capital' },
+    { slug: 'pekt' },
+    { slug: 'skipr' },
     { slug: 'darpan' },
     { slug: 'i-verify' },
-    { slug: 'i4c-bank-portal' },
-    { slug: 'ugo' },
   ]
 }
 
 async function getCaseStudyData(slug: string) {
   try {
-    const [study, pageData] = await Promise.all([
+    let [study, pageData] = await Promise.all([
       client.fetch(caseStudyBySlugQuery, { slug }),
       client.fetch(homePageQuery),
     ])
 
+    if (!study) {
+      study = await client.fetch(portfolioProjectBySlugQuery, { slug })
+    }
+
+    const fallback = FALLBACK_CASE_STUDIES[slug]
+    const combinedGallery =
+      (Array.isArray(study?.gallery) && study.gallery.length > 0 ? study.gallery : null) ||
+      fallback?.gallery ||
+      []
+
+    const industryStr =
+      typeof study?.industry === 'string'
+        ? study.industry
+        : study?.industry?.title || study?.industry?.name || fallback?.industry || 'Government / Public Sector'
+
+    const clientStr =
+      typeof study?.client === 'string'
+        ? study.client
+        : study?.client?.title || study?.client?.name || fallback?.client || study?.title || 'Enterprise Client'
+
     const caseStudy: CaseStudyData | null =
-      study || FALLBACK_CASE_STUDIES[slug] || null
+      fallback
+        ? {
+            ...fallback,
+            _id: study?._id || fallback._id,
+            slug: fallback.slug || { current: slug },
+            heroImage: study?.featuredImage || study?.heroImage || fallback.heroImage,
+            featureImage: study?.featuredImage || study?.featureImage || fallback.featureImage,
+            gallery: combinedGallery,
+            solutionArchitecture: {
+              ...fallback.solutionArchitecture,
+              image:
+                study?.solutionArchitecture?.image ||
+                fallback.solutionArchitecture?.image ||
+                (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
+                { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+            },
+            content: fallback.content || [],
+            seo: {
+              ...fallback.seo,
+              metaTitle: fallback.seo?.metaTitle || `${fallback.title} | Travash Software Solutions`,
+              metaDescription: fallback.seo?.metaDescription || fallback.shortDescription,
+            },
+          }
+        : study
+        ? (() => {
+            const defaultProj = DEFAULT_PORTFOLIO_PROJECTS.find((p) => p.slug === slug)
+            const cleanDesc = sanitizeScrapedText(study.description, '')
+            const cleanExcerpt = sanitizeScrapedText(study.excerpt, '')
+            const fallbackShortDesc =
+              defaultProj?.shortDescription ||
+              defaultProj?.cardDescription ||
+              `${study.title || slug} enterprise platform engineered by Travash.`
+            const shortDesc = cleanExcerpt || cleanDesc || fallbackShortDesc
+
+            const rawParas = Array.isArray(study.executiveSummary?.paragraphs)
+              ? study.executiveSummary.paragraphs
+                  .map((p: string) => sanitizeScrapedText(p, ''))
+                  .filter(Boolean)
+              : []
+
+            const execSummary =
+              rawParas.length > 0
+                ? {
+                    title: study.executiveSummary?.title || 'Executive Summary',
+                    paragraphs: rawParas,
+                  }
+                : {
+                    title: 'Executive Summary',
+                    paragraphs: [
+                      cleanDesc || cleanExcerpt || fallbackShortDesc,
+                      'Through user-centric design, resilient architecture, and modern automation, Travash delivered measurable performance improvements and seamless user experiences.',
+                    ],
+                  }
+
+            return {
+              ...study,
+              industry: industryStr,
+              client: clientStr,
+              gallery: combinedGallery,
+              shortDescription: shortDesc,
+              executiveSummary: execSummary,
+              challenge: study.challenge
+                ? {
+                    ...study.challenge,
+                    content:
+                      sanitizeScrapedText(study.challenge.content, '') ||
+                      cleanDesc ||
+                      study.challenge.content,
+                  }
+                : undefined,
+              content: cleanCaseStudyContent(study.content),
+            }
+          })()
+        : null
 
     return {
       caseStudy,
@@ -176,6 +280,8 @@ export default async function CaseStudyPage({
             headline={caseStudy.challenge.subtitle}
             description={caseStudy.challenge.content}
             points={caseStudy.challenge.points}
+            pointsLabel={caseStudy.challenge.pointsLabel || 'KEY OPERATIONAL CHALLENGES:'}
+            takeaway={caseStudy.challenge.takeaway}
           />
         )}
 
@@ -209,8 +315,15 @@ export default async function CaseStudyPage({
         <ArchitectureSection
           title={caseStudy.solutionArchitecture?.title}
           intro={caseStudy.solutionArchitecture?.intro}
-          imageSrc={caseStudy.solutionArchitecture?.image?.asset?.url}
+          imageSrc={
+            getSanityImageUrl(caseStudy.solutionArchitecture?.image, 1400) ||
+            (caseStudy.gallery && caseStudy.gallery.length > 0
+              ? getSanityImageUrl(caseStudy.gallery[caseStudy.gallery.length - 1], 1400)
+              : null) ||
+            '/casestudy-img/arctature-daigram.webp'
+          }
           caption={caseStudy.solutionArchitecture?.caption}
+          isSatyaapan={!!caseStudy.solutionArchitecture?.isSatyaapan}
         />
 
         {/* 16. Enterprise Technology Stack */}
@@ -281,31 +394,18 @@ export default async function CaseStudyPage({
             title={caseStudy.whyItMatters.title}
             subtitle={caseStudy.whyItMatters.subtitle}
             items={caseStudy.whyItMatters.items}
+            description={caseStudy.whyItMatters.description}
           />
         )}
 
-        {/* 21. The Next Step CTA */}
-        {caseStudy.nextStep && (
-          <CaseStudyNextStep
-            heading={caseStudy.nextStep.heading}
-            content={caseStudy.nextStep.content}
-            primaryCTA={caseStudy.nextStep.primaryCTA}
-            secondaryCTA={caseStudy.nextStep.secondaryCTA}
-          />
-        )}
 
-        {/* 22. Related Services Flow */}
-        <RelatedServices />
-
-        {/* 23. Contact / Lead Generation Section */}
-        <Contact
-          data={{
-            heading: 'Ready to Automate & Solve Bottlenecks?',
-            subheading:
-              'Discuss your public safety initiative, custom workflow automation, or enterprise software modernization with our senior engineers.',
-            submitLabel: 'Get a Free Consultation',
-          }}
+        {/* 22. Implementation Details / Technical Case Study Walkthrough */}
+        <TechnicalWalkthrough
+          content={caseStudy.content}
+          caseStudy={caseStudy}
         />
+
+
       </main>
 
       {/* 24. Existing Global Footer */}

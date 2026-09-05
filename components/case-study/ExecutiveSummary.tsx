@@ -1,6 +1,7 @@
 'use client'
 
 import { FadeUpWeb } from '@/components/case-study/ScrollReveal'
+import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
 
 interface ExecutiveSummaryProps {
   title?: string
@@ -13,6 +14,12 @@ export default function ExecutiveSummary({
 }: ExecutiveSummaryProps) {
   // Break title into multiple lines if needed (e.g. "Executive" and "Summary")
   const words = title.split(' ')
+
+  const cleanParas = (paragraphs || [])
+    .map((para) => sanitizeScrapedText(para, ''))
+    .filter((para) => para && !isScrapedJunkOrCss(para) && !para.includes('@media'))
+
+  if (cleanParas.length === 0) return null
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-t border-[#F1F5F9]">
@@ -38,7 +45,7 @@ export default function ExecutiveSummary({
           {/* Right Column (Approx 65%): Narrative Paragraphs with Web Fade-Up */}
           <div className="lg:col-span-8">
             <FadeUpWeb delay={0.15} className="flex flex-col gap-5 text-sm sm:text-base text-[#475569] leading-relaxed">
-              {paragraphs.map((para, idx) => (
+              {cleanParas.map((para, idx) => (
                 <p key={idx} className="leading-relaxed">
                   {para}
                 </p>

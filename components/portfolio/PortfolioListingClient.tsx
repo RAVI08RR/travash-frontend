@@ -12,29 +12,44 @@ interface PortfolioListingClientProps {
   industries: IndustryItem[]
 }
 
+const isHashId = (val: string) => typeof val === 'string' && /^[A-Za-z0-9_-]{18,}$/.test(val)
+
 function getProjectIndustry(p: any): string {
   if (!p) return ''
-  if (typeof p.industry === 'string') return p.industry
-  if (p.industry?.title) return p.industry.title
-  if (p.industry?.name) return p.industry.name
-  if (p.industryName) return p.industryName
-  if (Array.isArray(p.industries) && p.industries[0]) {
+  let ind = ''
+  if (typeof p.industry === 'string') ind = p.industry
+  else if (p.industry?.title) ind = p.industry.title
+  else if (p.industry?.name) ind = p.industry.name
+  else if (p.industryName) ind = p.industryName
+  else if (Array.isArray(p.industries) && p.industries[0]) {
     const first = p.industries[0]
-    return typeof first === 'string' ? first : first.title || first.name || ''
+    ind = typeof first === 'string' ? first : first.title || first.name || ''
   }
-  return ''
+  if (!ind || isHashId(ind)) return ''
+  return ind
 }
 
 function getProjectType(p: any): string {
   if (!p) return 'Web Application'
-  if (typeof p.projectType === 'string' && p.projectType) return p.projectType
-  if (typeof p.category === 'string' && p.category) return p.category
-  if (p.category?.title) return p.category.title
-  if (Array.isArray(p.services) && p.services[0]) {
+  let raw = ''
+  if (typeof p.projectType === 'string' && p.projectType) raw = p.projectType
+  else if (typeof p.category === 'string' && p.category) raw = p.category
+  else if (p.category?.title) raw = p.category.title
+  else if (Array.isArray(p.services) && p.services[0]) {
     const s = p.services[0]
-    return typeof s === 'string' ? s : s?.title || s?.name || 'Web Application'
+    raw = typeof s === 'string' ? s : s?.title || s?.name || 'Web Application'
   }
-  if (typeof p.serviceType === 'string' && p.serviceType) return p.serviceType
+  else if (typeof p.serviceType === 'string' && p.serviceType) raw = p.serviceType
+
+  if (/ai|artificial intelligence|voice|facial/i.test(raw)) {
+    return 'AI / Artificial Intelligence'
+  }
+  if (/mobile|app|ios|android/i.test(raw)) {
+    return 'Mobile Application'
+  }
+  if (/website|spa|brand/i.test(raw) && !/web app/i.test(raw)) {
+    return 'Website Development'
+  }
   return 'Web Application'
 }
 

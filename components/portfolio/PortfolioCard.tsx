@@ -4,23 +4,64 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import type { PortfolioProject } from '@/lib/portfolio-data'
+import { getSanityImageUrl } from '@/lib/sanity.image'
 
 interface PortfolioCardProps {
   project: PortfolioProject
 }
 
+const isHashId = (val: string) => typeof val === 'string' && /^[A-Za-z0-9_-]{18,}$/.test(val)
+
+const SLUG_FALLBACK_IMAGES: Record<string, string> = {
+  pixl: '/images/services/engagement-bg.webp',
+  'ai-voice-agent': '/images/services/engagement-bg.webp',
+  satyapaan: '/images/portfolio/satyapaan.webp',
+  'i4c-bank-portal': '/images/portfolio/i4c-bank-portal.png',
+  i4c: '/images/portfolio/i4c-bank-portal.png',
+  'direct-owners': '/images/portfolio/direct-owners.webp',
+  directowner: '/images/portfolio/direct-owners.webp',
+  ugo: '/images/portfolio/ugo.webp',
+  indispare: '/images/portfolio/indispare.png',
+  dovehouse: '/images/portfolio/dovehouse.png',
+  'dovehouse-capital': '/images/portfolio/dovehouse.png',
+  pekt: '/images/portfolio/pekt.webp',
+  skipr: '/images/portfolio/skipr.png',
+  darpan: '/images/portfolio/darpan.webp',
+  'i-verify': '/images/portfolio/i-verify.webp',
+  'dine-desk': '/images/portfolio/dine-desk.webp',
+  spencer: '/images/portfolio/spencer.png',
+  'alexander-johnson-group': '/images/portfolio/alexander-johnson-group.png',
+  asak: '/images/portfolio/asak.png',
+  'arabian-hills': '/images/portfolio/arabian-hills.png',
+  ledray: '/images/portfolio/ledray.webp',
+  konvino: '/images/portfolio/konvino.webp',
+  medimee: '/images/portfolio/medimee.webp',
+  gratus: '/images/portfolio/gratus.png',
+  gemba: '/images/portfolio/gemba.png',
+  'wiggett-app': '/images/portfolio/wiggett-app.png',
+  'kalsi-estate': '/images/portfolio/kalsi-estate.png',
+  'grid-properties': '/images/portfolio/grid-properties.png',
+  'soul-trips': '/images/portfolio/soul-trips.png',
+  'nigaah-videosurvelience': '/images/portfolio/nigaah-videosurvelience.png',
+  crowdcounting: '/images/portfolio/crowdcounting.png',
+}
+
 export default function PortfolioCard({ project }: PortfolioCardProps) {
-  // Determine image url
+  // Always prioritize authentic live website thumbnail if available for this slug
+  const fallbackThumb = SLUG_FALLBACK_IMAGES[project.slug]
+
   const rawImage =
+    fallbackThumb ||
+    (project as any).featuredImage ||
     project.cardImage ||
     project.featureImage ||
     project.heroImage ||
-    '/images/services/analytics.webp'
+    (project as any).gallery?.[0]
 
-  const imageUrl =
-    typeof rawImage === 'string'
-      ? rawImage
-      : rawImage?.asset?.url || '/images/services/analytics.webp'
+  let imageUrl = rawImage ? getSanityImageUrl(rawImage, 800) : ''
+  if (!imageUrl || imageUrl.includes('Group 1000003287')) {
+    imageUrl = fallbackThumb || '/images/services/analytics.webp'
+  }
 
   // Destination URL (Standardized Next.js Portfolio Route)
   const href = `/portfolio/${project.slug}`
@@ -30,15 +71,16 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
   const description =
     project.cardDescription ||
     project.shortDescription ||
+    (project as any).excerpt ||
     'Custom engineered platform built for high-performance operational scale and digital transformation.'
 
-  // Format technologies
+  // Format technologies and filter out raw Sanity IDs
   const techList: string[] = (project.technologies || [])
     .map((t: any) => (typeof t === 'string' ? t : t?.title || t?.name || ''))
-    .filter(Boolean)
+    .filter((t: string) => Boolean(t) && !isHashId(t))
 
-  // Top industry / category badge (guaranteed string)
-  const primaryBadge: string =
+  // Top industry / category badge (guaranteed clean string)
+  let rawPrimary =
     (typeof project.category === 'string'
       ? project.category
       : (project.category as any)?.title || (project.category as any)?.name) ||
@@ -47,10 +89,14 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
       ? typeof (project as any).services[0] === 'string'
         ? (project as any).services[0]
         : (project as any).services[0]?.title || (project as any).services[0]?.name
-      : null) ||
-    'Software Engineering'
+      : null)
 
-  const industryBadge: string | null =
+  if (!rawPrimary || isHashId(rawPrimary)) {
+    rawPrimary = 'Web Application'
+  }
+  const primaryBadge: string = rawPrimary
+
+  let rawIndustry =
     (typeof project.industry === 'string'
       ? project.industry
       : (project.industry as any)?.title || (project.industry as any)?.name) ||
@@ -61,6 +107,11 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
       : null) ||
     (project as any).industryName ||
     null
+
+  if (rawIndustry && isHashId(rawIndustry)) {
+    rawIndustry = null
+  }
+  const industryBadge: string | null = rawIndustry
 
   return (
     <div className="group flex flex-col bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:border-[#02487D]/30 hover:shadow-[0_16px_36px_-8px_rgba(2,72,125,0.12)] transition-all duration-300 transform hover:-translate-y-1">
