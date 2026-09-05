@@ -15,18 +15,41 @@ interface TechnologyStackProps {
   items?: TechnologyCategory[]
 }
 
-// Dictionary mapping technology names and terms to tech-stack-icons identifiers
+// Known verified icons in tech-stack-icons
+const VALID_ICONS = new Set([
+  'adobe', 'adobefirefly', 'adobeillustrator', 'airtable', 'algolia', 'alpinejs', 'amznwebserv',
+  'android', 'angular', 'anthropic', 'apache', 'appwrite', 'astro', 'aws', 'azure', 'babel',
+  'bash', 'bootstrap5', 'bunjs', 'csharp', 'css3', 'cypress', 'dalle', 'dart', 'datadog',
+  'deno', 'digitalocean', 'django', 'docker', 'drizzle', 'elasticsearch', 'electron', 'elixir',
+  'eslint', 'expo', 'expressjs', 'fastapi', 'figma', 'firebase', 'flask', 'flutter', 'framer',
+  'gatsby', 'gcloud', 'gemini', 'git', 'github', 'gitlab', 'go', 'google', 'grafana', 'graphql',
+  'gsap', 'html5', 'huggingface', 'ionic', 'java', 'jest', 'jquery', 'js', 'json', 'kafka',
+  'kotlin', 'kubernetes', 'langchain', 'laravel', 'linux', 'mariadb', 'markdown', 'materialui',
+  'mongodb', 'mysql', 'neo4j', 'nestjs', 'netlify', 'nextjs', 'nginx', 'nodejs', 'npm', 'numpy',
+  'nuxtjs', 'ollama', 'openai', 'opencv', 'pandas', 'php', 'playwright', 'pnpm', 'postgresql',
+  'postman', 'powershell', 'prisma', 'python', 'pytorch', 'r', 'rabbitmq', 'radixui', 'rails',
+  'react', 'reactnative', 'redis', 'redux', 'remix', 'rust', 'sass', 'selenium', 'shadcnui',
+  'socketio', 'solidity', 'spring', 'sqlite', 'storybook', 'stripe', 'styledcomponents',
+  'supabase', 'sveltejs', 'swift', 'symfony', 'tailwindcss', 'tensorflow', 'terraform',
+  'threejs', 'trello', 'twilio', 'typescript', 'ubuntu', 'unity', 'unrealengine', 'vercel',
+  'vitejs', 'vitest', 'vscode', 'vuejs', 'webassembly', 'webpack', 'wordpress', 'yarn', 'zustand'
+])
+
+// Mapping aliases and variations to exact valid tech-stack-icons names
 const TECH_ICON_MAP: Record<string, string> = {
   // Frontend
-  react: 'reactjs',
-  'react.js': 'reactjs',
-  'react js': 'reactjs',
-  'react native': 'reactjs',
+  react: 'react',
+  'react.js': 'react',
+  'react js': 'react',
+  'react native': 'reactnative',
+  reactnative: 'reactnative',
   next: 'nextjs',
   'next.js': 'nextjs',
   'next js': 'nextjs',
+  nextjs: 'nextjs',
   vue: 'vuejs',
   'vue.js': 'vuejs',
+  vuejs: 'vuejs',
   angular: 'angular',
   html: 'html5',
   html5: 'html5',
@@ -44,9 +67,14 @@ const TECH_ICON_MAP: Record<string, string> = {
   framer: 'framer',
   'framer motion': 'framer',
   bootstrap: 'bootstrap5',
+  'bootstrap 5': 'bootstrap5',
   vite: 'vitejs',
+  vitejs: 'vitejs',
   webpack: 'webpack',
-  svelte: 'svelte',
+  svelte: 'sveltejs',
+  sveltejs: 'sveltejs',
+  shadcn: 'shadcnui',
+  'shadcn ui': 'shadcnui',
 
   // Backend
   node: 'nodejs',
@@ -54,6 +82,7 @@ const TECH_ICON_MAP: Record<string, string> = {
   nodejs: 'nodejs',
   express: 'expressjs',
   'express.js': 'expressjs',
+  expressjs: 'expressjs',
   python: 'python',
   django: 'django',
   flask: 'flask',
@@ -69,10 +98,11 @@ const TECH_ICON_MAP: Record<string, string> = {
   rust: 'rust',
   csharp: 'csharp',
   'c#': 'csharp',
-  dotnet: 'dotnet',
-  '.net': 'dotnet',
-  ruby: 'ruby',
-  rails: 'rubyonrails',
+  dotnet: 'csharp',
+  '.net': 'csharp',
+  ruby: 'rails',
+  rails: 'rails',
+  'ruby on rails': 'rails',
 
   // Database & Cache
   mysql: 'mysql',
@@ -93,8 +123,6 @@ const TECH_ICON_MAP: Record<string, string> = {
   // Cloud & DevOps
   aws: 'aws',
   'aws s3': 'aws',
-  gcp: 'gcp',
-  'google cloud': 'gcp',
   azure: 'azure',
   docker: 'docker',
   kubernetes: 'kubernetes',
@@ -104,20 +132,18 @@ const TECH_ICON_MAP: Record<string, string> = {
   linux: 'linux',
   ubuntu: 'ubuntu',
   vercel: 'vercel',
-  cloudflare: 'cloudflare',
   kafka: 'kafka',
   rabbitmq: 'rabbitmq',
   git: 'git',
   github: 'github',
   gitlab: 'gitlab',
 
-  // AI & Services
+  // Integrations & AI
   openai: 'openai',
   'gpt-4': 'openai',
   gpt: 'openai',
   stripe: 'stripe',
   twilio: 'twilio',
-  hubspot: 'hubspot',
   figma: 'figma',
   android: 'android',
   postman: 'postman',
@@ -126,11 +152,19 @@ const TECH_ICON_MAP: Record<string, string> = {
 function resolveTechIcon(tech: string): string | null {
   const clean = tech.toLowerCase().trim()
 
-  if (TECH_ICON_MAP[clean]) {
+  // 1. Exact match in map
+  if (TECH_ICON_MAP[clean] && VALID_ICONS.has(TECH_ICON_MAP[clean])) {
     return TECH_ICON_MAP[clean]
   }
 
+  // 2. Direct match in VALID_ICONS
+  if (VALID_ICONS.has(clean)) {
+    return clean
+  }
+
+  // 3. Pattern / Substring matching
   for (const [pattern, iconName] of Object.entries(TECH_ICON_MAP)) {
+    if (!VALID_ICONS.has(iconName)) continue
     const escaped = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = new RegExp(`(^|\\b|\\s|_|-)${escaped}(\\b|\\s|_|-|$)`, 'i')
     if (regex.test(clean)) {
