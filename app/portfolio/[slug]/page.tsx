@@ -98,7 +98,9 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
     .map((t: any) => (typeof t === 'string' ? t : t?.title || t?.name || ''))
     .filter(Boolean)
   if (techList.length === 0 && defaultProj?.technologies) {
-    techList = defaultProj.technologies
+    techList = (defaultProj.technologies as any[])
+      .map((t: any) => (typeof t === 'string' ? t : t?.name || t?.title || ''))
+      .filter(Boolean)
   }
 
   const challengesList = Array.isArray(raw?.challenges) ? raw.challenges : []
