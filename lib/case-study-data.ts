@@ -569,12 +569,12 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   technologyStack: [
     {
       category: 'Backend Architecture',
-      technologies: ['Java', 'PHP-Laravel', 'RESTful Microservices'],
+      technologies: ['Java', 'Laravel'],
       description: 'High-throughput enterprise application logic and secure session management.',
     },
     {
       category: 'Database Infrastructure',
-      technologies: ['MySQL Enterprise', 'Encrypted Storage'],
+      technologies: ['MySQL Enterprise'],
       description: 'Adhering to strict government data privacy, security, and integrity standards.',
     },
     {
@@ -583,8 +583,11 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
       description: 'Fast, responsive interface designed for Special Branch law enforcement personnel.',
     },
     {
-      category: 'Advanced Integrations & Biometrics',
-      technologies: ['DARPAN Technology', 'AFIS (Automated Fingerprint Identification System)', 'Advanced Facial Recognition', 'Automated OCR'],
+      category: 'Advanced Integrations & AI Automation',
+      technologies: [
+        'DARPAN technology, AFIS (Automated Fingerprint Identification System)',
+        'Artificial Intelligence, Automated Data Extraction, Advanced Facial Recognition, Real-Time Matching',
+      ],
       description: 'Biometric and law enforcement registry integration with real-time matching algorithms.',
     },
   ],
@@ -1965,22 +1968,25 @@ export const DEFAULT_DOVEHOUSE_DATA: CaseStudyData = {
   technologyStack: [
     {
       category: 'Frontend Framework',
-      technologies: ['React.js', 'Next.js (SSR / Static Generation)'],
+      technologies: ['React.js', 'Next.js'],
       description: 'Optimized for sub-second initial render and zero-latency Single Page Application routing.',
     },
     {
       category: 'Styling & Design System',
-      technologies: ['Tailwind CSS', 'Danish Minimalist Design System'],
+      technologies: ['Tailwind CSS', 'HTML5'],
       description: 'Bespoke Nordic typography, high-contrast palette, and generous whitespace rules.',
     },
     {
       category: 'Motion & Interaction',
-      technologies: ['Framer Motion'],
+      technologies: ['Framer Motion', 'TypeScript'],
       description: 'Silky-smooth, 60fps micro-interactions and scroll-triggered narrative animations.',
     },
     {
-      category: 'Performance & SEO',
-      technologies: ['Edge Caching', 'Automated Image Optimization', 'Semantic HTML5'],
+      category: 'Performance & Edge Infrastructure',
+      technologies: [
+        'Sub-Second Global Edge Caching & Zero-Latency Routing',
+        'Automated Image Optimization & Clean Semantic Layout',
+      ],
       description: 'Lighthouse 98+ scores across performance, accessibility, and SEO.',
     },
   ],
