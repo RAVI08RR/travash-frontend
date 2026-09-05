@@ -624,10 +624,11 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'The Satyaapan web application built by Travash has successfully solved our biggest challenge: identifying fraudulent activity and fake records during the passport verification process. Our officers use the platform daily to securely cross-reference applications, making the entire process highly convenient and incredibly efficient.',
-    author: 'Telangana Police Department Team',
-    role: 'Law Enforcement Leadership',
+      "Criminals exploiting our infrastructure to acquire multiple passports was a massive security crisis. Travash stepped in and engineered the Satyaapan platform, completely transforming our identity verification process. They didn't just build software; they built a real-time firewall that instantly flags duplicates and halts fraud in its tracks. This system literally saved our department's operational integrity. We are incredibly relieved and proud to rely on Travash as our trusted technology partner in law enforcement.",
+    author: 'Senior Commissioner',
+    role: 'State Police Department',
     company: 'Telangana State Police',
+    image: { asset: { url: '/casestudy-img/Telangana_Police_Logo.png.bv.webp' } },
   },
   whyItMatters: {
     title: 'Why This Matters',
@@ -906,10 +907,11 @@ export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'Direct Owners web application and e-commerce platform developed by Travash Software Solutions have propelled our vacation rental business, generating more leads and bookings. Exceptional service and outstanding results. Travashs exceptional service and commitment to quality made the entire process smooth and efficient.',
-    author: 'Dr. David S. Burn',
-    role: 'Managing Director',
-    company: 'Direct Owner Services Limited (USA)',
+      'Our vision was to revolutionize the vacation rental space by cutting out massive platform fees and connecting guests directly with property owners. Travash took this ambitious concept and engineered a flawless, custom web application from the ground up. They completely understood the complexities of the rental market and delivered a robust, intuitive platform that makes direct booking seamless for both sides. Travash didn’t just build our software; they built the exact engine we needed to disrupt the industry.',
+    author: 'David Burn',
+    role: 'Owner',
+    company: 'Direct Owners',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for Hospitality & Rentals',
@@ -1190,10 +1192,11 @@ export const DEFAULT_UGO_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'Travash took our complex multi-party supply chain operations and engineered a seamless, intuitive web application. The carrier sign-off link alone has saved us days of administrative waiting time each week.',
-    author: 'Operations Leadership',
-    role: 'Head of Logistics & Asset Recovery',
-    company: 'EGO (UK)',
+      "Trying to force our UK logistics operations into rigid, off-the-shelf software was an absolute nightmare. We needed a system that adapted to our unique workflows, not the other way around. Travash stepped in, mapped out our exact operational DNA, and built a bespoke internal application that fits us like a glove. Everything from our internal tracking to dispatch is finally unified exactly how we work on the floor. They didn't just build an app; they engineered a flawless digital extension of our business.",
+    author: 'Operations Director',
+    role: 'Operations Director',
+    company: 'UGO',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for Enterprise Supply Chains',
@@ -1466,10 +1469,11 @@ export const DEFAULT_INDISPARE_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'Indispare transformed how our manufacturing plants procure emergency spares. Being able to photograph a failed part and receive verified competitive quotes within minutes has drastically reduced our production downtime.',
-    author: 'Production Engineering Head',
-    role: 'Operations & Procurement',
-    company: 'Industrial Manufacturing Enterprise',
+      'Indispare started as nothing more than a concept. I had a clear vision for a completely unique B2B solution to streamline spare parts sales and procurement, and I brought that raw idea directly to Travash. They didn’t just act as coders; they truly embraced the vision. They built the entire platform from scratch, turning a massive B2B industry challenge into a seamless, market-ready reality. If you have an ambitious idea and need a partner to bring it to life exactly as you envisioned, Travash is the team.',
+    author: 'Bhushan Gupta',
+    role: 'Founder',
+    company: 'Indispare',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for B2B Marketplaces',
@@ -1741,10 +1745,11 @@ export const DEFAULT_I4C_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'Travash engineered the critical nerve center for our national financial fraud response. The ability to coordinate instant account liens across all participating banks has saved millions of citizens hard-earned money.',
-    author: 'National Cyber Crime Coordination Team',
-    role: 'Cybercrime Prevention & Technology Infrastructure',
-    company: 'Central Government of India',
+      "Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens' hard-earned rupees. Travash stands shoulder-to-shoulder with us on the frontlines, using technology to protect the nation.",
+    author: 'Senior Leadership & National Coordinator',
+    role: 'National Coordinator',
+    company: 'i4C',
+    image: { asset: { url: '/casestudy-img/I4c.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for Mission-Critical Public Sector Platforms',
@@ -2014,10 +2019,11 @@ export const DEFAULT_DOVEHOUSE_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'Travash translated our sophisticated algorithmic investment philosophy into a digital experience that feels as fast, transparent, and refined as our trading models. The minimalist aesthetic and lightning speed have built immense credibility with our global investor network.',
-    author: 'Martin Rasmussen & Claus Rosenberg Gotthard',
-    role: 'Founding Partners',
+      'Our digital presence needed to reflect the speed, transparency, and sophistication of our AI-driven investment strategies. Travash took my vision for a clean, Danish minimalist aesthetic and engineered a lightning-fast platform that perfectly aligns with our brand. They listened to our guidance every step of the way, delivering a premium, zero-friction web experience that completely exceeded our expectations. Travash is an exceptional technology partner who truly understands how to build for the modern financial sector.',
+    author: 'Claus Rosenberg Gotthard',
+    role: 'Co-Founder & Managing Director',
     company: 'Dovehouse Capital',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for Advisory & Wealth Management',
@@ -2288,10 +2294,11 @@ export const DEFAULT_PEKT_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      'PEKT gave our site engineers a tool they actually enjoy using. Being able to submit daily progress and flag low materials directly from their phones has cut our reporting time in half and stopped unexpected site delays.',
-    author: 'Construction Project Director',
-    role: 'Head of Field Operations',
-    company: 'PEKT Construction Management',
+      'Travash transformed our real estate and construction tracking with the PEKT product they developed. Their expertise and commitment to client satisfaction are exceptional.',
+    author: 'Ashutosh Gupta',
+    role: 'Product Development (India)',
+    company: 'PEKT',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
   },
   whyItMatters: {
     title: 'Why This Matters for Infrastructure & Construction',
@@ -2719,10 +2726,11 @@ export const DEFAULT_DARPAN_DATA: CaseStudyData = {
   ],
   testimonial: {
     quote:
-      'Darpan has given our officers a miraculous tool. Being able to photograph an unidentified child on the street and instantly locate their family across the state has transformed how we approach public safety.',
-    author: 'Superintendent of Police',
-    role: 'Crime Investigation Department',
-    company: 'Law Enforcement',
+      "When dealing with missing children, every second and every data point counts. Travash didn't just build an app; they engineered a massive, highly secure database powered by advanced AI and facial recognition. The way their system analyzes complex biometric patterns against thousands of records in real-time is extraordinary. Because of their robust data architecture, we have successfully identified and reunited over 70 children with their families. Travash’s technology is quite literally changing lives.",
+    author: 'Director of Intelligence Dept',
+    role: 'Director of Intelligence Dept',
+    company: 'Telangana State Police',
+    image: { asset: { url: '/casestudy-img/Telangana_Police_Logo.png.bv.webp' } },
   },
   seo: {
     metaTitle: 'Darpan: AI Facial Recognition Case Study | Travash Software Solutions',
@@ -2870,8 +2878,71 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
   ],
 }
 
+// 10. DineDesk Restaurant Management SaaS
+export const DEFAULT_DINEDESK_DATA: CaseStudyData = {
+  _id: 'proj-dinedesk',
+  title: 'DineDesk: Enterprise Restaurant Management & Smart Reservation SaaS',
+  slug: { current: 'dine-desk' },
+  category: 'Hospitality & SaaS',
+  industry: 'Travel & Hospitality',
+  client: 'Chander Jain',
+  shortDescription:
+    'Multi-unit reservation engine, live waitlist tracking, dynamic table allocation, and guest analytics for restaurant chains.',
+  testimonial: {
+    quote:
+      'Before Travash stepped in, we were operating in the dark—we had no real visibility into our customer trends, peak times, or table turnover rates. Travash built DineDesk to do more than just take reservations; they engineered a powerful analytics engine. Now, we have real-time data and reporting that allows us to make split-second operational decisions. The insights we get from this platform have drastically improved our efficiency and helped us handle over 500,000 bookings flawlessly. Travash turned our raw data into our biggest competitive advantage.',
+    author: 'Chander Jain',
+    role: 'Founder & CEO',
+    company: 'DineDesk',
+    image: { asset: { url: '/images/avatar-placeholder.svg' } },
+  },
+  metrics: [
+    { value: '500,000+', label: 'Bookings Processed Flawlessly' },
+    { value: '3x', label: 'Faster Table Turnover' },
+    { value: '40%', label: 'No-Show Reduction' },
+    { value: '100%', label: 'Real-Time Visibility' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    paragraphs: [
+      'DineDesk is a next-generation enterprise restaurant management and intelligent table reservation engine engineered by Travash Software Solutions.',
+      'By turning raw guest booking data into real-time operational intelligence, DineDesk empowered restaurant chains to eliminate table vacancies, predict peak capacity, and streamline dining experiences across hundreds of hospitality locations.',
+    ],
+  },
+  beforeAfter: {
+    title: 'Before vs. After',
+    subtitle: 'Transforming Legacy Hospitality Operations Into Intelligent Automation',
+    beforeTitle: 'BEFORE DINEDESK',
+    afterTitle: 'AFTER DINEDESK',
+    before: [
+      'Zero visibility into real-time guest trends and table turnover',
+      'Manual phone reservations leading to costly no-shows and double bookings',
+      'Fragmented waitlist tracking causing walk-away customer loss',
+      'No unified analytics across multi-outlet restaurant chains',
+      'Disjointed marketing with disconnected guest booking history',
+    ],
+    after: [
+      'Real-time analytics engine empowering split-second table allocation',
+      'Automated SMS/WhatsApp booking confirmations reducing no-shows by 40%',
+      'Live synchronized waitlists and interactive visual floor-plans',
+      'Centralized multi-location dashboard handling 500,000+ bookings',
+      'Enriched guest profiles and preference tracking for VIP retention',
+    ],
+  },
+  whyItMatters: {
+    title: 'Why This Matters',
+    subtitle: 'Does Your Hospitality Business Struggle with Table Turnover & Guest Visibility?',
+    items: [
+      'Eliminating table vacancies through predictive waitlist management',
+      'Automating reservation confirmations to slash guest no-show rates',
+      'Delivering real-time multi-unit performance visibility to leadership',
+      'Scaling effortlessly across high-volume weekend dining surges',
+    ],
+  },
+}
+
 // ----------------------------------------------------------------------
-// Master Fallback Registry of all 9 Reviewed Case Studies
+// Master Fallback Registry of all Reviewed Case Studies
 // ----------------------------------------------------------------------
 export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
   // 1. Pixl AI Voice Agent
@@ -2904,6 +2975,10 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
 
   // 9. Skipr Autonomous Agentic VPN
   skipr: DEFAULT_SKIPR_DATA,
+
+  // 10. DineDesk
+  dinedesk: DEFAULT_DINEDESK_DATA,
+  'dine-desk': DEFAULT_DINEDESK_DATA,
 
   // Historical & CMS Slugs
   darpan: DEFAULT_DARPAN_DATA,

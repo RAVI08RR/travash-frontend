@@ -277,14 +277,15 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
         'Zero security infractions with end-to-end data protection',
       ],
     },
-    testimonial: raw.testimonial
+    testimonial: raw?.testimonial
       ? {
           quote: raw.testimonial.quote,
           author: raw.testimonial.name || 'Executive Stakeholder',
           role: raw.testimonial.designation || 'Client Leadership',
           company: raw.testimonial.company || title,
+          image: raw.testimonial.image || { asset: { url: '/images/avatar-placeholder.svg' } },
         }
-      : undefined,
+      : FALLBACK_CASE_STUDIES[slug]?.testimonial || undefined,
     whyItMatters: {
       title: 'Why This Matters',
       subtitle: 'Is Your Organization Facing Similar Scale Challenges?',

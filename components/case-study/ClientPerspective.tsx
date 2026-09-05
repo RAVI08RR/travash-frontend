@@ -8,7 +8,7 @@ interface TestimonialData {
   author: string
   role?: string
   company?: string
-  image?: { asset?: { url: string } }
+  image?: { asset?: { url: string } } | string
 }
 
 export default function ClientPerspective({
@@ -20,9 +20,27 @@ export default function ClientPerspective({
   heading?: string
   intro?: string
 }) {
+  const authorLower = (data?.author || '').toLowerCase()
+  const companyLower = (data?.company || '').toLowerCase()
+
+  const isPolice =
+    authorLower.includes('police') ||
+    companyLower.includes('police') ||
+    authorLower.includes('intelligence dept') ||
+    authorLower.includes('commissioner')
+
+  const isI4C = authorLower.includes('i4c') || companyLower.includes('i4c')
+
+  const defaultImg = isPolice
+    ? '/casestudy-img/Telangana_Police_Logo.png.bv.webp'
+    : isI4C
+      ? '/casestudy-img/I4c.svg'
+      : '/images/avatar-placeholder.svg'
+
   const imgSrc =
-    (typeof data?.image === 'string' ? data.image : data?.image?.asset?.url) ||
-    '/casestudy-img/Telangana_Police_Logo.png.bv.webp'
+    (typeof data?.image === 'string' ? data.image : data?.image?.asset?.url) || defaultImg
+
+  const isLogo = isPolice || isI4C
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
@@ -67,14 +85,22 @@ export default function ClientPerspective({
               </div>
 
               <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6 sm:gap-7">
-                {/* Left Badge: Telangana Police Badge on Deep Blue */}
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3.5 flex-shrink-0 flex items-center justify-center shadow-md">
+                {/* Left Badge / Avatar Placeholder */}
+                <div
+                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${
+                    isLogo
+                      ? 'bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3'
+                      : 'bg-[#1E3A5F]'
+                  }`}
+                >
                   <Image
                     src={imgSrc}
-                    alt={data?.author || 'Client Badge'}
-                    width={80}
-                    height={80}
-                    className="w-auto h-full object-contain drop-shadow"
+                    alt={data?.author || 'Client Testimonial'}
+                    width={112}
+                    height={112}
+                    className={`w-full h-full ${
+                      isLogo ? 'object-contain drop-shadow p-1' : 'object-cover'
+                    }`}
                   />
                 </div>
 
@@ -85,7 +111,17 @@ export default function ClientPerspective({
                   </p>
 
                   <p className="text-xs sm:text-[13px] font-bold text-[#02487D]">
-                    By {data?.author || 'Telangana Police Dept (Team)'}
+                    By {data?.author || 'Client Leadership'}
+                    {data?.role &&
+                    !data?.author?.toLowerCase().includes(data.role.toLowerCase())
+                      ? ` — ${data.role}`
+                      : ''}
+                    {data?.company &&
+                    !data?.author?.toLowerCase().includes(data.company.toLowerCase()) &&
+                    (!data?.role ||
+                      !data?.role?.toLowerCase().includes(data.company.toLowerCase()))
+                      ? ` (${data.company})`
+                      : ''}
                   </p>
                 </div>
               </div>
