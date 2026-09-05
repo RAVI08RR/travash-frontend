@@ -15,25 +15,7 @@ interface TechnologyStackProps {
   items?: TechnologyCategory[]
 }
 
-// Known verified icons in tech-stack-icons
-const VALID_ICONS = new Set([
-  'adobe', 'adobefirefly', 'adobeillustrator', 'airtable', 'algolia', 'alpinejs', 'amznwebserv',
-  'android', 'angular', 'anthropic', 'apache', 'appwrite', 'astro', 'aws', 'azure', 'babel',
-  'bash', 'bootstrap5', 'bunjs', 'csharp', 'css3', 'cypress', 'dalle', 'dart', 'datadog',
-  'deno', 'digitalocean', 'django', 'docker', 'drizzle', 'elasticsearch', 'electron', 'elixir',
-  'eslint', 'expo', 'expressjs', 'fastapi', 'figma', 'firebase', 'flask', 'flutter', 'framer',
-  'gatsby', 'gcloud', 'gemini', 'git', 'github', 'gitlab', 'go', 'google', 'grafana', 'graphql',
-  'gsap', 'html5', 'huggingface', 'ionic', 'java', 'jest', 'jquery', 'js', 'json', 'kafka',
-  'kotlin', 'kubernetes', 'langchain', 'laravel', 'linux', 'mariadb', 'markdown', 'materialui',
-  'mongodb', 'mysql', 'neo4j', 'nestjs', 'netlify', 'nextjs', 'nginx', 'nodejs', 'npm', 'numpy',
-  'nuxtjs', 'ollama', 'openai', 'opencv', 'pandas', 'php', 'playwright', 'pnpm', 'postgresql',
-  'postman', 'powershell', 'prisma', 'python', 'pytorch', 'r', 'rabbitmq', 'radixui', 'rails',
-  'react', 'reactnative', 'redis', 'redux', 'remix', 'rust', 'sass', 'selenium', 'shadcnui',
-  'socketio', 'solidity', 'spring', 'sqlite', 'storybook', 'stripe', 'styledcomponents',
-  'supabase', 'sveltejs', 'swift', 'symfony', 'tailwindcss', 'tensorflow', 'terraform',
-  'threejs', 'trello', 'twilio', 'typescript', 'ubuntu', 'unity', 'unrealengine', 'vercel',
-  'vitejs', 'vitest', 'vscode', 'vuejs', 'webassembly', 'webpack', 'wordpress', 'yarn', 'zustand'
-])
+import { VALID_TECH_ICONS } from '@/lib/valid-tech-icons'
 
 // Mapping aliases and variations to exact valid tech-stack-icons names
 const TECH_ICON_MAP: Record<string, string> = {
@@ -75,6 +57,7 @@ const TECH_ICON_MAP: Record<string, string> = {
   sveltejs: 'sveltejs',
   shadcn: 'shadcnui',
   'shadcn ui': 'shadcnui',
+  flutter: 'flutter',
 
   // Backend
   node: 'nodejs',
@@ -86,7 +69,6 @@ const TECH_ICON_MAP: Record<string, string> = {
   python: 'python',
   django: 'django',
   flask: 'flask',
-  fastapi: 'fastapi',
   java: 'java',
   spring: 'spring',
   'spring boot': 'spring',
@@ -104,7 +86,7 @@ const TECH_ICON_MAP: Record<string, string> = {
   rails: 'rails',
   'ruby on rails': 'rails',
 
-  // Database & Cache
+  // Database & Search & AI
   mysql: 'mysql',
   'mysql enterprise': 'mysql',
   postgresql: 'postgresql',
@@ -116,14 +98,23 @@ const TECH_ICON_MAP: Record<string, string> = {
   sqlite: 'sqlite',
   supabase: 'supabase',
   firebase: 'firebase',
-  elasticsearch: 'elasticsearch',
+  elasticsearch: 'elastic',
+  'elastic search': 'elastic',
+  'elastic-search': 'elastic',
+  elastic: 'elastic',
   graphql: 'graphql',
   prisma: 'prisma',
+  opencv: 'opencv',
+  pytorch: 'pytorch',
+  tensorflow: 'tensorflow',
 
-  // Cloud & DevOps
+  // Cloud & DevOps & Tools
   aws: 'aws',
   'aws s3': 'aws',
+  'aws kms': 'aws',
   azure: 'azure',
+  gcp: 'gcloud',
+  'google cloud': 'gcloud',
   docker: 'docker',
   kubernetes: 'kubernetes',
   k8s: 'kubernetes',
@@ -132,15 +123,19 @@ const TECH_ICON_MAP: Record<string, string> = {
   linux: 'linux',
   ubuntu: 'ubuntu',
   vercel: 'vercel',
-  kafka: 'kafka',
   rabbitmq: 'rabbitmq',
   git: 'git',
   github: 'github',
   gitlab: 'gitlab',
+  vault: 'vault',
+  'hashicorp vault': 'vault',
+  wireguard: 'wireguard',
+  n8n: 'n8n',
 
   // Integrations & AI
   openai: 'openai',
   'gpt-4': 'openai',
+  'gpt-4.1': 'openai',
   gpt: 'openai',
   stripe: 'stripe',
   twilio: 'twilio',
@@ -153,18 +148,20 @@ function resolveTechIcon(tech: string): string | null {
   const clean = tech.toLowerCase().trim()
 
   // 1. Exact match in map
-  if (TECH_ICON_MAP[clean] && VALID_ICONS.has(TECH_ICON_MAP[clean])) {
+  if (TECH_ICON_MAP[clean] && VALID_TECH_ICONS.has(TECH_ICON_MAP[clean])) {
     return TECH_ICON_MAP[clean]
   }
 
-  // 2. Direct match in VALID_ICONS
-  if (VALID_ICONS.has(clean)) {
+  // 2. Direct match in VALID_TECH_ICONS
+  if (VALID_TECH_ICONS.has(clean)) {
     return clean
   }
 
-  // 3. Pattern / Substring matching
-  for (const [pattern, iconName] of Object.entries(TECH_ICON_MAP)) {
-    if (!VALID_ICONS.has(iconName)) continue
+  // 3. Pattern / Substring matching (longer patterns checked first)
+  const sortedPatterns = Object.keys(TECH_ICON_MAP).sort((a, b) => b.length - a.length)
+  for (const pattern of sortedPatterns) {
+    const iconName = TECH_ICON_MAP[pattern]
+    if (!VALID_TECH_ICONS.has(iconName)) continue
     const escaped = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = new RegExp(`(^|\\b|\\s|_|-)${escaped}(\\b|\\s|_|-|$)`, 'i')
     if (regex.test(clean)) {
@@ -250,7 +247,7 @@ export default function TechnologyStack({
 
                 cat.technologies.forEach((tech) => {
                   const iconName = resolveTechIcon(tech)
-                  if (iconName && tech.length <= 32) {
+                  if (iconName && VALID_TECH_ICONS.has(iconName) && tech.length <= 32) {
                     iconItems.push({ original: tech, icon: iconName })
                   } else {
                     pillItems.push(tech)
@@ -298,10 +295,14 @@ export default function TechnologyStack({
                                         : 'w-8 h-8 sm:w-10 sm:h-10'
                                   } flex items-center justify-center`}
                                 >
-                                  <StackIcon
-                                    name={item.icon as any}
-                                    className="w-full h-full object-contain"
-                                  />
+                                  {VALID_TECH_ICONS.has(item.icon) ? (
+                                    <StackIcon
+                                      name={item.icon as any}
+                                      className="w-full h-full object-contain"
+                                    />
+                                  ) : (
+                                    <span className="text-xs font-semibold text-gray-700">{item.original}</span>
+                                  )}
                                 </div>
                               </div>
                             )
