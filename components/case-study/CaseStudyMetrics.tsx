@@ -2,7 +2,67 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import CountUp from 'react-countup'
+import { useInView } from 'react-intersection-observer'
 import type { CaseStudyData } from '@/lib/case-study-data'
+
+function parseMetricValue(raw: string) {
+  if (!raw) return null
+  const trimmed = raw.trim()
+
+  // Only consider numeric if there is at least one digit
+  if (!/\d/.test(trimmed)) return null
+
+  // Capture optional non-digit prefix (e.g. '<', '>', '~', '$', '₹', '+')
+  // Then the numeric portion (with optional commas and decimals, e.g. '1.96', '800', '10,000')
+  // Then the suffix (e.g. ' Million', 'M', '%', '+', 'x', 's', 'ms', 'K+')
+  const match = trimmed.match(/^([^\d]*?)(\d[\d,]*(?:\.\d+)?)(.*)$/)
+  if (!match) return null
+
+  const prefix = match[1]
+  const numStr = match[2].replace(/,/g, '')
+  const num = parseFloat(numStr)
+  if (isNaN(num)) return null
+
+  const suffix = match[3]
+  const decimals = match[2].includes('.') ? match[2].split('.')[1].length : 0
+
+  return { prefix, num, suffix, decimals }
+}
+
+function MetricNumberCounter({ val, delay = 0 }: { val: string; delay?: number }) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })
+  const parsed = parseMetricValue(val)
+
+  if (!parsed) {
+    return <>{val}</>
+  }
+
+  return (
+    <span ref={ref} className="inline-flex items-baseline justify-center tabular-nums">
+      {inView ? (
+        <>
+          {parsed.prefix && <span>{parsed.prefix}</span>}
+          <CountUp
+            start={0}
+            end={parsed.num}
+            decimals={parsed.decimals}
+            duration={2.2}
+            delay={delay}
+            separator=","
+          />
+          {parsed.suffix && <span>{parsed.suffix}</span>}
+        </>
+      ) : (
+        <>
+          {parsed.prefix && <span>{parsed.prefix}</span>}
+          <span>0</span>
+          {parsed.suffix && <span>{parsed.suffix}</span>}
+        </>
+      )}
+    </span>
+  )
+}
 
 function PoliceShieldIcon() {
   return (
@@ -39,7 +99,7 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
   ]
 
   return (
-    <section className="py-10 sm:py-14 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="py-8 sm:py-12 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* 4 Cards Grid across the page */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
@@ -59,13 +119,12 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
               >
                 {/* Metric Value / Title */}
                 <h3
-                  className={`${
-                    val.length > 15
+                  className={`${val.length > 15
                       ? 'text-lg sm:text-xl'
                       : 'text-2xl sm:text-3xl lg:text-[32px]'
-                  } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
+                    } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
                 >
-                  {val}
+                  <MetricNumberCounter val={val} delay={idx * 0.12} />
                 </h3>
 
                 {/* Subtitle / Police Shield */}

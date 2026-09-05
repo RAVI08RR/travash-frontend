@@ -28,7 +28,8 @@ import TechnologyStack from '@/components/case-study/TechnologyStack'
 import BeforeAfterComparison from '@/components/case-study/BeforeAfterComparison'
 import ClientPerspective from '@/components/case-study/ClientPerspective'
 import WhyItMatters from '@/components/case-study/WhyItMatters'
-import TechnicalWalkthrough from '@/components/case-study/TechnicalWalkthrough'
+import CaseStudyNextStep from '@/components/case-study/CaseStudyNextStep'
+import CaseStudyContact from '@/components/case-study/CaseStudyContact'
 import { cleanCaseStudyContent, sanitizeScrapedText } from '@/lib/case-study-cleaner'
 import { getSanityImageUrl } from '@/lib/sanity.image'
 
@@ -250,13 +251,13 @@ export default async function CaseStudyPage({
     <>
       <Navbar settings={siteSettings} />
       <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-clip">
-        {/* 1. Hero Section with Dual-Tone Divider & Metadata Stack (Screenshot 1) */}
+        {/* 1. Hero Section with Metadata Stack & Mockup */}
         <CaseStudyHero data={caseStudy} />
 
-        {/* 2. Key Metrics 4-Card Row (Screenshot 2) */}
+        {/* 2. Key Metrics 4-Card Row */}
         <CaseStudyMetrics data={caseStudy} />
 
-        {/* 3. Executive Summary (Screenshot 2) */}
+        {/* 3. Executive Summary */}
         {caseStudy.executiveSummary && (
           <ExecutiveSummary
             title={caseStudy.executiveSummary.title || 'Executive Summary'}
@@ -264,7 +265,33 @@ export default async function CaseStudyPage({
           />
         )}
 
-        {/* 4. The Complexity (Screenshot 3) */}
+        {/* 4. The Challenge */}
+        {caseStudy.challenge && (
+          <TheChallenge
+            title={caseStudy.challenge.title || 'The Challenge'}
+            headline={caseStudy.challenge.subtitle}
+            description={caseStudy.challenge.content}
+            points={caseStudy.challenge.points}
+            pointsLabel={caseStudy.challenge.pointsLabel || 'OFFICIALS NEEDED TO IDENTIFY:'}
+            takeaway={caseStudy.challenge.takeaway}
+          />
+        )}
+
+        {/* 5. Center Laptop Visual Mockup */}
+        <ProjectVisual
+          imageSrc={
+            (typeof caseStudy.heroImage === 'string'
+              ? caseStudy.heroImage
+              : caseStudy.heroImage?.asset?.url) ||
+            (typeof caseStudy.featureImage === 'string'
+              ? caseStudy.featureImage
+              : caseStudy.featureImage?.asset?.url) ||
+            '/home-img/satyapaan-min 2.png'
+          }
+          alt={caseStudy.title}
+        />
+
+        {/* 6. The Complexity */}
         {caseStudy.complexity && (
           <TheComplexity
             title={caseStudy.complexity.title || 'The Complexity'}
@@ -273,19 +300,7 @@ export default async function CaseStudyPage({
           />
         )}
 
-        {/* 5. The Challenge (Screenshot 4) */}
-        {caseStudy.challenge && (
-          <TheChallenge
-            title={caseStudy.challenge.title || 'The Challenge'}
-            headline={caseStudy.challenge.subtitle}
-            description={caseStudy.challenge.content}
-            points={caseStudy.challenge.points}
-            pointsLabel={caseStudy.challenge.pointsLabel || 'KEY OPERATIONAL CHALLENGES:'}
-            takeaway={caseStudy.challenge.takeaway}
-          />
-        )}
-
-        {/* 6. Travash Approach */}
+        {/* 7. Travash Approach */}
         {caseStudy.approach && (
           <CaseStudyContentSection
             id="approach"
@@ -298,7 +313,7 @@ export default async function CaseStudyPage({
           </CaseStudyContentSection>
         )}
 
-        {/* 13-14. The Solution */}
+        {/* 8. The Solution */}
         {caseStudy.solution && (
           <CaseStudyContentSection
             id="solution"
@@ -311,7 +326,7 @@ export default async function CaseStudyPage({
           </CaseStudyContentSection>
         )}
 
-        {/* 15. Solution Architecture */}
+        {/* 9. Solution Architecture */}
         <ArchitectureSection
           title={caseStudy.solutionArchitecture?.title}
           intro={caseStudy.solutionArchitecture?.intro}
@@ -326,20 +341,20 @@ export default async function CaseStudyPage({
           isSatyaapan={!!caseStudy.solutionArchitecture?.isSatyaapan}
         />
 
-        {/* 16. Enterprise Technology Stack */}
+        {/* 10. Enterprise Technology Stack */}
         {caseStudy.technologyStack && caseStudy.technologyStack.length > 0 && (
           <CaseStudyContentSection
             id="technology-stack"
             eyebrow="Technical Infrastructure"
             title="Enterprise Technology Stack"
-            subtitle="To deliver a robust custom software solution capable of processing millions of records securely, we utilised a highly resilient tech stack."
+            subtitle="To deliver a robust custom software solution capable of processing millions of records securely, we utilised a highly resilient tech stack:"
             variant="white"
           >
             <TechnologyStack items={caseStudy.technologyStack} />
           </CaseStudyContentSection>
         )}
 
-        {/* 17. The Impact */}
+        {/* 11. The Impact */}
         {caseStudy.impact && (
           <CaseStudyContentSection
             id="impact"
@@ -371,7 +386,7 @@ export default async function CaseStudyPage({
           </CaseStudyContentSection>
         )}
 
-        {/* 18. Before vs. After Comparison */}
+        {/* 12. Before vs. After Comparison */}
         {caseStudy.beforeAfter && (
           <BeforeAfterComparison
             title={caseStudy.beforeAfter.title}
@@ -383,12 +398,12 @@ export default async function CaseStudyPage({
           />
         )}
 
-        {/* 19. Client Perspective / Testimonial */}
+        {/* 13. Client Perspective / Testimonial */}
         {caseStudy.testimonial && (
           <ClientPerspective data={caseStudy.testimonial} />
         )}
 
-        {/* 20. Why This Matters */}
+        {/* 14. Why This Matters */}
         {caseStudy.whyItMatters && (
           <WhyItMatters
             title={caseStudy.whyItMatters.title}
@@ -398,17 +413,20 @@ export default async function CaseStudyPage({
           />
         )}
 
-
-        {/* 22. Implementation Details / Technical Case Study Walkthrough */}
-        <TechnicalWalkthrough
-          content={caseStudy.content}
-          caseStudy={caseStudy}
+        {/* 15. The Next Step Banner */}
+        <CaseStudyNextStep
+          heading="The Next Step"
+          subtitle="Looking to Modernize a High-Volume Verification or Public-Safety Workflow?"
         />
 
-
+        {/* 16. Contact Form */}
+        <CaseStudyContact
+          heading="Ready to automate and solve operational bottlenecks?"
+          description="At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts."
+        />
       </main>
 
-      {/* 24. Existing Global Footer */}
+      {/* 17. Global Footer */}
       <Footer settings={siteSettings} />
     </>
   )

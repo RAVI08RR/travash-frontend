@@ -13,11 +13,11 @@ interface WhyItMattersProps {
 export default function WhyItMatters({
   title = 'Why This Matters',
   subtitle = 'Does Your Organization Face a Similar Challenge?',
-  description,
+  description = 'The objective is not simply to introduce AI.',
   items,
 }: WhyItMattersProps) {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden relative">
+    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden relative">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left Column */}
@@ -26,46 +26,56 @@ export default function WhyItMatters({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 lg:sticky lg:top-36"
+            className="lg:col-span-5 lg:sticky lg:top-36 self-start"
           >
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0B4785] block mb-2">
-              Strategic Relevance
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-4">
               {title}
             </h2>
             {subtitle && (
-              <p className="text-base sm:text-lg font-bold text-gray-900 leading-snug">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] leading-snug mb-4">
                 {subtitle}
-              </p>
+              </h3>
             )}
             {description && (
-              <p className="text-sm text-gray-600 leading-relaxed font-normal mt-3">
+              <p className="text-sm sm:text-base text-[#64748B] leading-relaxed">
                 {description}
               </p>
             )}
           </motion.div>
 
-          {/* Right Column: Challenge Items */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            {items.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-[#F8FAFC] border border-gray-200/80 rounded-2xl p-6 sm:p-7 flex items-start gap-4 transition-all duration-300 hover:border-[#0B4785]/40 hover:bg-white hover:shadow-sm group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#EEF4FB] text-[#0B4785] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0B4785] group-hover:text-white transition-colors duration-300">
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-                <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">
-                  {item}
+          {/* Right Column: Framed Card matching PDF */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7"
+          >
+            <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-7 sm:p-9 shadow-xs flex flex-col gap-6">
+              <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A]">
+                THIS CASE STUDY IS RELEVANT FOR ORGANIZATIONS MANAGING:
+              </h4>
+
+              <div className="flex flex-col gap-3.5">
+                {items.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#02487D] text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-2xs">
+                      <ArrowRight className="w-3 h-3 stroke-[2.5]" />
+                    </div>
+                    <span className="text-sm sm:text-base text-[#334155] font-normal leading-relaxed">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-5 border-t border-[#E2E8F0]/80">
+                <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal">
+                  It is to identify what can be automated, what should be flagged, and where human decision-making should remain in control.
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

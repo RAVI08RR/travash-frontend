@@ -130,11 +130,6 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
           })()}
         </div>
 
-        {/* Dual-Tone Accent Dividing Bar: Blue left segment + Vibrant Green extended bar */}
-        <div className="w-full flex items-center h-[3.5px] mb-10 sm:mb-12">
-          <div className="w-28 sm:w-44 h-full bg-[#0A3866]" />
-          <div className="flex-1 h-full bg-[#22C55E]" />
-        </div>
 
         {/* 2-Column Grid: Left Metadata Details, Right Featured Showcase Visual */}
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">

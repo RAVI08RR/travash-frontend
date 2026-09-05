@@ -6,6 +6,7 @@ import { ArrowRight, MessageSquareCode } from 'lucide-react'
 
 interface CaseStudyNextStepProps {
   heading?: string
+  subtitle?: string
   content?: string
   primaryCTA?: { label: string; href: string }
   secondaryCTA?: { label: string; href: string }
@@ -13,9 +14,10 @@ interface CaseStudyNextStepProps {
 
 export default function CaseStudyNextStep({
   heading = 'The Next Step',
-  content = 'The objective is not simply to introduce AI. Travash combines custom software development, web application development, AI-assisted automation and system integration to modernize high-volume operational workflows. Start with one clearly defined process or use case and determine whether the right next step is an assessment, POC or implementation.',
+  subtitle = 'Looking to Modernize a High-Volume Verification or Public-Safety Workflow?',
+  content,
   primaryCTA = {
-    label: 'Discuss a Public Safety Initiative',
+    label: 'Discuss a Public Safety Technology Initiative',
     href: '#contact',
   },
   secondaryCTA = {
@@ -23,34 +25,53 @@ export default function CaseStudyNextStep({
     href: '#contact',
   },
 }: CaseStudyNextStepProps) {
-  return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F8FAFC] to-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97, y: 30 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-[#002E54] text-white rounded-3xl p-8 sm:p-14 lg:p-16 shadow-xl relative overflow-hidden"
-        >
-          {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0066FF]/20 rounded-full blur-[120px] pointer-events-none" />
+  const defaultParagraphs = [
+    'Travash combines custom software development, web application development, AI-assisted automation and system integration to modernize high-volume operational workflows.',
+    'Start with one clearly defined process or use case and determine whether the right next step is an assessment, POC or implementation.',
+  ]
 
-          <div className="relative z-10 max-w-4xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#14B8A6] block mb-3">
-              Actionable Execution
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
+  return (
+    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Column: Heading & Subtitle */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight leading-tight mb-4">
               {heading}
             </h2>
-            <p className="text-white/85 text-base sm:text-lg leading-relaxed font-normal mb-8 sm:mb-10">
-              {content}
-            </p>
+            {subtitle && (
+              <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] leading-snug">
+                {subtitle}
+              </h3>
+            )}
+          </motion.div>
 
-            <div className="flex flex-wrap items-center gap-4">
+          {/* Right Column: Paragraphs & Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7 flex flex-col gap-6"
+          >
+            <div className="flex flex-col gap-4 text-sm sm:text-base text-[#475569] leading-relaxed">
+              {content ? (
+                <p>{content}</p>
+              ) : (
+                defaultParagraphs.map((p, idx) => <p key={idx}>{p}</p>)
+              )}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href={primaryCTA.href || '#contact'}
-                className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-white text-[#002E54] hover:bg-gray-100 font-bold px-8 text-sm transition-all duration-200 shadow-md w-full sm:w-auto active:scale-95"
+                className="inline-flex items-center justify-center bg-[#02487D] hover:bg-[#003865] text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-200 shadow-sm active:scale-95"
               >
                 <span>{primaryCTA.label}</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -59,15 +80,15 @@ export default function CaseStudyNextStep({
               {secondaryCTA && (
                 <Link
                   href={secondaryCTA.href || '#contact'}
-                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center border border-white/30 text-white hover:bg-white/10 font-semibold px-8 text-sm transition-all duration-200 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center border border-[#02487D] text-[#02487D] hover:bg-[#02487D]/5 font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-200 active:scale-95"
                 >
                   <MessageSquareCode className="w-4 h-4 mr-2" />
                   <span>{secondaryCTA.label}</span>
                 </Link>
               )}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
