@@ -243,17 +243,17 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                 </p>
 
                 {/* 2x2 Outcome Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-6 sm:mb-8">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
                   {current.outcomes.map((item, idx) => (
                     <div
                       key={idx}
                       className={`${item.bg || 'bg-gray-50'} border ${item.border || 'border-gray-200'
-                        } rounded-xl p-3.5 sm:p-4 flex flex-col justify-center`}
+                        } rounded-xl p-2.5 sm:p-4 flex flex-col justify-center`}
                     >
-                      <span className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
+                      <span className="text-sm sm:text-lg font-bold text-gray-900 leading-tight">
                         {item.value}
                       </span>
-                      <span className="text-xs text-gray-600 mt-1 leading-snug">
+                      <span className="text-[11px] sm:text-xs text-gray-600 mt-0.5 sm:mt-1 leading-snug">
                         {item.label}
                       </span>
                     </div>
