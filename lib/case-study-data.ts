@@ -125,8 +125,8 @@ export const DEFAULT_PIXL_DATA: CaseStudyData = {
   location: 'Global / UAE & USA',
   shortDescription:
     'How Travash engineered a bespoke, low-latency AI Voice Calling Agent that connects with inbound prospects in under 3 seconds, qualifies buyer intent, and quadrupled confirmed site visits for Pixl.',
-  heroImage: { asset: { url: '/casestudy-img/casestudy-img-satayapan.webp' } },
-  featureImage: '/casestudy-img/casestudy-img-satayapan.webp',
+  heroImage: { asset: { url: '/casestudy-thumbs/pixl-crm.png' } },
+  featureImage: '/casestudy-thumbs/pixl-crm.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Pixl' },
     { label: 'SOLUTION', value: 'Bespoke Conversational Voice AI Agent' },
@@ -421,8 +421,8 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   location: 'Telangana, India',
   shortDescription:
     'Satyaapan is a web-based passport verification platform developed by Travash to help Telangana State Police automate high-volume identity screening, identify potential anomalies and route applications requiring further investigation to authorized officials.',
-  heroImage: { asset: { url: '/home-img/satyapaan-min 2.png' } },
-  featureImage: '/home-img/satyapaan-min 2.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/Satyaapan.png' } },
+  featureImage: '/casestudy-thumbs/Satyaapan.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Telangana State Police' },
     { label: 'SOLUTION', value: 'Satyaapan – Passport Verification System' },
@@ -718,8 +718,8 @@ export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
   location: 'USA & UK',
   shortDescription:
     'Custom bespoke web application and e-commerce portal engineered to UK and US standards, solving the 70% rental platform gap with transparent checkout, dynamic date blocking, and interactive map search.',
-  heroImage: { asset: { url: '/images/services/eradicate.webp' } },
-  featureImage: '/images/services/eradicate.webp',
+  heroImage: { asset: { url: '/casestudy-thumbs/Dreamnest.png' } },
+  featureImage: '/casestudy-thumbs/Dreamnest.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Direct Owner Services Limited (USA)' },
     { label: 'SOLUTION', value: 'Direct Owners – Vacation Rental Web Platform' },
@@ -1002,8 +1002,8 @@ export const DEFAULT_UGO_DATA: CaseStudyData = {
   location: 'United Kingdom',
   shortDescription:
     'Custom-built enterprise web application unifying five stakeholder groups (Admins, Clients, Sellers, Buyers, Carriers) with granular stock auditing, pipeline management, and frictionless mobile carrier sign-offs via temporary URLs.',
-  heroImage: { asset: { url: '/home-img/ugo-min.png' } },
-  featureImage: '/home-img/ugo-min.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/UGO.png' } },
+  featureImage: '/casestudy-thumbs/UGO.png',
   projectMeta: [
     { label: 'CLIENT', value: 'EGO (UK)' },
     { label: 'SOLUTION', value: 'UGO – Multi-Portal Supply Chain & Logistics Engine' },
@@ -1278,8 +1278,8 @@ export const DEFAULT_INDISPARE_DATA: CaseStudyData = {
   location: 'Pan-India',
   shortDescription:
     'Comprehensive B2B industrial spare parts procurement ecosystem featuring React web and mobile apps, AI-powered product search, automated RFQ price comparisons, and pin-code logistics routing.',
-  heroImage: { asset: { url: '/home-img/indispare-min.png' } },
-  featureImage: '/home-img/indispare-min.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/indispare.png' } },
+  featureImage: '/casestudy-thumbs/indispare.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Indispare' },
     { label: 'SOLUTION', value: 'Pan-India B2B Industrial E-Commerce Ecosystem' },
@@ -1555,8 +1555,8 @@ export const DEFAULT_I4C_DATA: CaseStudyData = {
   location: 'Pan-India',
   shortDescription:
     'Pan-India financial fraud mitigation portal and real-time API status dashboard connecting national helplines with major Indian banks to freeze fraudulent accounts and retrieve stolen funds within seconds.',
-  heroImage: { asset: { url: '/images/services/i4c.png' } },
-  featureImage: '/images/services/i4c.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/i4c.png' } },
+  featureImage: '/casestudy-thumbs/i4c.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Central Government of India (Delhi Central Gov Partner)' },
     { label: 'SOLUTION', value: 'I4C API Status Dashboard & Bank Lien Intercept' },
@@ -1830,8 +1830,8 @@ export const DEFAULT_DOVEHOUSE_DATA: CaseStudyData = {
   location: 'Denmark / Global',
   shortDescription:
     'Lightning-fast, zero-latency Single Page Application (SPA) pairing a Danish Minimalist aesthetic with purposeful micro-animations to demystify complex AI-driven dynamic heuristic investment strategies.',
-  heroImage: { asset: { url: '/casestudy-img/casestudy-img-satayapan.webp' } },
-  featureImage: '/casestudy-img/casestudy-img-satayapan.webp',
+  heroImage: { asset: { url: '/casestudy-thumbs/protectly.png' } },
+  featureImage: '/casestudy-thumbs/protectly.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Dovehouse Capital (Martin Rasmussen & Claus Rosenberg Gotthard)' },
     { label: 'SOLUTION', value: 'High-Speed Web Architecture & Danish Minimalist SPA' },
@@ -2107,8 +2107,8 @@ export const DEFAULT_PEKT_DATA: CaseStudyData = {
   location: 'Global',
   shortDescription:
     'Mobile-first on-site construction tracking and task automation platform empowering field engineers with daily status reports, automated low-stock inventory alerts, and precise labor attendance tracking.',
-  heroImage: { asset: { url: '/casestudy-img/Satyaapan-Passport-Verification-System.png' } },
-  featureImage: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/Dreamnest.png' } },
+  featureImage: '/casestudy-thumbs/Dreamnest.png',
   projectMeta: [
     { label: 'CLIENT', value: 'PEKT Construction Management' },
     { label: 'SOLUTION', value: 'PEKT On-Site Mobile Task Automation Engine' },
@@ -2379,8 +2379,8 @@ export const DEFAULT_SKIPR_DATA: CaseStudyData = {
   location: 'Global SaaS',
   shortDescription:
     'Groundbreaking zero-knowledge VPN engineered from scratch with autonomous AI agents dynamically managing infrastructure, routine server burns with zero log retention, and 100% credential-free sign-up and payment.',
-  heroImage: { asset: { url: '/casestudy-img/Satyaapan-Passport-Verification-System.png' } },
-  featureImage: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
+  heroImage: { asset: { url: '/casestudy-thumbs/protectly.png' } },
+  featureImage: '/casestudy-thumbs/protectly.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Skipr VPN' },
     { label: 'SOLUTION', value: 'Autonomous Agentic Zero-Knowledge VPN' },
@@ -2654,8 +2654,8 @@ export const DEFAULT_DARPAN_DATA: CaseStudyData = {
   location: 'India',
   shortDescription:
     'Darpan is a deep learning computer vision system developed to match missing persons and unidentified individuals in real-time across millions of state photo records with high biometric accuracy.',
-  featureImage: 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp',
-  heroImage: { asset: { url: 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp' } },
+  heroImage: { asset: { url: '/casestudy-thumbs/Darpan.png' } },
+  featureImage: '/casestudy-thumbs/Darpan.png',
   solutionArchitecture: {
     title: 'Solution Architecture',
     intro:
@@ -2761,8 +2761,8 @@ export const DEFAULT_IVERIFY_DATA: CaseStudyData = {
   location: 'India & UAE',
   shortDescription:
     'i-Verify provides a high-security automated candidate background check and credential verification platform with real-time public registry cross-referencing.',
-  featureImage: 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp',
-  heroImage: { asset: { url: 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp' } },
+  heroImage: { asset: { url: '/casestudy-thumbs/i-verify.png' } },
+  featureImage: '/casestudy-thumbs/i-verify.png',
   projectMeta: [
     { label: 'Industry', value: 'Technology / HR / Public Sector' },
     { label: 'Solution', value: 'Automated Document AI & Identity Verification' },
@@ -2894,6 +2894,8 @@ export const DEFAULT_DINEDESK_DATA: CaseStudyData = {
   client: 'Chander Jain',
   shortDescription:
     'Multi-unit reservation engine, live waitlist tracking, dynamic table allocation, and guest analytics for restaurant chains.',
+  heroImage: { asset: { url: '/casestudy-thumbs/dinedesk.png' } },
+  featureImage: '/casestudy-thumbs/dinedesk.png',
   testimonial: {
     quote:
       'Before Travash stepped in, we were operating in the dark—we had no real visibility into our customer trends, peak times, or table turnover rates. Travash built DineDesk to do more than just take reservations; they engineered a powerful analytics engine. Now, we have real-time data and reporting that allows us to make split-second operational decisions. The insights we get from this platform have drastically improved our efficiency and helped us handle over 500,000 bookings flawlessly. Travash turned our raw data into our biggest competitive advantage.',

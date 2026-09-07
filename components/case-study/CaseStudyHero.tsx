@@ -14,14 +14,43 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
     getSanityImageUrl(data.featureImage, 1400) ||
     getSanityImageUrl(data.heroImage, 1400)
 
-  const slugFallback =
-    data.slug?.current === 'satyapaan'
-      ? '/casestudy-img/casestudy-img-satayapan.webp'
-      : data.slug?.current === 'i-verify'
-        ? 'https://cdn.sanity.io/images/s2k81yej/production/564cd66e652acd14bee79de9bf67e07849f7e9e6-550x350.webp'
-        : data.slug?.current === 'darpan'
-          ? 'https://cdn.sanity.io/images/s2k81yej/production/83075782dd71504bf0cb9262fee53cd40c5a61a3-2131x900.webp'
-          : defaultHeroThumb
+  const SLUG_THUMBS: Record<string, string> = {
+    pixl: '/casestudy-thumbs/pixl-crm.png',
+    'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
+    'ai-voice-agent': '/casestudy-thumbs/pixl-crm.png',
+    satyapaan: '/casestudy-thumbs/Satyaapan.png',
+    satyaapan: '/casestudy-thumbs/Satyaapan.png',
+    'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
+    i4c: '/casestudy-thumbs/i4c.png',
+    '14c': '/casestudy-thumbs/14c.png',
+    'direct-owners': '/casestudy-thumbs/Dreamnest.png',
+    directowner: '/casestudy-thumbs/Dreamnest.png',
+    ugo: '/casestudy-thumbs/UGO.png',
+    uog: '/casestudy-thumbs/UGO.png',
+    indispare: '/casestudy-thumbs/indispare.png',
+    dovehouse: '/casestudy-thumbs/protectly.png',
+    'dovehouse-capital': '/casestudy-thumbs/protectly.png',
+    pekt: '/casestudy-thumbs/Dreamnest.png',
+    skipr: '/casestudy-thumbs/protectly.png',
+    darpan: '/casestudy-thumbs/Darpan.png',
+    'i-verify': '/casestudy-thumbs/i-verify.png',
+    iverify: '/casestudy-thumbs/i-verify.png',
+    'dine-desk': '/casestudy-thumbs/dinedesk.png',
+    dinedesk: '/casestudy-thumbs/dinedesk.png',
+    radiantsa: '/casestudy-thumbs/rediantsage.png',
+    'radiant-sage': '/casestudy-thumbs/rediantsage.png',
+    'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
+    protectly: '/casestudy-thumbs/protectly.png',
+    crowdcounting: '/casestudy-thumbs/Crowd-Counting.png',
+    'crowd-counting': '/casestudy-thumbs/Crowd-Counting.png',
+    nigaah: '/casestudy-thumbs/Nigaah.png',
+    'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
+    unixparts: '/casestudy-thumbs/unixparts.png',
+    'unix-parts': '/casestudy-thumbs/unixparts.png',
+  }
+
+  const slug = data.slug?.current || ''
+  const slugFallback = SLUG_THUMBS[slug] || '/casestudy-thumbs/Satyaapan.png'
 
   const featureVisual =
     resolvedSanityUrl && !resolvedSanityUrl.includes('Group 1000003287.png')

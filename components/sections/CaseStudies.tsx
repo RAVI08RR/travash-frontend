@@ -25,7 +25,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     projectName: 'Passport verification system',
     clientType: 'Enterprise AI for Government Security\n(Processed 1.9M+ applications)',
-    image: '/home-img/satyapaan-min 2.png',
+    image: '/casestudy-thumbs/Satyaapan.png',
     outcomes: [
       {
         value: '1.96 Million',
@@ -58,7 +58,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     projectName: 'Smart Healthcare Data Platform',
     clientType: 'Connected healthcare intelligence platform for modern clinical operations',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop',
+    image: '/casestudy-thumbs/rediantsage.png',
     outcomes: [
       {
         value: '3.5M+',
@@ -86,22 +86,22 @@ const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/work/healthcare-platform',
+    ctaHref: '/portfolio/radiantsa',
   },
   {
-    projectName: 'Digital Banking Platform',
-    clientType: 'Enterprise banking technology built for secure digital experiences',
-    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop',
+    projectName: 'Digital Banking & Cyber Fraud Mitigation Platform',
+    clientType: 'Enterprise banking technology built for secure real-time fraud intercept',
+    image: '/casestudy-thumbs/i4c.png',
     outcomes: [
       {
-        value: '10M+',
-        label: 'Daily secure transactions',
+        value: '₹100M+',
+        label: 'Daily secure fraud freezes',
         bg: 'bg-[#EEFBF3]',
         border: 'border-[#C6F5D8]',
       },
       {
-        value: '45ms',
-        label: 'Average latency processing',
+        value: '< 60s',
+        label: 'Average latency response',
         bg: 'bg-[#FFFBEA]',
         border: 'border-[#FEEA9F]',
       },
@@ -112,14 +112,14 @@ const CASE_STUDIES: CaseStudy[] = [
         border: 'border-[#D6E4FF]',
       },
       {
-        value: 'Kotak & VISA Partners',
-        label: 'Multi-region compliance',
+        value: 'National Anti-Fraud Network',
+        label: 'Pan-India banking coverage',
         bg: 'bg-[#FAF0FF]',
         border: 'border-[#EED5FD]',
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/work/digital-banking',
+    ctaHref: '/case-studies/i4c-bank-portal',
   },
 ]
 
@@ -220,7 +220,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
             {/* Left Column: Clean Image */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-sm border border-gray-100">
               <Image
-                src={current.image || '/home-img/satyapaan-min 2.png'}
+                src={current.image || '/casestudy-thumbs/Satyaapan.png'}
                 alt={current.projectName}
                 fill
                 className="object-cover"

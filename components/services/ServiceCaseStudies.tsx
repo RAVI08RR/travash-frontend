@@ -13,6 +13,39 @@ interface ServiceCaseStudiesProps {
   serviceTitle?: string
 }
 
+const SLUG_TO_THUMB: Record<string, string> = {
+  satyapaan: '/casestudy-thumbs/Satyaapan.png',
+  satyaapan: '/casestudy-thumbs/Satyaapan.png',
+  'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
+  i4c: '/casestudy-thumbs/i4c.png',
+  '14c': '/casestudy-thumbs/14c.png',
+  'dine-desk': '/casestudy-thumbs/dinedesk.png',
+  dinedesk: '/casestudy-thumbs/dinedesk.png',
+  darpan: '/casestudy-thumbs/Darpan.png',
+  ugo: '/casestudy-thumbs/UGO.png',
+  uog: '/casestudy-thumbs/UGO.png',
+  indispare: '/casestudy-thumbs/indispare.png',
+  pixl: '/casestudy-thumbs/pixl-crm.png',
+  'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
+  'ai-voice-agent': '/casestudy-thumbs/pixl-crm.png',
+  'i-verify': '/casestudy-thumbs/i-verify.png',
+  iverify: '/casestudy-thumbs/i-verify.png',
+  radiantsa: '/casestudy-thumbs/rediantsage.png',
+  'radiant-sage': '/casestudy-thumbs/rediantsage.png',
+  'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
+  protectly: '/casestudy-thumbs/protectly.png',
+  skipr: '/casestudy-thumbs/protectly.png',
+  dovehouse: '/casestudy-thumbs/protectly.png',
+  pekt: '/casestudy-thumbs/Dreamnest.png',
+  'direct-owners': '/casestudy-thumbs/Dreamnest.png',
+  crowdcounting: '/casestudy-thumbs/Crowd-Counting.png',
+  'crowd-counting': '/casestudy-thumbs/Crowd-Counting.png',
+  nigaah: '/casestudy-thumbs/Nigaah.png',
+  'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
+  'unix-parts': '/casestudy-thumbs/unixparts.png',
+  unixparts: '/casestudy-thumbs/unixparts.png',
+}
+
 // 6 diverse, high-impact enterprise case studies to guarantee smooth 3-at-a-time infinite looping
 const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
   {
@@ -22,7 +55,7 @@ const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
     client: 'Telangana State Police',
     shortDescription:
       'Automated high-volume biometric screening, facial recognition matching, and exception routing across state registries.',
-    image: '/home-img/satyapaan-min 2.png',
+    image: '/casestudy-thumbs/Satyaapan.png',
     metrics: [
       { value: '1.96M', label: 'Profiles Processed' },
       { value: '99.4%', label: 'Biometric Accuracy' },
@@ -35,7 +68,7 @@ const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
     client: 'National Cyber Crime Bureau',
     shortDescription:
       'Pan-India fraud intercept platform enabling instant banking account freezes and multi-crore fund recovery.',
-    image: '/images/services/i4c.png',
+    image: '/casestudy-thumbs/i4c.png',
     metrics: [
       { value: '₹100M+', label: 'Stolen Funds Intercepted' },
       { value: '<60s', label: 'Account Freeze Response' },
@@ -48,7 +81,7 @@ const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
     client: 'Enterprise Restaurant Network',
     shortDescription:
       'Multi-unit reservation engine, real-time waitlists, table management, and guest intelligence for high-traffic dining.',
-    image: '/images/services/dinedesk.png',
+    image: '/casestudy-thumbs/dinedesk.png',
     metrics: [
       { value: '3x', label: 'Table Turnover' },
       { value: '40%', label: 'No-Show Reduction' },
@@ -56,41 +89,41 @@ const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
   },
   {
     title: 'Darpan - AI Facial Retrieval Engine',
-    slug: 'satyapaan',
+    slug: 'darpan',
     category: 'Computer Vision & AI',
     client: 'State Law Enforcement',
     shortDescription:
       'Deep learning facial recognition system matching missing records in real-time across high-volume databases.',
-    image: '/images/services/darpan.webp',
+    image: '/casestudy-thumbs/Darpan.png',
     metrics: [
       { value: '800+', label: 'High-Risk Cases' },
       { value: '65%', label: 'Speedup in Clearance' },
     ],
   },
   {
-    title: 'Real-Time Streaming ETL & BI Warehouse',
-    slug: 'data-analytics-solutions',
-    category: 'Cloud Data Engineering',
-    client: 'FinTech Capital Markets',
+    title: 'RadiantSA - Clinical CTMS Platform',
+    slug: 'radiantsa',
+    category: 'Healthcare Cloud Architecture',
+    client: 'Clinical Research Enterprise',
     shortDescription:
-      'Architected sub-second data streaming pipelines and automated data lakehouse processing 10M+ daily events.',
-    image: '/images/services/analytics.webp',
+      'FDA-compliant clinical trial management system coordinating multi-center patient trials with zero audit defects.',
+    image: '/casestudy-thumbs/rediantsage.png',
     metrics: [
-      { value: '10M+', label: 'Daily Events Processed' },
+      { value: '100%', label: 'Regulatory Compliance' },
       { value: '99.99%', label: 'Pipeline Reliability' },
     ],
   },
   {
-    title: 'Multi-Cloud Infrastructure Modernization',
-    slug: 'satyapaan',
-    category: 'DevOps & Kubernetes',
+    title: 'UGO - Fleet Routing & Supply Chain',
+    slug: 'ugo',
+    category: 'Supply Chain & Logistics',
     client: 'Global Logistics Enterprise',
     shortDescription:
-      'Containerized legacy core monoliths into auto-scaling Kubernetes clusters with automated CI/CD releases.',
-    image: '/images/services/eradicate.webp',
+      'Sub-second telemetry tracking and route optimization dispatch platform managing high-volume transport fleets.',
+    image: '/casestudy-thumbs/UGO.png',
     metrics: [
-      { value: '45%', label: 'Cloud Cost Savings' },
-      { value: '0', label: 'Downtime Deployments' },
+      { value: '35%', label: 'Fuel Cost Savings' },
+      { value: '99.9%', label: 'On-Time Dispatch' },
     ],
   },
 ]
@@ -237,14 +270,16 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
         >
           <div className="flex touch-pan-y -ml-6">
             {displayedStudies.map((study, idx) => {
+              const thumbFromMap = study.slug ? SLUG_TO_THUMB[study.slug] : undefined
               const rawImage =
+                thumbFromMap ||
                 study.image ||
                 study.featureImage?.asset?.url ||
                 study.heroImage?.asset?.url
               const isValidPath =
                 typeof rawImage === 'string' &&
                 (rawImage.startsWith('/') || rawImage.startsWith('http'))
-              const imageSrc = isValidPath ? rawImage : '/images/services/darpan.webp'
+              const imageSrc = isValidPath ? rawImage : '/casestudy-thumbs/Satyaapan.png'
 
               const href =
                 study.slug === 'satyapaan' || study.slug?.includes('satyapaan')

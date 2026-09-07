@@ -11,9 +11,9 @@ interface PortfolioHeroProps {
 export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
   return (
     <section
-      className="relative min-h-[420px] lg:min-h-[480px] flex items-center pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] text-white overflow-hidden bg-[#022E54]"
+      className="relative min-h-[420px] lg:min-h-[480px] flex items-center pt-0 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] text-white overflow-hidden bg-[#022E54]"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(2, 46, 84, 0.96) 0%, rgba(2, 72, 125, 0.92) 60%, rgba(3, 94, 158, 0.94) 100%), url('/images/services/hero-bg.webp')`,
+        backgroundImage: `url('/images/services/hero-bg.webp')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

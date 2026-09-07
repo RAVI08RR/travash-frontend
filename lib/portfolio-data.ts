@@ -53,7 +53,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['GPT-4', 'Deepgram STT', 'Neural TTS', 'Twilio SIP', 'HubSpot API'],
     featured: true,
     portfolioOrder: 1,
-    cardImage: '/images/services/engagement-bg.webp',
+    cardImage: '/casestudy-thumbs/pixl-crm.png',
     metrics: [
       { value: '< 3s', label: 'Speed-to-Lead' },
       { value: '+310%', label: 'Site Visits Booked' },
@@ -75,7 +75,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['Java', 'Python', 'Face Recognition', 'MySQL', 'DARPAN API'],
     featured: true,
     portfolioOrder: 2,
-    cardImage: '/images/portfolio/satyapaan.webp',
+    cardImage: '/casestudy-thumbs/Satyaapan.png',
     metrics: [
       { value: '1.96M', label: 'Profiles Processed' },
       { value: '99.4%', label: 'Biometric Accuracy' },
@@ -97,7 +97,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Mapbox'],
     featured: true,
     portfolioOrder: 3,
-    cardImage: '/images/portfolio/direct-owners.webp',
+    cardImage: '/casestudy-thumbs/Dreamnest.png',
     metrics: [
       { value: '0%', label: 'Guest Commission' },
       { value: '100%', label: 'Direct Host Payouts' },
@@ -119,7 +119,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'REST APIs'],
     featured: true,
     portfolioOrder: 4,
-    cardImage: '/images/portfolio/ugo.webp',
+    cardImage: '/casestudy-thumbs/UGO.png',
     metrics: [
       { value: '99.8%', label: 'Sync Accuracy' },
       { value: '< 200ms', label: 'Pricing Engine Latency' },
@@ -141,7 +141,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Elasticsearch', 'RazorpayX'],
     featured: true,
     portfolioOrder: 5,
-    cardImage: '/images/portfolio/indispare.png',
+    cardImage: '/casestudy-thumbs/indispare.png',
     metrics: [
       { value: '45,000+', label: 'Active SKUs' },
       { value: '100%', label: 'Tax & GST Automated' },
@@ -163,7 +163,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Node.js', 'Kafka', 'Redis', 'PostgreSQL'],
     featured: true,
     portfolioOrder: 6,
-    cardImage: '/images/portfolio/i4c-bank-portal.png',
+    cardImage: '/casestudy-thumbs/i4c.png',
     metrics: [
       { value: '₹100M+', label: 'Fraud Intercepted' },
       { value: '<60s', label: 'Account Freeze' },
@@ -185,7 +185,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
     featured: true,
     portfolioOrder: 7,
-    cardImage: '/images/portfolio/dovehouse.png',
+    cardImage: '/casestudy-thumbs/protectly.png',
     metrics: [
       { value: '< 0.8s', label: 'Page Load Time' },
       { value: 'Zero Latency', label: 'SPA Transitions' },
@@ -207,7 +207,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React Native', 'Laravel', 'MySQL', 'Offline SQLite'],
     featured: true,
     portfolioOrder: 8,
-    cardImage: '/images/portfolio/pekt.webp',
+    cardImage: '/casestudy-thumbs/Dreamnest.png',
     metrics: [
       { value: '40%', label: 'Time Saved' },
       { value: '98%', label: 'Inventory Accuracy' },
@@ -229,7 +229,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React Native', 'Node.js', 'Python AI Agents', 'OpenVPN', 'AWS'],
     featured: true,
     portfolioOrder: 9,
-    cardImage: '/images/portfolio/skipr.png',
+    cardImage: '/casestudy-thumbs/protectly.png',
     metrics: [
       { value: 'Zero PII', label: 'Zero Knowledge' },
       { value: '100%', label: 'Autonomous Agents' },
@@ -251,7 +251,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['Flutter', 'TensorFlow', 'Computer Vision', 'Python'],
     featured: false,
     portfolioOrder: 10,
-    cardImage: '/images/portfolio/darpan.webp',
+    cardImage: '/casestudy-thumbs/Darpan.png',
     metrics: [
       { value: '800+', label: 'High-Risk Cases' },
       { value: '65%', label: 'Turnaround Speedup' },
@@ -273,7 +273,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Node.js', 'Document AI', 'MongoDB', 'OCR'],
     featured: false,
     portfolioOrder: 11,
-    cardImage: '/images/portfolio/i-verify.webp',
+    cardImage: '/casestudy-thumbs/i-verify.png',
     metrics: [
       { value: '500K+', label: 'Verifications' },
       { value: '85%', label: 'Time Reduction' },
@@ -295,7 +295,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'React Native', 'Node.js', 'WebSockets'],
     featured: false,
     portfolioOrder: 12,
-    cardImage: '/images/portfolio/dine-desk.webp',
+    cardImage: '/casestudy-thumbs/dinedesk.png',
     metrics: [
       { value: '3x', label: 'Table Turnover' },
       { value: '40%', label: 'No-Show Reduction' },
@@ -603,7 +603,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['Python', 'OpenCV', 'PyTorch', 'TensorRT'],
     featured: false,
     portfolioOrder: 26,
-    cardImage: '/images/portfolio/nigaah-videosurvelience.png',
+    cardImage: '/casestudy-thumbs/Nigaah.png',
     metrics: [
       { value: '99.2%', label: 'Detection Accuracy' },
       { value: '30 FPS', label: 'Real-Time Inference' },
@@ -625,7 +625,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['Python', 'YOLO', 'DeepSORT', 'WebSockets'],
     featured: false,
     portfolioOrder: 27,
-    cardImage: '/images/portfolio/crowdcounting.png',
+    cardImage: '/casestudy-thumbs/Crowd-Counting.png',
     metrics: [
       { value: '99.5%', label: 'Counting Accuracy' },
       { value: 'Live', label: 'Density Heatmap' },
