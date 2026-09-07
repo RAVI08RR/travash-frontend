@@ -6,7 +6,6 @@ import Navbar from '@/components/sections/Navbar'
 import AboutHero from '@/components/about/AboutHero'
 import CompanyStory from '@/components/about/CompanyStory'
 import CompanyTimeline from '@/components/about/CompanyTimeline'
-import IntroVideo from '@/components/sections/IntroVideo'
 import MissionVision from '@/components/about/MissionVision'
 import ValuesGrid from '@/components/about/ValuesGrid'
 import LeadershipSection from '@/components/about/LeadershipSection'
@@ -55,13 +54,6 @@ export default async function AboutPage() {
       <main className="bg-white">
         <AboutHero data={aboutPage?.hero} />
         <CompanyStory data={aboutPage?.story} />
-        <IntroVideo
-          data={{
-            eyebrow: 'Travash Culture & Vision',
-            heading: 'Watch How We Build & Deliver Global Software',
-            videoUrl: 'https://www.youtube.com/embed/ch2ui0gfHUY',
-          }}
-        />
         <CompanyTimeline timeline={aboutPage?.timeline} />
         <MissionVision data={aboutPage?.missionVision} />
         <ValuesGrid values={aboutPage?.values} />
