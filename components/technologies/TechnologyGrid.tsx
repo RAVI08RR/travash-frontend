@@ -1,13 +1,26 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import TechnologyCard, { TechnologyItem } from './TechnologyCard'
+import TechnologyCard, { TechnologyItem, resolveTechMeta } from './TechnologyCard'
 import { Search, Layers } from 'lucide-react'
 
 interface TechnologyGridProps {
   technologies: TechnologyItem[]
   categories?: string[]
 }
+
+const DEFAULT_CATEGORIES_ORDER = [
+  'All',
+  'Web Application',
+  'Mobile Application',
+  'Machine Learning & AI',
+  'AI & Biometrics',
+  'Cloud & Infrastructure',
+  'Big Data & Analytics',
+  'Databases & Storage',
+  'DevOps & CI/CD',
+  'Enterprise Security',
+]
 
 const DEFAULT_TECHNOLOGIES: TechnologyItem[] = [
   // Web Application
@@ -68,30 +81,37 @@ export default function TechnologyGrid({ technologies, categories: customCategor
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
-  // Derive categories
+  // Derive categories accurately from resolved metadata
   const categories = useMemo(() => {
-    if (customCategories && customCategories.length > 0) {
-      return ['All', ...customCategories]
-    }
     const cats = new Set<string>()
     allTechs.forEach((t) => {
-      const c = t.categoryTitle || t.category
+      const meta = resolveTechMeta(t.name)
+      const c = (t.categoryTitle && t.categoryTitle !== 'Web Application' ? t.categoryTitle : null) || meta?.category || t.category
       if (c) cats.add(c)
     })
-    return ['All', ...Array.from(cats)]
-  }, [allTechs, customCategories])
+
+    // Sort according to defined order if present
+    const list = Array.from(cats)
+    const sorted = DEFAULT_CATEGORIES_ORDER.filter((c) => c === 'All' || list.includes(c))
+    list.forEach((c) => {
+      if (!sorted.includes(c)) sorted.push(c)
+    })
+    return sorted
+  }, [allTechs])
 
   // Filtered techs
   const filteredTechs = useMemo(() => {
     return allTechs.filter((tech) => {
-      const cat = tech.categoryTitle || tech.category
+      const meta = resolveTechMeta(tech.name)
+      const cat = (tech.categoryTitle && tech.categoryTitle !== 'Web Application' ? tech.categoryTitle : null) || meta?.category || tech.category || 'Technology'
+      const desc = meta?.description || tech.description || ''
       const matchCat = selectedCategory === 'All' || cat === selectedCategory
       const query = searchQuery.toLowerCase().trim()
       const matchSearch =
         !query ||
         tech.name.toLowerCase().includes(query) ||
-        (tech.description && tech.description.toLowerCase().includes(query)) ||
-        (cat && cat.toLowerCase().includes(query))
+        desc.toLowerCase().includes(query) ||
+        cat.toLowerCase().includes(query)
 
       return matchCat && matchSearch
     })
