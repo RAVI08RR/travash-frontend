@@ -177,526 +177,159 @@ export interface ServiceData {
   seo?: ServiceSEO
 }
 
-// Complete fallback seed data extracted directly from the live WordPress reference page:
-// https://travash.com/data-analytics-solutions/
-export const DEFAULT_DATA_ANALYTICS_SERVICE: ServiceData = {
-  title: 'Data & Analytics Solutions',
-  slug: 'data-analytics-solutions',
-  menuTitle: 'Data & Analytics',
+// -------------------------------------------------------------
+// 1. AI & DATA ENGINEERING
+// -------------------------------------------------------------
+export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
+  title: 'AI & Data Engineering',
+  slug: 'ai-data-engineering',
+  menuTitle: 'AI & Data Engineering',
   shortDescription:
-    'Convert raw enterprise data into hard ROI. We architect high-speed data pipelines, deploy scalable cloud warehouses, and build custom business intelligence systems.',
+    'Turn AI hype into enterprise ROI. We engineer custom AI automation solutions, agentic workflows, and secure LLM integrations to solve complex business bottlenecks.',
   hero: {
-    eyebrow: 'Enterprise Data Engineering & BI',
-    title: 'Stop Drowning in Data. Start Driving Revenue.',
+    eyebrow: 'Enterprise AI & Data Architecture',
+    title: 'Turn AI Hype into Hard Enterprise ROI.',
     description:
-      'Having terabytes of data means nothing if you cannot extract immediate, actionable truth from it. We architect high-speed data pipelines, implement powerful business intelligence platforms, and build custom dashboards that turn raw enterprise data into hard ROI.',
-    primaryCTA: {
-      label: 'Book a Data Architecture Audit',
-      href: '#contact',
-    },
-    secondaryCTA: {
-      label: 'View Analytics Case Studies',
-      href: '#case-studies',
-    },
-    heroImage: '/images/services/hero-bg.webp',
-    backgroundImage: '/images/services/hero-bg.webp',
-    heroImageAlt: 'Stop Drowning in Data - Travash Data Analytics',
+      'Stop getting stuck in the pilot phase. We engineer production-ready AI agents, automate data pipelines, and deploy custom machine learning models that solve real operational bottlenecks—securely and at scale.',
+    primaryCTA: { label: 'Book a Technical Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore AI Success Stories', href: '#case-studies' },
     highlights: [
-      'Enterprise Data Engineering',
-      'Real-Time Analytics',
-      'Modern Cloud Warehouses',
-      'Business Intelligence',
+      '80% POC failure rate solved',
+      'Zero data leakage private models',
+      'Up to 40% faster time-to-market',
+      'Sub-second inference pipelines',
     ],
   },
   problemSection: {
-    label: 'The Problem:',
-    title: 'Outdated Spreadsheets & Data Silos',
-    headline: 'You are making critical decisions based on outdated spreadsheets.',
+    label: 'The Reality of Enterprise AI',
+    title: 'The Problem: 80% of enterprise AI projects never make it to production.',
+    headline: "Tech leaders know that dropping a generic chatbot into a legacy system doesn't drive growth.",
     description:
-      'Tech leaders are sitting on a goldmine of data, but it is trapped in disconnected silos. Finance uses one system, sales uses another, and your supply chain is a black box. When it takes your team three weeks to manually compile a performance report, you are reacting to the past instead of navigating the future.',
-    image: '/images/services/critical.webp',
+      "You are dealing with fragmented data silos, strict compliance regulations, and a severe shortage of specialized engineering talent. You don't need more experimentation. You need execution.",
     painPoints: [
       {
-        title: 'Disconnected Enterprise Silos',
-        description: 'Departments rely on isolated systems with conflicting versions of customer and financial records.',
+        title: 'Fragmented Data Silos',
+        description: 'Proprietary enterprise data is locked in legacy stores without automated vectorization or high-speed pipelines.',
       },
       {
-        title: 'Slow Manual Reporting Cycles',
-        description: 'Teams spend weeks stitching together static spreadsheets instead of analyzing live performance.',
+        title: 'Data Drift & Model Degradation',
+        description: 'Models trained on static datasets degrade rapidly in accuracy as real-world input distributions shift over time.',
       },
       {
-        title: 'Unverified & Inconsistent Data',
-        description: 'Duplicate rows and unstandardized schemas undermine confidence during strategic board meetings.',
+        title: 'Regulatory & IP Risk',
+        description: 'Using public foundation models creates massive data privacy liabilities and strict compliance violations.',
       },
       {
-        title: 'Reactive Business Posture',
-        description: 'Without real-time telemetry, leadership makes high-stakes decisions based on stale historical data.',
+        title: 'Severe AI Talent Shortage',
+        description: 'Bypassing the 6-month hiring cycle for elite deep learning, computer vision, and MLOps talent.',
       },
     ],
   },
   solutionOverview: {
     heading: 'How Travash Solves It',
     description:
-      'We do not just visualize data; we fix the plumbing underneath it. We deploy senior data architects who untangle your fragmented systems and build a secure, centralized single source of truth.',
-    image: '/images/services/eradicate.webp',
+      'We bridge the gap between AI theory and technical reality. We deploy dedicated development teams that integrate directly into your workflows to build reliable, scalable architectures.',
     benefits: [
-      {
-        icon: 'database',
-        title: 'Eradicate Data Silos',
-        description:
-          'We build automated pipelines that extract, transform, and load (ETL) data from all your legacy and third-party systems into one unified data lake or warehouse.',
-      },
       {
         icon: 'users',
-        title: 'Top 1% Data Talent',
-        description:
-          'Instantly scale your capacity with a dedicated development team of elite data engineers and BI analysts.',
-      },
-      {
-        icon: 'eye',
-        title: 'Real-Time Visibility',
-        description:
-          'We replace manual reporting with automated, real-time analytics, giving your executive team absolute clarity on business health at a glance.',
-      },
-    ],
-    cta: {
-      label: 'Get a Free Consultation',
-      href: '#contact',
-    },
-  },
-  capabilitiesImage: '/images/services/analytics.webp',
-  capabilities: [
-    {
-      title: 'Data Engineering',
-      shortDescription:
-        'We build the critical plumbing—secure, high-volume data pipelines—that makes accurate analytics possible.',
-      problem: 'Your data is dirty, duplicated, and scattered across dozens of incompatible legacy systems.',
-      solution:
-        'We architect scalable data infrastructure using Big Data technologies like Hadoop, Spark, and NoSQL. We build automated ETL pipelines that clean and route data into a centralized, secure data warehouse.',
-      businessImpact:
-        'Creates an unshakeable foundation of high-quality data, ensuring your business intelligence tools are reporting the actual truth.',
-      icon: 'database',
-      technologies: ['Apache Spark', 'Hadoop', 'Kafka', 'Python', 'SQL', 'Airflow', 'dbt'],
-      optionalCTA: { label: 'Explore Engineering', href: '#contact' },
-    },
-    {
-      title: 'Business Intelligence (BI)',
-      shortDescription:
-        'We deploy enterprise-grade BI platforms that empower your teams to query massive datasets without needing a degree in computer science.',
-      problem:
-        'Non-technical leaders cannot get answers to strategic questions without submitting a ticket to the IT department and waiting days.',
-      solution:
-        'We implement and customize leading BI engines (like Power BI, Tableau, or custom builds). We design intuitive semantic layers so anyone can explore data naturally.',
-      businessImpact:
-        'Democratizes data across your organization, drastically cutting the time it takes to move from a strategic question to a data-backed answer.',
-      icon: 'pie-chart',
-      technologies: ['Power BI', 'Tableau', 'Looker', 'Custom Semantic Models'],
-      optionalCTA: { label: 'Explore BI', href: '#contact' },
-    },
-    {
-      title: 'CI/CD (Continuous Integration & Continuous Deployment)',
-      shortDescription:
-        'We build the automated highways that take your code from a developer\'s laptop to production in minutes.',
-      problem: 'Code sits in testing environments for weeks waiting for manual QA and security approvals.',
-      solution:
-        'We engineer automated CI/CD pipelines. Every code commit is automatically built, security-scanned, and tested before being safely deployed to staging or production.',
-      businessImpact:
-        'Empowers your engineers to deploy multiple times a day with total confidence, massively accelerating feature releases.',
-      icon: 'server',
-      technologies: ['Jenkins', 'GitLab CI', 'GitHub Actions', 'ArgoCD'],
-      optionalCTA: { label: 'Explore CI/CD', href: '#contact' },
-    },
-    {
-      title: 'AWS (Amazon Web Services)',
-      shortDescription:
-        'We design, deploy, and manage highly resilient cloud architectures on the world\'s most comprehensive cloud platform.',
-      problem:
-        'Your AWS environment has grown organically over years, leading to tangled permissions, unused resources, and bloated monthly invoices.',
-      solution:
-        'Our certified AWS architects optimize your infrastructure. We implement EC2 auto-scaling, secure S3 data lakes, and serverless architectures to maximize performance.',
-      businessImpact:
-        'Slashes your AWS spend, tightens identity access management (IAM), and ensures 99.99% uptime.',
-      icon: 'cloud',
-      technologies: ['AWS S3', 'EC2 Auto-scaling', 'EMR', 'Redshift', 'Lambda'],
-      optionalCTA: { label: 'Explore AWS', href: '#contact' },
-    },
-    {
-      title: 'Microsoft Azure',
-      shortDescription:
-        'We engineer enterprise-grade hybrid and public cloud solutions utilizing the Microsoft ecosystem.',
-      problem: 'You rely heavily on enterprise Microsoft tools but struggle to scale them securely in a hybrid cloud environment.',
-      solution:
-        'We leverage Azure’s advanced capabilities, deploying secure Kubernetes services (AKS), Azure DevOps pipelines, and seamless Active Directory integrations.',
-      businessImpact:
-        'Provides a highly secure, compliant environment that natively integrates with your existing enterprise software stack.',
-      icon: 'shield',
-      technologies: ['Azure Synapse', 'AKS', 'Azure DevOps', 'Active Directory'],
-      optionalCTA: { label: 'Explore Azure', href: '#contact' },
-    },
-    {
-      title: 'Google Cloud (GCP)',
-      shortDescription:
-        'We build data-heavy, high-compute platforms leveraging Google’s elite machine learning and analytics infrastructure.',
-      problem:
-        'Your data engineering and AI models are choking on standard cloud infrastructure due to low compute speed and high latency.',
-      solution:
-        'We architect data pipelines and microservices on GCP, utilizing BigQuery, Vertex AI, and Google Kubernetes Engine (GKE) for extreme performance.',
-      businessImpact:
-        'Accelerates data processing and machine learning workflows, giving you the fastest possible insights from your enterprise data.',
-      icon: 'cpu',
-      technologies: ['Google BigQuery', 'Vertex AI', 'GKE', 'Dataflow'],
-      optionalCTA: { label: 'Explore GCP', href: '#contact' },
-    },
-    {
-      title: 'DevSecOps & Cloud Security',
-      shortDescription:
-        'We bring financial accountability to the variable spend model of the cloud.',
-      problem: 'Your cloud bill is a black box, and costs are scaling much faster than your actual business revenue.',
-      solution:
-        'We conduct rigorous FinOps audits. We identify orphaned resources, right-size your compute instances, and architect serverless functions to ensure you only pay for what you use.',
-      businessImpact:
-        'Instantly reclaims wasted IT budget, providing predictable, optimized monthly cloud expenditures.',
-      icon: 'shield',
-      technologies: ['FinOps Audits', 'Terraform', 'Vault', 'Kubernetes Security'],
-      optionalCTA: { label: 'Explore DevSecOps', href: '#contact' },
-    },
-  ],
-  process: {
-    heading: 'Our Infrastructure Engineering Process',
-    description:
-      'We do not guess with your infrastructure. We follow a strict, enterprise-grade methodology to ensure absolute stability.',
-    steps: [
-      {
-        number: '01',
-        title: 'Cloud Readiness & Security Audit',
-        description:
-          'We audit your existing codebase, database structures, and security posture to identify the exact cloud architecture you need.',
-        icon: '/images/services/process-icon.svg',
-      },
-      {
-        number: '02',
-        title: 'Blueprinting & Infrastructure as Code',
-        description:
-          'We design the architecture and write it as code (Terraform/Ansible) so your infrastructure is version-controlled, repeatable, and secure.',
-        icon: '/images/services/process-icon.svg',
-      },
-      {
-        number: '03',
-        title: 'Phased Execution & Containerization',
-        description:
-          'We migrate or deploy in tightly controlled sprints, utilizing Docker and Kubernetes to ensure applications run perfectly in any environment.',
-        icon: '/images/services/process-icon.svg',
-      },
-      {
-        number: '04',
-        title: 'Continuous Monitoring',
-        description:
-          'Post-deployment, we implement advanced telemetry and auto-healing scripts to catch and resolve anomalies before your users ever notice.',
-        icon: '/images/services/process-icon.svg',
-      },
-    ],
-  },
-  relatedCaseStudies: [
-    {
-      title: 'I4C — National Cyber Crime Coordination',
-      slug: 'i4c',
-      category: 'Government Data Platform',
-      client: 'National Cyber Crime Bureau',
-      shortDescription: 'Pan-India data coordination platform processing real-time fraud telemetry, tracking criminal activity, and enabling fund recovery across all Indian states.',
-      image: '/images/services/i4c.png',
-      featureImage: { asset: { url: '/images/services/i4c.png' } },
-      metrics: [
-        { value: '₹100M+', label: 'Fraud Intercepted' },
-        { value: 'Real-Time', label: 'Data Sync' },
-      ],
-    },
-    {
-      title: 'Darpan — AI Facial Retrieval Engine',
-      slug: 'darpan',
-      category: 'AI & Computer Vision Analytics',
-      client: 'State Law Enforcement',
-      shortDescription: 'Deep learning facial recognition system for missing-person retrieval — matching records across high-volume state-scale databases in real-time.',
-      image: '/images/services/darpan.webp',
-      featureImage: { asset: { url: '/images/services/darpan.webp' } },
-      metrics: [
-        { value: '800+', label: 'High-Risk Cases' },
-        { value: '99.4%', label: 'Biometric Accuracy' },
-      ],
-    },
-    {
-      title: 'Dine Desk — Restaurant Intelligence',
-      slug: 'dine-desk',
-      category: 'SaaS Data & Analytics',
-      client: 'Enterprise Restaurant Network',
-      shortDescription: 'Data-driven restaurant management platform with occupancy analytics, automated reporting, and real-time operational intelligence for multi-unit chains.',
-      image: '/images/services/dinedesk.png',
-      featureImage: { asset: { url: '/images/services/dinedesk.png' } },
-      metrics: [
-        { value: '3x', label: 'Table Turnover' },
-        { value: '40%', label: 'No-Show Reduction' },
-      ],
-    },
-  ],
-  engagementBgImage: '/images/services/engagement-bg.webp',
-  engagementModels: [
-    {
-      title: 'Dedicated Team',
-      description:
-        'A dedicated, fully managed pod of senior data engineers, cloud architects, and BI analysts embedded directly into your delivery workflow.',
-      icon: '/images/services/boosting.svg',
-      badge: 'Most Popular',
-      cta: { label: 'Hire Dedicated Team', href: '#contact' },
-    },
-    {
-      title: 'Fixed Fee',
-      description:
-        'For clearly scoped deliverables—such as a data warehouse migration or automated ETL rollout—with guaranteed milestones, fixed budget, and SLA delivery.',
-      icon: '/images/services/boosting.svg',
-      badge: 'Fixed Scope',
-      cta: { label: 'Scope a Project', href: '#contact' },
-    },
-    {
-      title: 'Time & Material (Advisory)',
-      description:
-        'On-demand access to certified principal architects for ad-hoc audits, infrastructure troubleshooting, performance tuning, and high-level technical guidance.',
-      icon: '/images/services/boosting.svg',
-      badge: 'Flexible',
-      cta: { label: 'Book Advisory', href: '#contact' },
-    },
-    {
-      title: 'Staff Augmentation',
-      description:
-        'Seamlessly integrate vetted, senior engineers into your existing internal engineering team within days to accelerate sprint velocity and bridge skill gaps.',
-      icon: '/images/services/boosting.svg',
-      badge: 'Rapid Scale',
-      cta: { label: 'Augment Staff', href: '#contact' },
-    },
-  ],
-  technologyStack: [
-    {
-      category: 'Cloud Platforms',
-      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud'],
-      items: [
-        { name: 'AWS', icon: '/images/services/aws.svg' },
-        { name: 'Azure', icon: '/images/services/azure.svg' },
-        { name: 'Google Cloud', icon: '/images/services/google-cloud.svg' },
-      ],
-      description: 'Enterprise multi-cloud ecosystems with auto-scaling compute and high-availability architecture.',
-    },
-    {
-      category: 'Containerization & Orchestration',
-      technologies: ['Docker', 'Kubernetes'],
-      items: [
-        { name: 'Docker', icon: '/images/services/docker.svg' },
-        { name: 'Kubernetes', icon: '/images/services/kubernetes.svg' },
-      ],
-      description: 'Microservices containerization with zero-downtime rolling deployments and automated cluster healing.',
-    },
-    {
-      category: 'CI/CD & Automation',
-      technologies: ['Jenkins', 'GitLab', 'Ansible', 'HashiCorp Terraform'],
-      items: [
-        { name: 'Jenkins', icon: '/images/services/jenkins.svg' },
-        { name: 'GitLab', icon: '/images/services/gitlab.svg' },
-        { name: 'Ansible', icon: '/images/services/ansible.svg' },
-        { name: 'Terraform', icon: '/images/services/terraform.svg' },
-      ],
-      description: 'Version-controlled infrastructure as code and automated deployment pipelines with zero human error.',
-    },
-    {
-      category: 'Monitoring & Security',
-      technologies: ['DataGrip', 'Prometheus', 'Grafana', 'Cloudflare'],
-      items: [
-        { name: 'DataGrip', icon: '/images/services/datagrip.svg' },
-        { name: 'Prometheus', icon: '/images/services/prometheus.svg' },
-        { name: 'Grafana', icon: '/images/services/grafana.svg' },
-        { name: 'Cloudflare', icon: '/images/services/cloudflare.svg' },
-      ],
-      description: 'Real-time infrastructure observability, log aggregation, automated alerts, and edge DDoS protection.',
-    },
-  ],
-  trustSection: {
-    heading: 'Why Global Leaders Trust Us',
-    description:
-      'Founded in 2005, Travash operates as a trusted technology partner for organizations that operate at a massive international scale. Global giants like MasterCard, VISA, Facebook, Autodesk, and UBS trust our elite engineering talent to protect and scale their most critical infrastructure. We bring the execution rigor required for long-term, high-stakes technology partnerships.',
-    backgroundImage: '/images/services/global-leaders.webp',
-    stats: [
-      { value: '2005', label: 'Year Founded', description: '20+ Years of Enterprise Engineering Rigor' },
-      { value: '100+', label: 'Enterprise Systems Shipped', description: 'Tested Across High-Concurrency Workloads' },
-      { value: '99.99%', label: 'Infrastructure Uptime', description: 'Zero Data Loss Engineering Standard' },
-      { value: 'Global', label: 'Enterprise Giants', description: 'MasterCard, VISA, Facebook, Autodesk, UBS' },
-    ],
-    trustPoints: [
-      'Senior data architects and certified engineers across AWS, Azure, and Google Cloud',
-      'Strict zero-trust security standards, end-to-end data encryption, and role-based access control',
-      'Transparent sprint execution with dedicated technical project management',
-      'Proven track record scaling mission-critical public and enterprise platforms',
-    ],
-  },
-  testimonial: {
-    quote:
-      'Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens\' hard-earned rupees. Travash stands shoulder-to-shoulder with us on the frontlines, using technology to protect the nation.',
-    author: 'Senior Leadership & National Coordinator',
-    role: 'Cyber Crime Coordination',
-    company: 'National Anti-Fraud Network',
-    badge: 'National Infrastructure Partner',
-    avatarImage: '/images/services/testimonial-avatar.jpeg',
-    portalImage: '/images/services/i4c-portal.png',
-  },
-  faqs: [
-    {
-      question: 'How do you ensure our proprietary data doesn\'t leak into public AI models?',
-      answer:
-        'We enforce strict zero-trust network boundaries and enterprise data governance. All data processing pipelines, vector databases, and analytics platforms run entirely within your private cloud Virtual Private Cloud (VPC) or dedicated on-premise infrastructure. We configure private endpoints, data masking, and strict API controls so your sensitive business data is never shared with public LLMs or third-party training corpuses.',
-    },
-    {
-      question: 'Should we use a single cloud provider or a multi-cloud strategy?',
-      answer:
-        'The answer depends on your existing software ecosystem, data sovereignty mandates, and latency requirements. For most enterprises, standardizing on one primary cloud provider (such as AWS, Azure, or GCP) simplifies IAM security and drastically reduces data egress costs. However, we architect infrastructure using cloud-agnostic tools like Terraform, Docker, and Kubernetes, ensuring you retain the flexibility to deploy workloads across multiple clouds without vendor lock-in.',
-    },
-    {
-      question: 'How does DevOps actually save us money?',
-      answer:
-        'DevOps automation eliminates hundreds of hours of manual deployment and configuration toil, drastically reduces production downtime incidents, and right-sizes your cloud compute infrastructure. Through automated CI/CD pipelines, containerization, and FinOps monitoring, your development team releases features up to 5x faster while cutting idle infrastructure costs.',
-    },
-    {
-      question: 'Can you migrate our legacy monolithic application without rewriting it?',
-      answer:
-        'Yes. We utilize phased strangler-fig migration patterns and containerization (Docker & Kubernetes) to lift and optimize your legacy monolithic services without disrupting ongoing production operations. We break components into modular microservices gradually while ensuring data consistency and continuous uptime.',
-    },
-  ],
-  finalCTA: {
-    heading: 'Ready to build infrastructure that accelerates your business?',
-    description:
-      'Connect with our certified architects to review your roadmap, audit your cloud spend, or scale your engineering capacity.',
-    backgroundImage: '/images/services/cta-bg.webp',
-    primaryCTA: {
-      label: 'Book a Consultation',
-      href: '#contact',
-    },
-    secondaryCTA: {
-      label: 'Explore Case Studies',
-      href: '#case-studies',
-    },
-    features: [
-      {
-        title: 'Strategic Guidance',
-        description: 'Connects businesses with experienced architects.',
-      },
-      {
-        title: 'Revenue-Focused Roadmaps',
-        description: 'Ensures technology drives measurable business outcomes.',
-      },
-      {
-        title: 'Data Readiness Evaluation',
-        description: 'Assesses current states and defines next steps.',
-      },
-    ],
-  },
-  seo: {
-    metaTitle: 'AI Development Company | Enterprise AI, ML & Data Solutions | Travash',
-    metaDescription:
-      'Travash offers UI/UX design services and data analytics solutions in India, creating user-centric, visually appealing designs that boost engagement and digital success.',
-  },
-}
-
-export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
-  title: 'AI & Data Engineering',
-  slug: 'ai-data-engineering',
-  menuTitle: 'AI & Data Engineering',
-  shortDescription:
-    'Custom artificial intelligence models, computer vision systems, predictive algorithms, and automated workflows engineered for production environments.',
-  hero: {
-    eyebrow: 'APPLIED AI & MACHINE LEARNING',
-    title: 'Production-Grade AI, Computer Vision & Intelligent Automation',
-    description:
-      'From facial recognition platforms to automated document verification and predictive telemetry, we build robust AI systems that solve high-stakes business challenges.',
-    primaryCTA: { label: 'Schedule AI Consultation', href: '#contact' },
-    secondaryCTA: { label: 'Explore Case Studies', href: '#case-studies' },
-    highlights: ['Computer Vision & Facial biometrics', 'Edge AI & Deep Neural Networks', 'Zero-Trust Private AI Boundaries'],
-  },
-  problemSection: {
-    label: 'THE CHALLENGE',
-    title: 'Why AI Projects Fail In Production',
-    headline: 'Most AI initiatives get trapped in experimental notebooks and never scale reliably.',
-    description:
-      'Building a prototype AI script is easy; deploying it to handle millions of real-time images or noisy data inputs with 99.9% uptime requires enterprise-grade data engineering and disciplined MLOps.',
-    painPoints: [
-      {
-        title: 'Data Drift & Model Decay',
-        description: 'Models degrade quickly when real-world production inputs diverge from training distributions.',
-      },
-      {
-        title: 'High Latency & Compute Overheads',
-        description: 'Unoptimized neural networks cause heavy cloud GPU bills and sluggish user response times.',
-      },
-      {
-        title: 'Data Leakage & Compliance Vulnerability',
-        description: 'Sending proprietary client data to public LLM endpoints breaches enterprise privacy regulations.',
-      },
-      {
-        title: 'Lack of Automated Retraining',
-        description: 'Manual data annotation and retraining pipelines stall innovation and drain engineering time.',
-      },
-    ],
-  },
-  solutionOverview: {
-    heading: 'Engineering AI That Generates Measurable Business Value',
-    description:
-      'Travash brings 20+ years of software rigor to modern artificial intelligence. We architect private, secure, and blazing-fast AI pipelines built for real-world enterprise operations.',
-    benefits: [
-      {
-        icon: 'brain',
-        title: 'Private VPC Deployment',
-        description: 'All AI models run in isolated VPC environments with zero third-party exposure.',
+        title: 'We Unblock Talent',
+        description: 'Instantly access the top 1% of AI engineers, bypassing the brutal 6-month technical recruiting cycle.',
       },
       {
         icon: 'shield',
-        title: 'Sub-Second Edge Inference',
-        description: 'Quantized neural networks optimized with ONNX and TensorRT for real-time mobile and edge devices.',
+        title: 'We Protect Your Data',
+        description: 'We build private, isolated environments. Your proprietary data never trains public foundation models.',
       },
       {
-        icon: 'database',
-        title: 'Continuous MLOps Pipelines',
-        description: 'Automated data versioning, drift detection, and continuous model re-training pipelines.',
+        icon: 'zap',
+        title: 'We Build for Speed',
+        description: 'Using pre-built solution accelerators, we cut time-to-market by up to 40% with enterprise-grade security.',
+      },
+      {
+        icon: 'cpu',
+        title: 'Sub-Second Real-Time Inference',
+        description: 'ONNX runtime compilation and optimized vector search across high-dimensional embeddings.',
       },
     ],
+    cta: { label: 'Book Technical AI Review', href: '#contact' },
   },
   capabilities: [
     {
-      title: 'Computer Vision & Biometric Recognition',
-      shortDescription: 'High-precision facial recognition, object detection, and video stream telemetry.',
-      problem: 'Manual photo surveillance and verification fail under high volumes and low resolution.',
-      solution: 'Custom CNN architectures and vector embeddings matching identities in milliseconds across state-scale records.',
-      businessImpact: 'Powers platforms like Satyapaan and Darpan with 99.4% biometric precision.',
-      icon: 'camera',
-      technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'YOLOv8', 'Milvus'],
-      optionalCTA: { label: 'Explore Computer Vision', href: '#contact' },
+      title: 'Custom AI Software Development',
+      shortDescription: 'Bespoke AI applications built directly into your legacy infrastructure with total data sovereignty.',
+      problem: "Off-the-shelf AI tools can't handle unique business logic and fail strict compliance rules.",
+      solution: 'We architect end-to-end custom AI applications tailored strictly to your legacy infrastructure.',
+      businessImpact: 'Total data sovereignty, zero licensing bloat, and a proprietary AI ecosystem that scales seamlessly.',
+      technologies: ['Python', 'FastAPI', 'PyTorch', 'Docker'],
     },
     {
-      title: 'Automated Document Intelligence & OCR',
-      shortDescription: 'Instant structured extraction from passports, invoices, contracts, and legal IDs.',
-      problem: 'Human verification of paper credentials creates weeks of onboarding latency and human error.',
-      solution: 'Multi-modal document AI with automated anti-tampering forensic checks and structured JSON output.',
-      businessImpact: 'Reduces verification turnaround times by up to 85% with zero compliance infractions.',
-      icon: 'file-text',
-      technologies: ['Tesseract OCR', 'LayoutLM', 'Python', 'FastAPI'],
-      optionalCTA: { label: 'Explore Document AI', href: '#contact' },
+      title: 'Autonomous AI Agents',
+      shortDescription: 'Agentic systems with memory, multi-step planning, tool-use capabilities, and safety guardrails.',
+      problem: 'Teams burning thousands of hours on complex, multi-step tasks requiring dynamic decision-making.',
+      solution: 'Autonomous agents that reason, plan, and execute operational tasks across CRM and ERP systems.',
+      businessImpact: 'Reduces human intervention in routine operational tasks by up to 70%.',
+      technologies: ['LangChain', 'Llama 3', 'OpenAI', 'CrewAI'],
     },
     {
-      title: 'Predictive Analytics & Anomaly Detection',
-      shortDescription: 'Time-series forecasting, cyber fraud prevention, and real-time behavioral anomaly scoring.',
-      problem: 'Reactive monitoring catches fraud and hardware failures only after the financial loss has occurred.',
-      solution: 'Real-time event stream processing identifying unusual transaction velocity and malicious anomalies.',
-      businessImpact: 'Prevents millions in cyber fraud as demonstrated in the I4C banking portal.',
-      icon: 'trending-up',
-      technologies: ['Apache Kafka', 'Scikit-Learn', 'Python', 'PostgreSQL'],
-      optionalCTA: { label: 'Explore Anomaly Detection', href: '#contact' },
+      title: 'AI Automation Solutions',
+      shortDescription: 'Intelligent, high-speed data pipelines combining RPA with AI decisioning for end-to-end automation.',
+      problem: 'Legacy business processes, manual data entry, and fragmented workflows choking profit margins.',
+      solution: 'We replace manual bottlenecks with intelligent, high-speed data processing pipelines.',
+      businessImpact: 'Eliminates human error in data processing and slashes operational overhead from days to seconds.',
+      technologies: ['Apache Kafka', 'Python', 'Redis', 'PostgreSQL'],
+    },
+    {
+      title: 'Generative AI Development',
+      shortDescription: 'Secure internal GenAI tools using private, fine-tuned models for document analysis and synthesis.',
+      problem: 'Massive unstructured data exists, but extracting actionable insights takes too much human time.',
+      solution: 'We build secure internal GenAI tools using private, fine-tuned foundation models.',
+      businessImpact: 'Drastically reduces document synthesis time while keeping proprietary IP completely secure.',
+      technologies: ['Hugging Face', 'PyTorch', 'Milvus', 'LangChain'],
+    },
+    {
+      title: 'LLM Integration Services',
+      shortDescription: 'Secure Retrieval-Augmented Generation (RAG) connecting foundation models to internal databases.',
+      problem: 'Public LLMs hallucinate facts and expose sensitive enterprise data to the outside world.',
+      solution: 'We safely connect foundation models to proprietary databases using secure RAG and vector databases.',
+      businessImpact: 'Context-aware answers based only on internal truth, with zero risk of data leakage.',
+      technologies: ['OpenAI', 'Llama 3', 'Pinecone', 'Milvus'],
+    },
+    {
+      title: 'Machine Learning Development',
+      shortDescription: 'Predictive analytics and continuous MLOps pipelines forecasting trends and detecting anomalies.',
+      problem: 'Reacting to market shifts, equipment failures, and disruptions instead of anticipating them.',
+      solution: 'We train supervised and unsupervised models on historical data to forecast trends in real time.',
+      businessImpact: 'Transforms operations from reactive to proactive, optimizing inventory and uptime.',
+      technologies: ['Scikit-Learn', 'TensorFlow', 'PyTorch', 'ONNX'],
+    },
+    {
+      title: 'Computer Vision',
+      shortDescription: 'Visual intelligence for object detection, facial recognition, and real-time spatial mapping.',
+      problem: 'Physical quality control and inspection rely on manual review, causing high labor costs and errors.',
+      solution: 'We deploy visual intelligence models on edge hardware or cloud for real-time video processing.',
+      businessImpact: 'Achieves near-100% accuracy in defect detection and automates physical compliance monitoring.',
+      technologies: ['OpenCV', 'YOLOv8', 'PyTorch', 'Docker'],
+    },
+    {
+      title: 'Natural Language Processing (NLP)',
+      shortDescription: 'Text-analysis and voice engines that extract intent, analyze sentiment, and classify unstructured data.',
+      problem: 'Critical business insights are trapped inside millions of text documents, emails, and call transcripts.',
+      solution: 'Deep text-analysis and speech recognition systems extracting entities and structured data.',
+      businessImpact: 'Powers intelligent enterprise search and provides instant, data-backed operational insights.',
+      technologies: ['Hugging Face', 'Python', 'FastAPI', 'Tesseract OCR'],
+    },
+    {
+      title: 'AI Consulting Services',
+      shortDescription: 'Strategic roadmaps, data readiness audits, and pragmatic phased deployment architectures.',
+      problem: 'Lack of clear roadmap, budget estimate, or understanding of data readiness for AI.',
+      solution: 'Strategic advisory auditing infrastructure, assessing feasibility, and mapping phased delivery.',
+      businessImpact: 'Ensures AI investments are directed strictly toward projects with guaranteed business ROI.',
+      technologies: ['Architecture Audit', 'Data Readiness', 'MLOps Strategy'],
     },
   ],
   process: {
-    heading: 'Our AI & Data Engineering Methodology',
-    description: 'We follow a strict empirical process from data feasibility to production deployment.',
+    heading: 'Our AI Engineering Lifecycle',
+    description: 'A disciplined, 4-stage engineering pipeline from data audit to continuous production telemetry.',
     steps: [
       { number: '01', title: 'Data Audit & Feasibility Study', description: 'Evaluate training data quality, distribution balance, and technical feasibility.' },
       { number: '02', title: 'Model Architecture & Validation', description: 'Develop and benchmark model topologies against rigorous precision-recall metrics.' },
@@ -706,24 +339,24 @@ export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
   },
   technologyStack: [
     {
-      category: 'AI & Deep Learning',
-      technologies: ['PyTorch', 'TensorFlow', 'OpenCV', 'Hugging Face'],
-      description: 'Foundational frameworks for training and fine-tuning specialized neural networks.',
+      category: 'Models & Foundation',
+      technologies: ['OpenAI', 'Anthropic Claude', 'Llama 3', 'Hugging Face'],
+      description: 'Frontier foundation models fine-tuned and hosted in private, isolated enterprise environments.',
     },
     {
-      category: 'Data Engineering & Streaming',
-      technologies: ['Apache Kafka', 'Apache Spark', 'Python', 'FastAPI'],
-      description: 'High-throughput stream processing and distributed data pipelines.',
+      category: 'AI Frameworks & Libraries',
+      technologies: ['PyTorch', 'TensorFlow', 'OpenCV', 'LangChain'],
+      description: 'Foundational frameworks for training, fine-tuning, and orchestrating intelligent agentic workflows.',
     },
     {
-      category: 'Vector DBs & Storage',
-      technologies: ['Milvus', 'Redis', 'PostgreSQL', 'MinIO'],
-      description: 'Sub-millisecond similarity search across high-dimensional vector embeddings.',
+      category: 'Vector DBs & Streaming',
+      technologies: ['Milvus', 'Redis', 'PostgreSQL', 'Apache Kafka'],
+      description: 'Sub-millisecond similarity search across high-dimensional vector embeddings and streaming queues.',
     },
     {
-      category: 'MLOps & Inference',
+      category: 'MLOps & Deployment',
       technologies: ['Docker', 'Kubernetes', 'FastAPI', 'ONNX'],
-      description: 'Containerized model inference runtimes with real-time latency optimization.',
+      description: 'Containerized model inference runtimes with real-time latency optimization and health telemetry.',
     },
   ],
   relatedCaseStudies: [
@@ -788,127 +421,435 @@ export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
       ],
     },
   ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has operated as an AI-first digital transformation company. When global giants like MasterCard, VISA, Facebook, Autodesk, and UBS need to scale complex technical initiatives, they rely on our elite engineering talent.',
+    stats: [
+      { value: '2005', label: 'Established', description: 'Two decades of high-stakes engineering rigor' },
+      { value: '99.4%', label: 'Biometric Precision', description: 'State-scale computer vision accuracy' },
+      { value: '1.96M+', label: 'Records Processed', description: 'Zero-failure high-volume scale' },
+      { value: '<3s', label: 'Speed-to-Lead', description: 'Real-time conversational agent response' },
+    ],
+  },
   testimonial: {
-    quote: 'Working with Travash on our bespoke AI Voice Calling Agent was a total game-changer, taking us from manual handling to a high-speed automated growth engine. Speed-to-lead plummeted from over four hours to under three seconds (24/7), directly increasing booked appointments by +310%. Our team reclaimed over 25 hours per week to focus entirely on closings, and our HubSpot CRM is 100% automated. Critically, the AI agent sounds real human, making it highly effective and customer-friendly. Travash delivers custom AI architectures with immediate operational clarity and rapid, measurable ROI.',
+    quote:
+      'Working with Travash on our bespoke AI Voice Calling Agent was a total game-changer, taking us from manual handling to a high-speed automated growth engine. Speed-to-lead plummeted from over four hours to under three seconds (24/7), directly increasing booked appointments by +310%. Our team reclaimed over 25 hours per week to focus entirely on closings, and our HubSpot CRM is 100% automated. Critically, the AI agent sounds real human, making it highly effective and customer-friendly. Travash delivers custom AI architectures with immediate operational clarity and rapid, measurable ROI.',
     author: 'Founder & CEO',
     role: 'Sales Operations',
     company: 'AI Voice Agent Client',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Verified Enterprise Client',
   },
+  faqs: [
+    {
+      question: 'How do you ensure our proprietary data doesn’t leak into public AI models?',
+      answer:
+        'We operate on a strict zero-retention, private-deployment model. Your data never leaves your environment and is never used to train public foundation models. We use secure Retrieval-Augmented Generation (RAG) and private instances (like Azure OpenAI or AWS Bedrock) to ensure total data sovereignty.',
+    },
+    {
+      question: 'How long does it take to move an AI project from concept to production?',
+      answer:
+        'While every enterprise environment is different, we focus on rapid deployment. We typically deliver a functional, secure Proof of Concept (PoC) within 4 to 6 weeks. From there, we iterate and scale the solution into your production environment within 3 to 6 months.',
+    },
+    {
+      question: 'Do we need an internal team of AI experts to maintain this?',
+      answer:
+        'No. We offer flexible engagement models. We can either train your existing engineers to manage the system post-launch, or you can leverage our managed teams for continuous MLOps, model tuning, and infrastructure support.',
+    },
+    {
+      question: 'What is the difference between your custom AI solutions and off-the-shelf tools?',
+      answer:
+        'Off-the-shelf tools force your business processes to adapt to their software. Our custom AI solutions are engineered to adapt to your business. We build systems that understand your specific industry jargon, integrate seamlessly with your legacy databases, and comply with your unique security frameworks.',
+    },
+  ],
   finalCTA: {
-    heading: 'Ready to build production-grade AI that drives measurable results?',
-    description: 'Speak with our AI architects to evaluate your use case, audit data readiness, or build a proof-of-concept.',
-    primaryCTA: { label: 'Schedule AI Consultation', href: '#contact' },
-    secondaryCTA: { label: 'Browse Case Studies', href: '/portfolio' },
+    heading: 'Ready to move from experimentation to execution?',
+    description:
+      'Stop guessing. Speak directly with a senior AI architect to evaluate your data readiness and build a roadmap that actually drives revenue.',
+    primaryCTA: { label: 'Request a Technical Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore AI Case Studies', href: '/portfolio' },
   },
   seo: {
-    metaTitle: 'AI & Data Engineering Services | Travash Software Solutions',
-    metaDescription: 'Custom AI development, computer vision, and high-performance data engineering by Travash.',
+    metaTitle: 'AI Development Company | Enterprise AI, ML & Data Solutions | Travash',
+    metaDescription:
+      'Turn AI hype into enterprise ROI. We engineer custom AI automation solutions, agentic workflows, and secure LLM integrations to solve complex business bottlenecks.',
   },
 }
 
-export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
-  title: 'Software Engineering',
-  slug: 'software-engineering',
-  menuTitle: 'Software Engineering',
+// -------------------------------------------------------------
+// 2. DATA & ANALYTICS SOLUTIONS
+// -------------------------------------------------------------
+export const DEFAULT_DATA_ANALYTICS_SERVICE: ServiceData = {
+  title: 'Data & Analytics Solutions',
+  slug: 'data-analytics-solutions',
+  menuTitle: 'Data & Analytics',
   shortDescription:
-    'High-performance web applications, resilient microservices, cloud-native architectures, and dedicated engineering pods built for scale.',
+    'Convert raw enterprise data into hard ROI. We architect high-speed data pipelines, deploy scalable cloud warehouses, and build custom business intelligence systems.',
   hero: {
-    eyebrow: 'ENTERPRISE PLATFORM ENGINEERING',
-    title: 'Mission-Critical Software, High-Concurrency APIs & Scalable Cloud Systems',
+    eyebrow: 'Enterprise Data Engineering & BI',
+    title: 'Stop Drowning in Data. Start Driving Revenue.',
     description:
-      'We design and develop enterprise web platforms, mobile products, and microservices backends with rock-solid security, test coverage, and clean architecture.',
-    primaryCTA: { label: 'Discuss Your Project', href: '#contact' },
-    secondaryCTA: { label: 'Explore Portfolio', href: '/portfolio' },
-    highlights: ['Microservices & Event-Driven Architecture', '99.99% Production Uptime Standards', 'Full-Stack Dedicated Pods'],
+      'Having terabytes of data means nothing if you cannot extract immediate, actionable truth from it. We architect high-speed data pipelines, implement powerful business intelligence platforms, and build custom dashboards that turn raw enterprise data into hard ROI.',
+    primaryCTA: { label: 'Book a Data Architecture Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Analytics Case Studies', href: '#case-studies' },
+    highlights: [
+      'Sub-second query response times',
+      'Zero-data-loss streaming pipelines',
+      'Custom executive KPI dashboards',
+      'SOC2 / HIPAA-ready data security',
+    ],
   },
   problemSection: {
-    label: 'THE CHALLENGE',
-    title: 'Tackling Architecture Bottlenecks and Technical Debt',
-    headline: 'Legacy architectures and slow release cycles prevent modern enterprises from scaling.',
+    label: 'The Reality of Enterprise Data',
+    title: 'The Problem: You are making critical decisions based on outdated spreadsheets.',
+    headline: 'Tech leaders are sitting on a goldmine of data, but it is trapped in disconnected silos.',
     description:
-      'As user traffic and business complexity grow, monolithic legacy codebases cause sluggish page loads, frequent downtime, and prohibitive maintenance costs.',
+      'Finance uses one system, sales uses another, and your supply chain is a black box. When it takes your team three weeks to manually compile a performance report, you are reacting to the past instead of navigating the future.',
     painPoints: [
       {
-        title: 'Monolithic Scalability Limits',
-        description: 'Single points of failure where one bottleneck brings down the entire customer-facing platform.',
+        title: 'Disconnected Data Silos',
+        description: 'Multiple departments use conflicting software tools, making it impossible to see unified real-time metrics.',
       },
       {
-        title: 'Slow Feature Velocity',
-        description: 'Spaghetti code and lack of automated CI/CD pipelines drag development cycles into months.',
+        title: 'Manual Spreadsheet Drudgery',
+        description: 'Analysts spend thousands of wasted hours manually copying and pasting numbers into Excel every week.',
       },
       {
-        title: 'Security & Regulatory Gaps',
-        description: 'Outdated libraries and unencrypted data paths fail modern zero-trust audits.',
+        title: 'Dirty & Un-Sanitized Records',
+        description: 'Corrupt, duplicated, and inconsistent schemas result in inaccurate business intelligence reporting.',
       },
       {
-        title: 'High Infrastructure Costs',
-        description: 'Unoptimized server provisioning and inefficient database queries multiply monthly cloud bills.',
+        title: 'Unused Unstructured Data',
+        description: 'PDFs, customer service transcripts, and logs remain locked away without natural language extraction.',
       },
     ],
   },
   solutionOverview: {
-    heading: 'Enterprise Software Engineered for Speed, Scale & Stability',
+    heading: 'How Travash Solves It',
     description:
-      'Travash delivers robust, clean, and maintainable software systems. We adhere strictly to domain-driven design, comprehensive automated testing, and cloud-native standards.',
+      'We do not just visualize data; we fix the plumbing underneath it. We deploy senior data architects who untangle your fragmented systems and build a secure, centralized single source of truth.',
     benefits: [
       {
-        icon: 'code',
-        title: 'Modern Architecture',
-        description: 'Modular microservices and headless frontend architectures decoupling business logic for rapid iteration.',
+        icon: 'database',
+        title: 'Eradicate Data Silos',
+        description: 'Automated ETL pipelines extracting data from legacy systems into unified warehouses like Snowflake and BigQuery.',
       },
       {
-        icon: 'zap',
-        title: 'Sub-100ms API Latency',
-        description: 'Optimized database indexing, in-memory caching (Redis), and asynchronous queuing.',
+        icon: 'users',
+        title: 'Top 1% Data Talent',
+        description: 'Dedicated pods of senior data engineers, warehouse architects, and BI analysts embedded in your delivery.',
       },
       {
-        icon: 'lock',
-        title: 'Zero-Trust Security',
-        description: 'End-to-end data encryption, role-based access control (RBAC), and automated vulnerability scanning.',
+        icon: 'bar-chart',
+        title: 'Real-Time Visibility',
+        description: 'Role-based interactive dashboards giving executive leadership immediate operational clarity.',
+      },
+      {
+        icon: 'trending-up',
+        title: 'Predictive Intelligence',
+        description: 'Moving beyond historical reporting into machine learning-driven forecasting and anomaly detection.',
       },
     ],
+    cta: { label: 'Schedule Data Architecture Review', href: '#contact' },
   },
   capabilities: [
     {
-      title: 'Custom Enterprise Web Platforms',
-      shortDescription: 'High-throughput web applications designed for demanding operational workflows.',
-      problem: 'Off-the-shelf software fails to accommodate unique enterprise business logic and compliance.',
-      solution: 'Custom Next.js, React, and Java/Node backends tailored precisely to client business operations.',
-      businessImpact: 'Automates complex internal operations and delivers frictionless customer experiences.',
-      icon: 'globe',
-      technologies: ['React', 'Next.js', 'TypeScript', 'Java', 'Node.js'],
-      optionalCTA: { label: 'Discuss Web Platforms', href: '#contact' },
+      title: 'Data Engineering',
+      shortDescription: 'Scalable data infrastructure, high-throughput ETL/ELT pipelines, and distributed lakehouse storage.',
+      problem: 'Data is dirty, duplicated, and scattered across dozens of incompatible legacy systems.',
+      solution: 'We architect scalable data infrastructure using modern engines like Hadoop, Spark, and NoSQL.',
+      businessImpact: 'Creates an unshakeable foundation of high-quality data ensuring accurate BI reporting.',
+      technologies: ['Apache Kafka', 'Apache Spark', 'Python', 'Airflow'],
     },
     {
-      title: 'Microservices & API Modernization',
-      shortDescription: 'Decoupling monolithic platforms into resilient, independently scalable services.',
-      problem: 'Single points of failure and tightly coupled deployments risk total system crashes.',
-      solution: 'Strangler-fig migration patterns moving legacy systems to containerized Docker/Kubernetes microservices.',
-      businessImpact: 'Zero-downtime rolling deployments and 4x faster feature release velocity.',
-      icon: 'cpu',
-      technologies: ['Java Spring Boot', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL'],
-      optionalCTA: { label: 'Modernize Your Architecture', href: '#contact' },
+      title: 'Business Intelligence (BI)',
+      shortDescription: 'Enterprise BI platforms enabling non-technical teams to query massive datasets intuitively.',
+      problem: 'Non-technical leaders cannot get answers without submitting IT tickets and waiting days.',
+      solution: 'We customize leading BI engines with intuitive semantic layers so anyone can explore data.',
+      businessImpact: 'Democratizes data access across your company, cutting time from question to answer.',
+      technologies: ['Power BI', 'Tableau', 'Looker', 'dbt'],
     },
     {
-      title: 'Cross-Platform Mobile Engineering',
-      shortDescription: 'Native-feel iOS and Android applications built for high performance and offline reliability.',
-      problem: 'Building two disparate native codebases doubles development costs and causes feature discrepancies.',
-      solution: 'Unified React Native and Flutter mobile applications with background sync and biometric authentication.',
-      businessImpact: 'Powers mission-critical field apps like UGO with real-time GPS tracking.',
-      icon: 'smartphone',
-      technologies: ['React Native', 'Flutter', 'iOS', 'Android', 'AWS IoT'],
-      optionalCTA: { label: 'Explore Mobile Engineering', href: '#contact' },
+      title: 'Advanced Analytics',
+      shortDescription: 'Descriptive, diagnostic, and predictive analytics models forecasting business trends.',
+      problem: 'Knowing what happened last quarter without mathematical ability to predict next month.',
+      solution: 'We build predictive analytics models using historical data to forecast trends and flag anomalies.',
+      businessImpact: 'Anticipate supply chain shortages, predict churn, and optimize pricing dynamically.',
+      technologies: ['Python', 'Scikit-Learn', 'Snowflake', 'BigQuery'],
+    },
+    {
+      title: 'Custom Dashboards',
+      shortDescription: 'Role-based, real-time visual interfaces that cut through noise and highlight vital KPIs.',
+      problem: 'Executive dashboards cluttered with vanity metrics that provide zero operational value.',
+      solution: 'UX-led data visualization tailored to specific roles from CEO to warehouse managers.',
+      businessImpact: 'Accelerates executive decisions and aligns teams around visible, immediate metrics.',
+      technologies: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+    },
+    {
+      title: 'Automated Reporting',
+      shortDescription: 'Scheduled, compliant, and zero-error data drops that eliminate weekly manual Excel compilation.',
+      problem: 'Analysts burning thousands of hours copying data into Excel for weekly compliance reports.',
+      solution: 'Automated reporting systems pulling live data and distributing it securely on schedule.',
+      businessImpact: 'Recoups thousands of man-hours and ensures regulatory reporting is always accurate.',
+      technologies: ['Python', 'PostgreSQL', 'Airflow', 'Node.js'],
     },
   ],
   process: {
-    heading: 'Our Engineering Methodology',
-    description: 'Transparent 2-week agile sprints with continuous deployment and strict QA.',
+    heading: 'Our Data Engineering Process',
+    description: 'A disciplined 4-stage process bringing complete order to enterprise data chaos.',
     steps: [
-      { number: '01', title: 'Architecture Blueprint', description: 'System design, database schemas, and API contracts defined upfront.' },
-      { number: '02', title: 'Iterative Sprint Execution', description: 'Test-driven development with bi-weekly client demos and staging releases.' },
-      { number: '03', title: 'Automated CI/CD & Security', description: 'Continuous integration pipelines with automated unit, integration, and security scans.' },
-      { number: '04', title: 'Production Launch & SLA Support', description: 'Seamless zero-downtime cutover and 24/7 proactive infrastructure telemetry.' },
+      { number: '01', title: 'Data Discovery & Audit', description: 'Map existing data sources, identify pipeline bottlenecks, and define target business metrics.' },
+      { number: '02', title: 'Pipeline Architecture', description: 'Design automated ETL processes and select optimized data warehousing solutions.' },
+      { number: '03', title: 'Agile Engineering', description: 'Build and validate ingestion pipelines in iterative sprints with continuous schema testing.' },
+      { number: '04', title: 'BI Integration & DataOps', description: 'Deploy interactive dashboards, predictive models, and continuous monitoring telemetry.' },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Cloud Platforms',
+      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud'],
+      description: 'Enterprise multi-cloud ecosystems with auto-scaling compute and high-availability architecture.',
+    },
+    {
+      category: 'Containerization & Orchestration',
+      technologies: ['Docker', 'Kubernetes'],
+      description: 'Microservices containerization with zero-downtime rolling deployments and automated cluster healing.',
+    },
+    {
+      category: 'CI/CD & Automation',
+      technologies: ['Jenkins', 'GitLab', 'Ansible', 'HashiCorp Terraform'],
+      description: 'Version-controlled infrastructure as code and automated deployment pipelines with zero human error.',
+    },
+    {
+      category: 'Monitoring & Security',
+      technologies: ['DataGrip', 'Prometheus', 'Grafana', 'Cloudflare'],
+      description: 'Real-time infrastructure observability, log aggregation, automated alerts, and edge DDoS protection.',
+    },
+  ],
+  relatedCaseStudies: [
+    {
+      title: 'I4C — National Cyber Crime Coordination',
+      slug: 'i4c',
+      category: 'Government Data Platform',
+      client: 'National Cyber Crime Bureau',
+      shortDescription: 'National-scale cyber fraud tracking and analytics platform processing real-time fraud alerts and enabling instant coordination across 1,000+ stations.',
+      image: '/images/services/i4c.png',
+      metrics: [
+        { value: '1000+', label: 'Stations Connected' },
+        { value: 'Real-Time', label: 'Data Sync' },
+      ],
+    },
+    {
+      title: 'Darpan — AI Facial Retrieval Engine',
+      slug: 'darpan',
+      category: 'Computer Vision & AI',
+      client: 'State Law Enforcement',
+      shortDescription: 'Deep learning facial recognition system matching missing-person records in real-time across high-volume state-scale databases.',
+      image: '/images/services/darpan.webp',
+      metrics: [
+        { value: '800+', label: 'High-Risk Cases Flagged' },
+        { value: '<1s', label: 'Match Response Time' },
+      ],
+    },
+    {
+      title: 'Dine Desk — Restaurant Management Platform',
+      slug: 'dine-desk',
+      category: 'Hospitality Analytics SaaS',
+      client: 'Enterprise Restaurant Network',
+      shortDescription: 'Data-driven restaurant management platform with occupancy analytics, automated reporting, and real-time operational intelligence for multi-unit chains.',
+      image: '/images/services/dinedesk.png',
+      metrics: [
+        { value: '3x', label: 'Table Turnover' },
+        { value: '40%', label: 'No-Show Reduction' },
+      ],
+    },
+  ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has operated as a trusted technology partner for organizations that deal with massive, complex datasets. Global leaders like MasterCard, VISA, Facebook, Autodesk, and UBS trust our elite engineering talent to manage, protect, and analyze their most critical information.',
+    stats: [
+      { value: '2005', label: 'Established', description: 'Enterprise architectural discipline' },
+      { value: '100M+', label: 'Stolen Funds Intercepted', description: 'Real-time fraud telemetry' },
+      { value: '99.99%', label: 'Uptime', description: 'Mission-critical database availability' },
+      { value: '<50ms', label: 'Query Latency', description: 'Sub-second data retrieval' },
+    ],
+  },
+  testimonial: {
+    quote:
+      "Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens' hard-earned rupees.",
+    author: 'Senior Leadership & National Coordinator',
+    role: 'Cyber Crime Coordination',
+    company: 'National Anti-Fraud Network',
+    avatarImage: '/images/services/testimonial-avatar.jpeg',
+    badge: 'National Public Safety Authority',
+  },
+  faqs: [
+    {
+      question: 'We have massive amounts of unstructured data (PDFs, emails, images). Can you analyze that?',
+      answer:
+        'Yes. Traditional relational databases cannot handle unstructured data, but our data engineers utilize modern NoSQL databases and data lakes to store it. From there, we deploy Natural Language Processing (NLP) and machine learning models to extract structured insights from your unstructured documents.',
+    },
+    {
+      question: 'How do you ensure our sensitive business data remains secure during analytics?',
+      answer:
+        'Security is our baseline. We implement strict Role-Based Access Control (RBAC), meaning a warehouse employee cannot see executive financial dashboards. We utilize data masking, encryption at rest, and encryption in transit to ensure absolute compliance with global standards.',
+    },
+    {
+      question: 'What is the difference between a Data Lake and a Data Warehouse?',
+      answer:
+        'A Data Lake stores raw, unstructured, and structured data exactly as it comes in—it is highly flexible and scalable. A Data Warehouse stores processed, structured data that has been cleaned and optimized specifically for fast querying by Business Intelligence tools. We typically architect a combination of both to maximize your analytics capabilities.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to turn your data into a competitive advantage?',
+    description:
+      'Stop making decisions based on outdated spreadsheets. Speak with a senior Data Architect today to evaluate your infrastructure and build a roadmap for real-time analytics.',
+    primaryCTA: { label: 'Request a Data Architecture Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'Enterprise Data Analytics Services & Business Intelligence | Travash',
+    metaDescription:
+      'Stop drowning in fragmented data. We provide enterprise data engineering, custom dashboards, and data analytics services to drive real-time decisions.',
+  },
+}
+
+// -------------------------------------------------------------
+// 3. SOFTWARE ENGINEERING
+// -------------------------------------------------------------
+export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
+  title: 'Custom Software Development & Product Engineering',
+  slug: 'software-engineering',
+  menuTitle: 'Software Engineering',
+  shortDescription:
+    'Build software that scales, not technical debt. We provide product engineering services, SaaS development, and legacy system modernization for global enterprises.',
+  hero: {
+    eyebrow: 'Full-Stack Enterprise Engineering',
+    title: 'Build Software That Scales, Not Technical Debt.',
+    description:
+      'Stop fighting with rigid, off-the-shelf platforms. We co-engineer robust enterprise software, high-performance SaaS applications, and custom digital products designed to solve complex business bottlenecks and drive hard ROI.',
+    primaryCTA: { label: 'Book a Technical Consultation', href: '#contact' },
+    secondaryCTA: { label: 'View Our Engineering Case Studies', href: '#case-studies' },
+    highlights: [
+      'Cloud-Native Microservices',
+      'Zero-Downtime Releases',
+      'Pre-Built Solution Accelerators',
+      'Top 1% Engineering Pods',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Enterprise Software',
+    title: 'The Problem: You are forced to choose between speed, security, and quality.',
+    headline: 'Tech leaders are under immense pressure to launch products faster, but building in-house drains time and budget.',
+    description:
+      'Relying on generic, boxed software creates fragmented workflows and security vulnerabilities. Meanwhile, your legacy systems are becoming too expensive to maintain. You need a predictable, repeatable way to build and scale technology without breaking your existing operations.',
+    painPoints: [
+      {
+        title: 'Crushing Technical Debt',
+        description: 'Fragile legacy codebases make adding even simple features risky, slow, and unpredictable.',
+      },
+      {
+        title: '6-Month Recruiting Bottlenecks',
+        description: 'Searching for senior full-stack talent stalls product roadmaps and burns hiring capital.',
+      },
+      {
+        title: 'Rigid Monoliths',
+        description: 'Inflexible commercial software forces your business workflows to adapt to their limitations.',
+      },
+      {
+        title: 'Disconnected Data Silos',
+        description: 'Isolated legacy applications require error-prone manual data entry to sync information.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'We don’t just write code; we help you build a scalable "product factory." We deploy agile engineering pods that integrate directly into your business, combining deep technical authority with rapid execution.',
+    benefits: [
+      {
+        icon: 'users',
+        title: 'Dedicated Engineering Pods',
+        description: 'Instantly scale capacity with dedicated development teams of top 1% engineers, bypassing hiring friction.',
+      },
+      {
+        icon: 'zap',
+        title: 'Solution Accelerators',
+        description: 'Pre-built, secure frameworks and reusable architectures for common enterprise challenges to cut time-to-market.',
+      },
+      {
+        icon: 'cloud',
+        title: 'Agile & Cloud-Native',
+        description: 'Every product is built on cloud-native microservices, ensuring zero downtime, multi-tenant scale, and automated CI/CD.',
+      },
+      {
+        icon: 'shield',
+        title: '100% IP Ownership',
+        description: 'Complete legal transfer of all source code, architecture blueprints, and design assets upon milestone completion.',
+      },
+    ],
+    cta: { label: 'Schedule Technical Consultation', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'Custom Software Development',
+      shortDescription: 'Bespoke applications designed from scratch, tailored exclusively to your proprietary workflows.',
+      problem: 'Your business logic is unique, but you are bending operations to generic SaaS limitations.',
+      solution: 'We architect bespoke applications from the ground up—from requirements to cloud deployment.',
+      businessImpact: 'A proprietary digital asset matching your workflows with zero ongoing licensing bloat.',
+      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Java'],
+    },
+    {
+      title: 'Enterprise Software Development',
+      shortDescription: 'Robust internal platforms—from ERPs to CRM systems—that unify departments and automate workflows.',
+      problem: 'Disconnected data silos prevent departments from communicating, causing massive inefficiencies.',
+      solution: 'Centralized enterprise solutions including custom ERPs, HRMS, and business automation platforms.',
+      businessImpact: 'Unifies your entire workforce under a secure digital roof, streamlining operations.',
+      technologies: ['Java', 'Spring Boot', 'C# .NET', 'Oracle', 'PostgreSQL'],
+    },
+    {
+      title: 'SaaS Development',
+      shortDescription: 'High-performance multi-tenant platforms designed for rapid scaling, billing, and recurring revenue.',
+      problem: 'Building a multi-tenant architecture that can handle thousands of concurrent users is overwhelming.',
+      solution: 'High-performance subscription platforms with dynamic billing engines and scalable cloud infra.',
+      businessImpact: 'Accelerates time-to-market and ensures your SaaS scales rapidly without performance drops.',
+      technologies: ['React', 'Next.js', 'Node.js', 'PostgreSQL', 'Stripe API'],
+    },
+    {
+      title: 'Product Engineering Services',
+      shortDescription: 'End-to-end product lifecycle engineering, taking concepts through UI/UX, MVP, and full launch.',
+      problem: 'Taking an idea from MVP to mature product requires a complex blend of design and engineering.',
+      solution: 'Iterative UX methodologies, A/B testing, and agile sprints to validate and build winning features.',
+      businessImpact: 'Reduces development risk, launches faster, and iterates based on real data.',
+      technologies: ['Figma', 'React Native', 'Node.js', 'Docker'],
+    },
+    {
+      title: 'API Development & Integration',
+      shortDescription: 'Secure REST and GraphQL APIs allowing legacy systems and cloud applications to communicate seamlessly.',
+      problem: 'Legacy tools, cloud platforms, and third-party apps are isolated, requiring manual data syncing.',
+      solution: 'Secure, high-performance APIs and intelligent integrations syncing systems in real time.',
+      businessImpact: 'Eliminates manual data syncing, cuts human error, and creates an automated ecosystem.',
+      technologies: ['GraphQL', 'REST', 'FastAPI', 'Node.js', 'Redis'],
+    },
+    {
+      title: 'Legacy System Modernization',
+      shortDescription: 'Future-proof aging technical infrastructure by migrating monoliths to agile cloud microservices.',
+      problem: 'Core business relies on outdated monolithic code that is expensive to maintain and insecure.',
+      solution: 'Zero-disruption modernization untangling monolithic codebases into agile microservices.',
+      businessImpact: 'Drastically reduces server costs, hardens security, and future-proofs operations.',
+      technologies: ['Docker', 'Kubernetes', 'AWS', 'Microservices'],
+    },
+  ],
+  process: {
+    heading: 'Our Engineering Process',
+    description: 'We bring rigorous order to complex technical builds to ensure on-time, vulnerability-free releases.',
+    steps: [
+      { number: '01', title: 'Discovery & Architecture', description: 'Analyze business logic, map data architectures, and create wireframes before writing code.' },
+      { number: '02', title: 'Agile Sprints', description: 'Iterative 2-week delivery cycles with continuous client demos and total transparency.' },
+      { number: '03', title: 'QA & Security Testing', description: 'Integrated automated testing and DevSecOps pipelines ensuring vulnerability-free code.' },
+      { number: '04', title: 'CI/CD Deployment', description: 'Automated continuous integration and deployment launching software with zero downtime.' },
     ],
   },
   technologyStack: [
@@ -983,121 +924,189 @@ export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
       ],
     },
   ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has operated as a trusted technology partner for organizations that cannot afford to fail. When global leaders like MasterCard, VISA, Facebook, Autodesk, and UBS need to build mission-critical software, they rely on our elite engineering talent.',
+    stats: [
+      { value: '2005', label: 'Founded', description: 'Decades of software engineering excellence' },
+      { value: '99.9%', label: 'Platform Uptime', description: 'Engineered for zero downtime' },
+      { value: '10K+', label: 'Active Daily Users', description: 'High-concurrency mobile & web systems' },
+      { value: '100%', label: 'IP Ownership', description: 'All source code transferred to client' },
+    ],
+  },
   testimonial: {
-    quote: 'Trying to force our UK logistics operations into rigid, off-the-shelf software was an absolute nightmare. We needed a system that adapted to our unique workflows, not the other way around. Travash stepped in, mapped out our exact operational DNA, and built a bespoke internal application that fits us like a glove. Everything from our internal tracking to dispatch is finally unified exactly how we work on the floor. They didn\'t just build an app; they engineered a flawless digital extension of our business.',
+    quote:
+      "Trying to force our UK logistics operations into rigid, off-the-shelf software was an absolute nightmare. We needed a system that adapted to our unique workflows, not the other way around. Travash stepped in, mapped out our exact operational DNA, and built a bespoke internal application that fits us like a glove. Everything from our internal tracking to dispatch is finally unified exactly how we work on the floor. They didn't just build an app; they engineered a flawless digital extension of our business.",
     author: 'Operations Director',
     role: 'Head of Operations',
     company: 'UGO',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Logistics Enterprise UK',
   },
+  faqs: [
+    {
+      question: 'Who owns the intellectual property (IP) and the source code?',
+      answer:
+        'You do. We work strictly under Non-Disclosure Agreements (NDAs). Once the project is completed and compensated, 100% of the IP, source code, and design assets are legally transferred to your organization.',
+    },
+    {
+      question: 'How do you mitigate the risks of legacy system modernization?',
+      answer:
+        'We do not believe in "rip and replace." We use an incremental, microservices-based approach. We isolate specific components of your legacy system, modernize them, and run them in parallel to ensure zero business disruption during the transition.',
+    },
+    {
+      question: 'How quickly can you onboard an engineering team for our project?',
+      answer:
+        'Because we maintain a deep bench of vetted, top-tier engineering talent, we can typically assemble and onboard a dedicated development pod tailored to your tech stack within 2 to 4 weeks.',
+    },
+    {
+      question: 'Will my software be built to scale?',
+      answer:
+        'Absolutely. We take a cloud-native, API-first approach to all software engineering. This means your application is designed from day one to handle increased traffic, complex database queries, and future feature expansions without requiring a total rebuild.',
+    },
+  ],
   finalCTA: {
-    heading: 'Build scalable software that accelerates your competitive advantage',
-    description: 'Connect with our engineering leads to review your architecture or scale your developer capacity.',
-    primaryCTA: { label: 'Schedule Technical Consultation', href: '#contact' },
-    secondaryCTA: { label: 'Explore Case Studies', href: '/portfolio' },
+    heading: 'Ready to build digital products that drive real revenue?',
+    description:
+      'Stop letting technical debt slow you down. Speak with a senior engineering architect today to discuss your roadmap, architecture, and deployment strategy.',
+    primaryCTA: { label: 'Request a Technical Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore Engineering Case Studies', href: '/portfolio' },
   },
   seo: {
-    metaTitle: 'Enterprise Software Engineering | Travash Software Solutions',
-    metaDescription: 'Full-stack software engineering, microservices architecture, and cloud systems by Travash.',
+    metaTitle: 'Custom Software Development Company | Enterprise & SaaS Solutions | Travash',
+    metaDescription:
+      'Build software that scales, not technical debt. We provide product engineering services, SaaS development, and legacy system modernization for global enterprises.',
   },
 }
 
-export const DEFAULT_CLOUD_DEVOPS_SERVICE: ServiceData = {
-  title: 'Cloud & DevOps Engineering',
-  slug: 'cloud',
-  menuTitle: 'Cloud & DevOps',
-  shortDescription:
-    'Architect resilient multi-cloud infrastructure, automate zero-downtime CI/CD deployment pipelines, and optimize infrastructure spend across AWS, Azure, and GCP.',
-  hero: {
-    eyebrow: 'Resilient Cloud & Automated DevOps',
-    title: 'Modernize Your Cloud. Scale Without Outages or Excessive Costs.',
-    description:
-      'We design high-availability Kubernetes environments, automated Terraform infrastructure, and continuous delivery pipelines that help enterprises deploy faster with zero disruption.',
-    primaryCTA: { label: 'Book Cloud Architecture Consultation', href: '#contact' },
-    secondaryCTA: { label: 'View Cloud Case Studies', href: '/portfolio' },
-  },
-  technologyStack: [
-    {
-      category: 'Cloud Infrastructure',
-      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Terraform'],
-      description: 'Multi-cloud elasticity, auto-scaling instances, and declarative Infrastructure as Code.',
-    },
-    {
-      category: 'Containerization & Orchestration',
-      technologies: ['Docker', 'Kubernetes', 'Helm', 'ArgoCD'],
-      description: 'Microservices container runtimes with automated cluster scaling and progressive rollouts.',
-    },
-    {
-      category: 'CI/CD & Automation',
-      technologies: ['Jenkins', 'GitLab CI', 'GitHub Actions', 'Ansible'],
-      description: 'Automated build, test, and release pipelines ensuring continuous, zero-error deployments.',
-    },
-    {
-      category: 'Observability & Edge',
-      technologies: ['Prometheus', 'Grafana', 'DataGrip', 'Cloudflare'],
-      description: 'Full-stack metric telemetry, distributed trace monitoring, and global DDoS protection.',
-    },
-  ],
-  relatedCaseStudies: [
-    {
-      title: 'Indispare — Cloud Auto-Scaling Platform',
-      slug: 'indispare',
-      category: 'Industrial Cloud Infrastructure',
-      client: 'Indispare',
-      shortDescription: 'Highly secure AWS cloud architecture handling high-concurrency industrial parts catalog and transactional traffic with 99.99% uptime.',
-      image: '/images/services/analytics.webp',
-      metrics: [
-        { value: '99.99%', label: 'Infrastructure Uptime' },
-        { value: '0', label: 'Downtime Incidents' },
-      ],
-    },
-    {
-      title: 'Dine Desk — Cloud-Native Restaurant SaaS',
-      slug: 'dine-desk',
-      category: 'Multi-Tenant Cloud SaaS',
-      client: 'Enterprise Restaurant Network',
-      shortDescription: 'Scalable containerized cloud architecture running automated CI/CD and multi-region database replication.',
-      image: '/images/services/dinedesk.png',
-      metrics: [
-        { value: '3x', label: 'Peak Capacity' },
-        { value: '<50ms', label: 'API Response Time' },
-      ],
-    },
-    {
-      title: 'Skipr — Fast Cloud Delivery Platform',
-      slug: 'skipr',
-      category: 'High-Scale Cloud Systems',
-      client: 'Skipr Enterprise',
-      shortDescription: 'Containerized Kubernetes cluster deployment with automated Terraform provisioning and high-velocity continuous delivery.',
-      image: '/images/services/i4c.png',
-      metrics: [
-        { value: '65%', label: 'Deployment Cycle Reduction' },
-        { value: '100%', label: 'Infrastructure as Code' },
-      ],
-    },
-  ],
-  testimonial: {
-    quote: 'When your platform serves as the digital backbone for an industrial supply chain, even seconds of server downtime can cost millions. We didn\'t just need developers; we needed an impenetrable cloud infrastructure. Travash architected a highly secure, auto-scaling AWS environment that completely eliminated our performance bottlenecks. Their automated deployment pipelines ensure our system handles massive data loads and unexpected traffic spikes flawlessly. They didn\'t just build our platform — they gave us the ultimate operational peace of mind: true, uncompromising cloud reliability.',
-    author: 'Founder & CEO',
-    role: 'Chief Executive',
-    company: 'Indispare',
-    avatarImage: '/images/services/imran-khan.png',
-  },
-}
-
+// -------------------------------------------------------------
+// 4. DIGITAL EXPERIENCES (WEB & MOBILE)
+// -------------------------------------------------------------
 export const DEFAULT_DIGITAL_EXPERIENCES_SERVICE: ServiceData = {
-  title: 'Digital Experiences & UI/UX',
-  slug: 'digital',
+  title: 'Digital Experiences (Web & Mobile)',
+  slug: 'digital-experiences-web-mobile',
   menuTitle: 'Digital Experiences',
   shortDescription:
-    'Engineer high-conversion digital experiences, accessible web applications, and intuitive user interfaces backed by user-centric design and modern frontend engineering.',
+    'Stop losing users to clunky interfaces. We design and engineer high-performance web applications, enterprise portals, and custom mobile apps that drive adoption and revenue.',
   hero: {
-    eyebrow: 'Modern Web & User Experience',
-    title: 'Transforming User Journeys into High-Impact Digital Experiences.',
+    eyebrow: 'UX-Led Web & Mobile Engineering',
+    title: 'Stop Losing Users to Clunky Interfaces.',
     description:
-      'From complex SaaS dashboards to high-velocity consumer web applications, we combine brand aesthetics, micro-interactions, and robust engineering to captivate users.',
-    primaryCTA: { label: 'Explore Digital Experience Capabilities', href: '#contact' },
-    secondaryCTA: { label: 'View Experience Portfolio', href: '/portfolio' },
+      'A powerful backend means nothing if your frontend frustrates the user. We design and engineer high-performance web applications, enterprise portals, and custom mobile apps that drive adoption, engagement, and hard revenue.',
+    primaryCTA: { label: 'Book a UX & Engineering Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Our Digital Experience Portfolio', href: '#case-studies' },
+    highlights: [
+      'Sub-Second Load Times',
+      'Cross-Platform React Native & Flutter',
+      'Human-Centered UI/UX',
+      '60fps Gesture Animations',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Digital Experiences',
+    title: 'The Problem: Bad design is costing you market share.',
+    headline: 'Tech leaders know that user expectations are ruthless.',
+    description:
+      "Whether it is a consumer-facing mobile app or an internal enterprise portal, if it takes too many clicks to achieve a goal, users abandon it. You don't just need a development team to write code; you need engineers who understand user behavior, load speeds, and conversion architecture.",
+    painPoints: [
+      {
+        title: 'High User Churn & Abandonment',
+        description: 'Complex navigation hierarchies and slow UI transitions lead users to abandon workflows.',
+      },
+      {
+        title: 'Double Maintenance Overhead',
+        description: 'Managing separate iOS and Android native codebases inflates budgets and causes feature parity delays.',
+      },
+      {
+        title: 'Frustrating Desktop & Mobile Lag',
+        description: 'Legacy web tools requiring full-page reloads that perform poorly on mobile viewports.',
+      },
+      {
+        title: 'Internal Data Silos',
+        description: 'Employees wasting hours searching through disconnected portals and spreadsheets.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'We treat UI/UX design and software engineering as a single, unified discipline. We deploy cross-functional pods of designers and developers who build fast, intuitive digital products.',
+    benefits: [
+      {
+        icon: 'layout',
+        title: 'UX-Led Engineering',
+        description: 'We map the user journey, conduct usability testing, and prototype interactive wireframes before writing frontend code.',
+      },
+      {
+        icon: 'smartphone',
+        title: 'Cross-Platform Velocity',
+        description: 'Using modern frameworks like React Native and Flutter to build single-codebase apps running flawlessly on iOS and Android.',
+      },
+      {
+        icon: 'zap',
+        title: 'Performance First',
+        description: 'We engineer for sub-second load times and fluid 60fps micro-interactions that keep users engaged.',
+      },
+      {
+        icon: 'lock',
+        title: 'Enterprise Security Gateways',
+        description: 'Strict role-based access control (RBAC), data encryption, and secure API gateways built directly into the client.',
+      },
+    ],
+    cta: { label: 'Schedule UX Review', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'UI/UX Design',
+      shortDescription: 'Empathy, creativity, and user testing to design interfaces that solve problems and drive action.',
+      problem: 'Steep learning curves leading to high support tickets and low user retention.',
+      solution: 'User testing, wireframing, and interactive prototyping building intuitive UI architectures.',
+      businessImpact: 'Drastically cuts onboarding time, reduces support costs, and lifts user retention.',
+      technologies: ['Figma', 'Framer Motion', 'Design Systems', 'User Testing'],
+    },
+    {
+      title: 'Web Application Development',
+      shortDescription: 'Complex browser software delivering the speed and fluidity of a native desktop application.',
+      problem: 'Legacy web tools are slow, require constant reloads, and look terrible on mobile.',
+      solution: 'Lightning-fast SPAs and PWAs built using modern component-driven JavaScript frameworks.',
+      businessImpact: 'Delivers a frictionless user experience across all screen sizes, reducing bounce rates.',
+      technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    },
+    {
+      title: 'Mobile App Development',
+      shortDescription: 'Cutting-edge native and cross-platform mobile apps for iOS and Android environments.',
+      problem: 'Managing separate codebases for Apple and Android doubles development and upkeep costs.',
+      solution: 'High-performance cross-platform apps with secure APIs and offline sync capabilities.',
+      businessImpact: 'Gets you into App Store and Google Play faster, cutting costs and delighting mobile users.',
+      technologies: ['React Native', 'Flutter', 'iOS (Swift)', 'Android (Kotlin)'],
+    },
+    {
+      title: 'Enterprise Portals',
+      shortDescription: 'Secure digital hubs connecting employees, partners, and vendors with role-based data views.',
+      problem: 'Internal data scattered across emails, spreadsheets, and legacy tools making collaboration impossible.',
+      solution: 'Role-based portals securely aggregating CRM, ERP, and operations data in one dashboard.',
+      businessImpact: 'Breaks down data silos, accelerates decisions, and enforces strict access control.',
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'GraphQL'],
+    },
+    {
+      title: 'High-Conversion Website Development',
+      shortDescription: 'Fast, scalable, and SEO-optimized corporate web platforms that act as lead generation engines.',
+      problem: 'Current website is slow, difficult to update, and fails to convert traffic into qualified leads.',
+      solution: 'Modern website design and development backed by headless CMS architecture and technical SEO.',
+      businessImpact: 'Turns your site into a high-speed, high-converting digital asset easy for marketing to manage.',
+      technologies: ['Next.js', 'Sanity CMS', 'Tailwind CSS', 'TypeScript'],
+    },
+  ],
+  process: {
+    heading: 'Our Experience Engineering Process',
+    description: 'We eliminate guesswork from digital product development with iterative user-validated sprints.',
+    steps: [
+      { number: '01', title: 'Research & Empathy', description: 'Analyze target audience, define user personas, and map out core feature workflows.' },
+      { number: '02', title: 'Wireframing & Prototyping', description: 'Interactive clickable prototypes allowing you to validate user flow before development.' },
+      { number: '03', title: 'Frontend & Backend Build', description: 'Engineers integrate pixel-perfect UI with secure, scalable cloud infrastructure and APIs.' },
+      { number: '04', title: 'User Testing & Launch', description: 'Device-compatibility testing, accessibility audits, and load stress testing for a flawless rollout.' },
+    ],
   },
   technologyStack: [
     {
@@ -1159,99 +1168,184 @@ export const DEFAULT_DIGITAL_EXPERIENCES_SERVICE: ServiceData = {
       ],
     },
   ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has operated as a trusted technology partner for organizations that demand exceptional quality. When global leaders like MasterCard, VISA, Facebook, Autodesk, and UBS need to build user-facing digital products, they rely on our elite design and engineering talent.',
+    stats: [
+      { value: '2005', label: 'Established', description: 'Two decades of design & engineering mastery' },
+      { value: '3x', label: 'Engagement Lift', description: 'Average client user engagement growth' },
+      { value: '<1.2s', label: 'Load Time', description: 'Sub-second mobile experience performance' },
+      { value: '60fps', label: 'Fluid Motion', description: 'Hardware-accelerated gesture animations' },
+    ],
+  },
   testimonial: {
-    quote: 'We came to Travash with nothing but a concept and a blank canvas for Rating Star. We needed more than just a fresh coat of paint; we needed a complete, end-to-end digital experience. They mapped out every single user workflow from scratch and translated complex requirements into a beautifully clean, highly intuitive interface. They didn\'t just design our platform — they defined how our users experience our brand. The final design is visually striking, modern, and completely effortless to navigate.',
+    quote:
+      "We came to Travash with nothing but a concept and a blank canvas for Rating Star. We needed more than just a fresh coat of paint; we needed a complete, end-to-end digital experience. They mapped out every single user workflow from scratch and translated complex requirements into a beautifully clean, highly intuitive interface. They didn't just design our platform — they defined how our users experience our brand. The final design is visually striking, modern, and completely effortless to navigate.",
     author: 'Vinay',
     role: 'Founder',
     company: 'Rating Star',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Verified Founder',
   },
-}
-
-export const DEFAULT_PLATFORM_ENGINEERING_SERVICE: ServiceData = {
-  title: 'Platform Engineering',
-  slug: 'platform-engineering',
-  menuTitle: 'Platform Engineering',
-  shortDescription:
-    'Build scalable multi-tenant SaaS foundations, internal developer platforms (IDP), and unified API layers that empower product teams to ship software faster.',
-  hero: {
-    eyebrow: 'Scalable SaaS & Developer Platforms',
-    title: 'Engineered for High Velocity. Architected for Multi-Tenant Scale.',
+  faqs: [
+    {
+      question: 'Should we build a Native app (iOS/Android) or a Cross-Platform app?',
+      answer:
+        'It depends on your specific use case. If your app requires heavy use of native device hardware (like complex AR or extreme graphics), Native is best. If you need to hit the market quickly and cost-effectively on both Apple and Android, a cross-platform framework like React Native is usually the smartest business decision.',
+    },
+    {
+      question: 'Do you provide ongoing support after the app or website is launched?',
+      answer:
+        'Yes. Digital products require continuous iteration. We offer long-term support contracts to handle OS updates, security patches, feature expansions, and continuous UX optimization based on live user data.',
+    },
+    {
+      question: 'How do you ensure the web application is secure?',
+      answer:
+        'Security is engineered into the architecture from day one. We implement strict data encryption, secure API gateways, and role-based access controls (RBAC) to ensure your enterprise data is never exposed.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to build a digital product your users will actually love?',
     description:
-      'Eliminate architectural bottlenecks and redundant scaffolding. We engineer developer platforms, self-healing services, and unified microservices platforms.',
-    primaryCTA: { label: 'Consult Platform Engineers', href: '#contact' },
-    secondaryCTA: { label: 'Explore Platform Architectures', href: '/portfolio' },
+      'Stop losing customers to bad design. Speak with a senior UX architect and engineering lead today to map out your next web or mobile application.',
+    primaryCTA: { label: 'Request a UX & Engineering Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore Our Portfolio', href: '/portfolio' },
   },
-  technologyStack: [
-    {
-      category: 'Infrastructure as Code',
-      technologies: ['Terraform', 'Ansible', 'Docker', 'Kubernetes'],
-      description: 'Declarative cluster management, self-healing compute nodes, and reproducible environment templates.',
-    },
-    {
-      category: 'Cloud & Edge Platforms',
-      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Cloudflare'],
-      description: 'Multi-region compute fabrics, low-latency edge routing, and enterprise identity federation.',
-    },
-    {
-      category: 'Messaging & Streaming',
-      technologies: ['Apache Kafka', 'Redis', 'PostgreSQL', 'MySQL'],
-      description: 'Event-driven pub/sub messaging backbones, distributed caching, and zero-loss ACID storage.',
-    },
-    {
-      category: 'Telemetry & Observability',
-      technologies: ['Prometheus', 'Grafana', 'Datadog', 'SonarQube'],
-      description: 'Real-time telemetry, automated anomaly triggers, and continuous code quality gating.',
-    },
-  ],
-  relatedCaseStudies: [
-    {
-      title: 'I4C — National Cyber Coordination Platform',
-      slug: 'i4c',
-      category: 'Enterprise Platform Engineering',
-      client: 'National Cyber Crime Bureau',
-      shortDescription: 'Pan-India multi-agency coordination platform built for 1,000+ concurrent police stations with real-time data synchronization.',
-      image: '/images/services/i4c.png',
-      metrics: [
-        { value: '1000+', label: 'Stations Connected' },
-        { value: 'Real-Time', label: 'Data Sync' },
-      ],
-    },
-    {
-      title: 'Satyaapan — Government SaaS Platform',
-      slug: 'satyapaan',
-      category: 'Government SaaS',
-      client: 'Telangana State Police',
-      shortDescription: 'Multi-module SaaS platform for passport verification workflows combining AI, data pipelines, and officer dashboards.',
-      image: '/home-img/satyapaan-min 2.png',
-      metrics: [
-        { value: '1.96M', label: 'Workflows Processed' },
-        { value: '5+', label: 'Integrated Modules' },
-      ],
-    },
-  ],
-  testimonial: {
-    quote: 'The platform Travash engineered for us is mission-critical infrastructure. They designed an architecture that is scalable, resilient, and easy for our internal teams to maintain. Their engineering quality is exceptional.',
-    author: 'Senior Leadership & National Coordinator',
-    role: 'Cyber Crime Coordination',
-    company: 'National Anti-Fraud Network',
-    avatarImage: '/images/services/testimonial-avatar.jpeg',
+  seo: {
+    metaTitle: 'Web Application & Mobile App Development Company | Travash',
+    metaDescription:
+      'Stop losing users to poor design. We provide UX-led web application development and custom mobile app development for high-growth enterprises.',
   },
 }
 
+// -------------------------------------------------------------
+// 5. ENTERPRISE APPLICATIONS
+// -------------------------------------------------------------
 export const DEFAULT_ENTERPRISE_APPS_SERVICE: ServiceData = {
   title: 'Enterprise Applications & Modernization',
-  slug: 'enterprise',
+  slug: 'enterprise-applications',
   menuTitle: 'Enterprise Applications',
   shortDescription:
-    'Modernize legacy monoliths into agile microservices, integrate mission-critical ERPs and CRMs, and automate complex enterprise operational workflows.',
+    'Stop adapting your business to rigid software. Our senior architects engineer custom enterprise software, ERPs, and CRM development services tailored to your workflows.',
   hero: {
     eyebrow: 'Mission-Critical Business Systems',
-    title: 'Modernize Legacy Complexity into Resilient Enterprise Engines.',
+    title: 'Architected for Scale. Engineered for Your Enterprise.',
     description:
-      'Bridge core legacy databases, modern cloud services, and bespoke ERP/CRM workflows with zero data loss, guaranteed continuity, and enterprise compliance.',
-    primaryCTA: { label: 'Schedule Modernization Audit', href: '#contact' },
-    secondaryCTA: { label: 'View Enterprise Projects', href: '/portfolio' },
+      'The difference between an expensive, unstable system and a swift, reliable platform is how well the foundation is architected. We design and build custom enterprise applications, CRMs, and ERPs that adapt to your exact business operations—not the other way around.',
+    primaryCTA: { label: 'Book an Architectural Assessment', href: '#contact' },
+    secondaryCTA: { label: 'View Enterprise Case Studies', href: '#case-studies' },
+    highlights: [
+      'Senior Architects at the Helm',
+      'API-First Integration',
+      'Zero Per-Seat Licensing Fees',
+      'SOC2 / GDPR Ready',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Enterprise Software',
+    title: 'The Problem: Off-the-shelf software is dictating how you run your business.',
+    headline: 'You bought an out-of-the-box ERP or CRM promising total efficiency.',
+    description:
+      "Instead, you got bloated licensing fees, features you don't use, and a system that refuses to talk to your other tools. When you are forced to change your proprietary business workflows just to make the software work, the software has failed you.",
+    painPoints: [
+      {
+        title: 'Bloated Per-Seat Licensing Costs',
+        description: 'Paying exorbitant monthly vendor fees for software bloated with features you never use.',
+      },
+      {
+        title: 'Inflexible Proprietary Workflows',
+        description: 'Forced to alter your core operational procedures just to accommodate rigid boxed software limitations.',
+      },
+      {
+        title: 'Departmental Data Blind Spots',
+        description: 'Finance, logistics, and sales teams running on isolated tools requiring manual spreadsheet compilation.',
+      },
+      {
+        title: 'Fragile Middleware Connectors',
+        description: 'Integration APIs that break every time commercial SaaS vendors roll out unannounced updates.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It: The Architectural Advantage',
+    description:
+      'We believe great software is architected, not just written. Before a single line of code is deployed, our highly experienced system architects design a blueprint built for longevity, security, and scale.',
+    benefits: [
+      {
+        icon: 'award',
+        title: 'Senior Architects at the Helm',
+        description: 'Tackle complex security challenges and amplify portability from day one so systems handle massive loads.',
+      },
+      {
+        icon: 'link',
+        title: 'No More Data Silos',
+        description: 'API-first architecture ensuring custom applications integrate flawlessly with legacy mainframes and cloud tools.',
+      },
+      {
+        icon: 'cpu',
+        title: 'Build for Your Reality',
+        description: 'Custom microservices matching your operational logic, eliminating per-seat vendor licensing fees forever.',
+      },
+      {
+        icon: 'shield',
+        title: 'Enterprise Compliance Built-In',
+        description: 'Data security gateways, role-based access controls (RBAC), and encryption aligning with SOC2 and GDPR.',
+      },
+    ],
+    cta: { label: 'Schedule Architecture Review', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'CRM Development Services',
+      shortDescription: 'Intelligent customer management mapping exactly to your unique sales cycles and customer journeys.',
+      problem: 'Generic CRMs are cluttered with irrelevant features leading to poor sales adoption.',
+      solution: 'Custom CRM solutions and Salesforce integrations automating lead scoring and pipelines.',
+      businessImpact: 'Higher team adoption, faster sales cycles, and a unified view of customer interactions.',
+      technologies: ['Node.js', 'React', 'Salesforce API', 'PostgreSQL'],
+    },
+    {
+      title: 'ERP Development Services',
+      shortDescription: 'Centralize finance, supply chain, procurement, and operations into a modular platform.',
+      problem: 'Finance uses one system, logistics uses another, requiring weeks to compile reports.',
+      solution: 'Bespoke modular ERP applications connecting back-office operations in real time.',
+      businessImpact: 'Single source of truth, zero duplicate data entry, and slashed administrative overhead.',
+      technologies: ['Java', 'Spring Boot', 'Oracle', 'Kafka'],
+    },
+    {
+      title: 'HRMS (Human Resource Management)',
+      shortDescription: 'Digitize employee lifecycles from automated onboarding to payroll integration and tracking.',
+      problem: 'Scaling global staff using spreadsheets results in compliance risks and payroll errors.',
+      solution: 'Secure role-based HRMS portals automating leave, benefits, and compliance reviews.',
+      businessImpact: 'Protects from compliance fines, cuts HR administrative time, and delights new talent.',
+      technologies: ['React', 'Next.js', 'PostgreSQL', 'Node.js'],
+    },
+    {
+      title: 'Core Business Applications',
+      shortDescription: 'Bespoke internal systems for specialized operations that generic software cannot handle.',
+      problem: 'Company performs niche operations with no commercial software available to execute it.',
+      solution: 'Custom web and desktop applications tailored exclusively to your proprietary logic.',
+      businessImpact: 'Massive competitive advantage by digitizing and owning your core operational secret sauce.',
+      technologies: ['Java', 'C# .NET', 'Python', 'React'],
+    },
+    {
+      title: 'Workflow & Automation Systems',
+      shortDescription: 'Replace manual email approval chains with intelligent, automated digital pipelines.',
+      problem: 'Critical business approvals require manual handoffs between departments causing massive delays.',
+      solution: 'Intelligent workflow systems with custom rule engines automating task routing and notifications.',
+      businessImpact: 'Accelerates operations from days to minutes with a guaranteed, tamper-proof audit trail.',
+      technologies: ['Node.js', 'FastAPI', 'Redis', 'PostgreSQL'],
+    },
+  ],
+  process: {
+    heading: 'Our Architectural Process',
+    description: 'We do not guess. We engineer with structural precision and enterprise security rigor.',
+    steps: [
+      { number: '01', title: 'System Architecture & Blueprinting', description: 'Audit existing environments, identify security vulnerabilities, and design scalable cloud blueprints.' },
+      { number: '02', title: 'Technology Selection', description: 'Define the exact tech stack needed for low latency and high portability for your specific use case.' },
+      { number: '03', title: 'Agile Engineering', description: 'Dedicated pods build the application in iterative sprints with continuous progress demos.' },
+      { number: '04', title: 'Enterprise Security & Deployment', description: 'Implement strict access controls and deploy via CI/CD pipelines with zero business disruption.' },
+    ],
   },
   technologyStack: [
     {
@@ -1313,74 +1407,439 @@ export const DEFAULT_ENTERPRISE_APPS_SERVICE: ServiceData = {
       ],
     },
   ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has built the digital backbone for organizations that demand flawless execution. When global enterprises like MasterCard, VISA, Facebook, and Autodesk require highly secure, architecturally sound software, they trust our elite engineering teams.',
+    stats: [
+      { value: '2005', label: 'Founded', description: 'Enterprise architectural excellence' },
+      { value: '$2M+', label: 'Licensing Saved', description: 'Replaced rigid boxed enterprise software' },
+      { value: '99.9%', label: 'Inventory Accuracy', description: 'Real-time multi-warehouse sync' },
+      { value: '80%', label: 'Admin Time Slashed', description: 'Automated digital workflow engines' },
+    ],
+  },
   testimonial: {
-    quote: 'Travash modernized our entire enterprise application stack without a single hour of production downtime. Their technical team understood our complex business logic deeply and delivered systems that are faster, more secure, and far easier for our teams to maintain and scale.',
+    quote:
+      'Travash modernized our entire enterprise application stack without a single hour of production downtime. Their technical team understood our complex business logic deeply and delivered systems that are faster, more secure, and far easier for our teams to maintain and scale.',
     author: 'Abdul',
     role: 'Managing Director',
     company: 'Dubai Enterprise Client',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Managing Director',
+  },
+  faqs: [
+    {
+      question: 'Build vs. Buy: Why should we build custom enterprise software instead of buying a SaaS subscription?',
+      answer:
+        'Buying generic software forces you to change your business to fit the tool, and you are locked into escalating per-user licensing costs. Building custom software means you own the IP, you pay zero ongoing licensing fees, and the platform is architected exactly for your competitive advantage. For scaling enterprises, custom builds almost always provide a higher long-term ROI.',
+    },
+    {
+      question: 'How do you ensure the new application will communicate with our old legacy systems?',
+      answer:
+        'Integration is an architectural priority. We do not build isolated islands. We develop secure APIs and middleware that allow your new custom application to seamlessly push and pull data from your existing legacy mainframes or third-party tools.',
+    },
+    {
+      question: 'How do you handle data security in enterprise applications?',
+      answer:
+        'Security is baked into the architecture, not added as an afterthought. We implement Data Security Gateways, strict Role-Based Access Control (RBAC), and data encryption at rest and in transit. We align our builds with global compliance standards (like SOC2 or GDPR).',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to architect a system that actually fits your business?',
+    description:
+      'Stop compromising with off-the-shelf software. Speak directly with a senior system architect today to discuss your infrastructure, data flow, and development roadmap.',
+    primaryCTA: { label: 'Request an Architectural Assessment', href: '#contact' },
+    secondaryCTA: { label: 'Explore Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'Enterprise Software Development Company | Custom ERP & CRM | Travash',
+    metaDescription:
+      'Stop adapting your business to rigid software. Our senior architects engineer custom enterprise software, ERPs, and CRM development services tailored to your workflows.',
   },
 }
 
-export const DEFAULT_DEDICATED_TEAMS_SERVICE: ServiceData = {
-  title: 'Dedicated Talent & Agile Teams',
-  slug: 'dedicated-teams',
-  menuTitle: 'Dedicated Teams',
+// -------------------------------------------------------------
+// 6. CLOUD & DEVOPS
+// -------------------------------------------------------------
+export const DEFAULT_CLOUD_DEVOPS_SERVICE: ServiceData = {
+  title: 'Cloud & DevOps Engineering',
+  slug: 'cloud-devops',
+  menuTitle: 'Cloud & DevOps',
   shortDescription:
-    'Scale your engineering bandwidth with pre-vetted senior software engineers, AI researchers, and DevOps architects embedded directly into your delivery sprints.',
+    'Stop overpaying for inefficient infrastructure. We provide enterprise cloud migration services, CI/CD automation, and multi-cloud architecture for global brands.',
   hero: {
-    eyebrow: 'Elastic Engineering Scale',
-    title: 'Elite Engineering Squads Embedded Seamlessly in Your Sprints.',
+    eyebrow: 'Automated Cloud Infrastructure & SRE',
+    title: 'Ship Code Faster. Never Go Down.',
     description:
-      'Eliminate months of hiring delays. Integrate battle-tested full-stack developers, tech leads, and QA specialists who work aligned to your time zone and agile practices.',
-    primaryCTA: { label: 'Assemble Your Squad', href: '#contact' },
-    secondaryCTA: { label: 'Review Engagement Models', href: '/portfolio' },
+      'Your infrastructure should accelerate your business, not hold it hostage. We architect scalable cloud solutions, execute zero-downtime migrations, and implement elite DevOps pipelines so your engineering teams can ship secure code in minutes, not months.',
+    primaryCTA: { label: 'Book a Cloud Infrastructure Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Cloud & DevOps Case Studies', href: '#case-studies' },
+    highlights: [
+      'Zero-Downtime Cloud Migration',
+      'FinOps Cost Optimization',
+      'Automated CI/CD Pipelines',
+      '99.99% Guaranteed SLA Uptime',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Cloud & Infrastructure',
+    title: 'The Problem: You are scaling costs, not performance.',
+    headline: 'Tech leaders are pushed to move everything to the cloud to increase speed.',
+    description:
+      'But without proper architecture, rapid migrations result in skyrocketing AWS or Azure bills, critical security vulnerabilities, and deployment bottlenecks. When developers spend 40% of their time fighting infrastructure and managing manual releases instead of building products, your engineering pipeline is broken.',
+    painPoints: [
+      {
+        title: 'Runaway Cloud Compute Spend',
+        description: 'Unmonitored cloud invoices scaling exponentially faster than actual business revenue.',
+      },
+      {
+        title: 'Painful Manual Release Events',
+        description: 'Deployments requiring hours of manual configuration, constant rollbacks, and downtime.',
+      },
+      {
+        title: 'Critical Security Vulnerabilities',
+        description: 'Late security checks and tangled IAM permissions exposing private infrastructure.',
+      },
+      {
+        title: 'Developer Productivity Drain',
+        description: 'Engineers wasting 40% of sprint time firefighting infrastructure instead of shipping features.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'We treat infrastructure as software. We deploy senior cloud architects and site reliability engineers (SREs) who build automated, self-healing environments.',
+    benefits: [
+      {
+        icon: 'zap',
+        title: 'Eradicate Bottlenecks',
+        description: 'Instill a true DevSecOps culture, automating testing, security, and deployments for maximum velocity.',
+      },
+      {
+        icon: 'dollar-sign',
+        title: 'Cost Optimization (FinOps)',
+        description: 'Refactor monolithic applications into cloud-native microservices to drastically cut monthly compute costs.',
+      },
+      {
+        icon: 'globe',
+        title: 'Global Scale & Security',
+        description: 'Highly available, multi-tenant environments designed to withstand traffic spikes and comply with global laws.',
+      },
+      {
+        icon: 'shield',
+        title: 'Automated Self-Healing',
+        description: 'Real-time telemetry and auto-healing scripts catching and resolving anomalies before users notice.',
+      },
+    ],
+    cta: { label: 'Book Cloud Consultation', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'Cloud Migration Services',
+      shortDescription: 'Zero-disruption transitions from legacy on-premise servers to modern high-performance cloud environments.',
+      problem: 'Moving massive legacy monoliths causes unacceptable downtime and data loss risks.',
+      solution: 'Phased, risk-free cloud migrations shifting workloads incrementally using parallel environments.',
+      businessImpact: 'Exit expensive data centers securely with infinite scalability and zero disruption.',
+      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Terraform'],
+    },
+    {
+      title: 'DevOps Consulting Services',
+      shortDescription: 'Bridge development and operations, replacing manual handoffs with intelligent automated pipelines.',
+      problem: 'Software releases are painful manual events resulting in rollbacks and broken code.',
+      solution: 'Automated testing, infrastructure as code (IaC), and continuous real-time monitoring.',
+      businessImpact: 'Reduces manual overhead and transforms IT from a cost center to a high-speed delivery engine.',
+      technologies: ['Ansible', 'Terraform', 'Docker', 'Kubernetes'],
+    },
+    {
+      title: 'CI/CD Automation',
+      shortDescription: 'Automated delivery highways taking code from a developer’s laptop to production in minutes.',
+      problem: 'Code sits in testing environments for weeks waiting for manual QA approvals.',
+      solution: 'Automated build, security-scan, and testing pipelines on every single code commit.',
+      businessImpact: 'Empowers engineers to deploy multiple times a day with total confidence.',
+      technologies: ['GitHub Actions', 'GitLab CI', 'Jenkins', 'ArgoCD'],
+    },
+    {
+      title: 'AWS (Amazon Web Services)',
+      shortDescription: 'Resilient cloud architectures maximizing performance, auto-scaling compute, and security.',
+      problem: 'AWS environment has tangled permissions, unused resources, and bloated invoices.',
+      solution: 'Certified AWS architects implementing EC2 auto-scaling, S3 data lakes, and serverless.',
+      businessImpact: 'Slashes AWS spend, tightens IAM security, and guarantees 99.99% infrastructure uptime.',
+      technologies: ['AWS', 'AWS Lambda', 'EC2 Auto-scaling', 'AWS S3'],
+    },
+    {
+      title: 'Microsoft Azure',
+      shortDescription: 'Enterprise-grade hybrid and public cloud solutions utilizing the Microsoft ecosystem.',
+      problem: 'Struggling to scale enterprise Microsoft tools securely in a hybrid cloud.',
+      solution: 'Deploy secure Azure Kubernetes (AKS), Azure DevOps, and seamless Active Directory.',
+      businessImpact: 'Provides a highly secure, compliant environment natively integrated with enterprise stacks.',
+      technologies: ['Azure', 'AKS', 'Azure DevOps', 'Azure Synapse'],
+    },
+    {
+      title: 'Google Cloud (GCP)',
+      shortDescription: 'Data-heavy, high-compute platforms leveraging Google’s machine learning infrastructure.',
+      problem: 'Data engineering and AI models choking on standard cloud infrastructure.',
+      solution: 'Architect data pipelines and microservices utilizing BigQuery, Vertex AI, and GKE.',
+      businessImpact: 'Accelerates data processing and machine learning workflows with lowest latency.',
+      technologies: ['Google Cloud', 'GKE', 'BigQuery', 'Vertex AI'],
+    },
+    {
+      title: 'DevSecOps & Cloud Security',
+      shortDescription: 'Military-grade security baked into development pipelines for compliance without sacrificing speed.',
+      problem: 'Security treated as an afterthought leading to delayed launches or catastrophic data breaches.',
+      solution: 'Cloud security gateways, automated vulnerability scans, and identity policies in CI/CD.',
+      businessImpact: 'Ensures absolute compliance with SOC2, HIPAA, and GDPR while maintaining rapid release velocity.',
+      technologies: ['SonarQube', 'Datadog', 'Cloudflare', 'Docker'],
+    },
+    {
+      title: 'Cloud Cost Optimization (FinOps)',
+      shortDescription: 'Bring financial accountability to cloud spend, right-sizing resources and eliminating waste.',
+      problem: 'Cloud bill is a black box scaling faster than actual company revenue.',
+      solution: 'FinOps audits identifying orphaned resources and right-sizing compute instances.',
+      businessImpact: 'Instantly reclaims wasted IT budget, providing predictable, optimized monthly cloud costs.',
+      technologies: ['AWS Cost Explorer', 'Terraform', 'Datadog', 'Kubernetes'],
+    },
+  ],
+  process: {
+    heading: 'Our Infrastructure Engineering Process',
+    description: 'We do not guess with your infrastructure. We follow strict enterprise-grade site reliability methodology.',
+    steps: [
+      { number: '01', title: 'Cloud Readiness & Security Audit', description: 'Audit codebase, database schemas, and security posture to identify the exact cloud architecture needed.' },
+      { number: '02', title: 'Blueprinting & IaC', description: 'Design architecture and write it as code (Terraform/Ansible) for repeatable, version-controlled security.' },
+      { number: '03', title: 'Phased Execution & Containerization', description: 'Migrate and deploy in controlled sprints using Docker and Kubernetes for zero downtime.' },
+      { number: '04', title: 'Continuous Monitoring (SRE)', description: 'Implement metric telemetry, distributed trace monitoring, and auto-healing scripts.' },
+    ],
   },
   technologyStack: [
     {
-      category: 'Full-Stack Development',
-      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Java', 'Python'],
-      description: 'Senior full-stack engineers experienced in agile sprint cadences, code reviews, and CI/CD best practices.',
+      category: 'Cloud Infrastructure',
+      technologies: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Terraform'],
+      description: 'Multi-cloud elasticity, auto-scaling instances, and declarative Infrastructure as Code.',
     },
     {
-      category: 'Cloud & DevOps Specialists',
-      technologies: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes', 'Terraform'],
-      description: 'Certified cloud architects and SREs proficient in zero-downtime infrastructure and automation.',
+      category: 'Containerization & Orchestration',
+      technologies: ['Docker', 'Kubernetes', 'Helm', 'ArgoCD'],
+      description: 'Microservices container runtimes with automated cluster scaling and progressive rollouts.',
     },
     {
-      category: 'Data & AI Practitioners',
-      technologies: ['PyTorch', 'TensorFlow', 'Apache Kafka', 'PostgreSQL', 'Redis'],
-      description: 'Machine learning engineers, data pipeline architects, and vector database experts ready to deploy models.',
+      category: 'CI/CD & Automation',
+      technologies: ['Jenkins', 'GitLab CI', 'GitHub Actions', 'Ansible'],
+      description: 'Automated build, test, and release pipelines ensuring continuous, zero-error deployments.',
     },
     {
-      category: 'Quality & Test Engineering',
-      technologies: ['Playwright', 'Cypress', 'Jest', 'Postman', 'Jira'],
-      description: 'Dedicated automated QA engineers ensuring zero defect escape rates and continuous test coverage.',
+      category: 'Observability & Edge',
+      technologies: ['Prometheus', 'Grafana', 'DataGrip', 'Cloudflare'],
+      description: 'Full-stack metric telemetry, distributed trace monitoring, and global DDoS protection.',
     },
   ],
-  relatedCaseStudies: [],
+  relatedCaseStudies: [
+    {
+      title: 'Indispare — Cloud Auto-Scaling Platform',
+      slug: 'indispare',
+      category: 'Industrial Cloud Infrastructure',
+      client: 'Indispare',
+      shortDescription: 'Highly secure AWS cloud architecture handling high-concurrency industrial parts catalog and transactional traffic with 99.99% uptime.',
+      image: '/images/services/analytics.webp',
+      metrics: [
+        { value: '99.99%', label: 'Infrastructure Uptime' },
+        { value: '0', label: 'Downtime Incidents' },
+      ],
+    },
+    {
+      title: 'Dine Desk — Cloud-Native Restaurant SaaS',
+      slug: 'dine-desk',
+      category: 'Multi-Tenant Cloud SaaS',
+      client: 'Enterprise Restaurant Network',
+      shortDescription: 'Scalable containerized cloud architecture running automated CI/CD and multi-region database replication.',
+      image: '/images/services/dinedesk.png',
+      metrics: [
+        { value: '3x', label: 'Peak Capacity' },
+        { value: '<50ms', label: 'API Response Time' },
+      ],
+    },
+    {
+      title: 'Skipr — Fast Cloud Delivery Platform',
+      slug: 'skipr',
+      category: 'High-Scale Cloud Systems',
+      client: 'Skipr Enterprise',
+      shortDescription: 'Containerized Kubernetes cluster deployment with automated Terraform provisioning and high-velocity continuous delivery.',
+      image: '/images/services/i4c.png',
+      metrics: [
+        { value: '65%', label: 'Deployment Cycle Reduction' },
+        { value: '100%', label: 'Infrastructure as Code' },
+      ],
+    },
+  ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Founded in 2005, Travash operates as a trusted technology partner for organizations that operate at a massive international scale. Global giants like MasterCard, VISA, Facebook, Autodesk, and UBS trust our elite engineering talent to protect and scale their most critical infrastructure.',
+    stats: [
+      { value: '2005', label: 'Founded', description: 'Two decades of mission-critical cloud engineering' },
+      { value: '45%', label: 'Cloud Cost Cut', description: 'Average FinOps compute spend reduction' },
+      { value: '99.99%', label: 'SLA Uptime', description: 'Zero unplanned production downtime' },
+      { value: '10x', label: 'Deployment Velocity', description: 'Accelerated automated CI/CD pipelines' },
+    ],
+  },
   testimonial: {
-    quote: 'When we needed to rapidly scale our engineering capacity, Travash deployed a dedicated, highly skilled team that integrated seamlessly into our agile workflows on day one. They didn\'t just act as contractors; they became a true extension of our own company, eliminating massive hiring friction and overhead.',
-    author: 'VP of Engineering',
-    role: 'Head of Engineering',
-    company: 'Enterprise Software Client',
+    quote:
+      "When your platform serves as the digital backbone for an industrial supply chain, even seconds of server downtime can cost millions. We didn't just need developers; we needed an impenetrable cloud infrastructure. Travash architected a highly secure, auto-scaling AWS environment that completely eliminated our performance bottlenecks. Their automated deployment pipelines ensure our system handles massive data loads and unexpected traffic spikes flawlessly. They didn't just build our platform — they gave us the ultimate operational peace of mind: true, uncompromising cloud reliability.",
+    author: 'Founder & CEO',
+    role: 'Chief Executive',
+    company: 'Indispare',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Industrial Supply Chain',
+  },
+  faqs: [
+    {
+      question: 'Should we use a single cloud provider or a multi-cloud strategy?',
+      answer:
+        'It depends on your scale and risk tolerance. A single provider (like AWS or Azure) simplifies management and allows you to utilize deep, native features. A multi-cloud strategy prevents vendor lock-in and increases resilience but requires more complex architecture to manage effectively. We assess your business goals to determine the best path.',
+    },
+    {
+      question: 'How does DevOps actually save us money?',
+      answer:
+        'DevOps reduces the hidden costs of custom software development. By automating testing and deployments, you drastically reduce the manual engineering hours spent on operations. Furthermore, by catching bugs instantly in the CI/CD pipeline, you avoid the massive financial cost of fixing a critical error in production.',
+    },
+    {
+      question: 'Can you migrate our legacy monolithic application without rewriting it?',
+      answer:
+        'Yes. We can perform a "lift and shift" to get you out of your physical data center quickly. However, to truly gain the cost-saving and performance benefits of the cloud, we highly recommend a phased refactoring process, where we slowly break the monolith down into cloud-native microservices over time.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to build infrastructure that accelerates your business?',
+    description:
+      'Stop letting deployment bottlenecks and cloud costs slow you down. Speak with a senior Cloud Architect today to evaluate your infrastructure and build a roadmap for scale.',
+    primaryCTA: { label: 'Request a Cloud & DevOps Audit', href: '#contact' },
+    secondaryCTA: { label: 'Explore Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'DevOps Consulting Services & Cloud Infrastructure | Travash',
+    metaDescription:
+      'Stop overpaying for inefficient infrastructure. We provide enterprise cloud migration services, CI/CD automation, and multi-cloud architecture for global brands.',
   },
 }
 
+// -------------------------------------------------------------
+// 7. QUALITY ASSURANCE & TESTING
+// -------------------------------------------------------------
 export const DEFAULT_QA_TESTING_SERVICE: ServiceData = {
-  title: 'Quality Assurance & Automated Testing',
-  slug: 'qa',
+  title: 'Quality Assurance & Testing',
+  slug: 'quality-assurance-testing',
   menuTitle: 'QA & Testing',
   shortDescription:
-    'Ensure flawless software dependability with automated end-to-end testing frameworks, performance stress testing, and continuous security regression suites.',
+    'Eradicate bugs before they reach production. We provide elite QA testing, automation testing, performance testing, and security testing for global enterprises.',
   hero: {
-    eyebrow: 'Zero-Defect Software Delivery',
-    title: 'Bulletproof Reliability Through Continuous Automated Quality Engineering.',
+    eyebrow: 'Zero-Defect Quality Engineering',
+    title: 'Ruthless Software Testing. Enterprise Quality Assurance.',
     description:
-      'Ship software with supreme confidence. We architect comprehensive test suites, API contracts, cross-browser validation, and security vulnerability scans.',
-    primaryCTA: { label: 'Request QA Audit', href: '#contact' },
-    secondaryCTA: { label: 'Explore Quality Frameworks', href: '/portfolio' },
+      'A brilliant application is a liability if it crashes under pressure or exposes user data. We deploy senior Quality Engineering pods to stress-test your architecture, automate your release pipelines, and execute rigorous security testing so you can deploy with absolute certainty.',
+    primaryCTA: { label: 'Book a QA & Security Audit', href: '#contact' },
+    secondaryCTA: { label: 'View Software Testing Case Studies', href: '#case-studies' },
+    highlights: [
+      'Shift-Left QA Strategy',
+      '70%+ Automated Test Coverage',
+      'Military-Grade Penetration Testing',
+      'Continuous DevSecOps CI/CD',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Quality Assurance',
+    title: 'The Problem: You are treating QA as a roadblock, not a continuous discipline.',
+    headline: 'Tech leaders are forced to balance rapid feature releases with absolute platform stability.',
+    description:
+      'When software testing is squeezed into a desperate two-day window right before launch, manual testers cannot keep up. You either delay the release, or you push vulnerable code. When your customers find your bugs before your engineers do, your brand reputation takes the hit.',
+    painPoints: [
+      {
+        title: 'Pre-Launch Bottlenecks',
+        description: 'Manual testers overwhelmed by sprint output, creating desperate pre-release testing backlogs.',
+      },
+      {
+        title: 'Silent Regression Bugs',
+        description: 'New feature updates breaking existing critical user flows and payment integrations without warning.',
+      },
+      {
+        title: 'Traffic Spike Catastrophes',
+        description: 'Platforms crashing under high marketing demand due to untested concurrent database queries.',
+      },
+      {
+        title: 'Security Vulnerability Gaps',
+        description: 'Un-audited API endpoints exposing sensitive company records to malicious penetration.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'We do not just find bugs; we engineer quality into your product from day one. By "shifting left," our senior QA architects integrate testing directly into your development lifecycle, replacing manual bottlenecks with high-speed automation.',
+    benefits: [
+      {
+        icon: 'check-circle',
+        title: 'Automated Velocity',
+        description: 'Intelligent test automation frameworks running thousands of regression tests in minutes for multiple daily deploys.',
+      },
+      {
+        icon: 'shield',
+        title: 'Military-Grade Security',
+        description: 'DevSecOps integrated directly into your pipeline, scanning for vulnerabilities long before malicious exploitation.',
+      },
+      {
+        icon: 'users',
+        title: 'Top 1% QA Talent',
+        description: 'Dedicated pods of automated test engineers, performance specialists, and ethical security hackers.',
+      },
+      {
+        icon: 'activity',
+        title: '100% Release Confidence',
+        description: 'Real-time telemetry dashboards detailing test coverage, vulnerability scores, and release readiness.',
+      },
+    ],
+    cta: { label: 'Schedule QA Consultation', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'QA Testing (Manual & Functional)',
+      shortDescription: 'Validate complex business logic, UI aesthetics, and human user experience that scripts miss.',
+      problem: 'Automated tests miss broken CSS on custom designs and confusing navigation patterns.',
+      solution: 'Senior QA analysts execute exploratory testing mapping complex human user journeys.',
+      businessImpact: 'Ensures software feels intuitive, visually flawless, and frictionless in real human hands.',
+      technologies: ['Jira', 'TestRail', 'Postman', 'Cross-Browser Testing'],
+    },
+    {
+      title: 'Automation Testing',
+      shortDescription: 'Robust automated test scripts validating codebases in minutes, eliminating testing bottlenecks.',
+      problem: 'Engineers write code faster than manual QA can test it, stalling release cycles.',
+      solution: 'Custom automation frameworks for regression, API, and UI testing built into CI/CD.',
+      businessImpact: 'Slashes testing time by over 70% and guarantees new features never break existing flows.',
+      technologies: ['Playwright', 'Cypress', 'Selenium', 'Jest'],
+    },
+    {
+      title: 'Performance Testing',
+      shortDescription: 'Extreme traffic simulations ensuring systems remain fast and responsive during peak demand.',
+      problem: 'Apps perform in staging with 10 users but crash when marketing sends 10,000 users.',
+      solution: 'Aggressive stress, load, and concurrency simulations pushing servers to breaking points.',
+      businessImpact: 'Guarantees 99.99% uptime during your most critical business surges and flash sales.',
+      technologies: ['JMeter', 'k6', 'Gatling', 'PostgreSQL'],
+    },
+    {
+      title: 'Security Testing',
+      shortDescription: 'Aggressive ethical hacking and architecture audits fortifying applications against breaches.',
+      problem: 'Cyber threats evolving faster than internal protocols, risking multi-million dollar fines.',
+      solution: 'Penetration testing, DAST, and code audits identifying injection flaws and vulnerabilities.',
+      businessImpact: 'Hardens digital perimeter and guarantees total compliance with SOC2, GDPR, and HIPAA.',
+      technologies: ['SonarQube', 'OWASP ZAP', 'Burp Suite', 'Docker'],
+    },
+  ],
+  process: {
+    heading: 'Our Quality Engineering Process',
+    description: 'We bring military rigor to software quality so nothing slips through into production.',
+    steps: [
+      { number: '01', title: 'Shift-Left Strategy & Audit', description: 'Review architecture and requirements on day one to prevent bugs before code is even written.' },
+      { number: '02', title: 'Framework Architecture', description: 'Design a customized, scalable test automation framework suited to your exact tech stack.' },
+      { number: '03', title: 'Continuous Execution', description: 'Automated security and regression test suites execute in parallel with every pull request.' },
+      { number: '04', title: 'Telemetry & Reporting', description: 'Real-time dashboards detailing test coverage, vulnerability scores, and release readiness.' },
+    ],
   },
   technologyStack: [
     {
@@ -1442,28 +1901,404 @@ export const DEFAULT_QA_TESTING_SERVICE: ServiceData = {
       ],
     },
   ],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has acted as the final line of defense for organizations that operate at a massive scale. International giants like MasterCard, VISA, Facebook, Autodesk, and UBS trust our elite engineering talent to validate and protect their most critical digital assets.',
+    stats: [
+      { value: '2005', label: 'Founded', description: 'Two decades of zero-defect engineering standards' },
+      { value: '70%+', label: 'QA Time Slashed', description: 'Automated CI/CD test execution' },
+      { value: '100%', label: 'Compliance Rate', description: 'Flawless HIPAA, SOC2 & GDPR audits' },
+      { value: '0', label: 'Critical Bugs Released', description: 'Rigorous Shift-Left quality gates' },
+    ],
+  },
   testimonial: {
-    quote: 'In the clinical research industry, software bugs aren\'t just inconvenient — they are massive compliance risks. We needed a technology partner with an uncompromising approach to quality assurance. Travash didn\'t just do basic testing on our CTMS platform; they aggressively validated every single data point, from patient enrollment workflows to complex third-party integrations. Their rigorous testing protocols ensured our system was completely secure, compliant, and structurally flawless before we ever went live. They gave us the absolute confidence we needed to launch.',
+    quote:
+      "In the clinical research industry, software bugs aren't just inconvenient — they are massive compliance risks. We needed a technology partner with an uncompromising approach to quality assurance. Travash didn't just do basic testing on our CTMS platform; they aggressively validated every single data point, from patient enrollment workflows to complex third-party integrations. Their rigorous testing protocols ensured our system was completely secure, compliant, and structurally flawless before we ever went live. They gave us the absolute confidence we needed to launch.",
     author: 'Chander',
     role: 'Project Director',
     company: 'RadiantSA (CTMS)',
     avatarImage: '/images/services/imran-khan.png',
+    badge: 'Clinical Research Director',
+  },
+  faqs: [
+    {
+      question: 'When should Quality Assurance actually start in a project?',
+      answer:
+        'Testing should start before a single line of code is written. We practice "Shift-Left" testing, meaning our QA architects review business requirements and design wireframes alongside your product team. This catches logical flaws and architectural issues when they are cheapest to fix.',
+    },
+    {
+      question: 'Should we automate all of our testing?',
+      answer:
+        'No. While automation is critical for regression, load, and API testing, attempting to automate 100% of your tests yields diminishing returns. Complex edge cases, UI/UX fluidity on custom minimalist designs, and exploratory scenarios still require the intuition of a senior human QA analyst. We help you find the perfect mathematical balance between manual and automated testing to maximize ROI.',
+    },
+    {
+      question: 'How often should we conduct security penetration testing?',
+      answer:
+        'At a minimum, deep manual penetration testing should occur annually and before any major architectural change or product launch. However, by integrating automated vulnerability scanning (SAST/DAST) into your CI/CD pipeline, we ensure your code is continuously checked for known security flaws on a daily basis.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to release code with absolute confidence?',
+    description:
+      'Stop hoping your software works. Speak with a senior QA architect today to audit your current testing pipelines and build a framework that guarantees flawless performance.',
+    primaryCTA: { label: 'Request a QA & Security Audit', href: '#contact' },
+    secondaryCTA: { label: 'Explore QA Case Studies', href: '/portfolio' },
+  },
+  seo: {
+    metaTitle: 'Enterprise Quality Assurance & Software Testing Services | Travash',
+    metaDescription:
+      'Eradicate bugs before they reach production. We provide elite QA testing, automation testing, performance testing, and security testing for global enterprises.',
   },
 }
 
+// -------------------------------------------------------------
+// 8. DEDICATED TALENT & TEAMS
+// -------------------------------------------------------------
+export const DEFAULT_DEDICATED_TEAMS_SERVICE: ServiceData = {
+  title: 'Dedicated Talent & Agile Teams',
+  slug: 'dedicated-talent-and-teams',
+  menuTitle: 'Dedicated Teams',
+  shortDescription:
+    'Bypass the tech talent shortage. Scale your engineering capacity instantly with our vetted dedicated developers, managed teams, and offshore software development centers.',
+  hero: {
+    eyebrow: 'Elastic Engineering Scaling',
+    title: 'Scale Your Engineering. Skip the Hiring Headache.',
+    description:
+      "A brilliant product roadmap means nothing if you don't have the engineers to execute it. We provide elite, production-ready dedicated developers, build secure offshore centers, and deploy fully managed teams that integrate perfectly with your business—allowing you to scale instantly without the massive overhead of traditional recruiting.",
+    primaryCTA: { label: 'Book a Talent Strategy Call', href: '#contact' },
+    secondaryCTA: { label: 'Explore Our Engagement Models', href: '#engagement-models' },
+    highlights: [
+      'Top 1% Vetted Engineers',
+      'Onboarding in 2 to 4 Weeks',
+      'Time Zone Overlap Guaranteed',
+      'Zero-Risk Replacement Guarantee',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Scaling Tech Teams',
+    title: 'The Problem: The traditional hiring model is broken and bleeding your budget.',
+    headline: 'Tech leaders are losing months trying to source, vet, and hire senior engineers.',
+    description:
+      'You are paying exorbitant recruiter fees, battling local talent shortages, and risking severe project delays if a key hire suddenly quits. You do not have six months to build a team; you have a product to ship this quarter.',
+    painPoints: [
+      {
+        title: '6-Month Recruiting Bottlenecks',
+        description: 'Unfilled senior engineering roles holding product roadmaps hostage and draining capital.',
+      },
+      {
+        title: 'Exorbitant Recruiter Fees',
+        description: 'High placement commissions with zero guarantee of long-term technical performance.',
+      },
+      {
+        title: 'High Attrition Disruption',
+        description: 'Key developers quitting mid-sprint, causing catastrophic loss of institutional knowledge.',
+      },
+      {
+        title: 'Technical Screening Fatigue',
+        description: 'Engineering leads burning hundreds of hours interviewing candidates who cannot write clean code.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'We provide instant engineering elasticity. We maintain a deep, globally distributed bench of elite technical talent ready to parachute into your projects. Our people are our best assets, continuously upgrading their knowledge to champion your business requirements.',
+    benefits: [
+      {
+        icon: 'star',
+        title: 'The Top 1% of Talent',
+        description: 'Every engineer passes grueling evaluations covering algorithmic problem-solving, system design, and communication.',
+      },
+      {
+        icon: 'clock',
+        title: 'Instant Onboarding',
+        description: 'Bypass long recruiting cycles. We match your tech stack and have developers writing code in your repos within weeks.',
+      },
+      {
+        icon: 'globe',
+        title: 'Global Footprint, Local Culture',
+        description: 'Offshore and blended teams overlapping hours with your local time zone for seamless daily collaboration.',
+      },
+      {
+        icon: 'shield',
+        title: 'Zero-Risk Replacement',
+        description: 'If an engineer is not a perfect fit within the initial period, we replace them seamlessly from our bench at zero cost.',
+      },
+    ],
+    cta: { label: 'Assemble Your Squad', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'Dedicated Developers',
+      shortDescription: 'Inject senior specialized engineers directly into internal teams to close immediate sprint skill gaps.',
+      problem: 'Missing a niche skill needed to finish a critical sprint on time.',
+      solution: 'Deploy elite developers joining your Slack, scrums, and reporting to internal tech leads.',
+      businessImpact: 'Immediate firepower without long-term payroll commitments, scaling down dynamically.',
+      technologies: ['React', 'Next.js', 'Node.js', 'Python', 'AWS'],
+    },
+    {
+      title: 'Offshore Development Center (ODC)',
+      shortDescription: 'Secure, scalable engineering hubs in cost-effective regions, managed and branded as your own.',
+      problem: 'Scaling enterprise engineering in local markets is financially unsustainable.',
+      solution: 'We build and manage customized ODCs handling legal, HR, payroll, and infrastructure.',
+      businessImpact: 'Slashes engineering burn rate by up to 50% while maintaining complete culture and security control.',
+      technologies: ['Dedicated Workspace', 'HIPAA/SOC2 Facilities', 'Managed IT Infrastructure'],
+    },
+    {
+      title: 'Managed Engineering Pods',
+      shortDescription: 'Hand off complete execution of specific software initiatives to cross-functional Travash delivery pods.',
+      problem: 'Internal leadership lacks bandwidth to manage new builds while running core business.',
+      solution: 'Standalone pods with Scrum Master, UI/UX, QA, and developers driven by Technical PMs.',
+      businessImpact: 'Expands product capacity in parallel while internal leadership stays focused on core operations.',
+      technologies: ['Agile Scrums', 'CI/CD Pipelines', 'Bi-Weekly Demos'],
+    },
+  ],
+  process: {
+    heading: 'Our Vetting & Matching Process',
+    description: 'We do not forward resumes; we provide proven, battle-tested engineers.',
+    steps: [
+      { number: '01', title: 'The Technical Crucible', description: 'Live coding evaluations, architecture whiteboarding, and intense peer code reviews.' },
+      { number: '02', title: 'The Domain Match', description: 'Matching domain experience in FinTech, Healthcare, and Enterprise systems for instant context.' },
+      { number: '03', title: 'The Soft Skills Audit', description: 'Rigorous testing for fluent English proficiency, proactive communication, and agile mindset.' },
+      { number: '04', title: 'Risk-Free Onboarding', description: 'Immediate bench replacement guarantee at zero cost if an engineer does not meet standards.' },
+    ],
+  },
+  technologyStack: [
+    {
+      category: 'Full-Stack Development',
+      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Java', 'Python'],
+      description: 'Senior full-stack engineers experienced in agile sprint cadences, code reviews, and CI/CD best practices.',
+    },
+    {
+      category: 'Cloud & DevOps Specialists',
+      technologies: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes', 'Terraform'],
+      description: 'Certified cloud architects and SREs proficient in zero-downtime infrastructure and automation.',
+    },
+    {
+      category: 'Data & AI Practitioners',
+      technologies: ['PyTorch', 'TensorFlow', 'Apache Kafka', 'PostgreSQL', 'Redis'],
+      description: 'Machine learning engineers, data pipeline architects, and vector database experts ready to deploy models.',
+    },
+    {
+      category: 'Quality & Test Engineering',
+      technologies: ['Playwright', 'Cypress', 'Jest', 'Postman', 'Jira'],
+      description: 'Dedicated automated QA engineers ensuring zero defect escape rates and continuous test coverage.',
+    },
+  ],
+  engagementModels: [
+    {
+      title: 'Time & Material',
+      description: 'Best for long-term projects with evolving scopes. Utilize our elite technical resources on flexible monthly terms.',
+      badge: 'Most Popular',
+      cta: { label: 'Hire Dedicated Pod', href: '#contact' },
+    },
+    {
+      title: 'Fixed Fee',
+      description: 'For projects that are clearly defined, we agree on a strict fixed price and timeline, absorbing delivery risk.',
+      badge: 'Fixed Scope',
+      cta: { label: 'Scope a Project', href: '#contact' },
+    },
+    {
+      title: 'Outcome Based Recruitment',
+      description: 'We bear the operational cost required by the recruitment team, sharing commission upon successful deployment.',
+      badge: 'Shared Risk',
+      cta: { label: 'Discuss Terms', href: '#contact' },
+    },
+    {
+      title: 'Proof of Concept (POC)',
+      description: 'A fixed-bid model for conceptual initiatives, allowing you to validate technical ideas with minimal financial risk.',
+      badge: 'Rapid Validation',
+      cta: { label: 'Build a PoC', href: '#contact' },
+    },
+  ],
+  relatedCaseStudies: [],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2005, Travash has specialized in sourcing, vetting, and managing elite technology talent. International giants like MasterCard, VISA, Facebook, Autodesk, and UBS do not compromise on engineering quality—and they trust us to scale their teams.',
+    stats: [
+      { value: '2005', label: 'Founded', description: 'Decades of elite engineering talent placement' },
+      { value: '2-4 Wks', label: 'Deployment Speed', description: 'From initial call to active codebase contribution' },
+      { value: '50%', label: 'Burn Rate Reduction', description: 'Cost-effective global delivery centers' },
+      { value: '100%', label: 'Replacement Guarantee', description: 'Zero-risk staffing assurance' },
+    ],
+  },
+  testimonial: {
+    quote:
+      "When we needed to rapidly scale our engineering capacity, Travash deployed a dedicated, highly skilled team that integrated seamlessly into our agile workflows on day one. They didn't just act as contractors; they became a true extension of our own company, eliminating massive hiring friction and overhead.",
+    author: 'VP of Engineering',
+    role: 'Head of Engineering',
+    company: 'Enterprise Software Client',
+    avatarImage: '/images/services/imran-khan.png',
+    badge: 'VP of Engineering',
+  },
+  faqs: [
+    {
+      question: 'How do you handle time zone differences for offshore teams?',
+      answer:
+        'We map our teams to your reality. Our blended and offshore teams overlap their working hours with your local time zone to ensure they are present for daily standups, sprint planning, and collaborative problem-solving.',
+    },
+    {
+      question: 'What happens if a developer leaves or isn’t a good fit?',
+      answer:
+        'We absorb the attrition risk. If an engineer is not performing to your standards, or if they leave the company, we handle the replacement immediately from our deep bench of vetted talent at zero additional cost to you, ensuring zero disruption to your roadmap.',
+    },
+    {
+      question: 'Who manages the team on a daily basis?',
+      answer:
+        'That depends on the engagement model. For individual dedicated developers, your internal tech leads manage them directly. For Managed Teams or an ODC, we provide a seasoned Technical Project Manager or Scrum Master who drives the daily execution, shielding you from micro-management while providing total transparency.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to build your dream engineering team?',
+    description:
+      'Stop waiting for recruiters to find the right talent. Speak with a Client Engagement Specialist today to discuss your tech stack, team structure, and immediate engineering needs.',
+    primaryCTA: { label: 'Request a Talent Strategy Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Review Engagement Models', href: '#engagement-models' },
+  },
+  seo: {
+    metaTitle: 'Dedicated Development Team & Offshore Talent | Travash',
+    metaDescription:
+      'Bypass the tech talent shortage. Scale your engineering capacity instantly with our vetted dedicated developers, managed teams, and offshore software development centers.',
+  },
+}
+
+// -------------------------------------------------------------
+// 9. STAFF AUGMENTATION
+// -------------------------------------------------------------
 export const DEFAULT_STAFF_AUGMENTATION_SERVICE: ServiceData = {
   title: 'Staff Augmentation & Specialized Talent',
   slug: 'staff-augmentation',
   menuTitle: 'Staff Augmentation',
   shortDescription:
-    'Access top-tier senior software talent on-demand to bridge specialized skill gaps in AI, cloud architecture, mobile engineering, and data systems.',
+    'Stop settling for average hires. We provide specialized IT staffing, FinTech recruitment, and niche leadership hiring for global giants like Facebook and D.E. Shaw.',
   hero: {
-    eyebrow: 'On-Demand Senior Talent',
-    title: 'Accelerate Roadmaps with Specialized Senior Tech Specialists.',
+    eyebrow: 'Elite Enterprise IT & FinTech Staffing',
+    title: 'Hire the Top 1%. Skip the 6-Month Search.',
     description:
-      'Plug critical technology skill gaps on demand. Scale capacity rapidly with flexible contracts and zero administrative overhead.',
-    primaryCTA: { label: 'Request Talent Profiles', href: '#contact' },
-    secondaryCTA: { label: 'View Available Profiles', href: '/portfolio' },
+      "A brilliant product roadmap means nothing if you do not have the engineers and analysts to execute it. For two decades, we have provided elite, production-ready talent to the world's most demanding enterprises. From IT staffing to specialized FinTech recruitment, we bypass the hiring bottleneck and deliver vetted professionals ready to impact your bottom line.",
+    primaryCTA: { label: 'Book a Talent Strategy Call', href: '#contact' },
+    secondaryCTA: { label: 'Explore Our Staffing Solutions', href: '#capabilities' },
+    highlights: [
+      '20+ Years Sourcing Excellence',
+      'Specialized BFSI & IT Talent Pool',
+      'Pre-Screened Technical Verification',
+      'Flexible Contract, C2H & FTE Models',
+    ],
+  },
+  problemSection: {
+    label: 'The Reality of Enterprise Hiring',
+    title: 'The Problem: You are drowning in resumes, but starved of actual talent.',
+    headline: 'Tech and finance leaders are losing months trying to source, vet, and hire niche professionals.',
+    description:
+      "Traditional recruitment agencies just forward you unvetted resumes, forcing your internal team to waste hours conducting technical screenings. You don't need a stack of CVs; you need a guaranteed hire.",
+    painPoints: [
+      {
+        title: 'Unvetted Resume Floods',
+        description: 'Recruitment agencies forwarding hundreds of CVs that fail basic technical screenings.',
+      },
+      {
+        title: 'Niche Domain Shortages',
+        description: 'Inability to source specialized FinTech, Quant, AI, and cloud architects in local markets.',
+      },
+      {
+        title: '6+ Month Vacancy Delays',
+        description: 'Crucial positions sitting vacant for quarters, stalling delivery milestones and increasing burnout.',
+      },
+      {
+        title: 'Statutory & Payroll Friction',
+        description: 'Managing complex contractor compliance, international tax laws, and onboarding friction.',
+      },
+    ],
+  },
+  solutionOverview: {
+    heading: 'How Travash Solves It',
+    description:
+      'Since 2006, Travash has operated as a premier global staffing solutions provider, mastering the entire recruitment life cycle. We do not just source candidates; we architect end-to-end recruitment solutions for companies worldwide.',
+    benefits: [
+      {
+        icon: 'check-circle',
+        title: 'The Technical Crucible',
+        description: 'All candidates undergo multiple rounds of evaluation, including relevant technical tests on coding and testing.',
+      },
+      {
+        icon: 'database',
+        title: 'Deep Domain Expertise',
+        description: 'Proprietary database of vetted passive talent across IT and BFSI (Banking, Financial Services, and Insurance).',
+      },
+      {
+        icon: 'briefcase',
+        title: '360-Degree Management',
+        description: 'From initial sourcing to payroll management and statutory compliance, we handle the friction so you can focus on scale.',
+      },
+      {
+        icon: 'repeat',
+        title: 'Elastic Contract Flexibility',
+        description: 'Flexible options spanning contract staffing, contract-to-hire (C2H), and direct permanent FTE recruitment.',
+      },
+    ],
+    cta: { label: 'Discuss Staffing Requirements', href: '#contact' },
+  },
+  capabilities: [
+    {
+      title: 'FinTech Staffing',
+      shortDescription: 'Specialized talent for high-visibility roles in investment research and Global Capability Centers.',
+      problem: 'Finding analysts and developers who understand strict financial compliance and modeling.',
+      solution: 'Financial Operations Research, Equity Analysis, Quant & Risk Tech, AML, and Trade Surveillance talent.',
+      businessImpact: 'Gain professionals who understand regulatory compliance from day one, minimizing training.',
+      technologies: ['Quant Modeling', 'Risk Analytics', 'Trade Surveillance', 'AML/KYC'],
+    },
+    {
+      title: 'IT Staffing',
+      shortDescription: 'End-to-end technical staffing for enterprise IT departments and high-growth technology companies.',
+      problem: 'Software roadmaps delayed by prolonged vacancies in core engineering roles.',
+      solution: 'Full-Stack Developers, Cloud Engineers, DevOps specialists, and Data Analytics professionals.',
+      businessImpact: 'Instantly scale software engineering capacity with pre-screened, deployment-ready talent.',
+      technologies: ['React', 'Node.js', 'Python', 'AWS', 'Java', 'DevOps'],
+    },
+    {
+      title: 'Leadership & Niche Hiring',
+      shortDescription: 'Executive and niche technical recruitment for strategic enterprise leadership positions.',
+      problem: 'Locating transformative technical leaders capable of steering large global engineering departments.',
+      solution: 'Executive search targeting VP of Engineering, Director of Technology, and Principal Architect roles.',
+      businessImpact: 'Secures visionary leadership capable of driving enterprise vision and scaling global delivery.',
+      technologies: ['VP Engineering', 'Tech Directors', 'Principal Architects'],
+    },
+    {
+      title: 'Contract Staffing',
+      shortDescription: 'Flexible workforce solutions for short-term and project-based engineering requirements.',
+      problem: 'Need immediate technical firepower for a critical project without long-term payroll commitments.',
+      solution: 'On-demand technical contractors deployed within days on flexible duration contracts.',
+      businessImpact: 'Hits sprint deadlines on time and allows capacity to scale down dynamically when done.',
+      technologies: ['On-Demand Sprints', 'Short-Term Delivery', 'Flexible Contracts'],
+    },
+    {
+      title: 'Contract-to-Hire (C2H)',
+      shortDescription: 'Evaluate engineering performance and cultural fit on the job before making permanent offers.',
+      problem: 'Hiring full-time engineers based solely on interviews carries massive financial and cultural risk.',
+      solution: 'Candidates work on contract basis with pre-agreed conversion pathways to permanent roles.',
+      businessImpact: 'Completely eliminates hiring risk by verifying delivery quality before permanent onboarding.',
+      technologies: ['Risk-Free Trial', 'Performance Review', 'Direct Conversion'],
+    },
+    {
+      title: 'FTE Permanent Placement',
+      shortDescription: 'Direct permanent hires for critical strategic roles with comprehensive satisfaction guarantees.',
+      problem: 'Internal HR teams lack specialized technical networks to source elite full-time engineers.',
+      solution: 'Headhunting and full-lifecycle recruitment delivering vetted candidates for permanent hire.',
+      businessImpact: 'Bypasses the hiring bottleneck, building loyal long-term teams with pre-screened professionals.',
+      technologies: ['Permanent Placement', 'Executive Search', 'Satisfaction Guaranteed'],
+    },
+  ],
+  process: {
+    heading: 'Our Talent Deployment Lifecycle',
+    description: 'A disciplined 4-stage talent delivery framework guaranteeing technical precision.',
+    steps: [
+      { number: '01', title: 'Requirements & SLA Alignment', description: 'Deep discovery into required tech stacks, seniority benchmarks, project timelines, and budget models.' },
+      { number: '02', title: 'Technical Screening & Vetting', description: 'Rigorous multi-round live coding assessments and domain validation by senior technical architects.' },
+      { number: '03', title: 'Client Verification & Matching', description: 'Shortlist presentation of top pre-screened candidates for final client verification.' },
+      { number: '04', title: 'Onboarding & 360° Management', description: 'Seamless onboarding, hardware provisioning, statutory compliance, and continuous performance oversight.' },
+    ],
   },
   technologyStack: [
     {
@@ -1488,15 +2323,65 @@ export const DEFAULT_STAFF_AUGMENTATION_SERVICE: ServiceData = {
     },
   ],
   relatedCaseStudies: [],
+  trustSection: {
+    heading: 'Why Global Leaders Trust Us',
+    description:
+      'Since 2006, Travash has operated as a trusted talent partner for organizations that cannot afford to compromise on quality. When global leaders like MasterCard, VISA, Facebook, Autodesk, and UBS need to scale their teams, they rely on our elite talent acquisition engine.',
+    stats: [
+      { value: '2006', label: 'Established', description: 'Two decades of elite global IT staffing' },
+      { value: 'Top 1%', label: 'Vetted Talent', description: 'Rigorous algorithmic & domain testing' },
+      { value: '100%', label: 'Compliance Managed', description: 'Complete statutory & payroll oversight' },
+      { value: '<2 Wks', label: 'Candidate Shortlist', description: 'Fast-track deployment-ready talent' },
+    ],
+  },
   testimonial: {
-    quote: 'Scaling our project teams across multiple global deliverables requires a staffing partner who truly understands enterprise-level demands. Travash delivered exactly that. Their ability to rapidly source, technically vet, and deploy highly skilled professionals in niche technologies has been exceptional. They don\'t just forward resumes; they provide deployment-ready engineering talent that integrates seamlessly into our critical projects. Travash has proven to be a highly reliable, strategic extension of our talent acquisition engine.',
+    quote:
+      "Scaling our project teams across multiple global deliverables requires a staffing partner who truly understands enterprise-level demands. Travash delivered exactly that. Their ability to rapidly source, technically vet, and deploy highly skilled professionals in niche technologies has been exceptional. They don't just forward resumes; they provide deployment-ready engineering talent that integrates seamlessly into our critical projects. Travash has proven to be a highly reliable, strategic extension of our talent acquisition engine.",
     author: 'Delivery Head / Talent Acquisition Leadership',
     role: 'Talent Acquisition',
     company: 'Infosys',
     avatarImage: '/images/services/testimonial-avatar.jpeg',
+    badge: 'Global IT Delivery Leader',
+  },
+  faqs: [
+    {
+      question: 'What industries do you specialize in for staffing?',
+      answer:
+        'We specialize heavily in the Information Technology (IT) and BFSI (Banking, Financial Services, and Insurance) sectors. We provide everything from Full-Stack Developers, Cloud Architects, and AI Engineers to specialized FinTech Research Analysts, Quant Tech Specialists, and Risk Surveillance Professionals.',
+    },
+    {
+      question: 'How do you vet candidates before presenting them to us?',
+      answer:
+        'We do not forward unvetted resumes. Every candidate passes a multi-round screening process, including live technical coding challenges, architectural peer reviews, domain compliance checks, and rigorous English communication assessments.',
+    },
+    {
+      question: 'What is the difference between Contract Staffing and Contract-to-Hire (C2H)?',
+      answer:
+        'Contract Staffing is ideal for project-based needs where you require specialized talent for a set period (e.g., 6 to 12 months) without long-term commitments. Contract-to-Hire (C2H) allows you to evaluate an engineer on the job with a pre-agreed pathway to convert them into a permanent full-time employee.',
+    },
+    {
+      question: 'How quickly can you provide qualified candidates?',
+      answer:
+        'Because we maintain an active proprietary database of pre-screened talent across IT and FinTech, we typically present a shortlist of vetted, deployment-ready candidates within 3 to 7 business days.',
+    },
+  ],
+  finalCTA: {
+    heading: 'Ready to hire the top 1% without the recruiting friction?',
+    description:
+      'Stop sifting through unvetted resumes. Speak with an enterprise talent acquisition specialist today to access deployment-ready tech and finance professionals.',
+    primaryCTA: { label: 'Request a Talent Consultation', href: '#contact' },
+    secondaryCTA: { label: 'Explore Staffing Models', href: '#capabilities' },
+  },
+  seo: {
+    metaTitle: 'Elite Staff Augmentation Services & IT Staffing | Travash',
+    metaDescription:
+      'Stop settling for average hires. We provide specialized IT staffing, FinTech recruitment, and niche leadership hiring for global giants like Facebook and D.E. Shaw.',
   },
 }
 
+// -------------------------------------------------------------
+// Fallback Dictionary & Slugs Mapping
+// -------------------------------------------------------------
 export const FALLBACK_SERVICES: Record<string, ServiceData> = {
   'data-analytics-solutions': DEFAULT_DATA_ANALYTICS_SERVICE,
   'data-analytics': DEFAULT_DATA_ANALYTICS_SERVICE,
@@ -1508,17 +2393,20 @@ export const FALLBACK_SERVICES: Record<string, ServiceData> = {
   software: DEFAULT_SOFTWARE_ENGINEERING_SERVICE,
   cloud: DEFAULT_CLOUD_DEVOPS_SERVICE,
   'cloud-devops': DEFAULT_CLOUD_DEVOPS_SERVICE,
+  'cloud-and-devops': DEFAULT_CLOUD_DEVOPS_SERVICE,
   digital: DEFAULT_DIGITAL_EXPERIENCES_SERVICE,
   'digital-experiences': DEFAULT_DIGITAL_EXPERIENCES_SERVICE,
-  'platform-engineering': DEFAULT_PLATFORM_ENGINEERING_SERVICE,
-  platform: DEFAULT_PLATFORM_ENGINEERING_SERVICE,
+  'digital-experiences-web-mobile': DEFAULT_DIGITAL_EXPERIENCES_SERVICE,
+  'platform-engineering': DEFAULT_CLOUD_DEVOPS_SERVICE,
+  platform: DEFAULT_CLOUD_DEVOPS_SERVICE,
   enterprise: DEFAULT_ENTERPRISE_APPS_SERVICE,
   'enterprise-applications': DEFAULT_ENTERPRISE_APPS_SERVICE,
   'dedicated-teams': DEFAULT_DEDICATED_TEAMS_SERVICE,
   'dedicated-talent': DEFAULT_DEDICATED_TEAMS_SERVICE,
+  'dedicated-talent-and-teams': DEFAULT_DEDICATED_TEAMS_SERVICE,
   qa: DEFAULT_QA_TESTING_SERVICE,
   'quality-assurance': DEFAULT_QA_TESTING_SERVICE,
+  'quality-assurance-testing': DEFAULT_QA_TESTING_SERVICE,
   'staff-augmentation': DEFAULT_STAFF_AUGMENTATION_SERVICE,
   staffing: DEFAULT_STAFF_AUGMENTATION_SERVICE,
 }
-
