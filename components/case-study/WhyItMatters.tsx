@@ -40,7 +40,7 @@ export default function WhyItMatters({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-28 self-start"
+            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
               {title}

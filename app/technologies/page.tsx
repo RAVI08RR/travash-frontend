@@ -4,6 +4,7 @@ import { allTechnologiesQuery, technologyCategoriesQuery, siteSettingsQuery } fr
 
 import Navbar from '@/components/sections/Navbar'
 import TechnologyHero from '@/components/technologies/TechnologyHero'
+import TechnologyMarquee from '@/components/technologies/TechnologyMarquee'
 import TechnologyGrid from '@/components/technologies/TechnologyGrid'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
@@ -51,6 +52,7 @@ export default async function TechnologiesPage() {
       <Navbar settings={siteSettings} />
       <main className="bg-white">
         <TechnologyHero />
+        <TechnologyMarquee />
         <TechnologyGrid technologies={technologies} categories={categories} />
         <Contact />
       </main>

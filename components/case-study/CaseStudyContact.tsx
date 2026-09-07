@@ -57,7 +57,7 @@ export default function CaseStudyContact({
       <Toaster position="top-right" richColors />
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Soft Lavender / Periwinkle Container Card matching Screenshot 2 */}
-        <div className="bg-[#F4F6FB] rounded-[32px] p-8 sm:p-12 lg:p-16 border border-gray-100">
+        <div className="bg-[#F8F5FD] rounded-[32px] p-8 sm:p-12 lg:p-16 border border-gray-100">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* Left Column: Display Title & Description */}
             <motion.div
@@ -65,7 +65,7 @@ export default function CaseStudyContact({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-4"
+              className="lg:col-span-6"
             >
               <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-5">
                 {headingLines.map((line, idx) => (
@@ -85,7 +85,7 @@ export default function CaseStudyContact({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-8"
+              className="lg:col-span-6"
             >
               <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-gray-100 w-full">
                 <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3.5">
