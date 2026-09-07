@@ -3,7 +3,6 @@ import { client } from '@/lib/sanity'
 import { allTechnologiesQuery, technologyCategoriesQuery, siteSettingsQuery } from '@/lib/queries'
 
 import Navbar from '@/components/sections/Navbar'
-import TechnologyHero from '@/components/technologies/TechnologyHero'
 import TechnologyMarquee from '@/components/technologies/TechnologyMarquee'
 import TechnologyGrid from '@/components/technologies/TechnologyGrid'
 import Contact from '@/components/sections/Contact'
@@ -51,7 +50,6 @@ export default async function TechnologiesPage() {
     <>
       <Navbar settings={siteSettings} />
       <main className="bg-white">
-        <TechnologyHero />
         <TechnologyMarquee />
         <TechnologyGrid technologies={technologies} categories={categories} />
         <Contact />
