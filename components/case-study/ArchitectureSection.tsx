@@ -23,14 +23,14 @@ export default function ArchitectureSection({
   return (
     <section id="architecture" className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Title & Subtitle */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-28 self-start"
+            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
               {titleLines.map((line, idx) => (

@@ -58,7 +58,7 @@ export default function Stats({ data }: { data?: StatsData }) {
   return (
     <section className="bg-[#F2F2F2] py-0 lg:py-0 border-t border-gray-100">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-0">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-0">
           {stats.map((stat, i) => (
             <StatItem key={i} stat={stat} index={i} isLast={i === stats.length - 1} />
           ))}

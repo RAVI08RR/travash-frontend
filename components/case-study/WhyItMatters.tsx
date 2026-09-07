@@ -23,22 +23,24 @@ export default function WhyItMatters({
   const subtitleLines = subtitle.split('\n')
 
   return (
-    <section className="py-14 sm:py-20 bg-[#EAEBED] font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden">
+    <section className="py-14 sm:py-20 bg-[#EAEBED] font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden"
+      style={{ backgroundImage: "url('/casestudy-img/why-matters.png')" }}
+    >
       {/* Background Polygon Pattern on Right Side */}
       <div
         className="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 pointer-events-none opacity-80 mix-blend-multiply bg-right bg-no-repeat bg-cover"
-        style={{ backgroundImage: "url('/casestudy-img/why-matters.png')" }}
+
       />
 
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 lg:sticky lg:top-28 self-start"
+            className="lg:col-span-4 lg:sticky lg:top-28 self-start"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
               {title}
@@ -63,7 +65,7 @@ export default function WhyItMatters({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-7 flex flex-col justify-center"
+            className="lg:col-span-8 flex flex-col justify-center"
           >
             <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-4">
               THIS CASE STUDY IS RELEVANT FOR ORGANIZATIONS MANAGING:

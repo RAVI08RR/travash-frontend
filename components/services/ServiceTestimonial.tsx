@@ -49,25 +49,24 @@ const DEFAULT_TESTIMONIALS = [
 ]
 
 export default function ServiceTestimonial({ testimonial }: { testimonial?: TestimonialType }) {
-  // If a specific custom testimonial was passed via props/CMS, use it as primary item
+  // Show only the specific testimonial for this service page
   const testimonialsList = testimonial && testimonial.quote
     ? [
         {
           quote: testimonial.quote,
-          author: testimonial.author || 'Imran Khan',
-          role: testimonial.role || 'Chief Technology Officer',
-          company: testimonial.company || 'PIXL Group',
+          author: testimonial.author || 'Senior Leadership',
+          role: testimonial.role || '',
+          company: testimonial.company || '',
           avatarImage:
             testimonial.image?.asset?.url ||
             testimonial.avatarImage ||
             '/images/services/imran-khan.png',
         },
-        ...DEFAULT_TESTIMONIALS.filter((t) => t.author !== testimonial.author),
-      ].slice(0, 5)
-    : DEFAULT_TESTIMONIALS
+      ]
+    : [DEFAULT_TESTIMONIALS[0]]
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const current = testimonialsList[currentIndex]
+  const current = testimonialsList[currentIndex] || testimonialsList[0]
 
   return (
     <section
@@ -134,21 +133,23 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
             </AnimatePresence>
           </div>
 
-          {/* Pagination dots matching screenshot */}
-          <div className="flex items-center justify-center gap-2 mt-8">
-            {testimonialsList.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                aria-label={`Go to testimonial ${idx + 1}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  currentIndex === idx
-                    ? 'w-2.5 h-2.5 bg-[#02487D]'
-                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Pagination dots shown only when multiple testimonials exist */}
+          {testimonialsList.length > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {testimonialsList.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    currentIndex === idx
+                      ? 'w-2.5 h-2.5 bg-[#02487D]'
+                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

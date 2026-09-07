@@ -24,6 +24,7 @@ import ServiceTrust from '@/components/services/ServiceTrust'
 import ServiceTestimonial from '@/components/services/ServiceTestimonial'
 import ServiceFAQ from '@/components/services/ServiceFAQ'
 import ServiceCTA from '@/components/services/ServiceCTA'
+import ServiceStaffSpotlights from '@/components/services/ServiceStaffSpotlights'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -131,7 +132,7 @@ export default async function ServiceDetailPage({
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
+      <main className="min-h-screen bg-gradient-to-b from-[#F4F8FC] via-white to-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
         {/* 1. Service Hero */}
         {service.hero && (
           <div id="overview">
@@ -167,12 +168,18 @@ export default async function ServiceDetailPage({
           <ServiceProcess process={service.process} />
         )}
 
-        {/* 6. Relevant Case Studies */}
-        {service.relatedCaseStudies && service.relatedCaseStudies.length > 0 && (
-          <ServiceCaseStudies
-            caseStudies={service.relatedCaseStudies}
-            serviceTitle={service.menuTitle || service.title}
-          />
+        {/* 6. Relevant Case Studies or Staff Spotlights */}
+        {slug === 'staff-augmentation' ? (
+          <ServiceStaffSpotlights />
+        ) : (
+          slug !== 'dedicated-teams' &&
+          service.relatedCaseStudies &&
+          service.relatedCaseStudies.length > 0 && (
+            <ServiceCaseStudies
+              caseStudies={service.relatedCaseStudies}
+              serviceTitle={service.menuTitle || service.title}
+            />
+          )
         )}
 
         {/* 7. Flexible Engagement Models */}

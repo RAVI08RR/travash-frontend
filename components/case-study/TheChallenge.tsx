@@ -40,9 +40,9 @@ export default function TheChallenge({
   return (
     <section className="py-16 sm:py-20 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] border-y border-[#EDF2F7]">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Title, Bold Headline, Description (Sticky on Desktop) */}
-          <div className="lg:col-span-5 flex flex-col lg:sticky lg:top-28 self-start">
+          <div className="lg:col-span-4 flex flex-col lg:sticky lg:top-28 self-start">
             <FadeUpWeb>
               <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-5">
                 {title}
@@ -63,7 +63,7 @@ export default function TheChallenge({
           </div>
 
           {/* Right Column: Checklist with Red Cross Badges and Optional Takeaway */}
-          <div className="lg:col-span-7 flex flex-col">
+          <div className="lg:col-span-8 flex flex-col">
             <FadeUpWeb delay={0.15}>
               {pointsLabel && (
                 <h4 className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#0F172A] mb-5">

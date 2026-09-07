@@ -45,14 +45,14 @@ export default function ClientPerspective({
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
       <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading & Subtitle */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-28 self-start"
+            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
               {heading}
@@ -87,20 +87,18 @@ export default function ClientPerspective({
               <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6 sm:gap-7">
                 {/* Left Badge / Avatar Placeholder */}
                 <div
-                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${
-                    isLogo
+                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${isLogo
                       ? 'bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3'
                       : 'bg-[#1E3A5F]'
-                  }`}
+                    }`}
                 >
                   <Image
                     src={imgSrc}
                     alt={data?.author || 'Client Testimonial'}
                     width={112}
                     height={112}
-                    className={`w-full h-full ${
-                      isLogo ? 'object-contain drop-shadow p-1' : 'object-cover'
-                    }`}
+                    className={`w-full h-full ${isLogo ? 'object-contain drop-shadow p-1' : 'object-cover'
+                      }`}
                   />
                 </div>
 
@@ -113,13 +111,13 @@ export default function ClientPerspective({
                   <p className="text-xs sm:text-[13px] font-bold text-[#02487D]">
                     By {data?.author || 'Client Leadership'}
                     {data?.role &&
-                    !data?.author?.toLowerCase().includes(data.role.toLowerCase())
+                      !data?.author?.toLowerCase().includes(data.role.toLowerCase())
                       ? ` — ${data.role}`
                       : ''}
                     {data?.company &&
-                    !data?.author?.toLowerCase().includes(data.company.toLowerCase()) &&
-                    (!data?.role ||
-                      !data?.role?.toLowerCase().includes(data.company.toLowerCase()))
+                      !data?.author?.toLowerCase().includes(data.company.toLowerCase()) &&
+                      (!data?.role ||
+                        !data?.role?.toLowerCase().includes(data.company.toLowerCase()))
                       ? ` (${data.company})`
                       : ''}
                   </p>

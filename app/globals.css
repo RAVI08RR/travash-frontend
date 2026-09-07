@@ -204,3 +204,7 @@ p {
   --color-teal: #14B8A6;
   --font-family-sans: "Plus Jakarta Sans", system-ui, sans-serif;
 }
+
+.text-\[\#14B8A6\] {
+  color: #61ce70 !important;
+}
