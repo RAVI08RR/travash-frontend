@@ -49,7 +49,7 @@ export default function LeadershipSection({ leadership }: LeadershipSectionProps
 
         <div className="max-w-4xl mx-auto">
           {leaders.map((leader, idx) => {
-            const photoUrl = leader.image?.asset?.url || '/home-img/Layer_x0020_1.png'
+            const photoUrl = leader.image?.asset?.url || '/gavrav-gupta.webp'
             return (
               <div
                 key={idx}

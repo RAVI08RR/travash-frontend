@@ -25,7 +25,7 @@ export default function AboutHero({ data }: AboutHeroProps) {
   const description =
     data?.description ||
     'Founded in 2005 with a clear vision: to transform technology from a business cost center into a powerful engine of growth, scalability, and competitive advantage for enterprises worldwide.'
-  const imageUrl = data?.heroImage?.asset?.url || '/home-img/Group 1000003287.png'
+  const imageUrl = data?.heroImage?.asset?.url || '/team.webp'
 
   return (
     <>

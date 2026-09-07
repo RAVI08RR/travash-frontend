@@ -17,7 +17,7 @@ const DEFAULT_PARAGRAPHS = [
 ]
 
 export default function About({ data }: { data?: AboutSectionData }) {
-  const imageUrl = data?.image?.asset?.url || '/home-img/wp6119334 2.png'
+  const imageUrl = data?.image?.asset?.url || '/team.webp'
   const paragraphs = data?.paragraphs && data.paragraphs.length > 0 ? data.paragraphs : DEFAULT_PARAGRAPHS
   const ctaLabel = data?.ctaLabel || 'Know More'
   const ctaHref = data?.ctaHref || '/about'
