@@ -240,9 +240,9 @@ export default function ServicesListingPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] min-h-screen">
+      <main className="bg-white font-['Plus_Jakarta_Sans',sans-serif] min-h-screen">
         {/* Header Hero */}
-        <section className="relative pt-16 pb-14 lg:pt-24 lg:pb-20 bg-gradient-to-b from-[#EBF3FB] via-white to-[#F8FAFC] overflow-hidden">
+        <section className="relative pt-16 pb-14 lg:pt-24 lg:pb-20 bg-gradient-to-b from-[#F4F8FC] via-white to-white overflow-hidden">
           {/* Decorative Backdrops */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] pointer-events-none opacity-40">
             <div className="absolute -top-20 left-1/4 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl" />
