@@ -16,7 +16,7 @@ interface HeroData {
 export default function Hero({ data }: { data?: HeroData }) {
   return (
     <section className="relative bg-white pt-6 pb-10 lg:pt-10 lg:pb-14 overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left Column: Heading, Subtext & Action CTAs */}
           <div className="lg:col-span-8 flex flex-col gap-6">

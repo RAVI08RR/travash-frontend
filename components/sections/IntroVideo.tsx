@@ -41,7 +41,7 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
               <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
               <span>{eyebrow}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight ">
               {heading}
             </h2>
             <p className="text-sm sm:text-base text-gray-600 mt-3 max-w-xl mx-auto">
