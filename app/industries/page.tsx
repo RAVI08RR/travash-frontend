@@ -43,7 +43,7 @@ export default async function IndustriesDirectoryPage() {
       <main className="bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
         {/* Header */}
         <section className="relative pt-16 pb-16 lg:pt-24 lg:pb-20 bg-gradient-to-b from-[#EBF3FB] via-white to-[#F8FAFC] overflow-hidden">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#004771] text-xs font-bold uppercase tracking-wider mb-5">
               <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
               <span>INDUSTRY-SPECIFIC ENGINEERING</span>
@@ -74,8 +74,8 @@ export default async function IndustriesDirectoryPage() {
         </section>
 
         {/* Industries Grid */}
-        <section className="py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-5 sm:py-10 lg:py-10">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {ALL_INDUSTRIES_LIST.map((industry) => (
                 <Link

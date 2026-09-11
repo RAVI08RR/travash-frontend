@@ -28,7 +28,7 @@ export default function CareerHero({
         <div className="absolute top-10 right-1/4 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-6">

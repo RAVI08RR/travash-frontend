@@ -44,7 +44,7 @@ export default function ClientPerspective({
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading & Subtitle */}
           <motion.div
@@ -88,8 +88,8 @@ export default function ClientPerspective({
                 {/* Left Badge / Avatar Placeholder */}
                 <div
                   className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${isLogo
-                      ? 'bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3'
-                      : 'bg-[#1E3A5F]'
+                    ? 'bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3'
+                    : 'bg-[#1E3A5F]'
                     }`}
                 >
                   <Image

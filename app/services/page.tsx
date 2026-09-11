@@ -249,7 +249,7 @@ export default function ServicesListingPage() {
             <div className="absolute top-10 right-1/4 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />
           </div>
 
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#004771] text-xs font-bold uppercase tracking-wider mb-5 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
               <span>ENTERPRISE ENGINEERING CAPABILITIES</span>
@@ -283,7 +283,7 @@ export default function ServicesListingPage() {
 
         {/* Filter & Search Bar */}
         <section className="py-8 bg-white border-y border-gray-200/80 sticky top-16 sm:top-20 z-30 shadow-xs">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Category Filter Pills */}
               <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
@@ -293,11 +293,10 @@ export default function ServicesListingPage() {
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                        isSelected
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${isSelected
                           ? 'bg-[#004771] text-white shadow-sm ring-2 ring-[#E0F2FE]'
                           : 'bg-[#F8FAFC] text-gray-600 hover:bg-gray-100 hover:text-gray-900 border border-gray-200/80'
-                      }`}
+                        }`}
                     >
                       {cat}
                     </button>
@@ -322,7 +321,7 @@ export default function ServicesListingPage() {
 
         {/* Services Grid */}
         <section className="py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                 Showing {filteredServices.length} {filteredServices.length === 1 ? 'Service' : 'Services'}
@@ -425,7 +424,7 @@ export default function ServicesListingPage() {
 
         {/* Why Partner with Travash Section */}
         <section className="py-16 sm:py-20 bg-white border-y border-gray-100">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center mb-14">
               <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
                 THE TRAVASH ADVANTAGE

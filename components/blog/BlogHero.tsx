@@ -21,7 +21,7 @@ export default function BlogHero({ heading, description, eyebrow }: BlogHeroProp
         <div className="absolute top-10 right-1/4 w-80 h-80 bg-blue-200/50 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-6">
             <BookOpen className="w-3.5 h-3.5 text-[#14B8A6]" />

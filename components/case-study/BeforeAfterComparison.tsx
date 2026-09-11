@@ -22,7 +22,7 @@ export default function BeforeAfterComparison({
 }: BeforeAfterProps) {
   return (
     <section id="transformation" className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading */}
           <motion.div

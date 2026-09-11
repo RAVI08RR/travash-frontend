@@ -88,7 +88,7 @@ export default async function IndustryDetailPage({
             <div className="absolute top-10 right-1/4 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />
           </div>
 
-          <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Breadcrumbs */}
             <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 mb-6">
               <Link href="/" className="hover:text-[#004771]">Home</Link>
@@ -173,7 +173,7 @@ export default async function IndustryDetailPage({
 
         {/* 2. Overview Narrative */}
         <section className="py-16 sm:py-20 bg-white border-y border-gray-100">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block">
                 STRATEGIC OVERVIEW
@@ -190,7 +190,7 @@ export default async function IndustryDetailPage({
 
         {/* 3. Industry Challenges & Proven Solutions */}
         <section className="py-16 sm:py-24 bg-[#F8FAFC]">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
                 COMMON BOTTLENECK REMOVAL
@@ -235,7 +235,7 @@ export default async function IndustryDetailPage({
 
         {/* 4. Core Capabilities for This Industry */}
         <section className="py-16 sm:py-24 bg-white border-b border-gray-100">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
                 PRACTICE CAPABILITIES
@@ -271,7 +271,7 @@ export default async function IndustryDetailPage({
 
         {/* 5. Technologies & Compliance Badges */}
         <section className="py-16 sm:py-20 bg-[#F8FAFC]">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
               {/* Tech Stack */}
               <div className="bg-white rounded-3xl p-8 border border-gray-200/80 shadow-xs">
@@ -322,7 +322,7 @@ export default async function IndustryDetailPage({
         {/* 6. Case Study Highlight (If applicable) */}
         {industry.caseStudyHighlight && (
           <section className="py-16 sm:py-20 bg-white border-t border-gray-100">
-            <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#F8FAFC] to-[#EEF4FB] rounded-3xl p-8 sm:p-12 border border-blue-100/80 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="space-y-3 max-w-2xl">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#14B8A6]">

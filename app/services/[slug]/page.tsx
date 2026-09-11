@@ -13,6 +13,7 @@ import Footer from '@/components/sections/Footer'
 import Contact from '@/components/sections/Contact'
 
 import ServiceHero from '@/components/services/ServiceHero'
+import ServiceHeroBanner from '@/components/services/ServiceHeroBanner'
 import ServiceProblem from '@/components/services/ServiceProblem'
 import ServiceSolutionOverview from '@/components/services/ServiceSolutionOverview'
 import ServiceCapabilities from '@/components/services/ServiceCapabilities'
@@ -139,6 +140,9 @@ export default async function ServiceDetailPage({
             <ServiceHero hero={service.hero} serviceTitle={service.title} />
           </div>
         )}
+
+        {/* 1b. Hero Banner Image */}
+        <ServiceHeroBanner slug={slug} />
 
         {/* 2. Business Problem Section */}
         {service.problemSection && (

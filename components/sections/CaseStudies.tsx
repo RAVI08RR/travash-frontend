@@ -199,11 +199,11 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
   }
 
   return (
-    <section className="py-12 lg:py-5 
+    <section className="py-12 lg:py-16 
     bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center mb-10 lg:mb-12">
+        <div className="text-center mb-10 lg:mb-14">
           <h2 className="section-heading-title">
             {heading}
           </h2>
@@ -213,8 +213,8 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
         <div
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className="border border-gray-200/90 rounded-[24px] sm:rounded-[32px] p-4 sm:p-8 lg:p-12 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
-          style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)' }}
+          className="border border-gray-200/80 rounded-[24px] sm:rounded-[28px] p-5 sm:p-8 lg:p-10 shadow-[0_6px_30px_rgba(0,0,0,0.06)]"
+          style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%)' }}
         >
           <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Column: Clean Image */}
@@ -228,32 +228,32 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
               />
             </div>
 
-            {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
-            <div className="lg:col-span-7 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-[32px] font-[500] text-[#0B4785] tracking-tight break-words">
-                  {current.projectName}
-                </h3>
-                <p className="text-gray-600 text-[14px] sm:text-[15px] font-medium mt-1 mb-4 sm:mb-6 whitespace-pre-line">
-                  {current.clientType}
-                </p>
+              {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl sm:text-2xl lg:text-[28px] font-[600] text-[#0B4785] tracking-tight break-words leading-snug">
+                    {current.projectName}
+                  </h3>
+                  <p className="text-gray-500 text-[13px] sm:text-[14px] font-normal mt-1.5 mb-5 sm:mb-6 whitespace-pre-line">
+                    {current.clientType}
+                  </p>
 
-                <p className="text-xs sm:text-sm font-bold text-gray-800 uppercase tracking-wide mb-3">
-                  Key Outcomes
-                </p>
+                  <p className="text-[11px] sm:text-xs font-bold text-gray-700 uppercase tracking-widest mb-3">
+                    Key Outcomes
+                  </p>
 
                 {/* 2x2 Outcome Grid */}
-                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5 sm:mb-7">
                   {current.outcomes.map((item, idx) => (
                     <div
                       key={idx}
                       className={`${item.bg || 'bg-gray-50'} border ${item.border || 'border-gray-200'
-                        } rounded-xl p-2.5 sm:p-4 flex flex-col justify-center`}
+                        } rounded-xl p-3 sm:p-4 flex flex-col justify-center`}
                     >
-                      <span className="text-sm sm:text-lg font-bold text-gray-900 leading-tight">
+                      <span className="text-sm sm:text-base font-bold text-gray-900 leading-tight">
                         {item.value}
                       </span>
-                      <span className="text-[11px] sm:text-xs text-gray-600 mt-0.5 sm:mt-1 leading-snug">
+                      <span className="text-[11px] sm:text-[12px] text-gray-500 mt-0.5 sm:mt-1 leading-snug font-normal">
                         {item.label}
                       </span>
                     </div>
@@ -265,34 +265,34 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
               <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 pt-2">
                 <Link
                   href={current.ctaHref || '/work'}
-                  className="btn-global h-[66px] rounded-[5px] inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-8 text-sm transition-all duration-200 shadow-sm w-full sm:w-[258px]"
+                  className="inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-7 py-3 rounded-[6px] text-[14px] transition-all duration-200 shadow-sm w-full sm:w-auto"
                 >
                   {current.ctaLabel || 'View Case Study'}
                 </Link>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <button
                     onClick={prevSlide}
-                    className="w-11 h-11 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 transition-all flex items-center justify-center cursor-pointer active:scale-95 shadow-sm"
                     aria-label="Previous case study"
                   >
                     <Image
                       src="/home-img/Group 1000003288.png"
                       alt="Previous"
-                      width={44}
-                      height={44}
+                      width={40}
+                      height={40}
                     />
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="w-11 h-11 rounded-full hover:opacity-80 transition-opacity flex items-center justify-center cursor-pointer active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 transition-all flex items-center justify-center cursor-pointer active:scale-95 shadow-sm"
                     aria-label="Next case study"
                   >
                     <Image
                       src="/home-img/Group 1000003287-1.png"
                       alt="Next"
-                      width={44}
-                      height={44}
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>

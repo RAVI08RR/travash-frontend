@@ -37,7 +37,7 @@ export default function ServiceCapabilities({
       id="capabilities"
       className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ export default function ServiceCapabilities({
           <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-2">
             Engineering Capabilities
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-[#3D3C3C] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#3D3C3C] tracking-tight leading-tight">
             Our {serviceTitle || 'Data & Analytics'} Services: What We Build
           </h2>
         </motion.div>
@@ -89,8 +89,8 @@ export default function ServiceCapabilities({
                   viewport={{ once: true, margin: '-30px' }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   className={`border rounded-2xl transition-all duration-200 overflow-hidden ${isOpen
-                      ? 'bg-white border-[#02487D]/40 shadow-sm'
-                      : 'bg-white border-gray-200/90 hover:border-gray-300'
+                    ? 'bg-white border-[#02487D]/40 shadow-sm'
+                    : 'bg-white border-gray-200/90 hover:border-gray-300'
                     }`}
                 >
                   {/* Accordion Header */}
@@ -108,8 +108,8 @@ export default function ServiceCapabilities({
                     </span>
                     <div
                       className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${isOpen
-                          ? 'bg-[#02487D] text-white rotate-180'
-                          : 'bg-[#EEF4FB] text-[#02487D]'
+                        ? 'bg-[#02487D] text-white rotate-180'
+                        : 'bg-[#EEF4FB] text-[#02487D]'
                         }`}
                     >
                       <ChevronDown className="w-4 h-4" />

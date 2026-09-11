@@ -52,17 +52,17 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
   // Show only the specific testimonial for this service page
   const testimonialsList = testimonial && testimonial.quote
     ? [
-        {
-          quote: testimonial.quote,
-          author: testimonial.author || 'Senior Leadership',
-          role: testimonial.role || '',
-          company: testimonial.company || '',
-          avatarImage:
-            testimonial.image?.asset?.url ||
-            testimonial.avatarImage ||
-            '/images/services/imran-khan.png',
-        },
-      ]
+      {
+        quote: testimonial.quote,
+        author: testimonial.author || 'Senior Leadership',
+        role: testimonial.role || '',
+        company: testimonial.company || '',
+        avatarImage:
+          testimonial.image?.asset?.url ||
+          testimonial.avatarImage ||
+          '/images/services/imran-khan.png',
+      },
+    ]
     : [DEFAULT_TESTIMONIALS[0]]
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -74,7 +74,7 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
       className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
       {/* Kept container width aligned with the rest of the page */}
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -141,11 +141,10 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to testimonial ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    currentIndex === idx
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${currentIndex === idx
                       ? 'w-2.5 h-2.5 bg-[#02487D]'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>

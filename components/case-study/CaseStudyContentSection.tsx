@@ -34,7 +34,7 @@ export default function CaseStudyContentSection({
       id={id}
       className={`py-14 sm:py-20 ${bgClass} font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 ${className}`}
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column (Approx 35%): Sticky Section Heading on Desktop */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">

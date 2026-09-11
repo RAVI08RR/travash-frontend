@@ -61,7 +61,7 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
 
   return (
     <section className="py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
@@ -100,7 +100,7 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
               {/* Action Button */}
               <Link
                 href={card.ctaHref || '/services'}
-                className="btn-global h-[66px] rounded-[5px] w-full inline-flex items-center justify-center border border-[#0B4785]/40 hover:border-[#0B4785] hover:bg-white text-[#0B4785] font-semibold text-sm transition-all duration-200 mt-auto"
+                className="h-[66px] rounded-[5px] w-full inline-flex items-center justify-center bg-[#02487D] border border-[#02487D] hover:border-[#0B4785] hover:bg-[#02487D] text-white font-semibold text-sm transition-all duration-200 mt-auto"
               >
                 {card.ctaLabel || 'Explore More'}
               </Link>

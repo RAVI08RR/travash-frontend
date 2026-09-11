@@ -204,7 +204,7 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-100/25 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with Navigation Arrows */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-10">
           <motion.div

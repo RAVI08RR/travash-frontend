@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Play, Sparkles } from 'lucide-react'
+import { Play } from 'lucide-react'
 import VideoModal from '@/components/ui/VideoModal'
 
 interface IntroVideoData {
@@ -21,39 +21,46 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
 
   return (
     <>
-      <section className="relative py-16 lg:py-24 bg-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
-        {/* Soft background wave graphic from public/home-img */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-40">
-          <div className="relative w-full h-[450px]">
+      <section className="relative py-14 lg:py-20 bg-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+        {/* Soft background wave graphic */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30">
+          <div className="relative w-full h-full">
             <Image
               src="/home-img/Abstract-Photoshop-Background-Amazing-HD-Wallpaper-14105 2.png"
-              alt="Decorative background wave"
+              alt=""
               fill
               className="object-cover object-center"
             />
           </div>
         </div>
 
-        <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Eyebrow & Heading */}
-          <div className="mb-10 lg:mb-12 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
-              <span>{eyebrow}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight ">
+          <div className="mb-8 lg:mb-10 max-w-3xl mx-auto">
+            {/* Plain small eyebrow label */}
+            <p className="text-[12px] font-semibold text-gray-500 uppercase tracking-widest mb-3">
+              {eyebrow}
+            </p>
+            <h2
+              className="font-[500] tracking-tight leading-tight"
+              style={{
+                fontSize: 'clamp(24px, 3.5vw, 42px)',
+                letterSpacing: '-0.02em',
+                background: 'linear-gradient(90deg, #004771 0%, #448AE1 65.38%, #051529 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
               {heading}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mt-3 max-w-xl mx-auto">
-              Discover how our engineering excellence, AI delivery, and global teams empower modern enterprises to scale effortlessly.
-            </p>
           </div>
 
-          {/* Video Container with interactive popup trigger */}
+          {/* Video Container */}
           <div className="max-w-4xl mx-auto">
             <div
               onClick={() => setIsOpen(true)}
-              className="relative w-full aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,71,133,0.14)] border border-gray-200/80 group cursor-pointer transition-all duration-300 hover:shadow-[0_20px_50px_rgba(11,71,133,0.2)] hover:-translate-y-1"
+              className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(11,71,133,0.12)] border border-gray-200/60 group cursor-pointer transition-all duration-300 hover:shadow-[0_16px_48px_rgba(11,71,133,0.18)] hover:-translate-y-0.5"
             >
               {/* Poster Image */}
               <Image
@@ -65,33 +72,19 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
                 sizes="(max-width: 1024px) 100vw, 900px"
               />
 
-              {/* Dark subtle gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E3D]/80 via-[#0B1E3D]/30 to-transparent group-hover:from-[#0B1E3D]/70 transition-all duration-300" />
+              {/* Subtle dark overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E3D]/60 via-[#0B1E3D]/20 to-transparent group-hover:from-[#0B1E3D]/50 transition-all duration-300" />
 
-              {/* Play Button & Pulse Rings */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6">
+              {/* Play Button */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex items-center justify-center">
-                  {/* Outer animated ripple */}
-                  <span className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/20 animate-ping pointer-events-none" />
-                  {/* Secondary soft ring */}
-                  <span className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/30 transition-transform duration-300 group-hover:scale-125" />
-                  {/* Main Play Icon Circle */}
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#004771] to-[#14B8A6] text-white flex items-center justify-center shadow-2xl transition-transform duration-300 group-hover:scale-110">
-                    <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1 text-white" />
+                  {/* Outer ripple */}
+                  <span className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 animate-ping pointer-events-none" />
+                  {/* Main Play Circle */}
+                  <div className="relative w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-white/90 backdrop-blur-sm text-[#0B4785] flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-110 border border-white/60">
+                    <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-0.5" />
                   </div>
                 </div>
-
-                {/* Badge underneath play button */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#0B1E3D] text-xs font-bold shadow-lg transform transition-transform duration-300 group-hover:scale-105">
-                  <span className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
-                  <span>Click to Watch Video • 2 Min Overview</span>
-                </div>
-              </div>
-
-              {/* Bottom bar label */}
-              <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-white/90 text-xs sm:text-sm font-medium">
-                <span className="bg-black/40 backdrop-blur-xs px-3 py-1 rounded-md">Travash Engineering Presentation</span>
-                <span className="hidden sm:inline-block bg-black/40 backdrop-blur-xs px-3 py-1 rounded-md text-teal-300">HD 1080p</span>
               </div>
             </div>
           </div>

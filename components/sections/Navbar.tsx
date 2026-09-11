@@ -135,7 +135,7 @@ const ALL_SERVICES: ServiceItem[] = [
 const DEFAULT_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services', hasDropdown: true },
-  { label: 'Technologies', href: '/technologies' },
+  { label: 'Industries', href: '/industries' },
   { label: 'Our Work', href: '/portfolio' },
   { label: 'About', href: '/about-us' },
   { label: 'Careers', href: '/career' },
@@ -182,22 +182,22 @@ export default function Navbar({ settings }: NavbarProps) {
 
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.03)] font-['Plus_Jakarta_Sans',sans-serif]">
-        <nav className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-gray-100/80 shadow-[0_1px_3px_rgba(0,0,0,0.04)] font-['Plus_Jakarta_Sans',sans-serif]">
+        <nav className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-10 h-[60px] sm:h-[68px] flex items-center justify-between gap-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <Image
               src={logoUrl}
               alt="Travash Software Solutions"
-              width={160}
+              width={100}
               height={42}
               priority
-              className="h-7 sm:h-9 md:h-10 w-auto max-w-[120px] sm:max-w-[150px] md:max-w-none object-contain transition-all"
+              className="h-7 sm:h-9 md:h-10 w-auto max-w-[110px] sm:max-w-[110px] object-contain transition-all"
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-7 xl:gap-9">
+          {/* Desktop Nav — centered */}
+          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1 flex-1 justify-center">
             {navLinks.map((link) => {
               const isServices = link.label === 'Services' || link.hasDropdown
 
@@ -211,22 +211,20 @@ export default function Navbar({ settings }: NavbarProps) {
                   >
                     <Link
                       href="/services"
-                      className={`flex items-center gap-1.5 text-[15px] font-semibold transition-colors ${
-                        servicesOpen ? 'text-[#004771]' : 'text-gray-700 hover:text-[#004771]'
-                      }`}
+                      className={`flex items-center gap-1 text-[13.5px] font-medium px-3 py-2 rounded-lg transition-colors ${servicesOpen ? 'text-[#004771] bg-gray-50' : 'text-gray-600 hover:text-[#004771] hover:bg-gray-50'
+                        }`}
                     >
                       <span>{link.label}</span>
                       <ChevronDown
-                        size={15}
-                        className={`transition-transform duration-200 ${
-                          servicesOpen ? 'rotate-180 text-[#004771]' : 'text-gray-400'
-                        }`}
+                        size={13}
+                        className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180 text-[#004771]' : 'text-gray-400'
+                          }`}
                       />
                     </Link>
 
                     {/* Desktop Full Mega Menu */}
                     {servicesOpen && (
-                      <div className="fixed top-16 sm:top-20 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 lg:px-8 pointer-events-auto animate-in fade-in-0 slide-in-from-top-2 duration-200">
+                      <div className="fixed top-[60px] sm:top-[68px] left-0 right-0 z-50 flex justify-center px-4 sm:px-6 lg:px-8 pointer-events-auto animate-in fade-in-0 slide-in-from-top-2 duration-200">
                         <div
                           className="w-full max-w-7xl bg-white rounded-3xl shadow-[0_25px_60px_-15px_rgba(11,71,133,0.18)] border border-gray-200/90 overflow-hidden"
                           onMouseEnter={handleMouseEnter}
@@ -439,7 +437,7 @@ export default function Navbar({ settings }: NavbarProps) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[15px] font-semibold text-gray-700 hover:text-[#004771] transition-colors py-2"
+                    className="text-[13.5px] font-medium text-gray-600 hover:text-[#004771] transition-colors px-3 py-2 rounded-lg hover:bg-gray-50 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -448,11 +446,11 @@ export default function Navbar({ settings }: NavbarProps) {
             })}
           </ul>
 
-          {/* Right: Contact Us Button & Mobile Toggle */}
-          <div className="flex items-center gap-4">
+          {/* Right: Contact Us outlined button & Mobile Toggle */}
+          <div className="flex items-center gap-3 flex-shrink-0">
             <Link
               href={ctaHref}
-              className="hidden sm:inline-flex items-center justify-center bg-[#004771] hover:bg-[#02487D] text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+              className="hidden sm:inline-flex items-center justify-center border border-[#004771] text-[#004771] hover:bg-[#004771] hover:text-white text-[13px] font-semibold px-5 py-2 rounded-lg transition-all duration-200"
             >
               {ctaLabel}
             </Link>
@@ -460,10 +458,10 @@ export default function Navbar({ settings }: NavbarProps) {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMenuOpen(true)}
-              className="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
               aria-label="Open navigation menu"
             >
-              <Menu size={24} />
+              <Menu size={22} />
             </button>
           </div>
         </nav>
@@ -471,23 +469,20 @@ export default function Navbar({ settings }: NavbarProps) {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden transition-all duration-300 ${
-          menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-50 lg:hidden transition-all duration-300 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-[#0B1E3D]/50 backdrop-blur-sm transition-opacity duration-300 ${
-            menuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-[#0B1E3D]/50 backdrop-blur-sm transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
           onClick={() => setMenuOpen(false)}
         />
 
         {/* Drawer Content */}
         <div
-          className={`absolute right-0 top-0 bottom-0 w-full max-w-sm sm:max-w-md bg-white shadow-2xl flex flex-col transition-transform duration-300 ${
-            menuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`absolute right-0 top-0 bottom-0 w-full max-w-sm sm:max-w-md bg-white shadow-2xl flex flex-col transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
         >
           {/* Mobile Header */}
           <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white sticky top-0 z-10">
@@ -528,9 +523,8 @@ export default function Navbar({ settings }: NavbarProps) {
                       </div>
                       <ChevronDown
                         size={18}
-                        className={`text-gray-500 transition-transform duration-200 ${
-                          mobileServicesOpen ? 'rotate-180 text-[#004771]' : ''
-                        }`}
+                        className={`text-gray-500 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180 text-[#004771]' : ''
+                          }`}
                       />
                     </button>
 

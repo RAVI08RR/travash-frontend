@@ -32,7 +32,7 @@ export default function WhyItMatters({
 
       />
 
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column */}
           <motion.div

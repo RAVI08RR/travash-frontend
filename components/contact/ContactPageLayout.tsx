@@ -4,16 +4,9 @@ import { useState, useRef } from 'react'
 import {
   Mail,
   Phone,
-  Clock,
   Send,
-  MessageSquare,
-  ShieldCheck,
-  CheckCircle2,
   Sparkles,
-  ArrowRight,
-  Headphones,
   Lock,
-  Cpu,
 } from 'lucide-react'
 import { toast, Toaster } from 'sonner'
 import OfficeLocations, { OfficeLocation } from './OfficeLocations'
@@ -25,14 +18,7 @@ interface ContactPageLayoutProps {
   socialLinks?: Array<{ platform: string; url: string }>
 }
 
-const INTEREST_TOPICS = [
-  'AI & Machine Learning',
-  'Enterprise Web & Cloud',
-  'Mobile App Development',
-  'Legacy Modernization',
-  'DevOps & Architecture',
-  'Dedicated Engineering Squad',
-]
+const INTEREST_TOPICS: string[] = []
 
 export default function ContactPageLayout({
   email = 'contact@travash.com',
@@ -41,7 +27,6 @@ export default function ContactPageLayout({
   socialLinks,
 }: ContactPageLayoutProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [selectedTopic, setSelectedTopic] = useState<string>('AI & Machine Learning')
   const formRef = useRef<HTMLFormElement>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -53,7 +38,7 @@ export default function ContactPageLayout({
       name: formData.get('name'),
       phone: formData.get('phone'),
       email: formData.get('email'),
-      subject: selectedTopic || formData.get('subject') || 'General Inquiry',
+      subject: formData.get('subject') || 'General Inquiry',
       message: formData.get('message'),
     }
 
@@ -82,7 +67,7 @@ export default function ContactPageLayout({
     <>
       <Toaster position="top-right" richColors />
       <section className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
-        <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start max-w-6xl mx-auto">
             {/* Left Column: Direct Contact & Global Offices */}
             <div className="lg:col-span-5 space-y-8">
@@ -143,28 +128,6 @@ export default function ContactPageLayout({
 
               {/* Office Locations */}
               <OfficeLocations offices={offices} />
-
-              {/* Response Time Guarantee & NDA Protection */}
-              <div className="p-4.5 rounded-2xl bg-gradient-to-br from-[#F8FAFC] to-[#EEF4FB] border border-blue-100 space-y-3">
-                <div className="flex items-start gap-3">
-                  <ShieldCheck className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-[#0B1E3D]">Strict Mutual NDA Guarantee</div>
-                    <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">
-                      All communications, intellectual property, and requirements remain strictly confidential under standard enterprise NDA.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 pt-2 border-t border-blue-100/80">
-                  <Headphones className="w-5 h-5 text-[#004771] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-[#0B1E3D]">Direct Principal Engineer Access</div>
-                    <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">
-                      You will speak directly with senior engineering directors who understand architecture, scope, and technical roadmaps.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Right Column: Interactive Contact Form */}
@@ -186,89 +149,61 @@ export default function ContactPageLayout({
                   </p>
                 </div>
 
-                {/* Project Interest Tag Pills */}
-                <div className="mb-6">
-                  <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2.5">
-                    Select Your Primary Area of Interest:
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {INTEREST_TOPICS.map((topic) => {
-                      const isSelected = selectedTopic === topic
-                      return (
-                        <button
-                          key={topic}
-                          type="button"
-                          onClick={() => setSelectedTopic(topic)}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                            isSelected
-                              ? 'bg-[#004771] text-white shadow-sm ring-2 ring-[#E0F2FE]'
-                              : 'bg-white text-gray-600 border border-gray-200 hover:border-[#004771] hover:text-[#004771]'
-                          }`}
-                        >
-                          {topic}
-                        </button>
-                      )
-                    })}
-                  </div>
-                </div>
-
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                   {/* Name & Phone */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="contact-name" className="block text-xs font-bold text-gray-700 mb-1.5">
-                        Full Name <span className="text-red-500">*</span>
+                        Name <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="contact-name"
                         name="name"
                         type="text"
                         required
-                        placeholder="e.g. Sarah Jenkins"
+                        placeholder="Enter Your Name"
                         className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs"
                       />
                     </div>
                     <div>
                       <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">
-                        Phone Number <span className="text-red-500">*</span>
+                        Phone <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="contact-phone"
                         name="phone"
                         type="tel"
                         required
-                        placeholder="e.g. +1 (555) 019-2834"
+                        placeholder="Enter Your Phone"
                         className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs"
                       />
                     </div>
                   </div>
 
-                  {/* Email & Custom Subject */}
+                  {/* Email & Subject */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="contact-email" className="block text-xs font-bold text-gray-700 mb-1.5">
-                        Corporate Email <span className="text-red-500">*</span>
+                        Email <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="contact-email"
                         name="email"
                         type="email"
                         required
-                        placeholder="name@company.com"
+                        placeholder="Enter Your Email"
                         className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs"
                       />
                     </div>
                     <div>
                       <label htmlFor="contact-subject" className="block text-xs font-bold text-gray-700 mb-1.5">
-                        Specific Topic / Requirement
+                        Subject
                       </label>
                       <input
                         id="contact-subject"
                         name="subject"
                         type="text"
-                        value={selectedTopic}
-                        onChange={(e) => setSelectedTopic(e.target.value)}
-                        placeholder="e.g. AI Workflow Integration"
+                        placeholder="Enter Your Subject"
                         className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs"
                       />
                     </div>
@@ -277,14 +212,14 @@ export default function ContactPageLayout({
                   {/* Message */}
                   <div>
                     <label htmlFor="contact-message" className="block text-xs font-bold text-gray-700 mb-1.5">
-                      Project Goals & Timeline <span className="text-red-500">*</span>
+                      Message <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="contact-message"
                       name="message"
                       rows={4}
                       required
-                      placeholder="Briefly describe what you are looking to build, expected timelines, or current architectural challenges..."
+                      placeholder="Enter Your Message..."
                       className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs resize-none"
                     />
                   </div>

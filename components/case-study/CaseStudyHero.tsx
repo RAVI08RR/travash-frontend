@@ -58,12 +58,12 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       : typeof data.featureImage === 'string' && data.featureImage
         ? data.featureImage
         : (typeof data.featureImage === 'object' ? data.featureImage?.asset?.url : undefined) ||
-          (typeof data.heroImage === 'string' && data.heroImage
-            ? data.heroImage
-            : typeof data.heroImage === 'object'
-              ? data.heroImage?.asset?.url
-              : undefined) ||
-          slugFallback
+        (typeof data.heroImage === 'string' && data.heroImage
+          ? data.heroImage
+          : typeof data.heroImage === 'object'
+            ? data.heroImage?.asset?.url
+            : undefined) ||
+        slugFallback
 
   const title = data?.title || 'Case Study'
 
@@ -79,9 +79,9 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
     typeof data?.industry === 'string'
       ? data.industry
       : (data?.industry as any)?.title ||
-        (data?.industry as any)?.name ||
-        data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'industry')?.value ||
-        'Government / Public Safety'
+      (data?.industry as any)?.name ||
+      data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'industry')?.value ||
+      'Government / Public Safety'
   const capabilitiesValue =
     data?.projectMeta?.find((m) => (m.label || '').toLowerCase().includes('capabilit'))?.value ||
     'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
@@ -102,7 +102,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
 
   return (
     <section className="pt-5 pb-12 sm:pt-5 sm:pb-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#0F172A] overflow-hidden">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation: Home > Works > Satyapaan */}
         <motion.nav
           initial={{ opacity: 0, y: -8 }}

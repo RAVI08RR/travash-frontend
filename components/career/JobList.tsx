@@ -38,7 +38,7 @@ export default function JobList({ jobs }: JobListProps) {
 
   return (
     <section id="open-positions" className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
             JOIN OUR TEAM
@@ -59,11 +59,10 @@ export default function JobList({ jobs }: JobListProps) {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                  selectedCategory === cat
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat
                     ? 'bg-[#004771] text-white shadow-xs'
                     : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300'
-                }`}
+                  }`}
               >
                 {cat}
               </button>

@@ -55,7 +55,7 @@ export default function CaseStudyContact({
   return (
     <section id="contact" className="py-12 sm:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
       <Toaster position="top-right" richColors />
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Soft Lavender / Periwinkle Container Card matching Screenshot 2 */}
         <div className="bg-[#F8F5FD] rounded-[32px] p-8 sm:p-12 lg:p-16 border border-gray-100">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">

@@ -73,7 +73,7 @@ export default async function CategoryArchivePage({ params }: CategoryPageProps)
       <main className="bg-white dark:bg-white min-h-screen">
         {/* Category Hero Header */}
         <section className="pt-28 pb-16 bg-[#F8FAFC] dark:bg-white border-b border-gray-200 dark:border-gray-100">
-          <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <Link
               href="/blogs"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#004771] hover:underline mb-6"
@@ -103,7 +103,7 @@ export default async function CategoryArchivePage({ params }: CategoryPageProps)
         </section>
 
         {/* Listing Grid with Filters */}
-        <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <BlogFilters
             posts={categoryPosts.length > 0 ? categoryPosts : allPosts}
             categories={categories}

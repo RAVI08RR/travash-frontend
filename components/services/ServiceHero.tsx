@@ -17,7 +17,7 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#38BDF8]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-[#0284C7]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         {/* Breadcrumb Navigation */}
         <motion.nav
           initial={{ opacity: 0, y: -8 }}
@@ -58,7 +58,7 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-5xl lg:text-[58px] xl:text-[68px] font-[500] leading-[1.14] lg:leading-[68px] xl:leading-[80px] tracking-[-0.03em] hero-title-gradient mb-6"
+            className="text-3xl sm:text-5xl lg:text-[52px] xl:text-[52px] font-[500] leading-[1.14] lg:leading-[68px] xl:leading-[80px] tracking-[-0.03em] hero-title-gradient mb-6"
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 500,

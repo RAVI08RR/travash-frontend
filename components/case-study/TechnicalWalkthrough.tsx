@@ -112,7 +112,7 @@ export default function TechnicalWalkthrough({ content, caseStudy }: TechnicalWa
       id="technical-walkthrough"
       className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-t border-b border-slate-200/80 overflow-hidden"
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

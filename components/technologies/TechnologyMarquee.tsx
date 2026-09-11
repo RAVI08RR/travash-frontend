@@ -92,7 +92,7 @@ function MarqueeRow({ items, direction = 'ltr' }: { items: TechBadge[]; directio
 export default function TechnologyMarquee() {
   return (
     <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-16 bg-gradient-to-b from-[#F4F8FC] via-white to-white font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-b border-gray-100">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Single Main Section Title with Travash theme gradient */}
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
           <h1 className="section-heading-title">

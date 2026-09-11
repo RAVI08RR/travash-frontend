@@ -207,7 +207,7 @@ export default function TechnologyStack({
       id="technology-stack"
       className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading */}
           <motion.div
@@ -279,18 +279,18 @@ export default function TechnologyStack({
                                 key={tIdx}
                                 title={item.original}
                                 className={`${isDatabaseWide
-                                    ? 'w-48 sm:w-56 h-18 sm:h-20 px-6'
-                                    : iconItems.length <= 2
-                                      ? 'w-20 h-18 sm:w-24 sm:h-20 p-3'
-                                      : 'w-16 h-16 sm:w-20 sm:h-20 p-2.5 sm:p-3'
+                                  ? 'w-48 sm:w-56 h-18 sm:h-20 px-6'
+                                  : iconItems.length <= 2
+                                    ? 'w-20 h-18 sm:w-24 sm:h-20 p-3'
+                                    : 'w-16 h-16 sm:w-20 sm:h-20 p-2.5 sm:p-3'
                                   } bg-white rounded-xl shadow-xs border border-gray-100/80 flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-default`}
                               >
                                 <div
                                   className={`${isDatabaseWide
-                                      ? 'w-28 sm:w-36 h-10'
-                                      : iconItems.length <= 2
-                                        ? 'w-10 h-10 sm:w-12 sm:h-12'
-                                        : 'w-8 h-8 sm:w-10 sm:h-10'
+                                    ? 'w-28 sm:w-36 h-10'
+                                    : iconItems.length <= 2
+                                      ? 'w-10 h-10 sm:w-12 sm:h-12'
+                                      : 'w-8 h-8 sm:w-10 sm:h-10'
                                     } flex items-center justify-center`}
                                 >
                                   {VALID_TECH_ICONS.has(item.icon) ? (

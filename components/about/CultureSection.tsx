@@ -48,7 +48,7 @@ export default function CultureSection({ teams, culture }: CultureSectionProps) 
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top: Teams Introduction */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">

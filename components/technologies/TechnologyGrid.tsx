@@ -119,7 +119,7 @@ export default function TechnologyGrid({ technologies, categories: customCategor
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Category Navigation & Search */}
         <div className="mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
@@ -127,11 +127,10 @@ export default function TechnologyGrid({ technologies, categories: customCategor
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                  selectedCategory === cat
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat
                     ? 'bg-[#004771] text-white shadow-xs'
                     : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300'
-                }`}
+                  }`}
               >
                 {cat}
               </button>

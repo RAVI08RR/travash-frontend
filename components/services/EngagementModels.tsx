@@ -28,7 +28,7 @@ export default function EngagementModels({
       {/* Radial glow background */}
       <div className="absolute -top-24 left-1/3 w-96 h-96 bg-[#0284C7]/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

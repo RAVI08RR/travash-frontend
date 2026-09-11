@@ -65,7 +65,7 @@ export default function ValuesGrid({ values, heading, eyebrow }: ValuesGridProps
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
             {eyebrow || 'WHAT GUIDES US'}

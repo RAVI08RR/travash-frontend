@@ -121,7 +121,7 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 lg:mb-12">
           <h2 className="section-heading-title">
             {data?.heading || 'Industries We Serve'}
@@ -191,8 +191,8 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
                 key={dot}
                 onClick={() => setCurrentIndex(dot)}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${dot === currentIndex
-                    ? 'bg-[#0B4785] scale-110'
-                    : 'border border-[#0B4785]/60 bg-transparent hover:bg-[#0B4785]/20'
+                  ? 'bg-[#0B4785] scale-110'
+                  : 'border border-[#0B4785]/60 bg-transparent hover:bg-[#0B4785]/20'
                   }`}
                 aria-label={`Slide to industry panel ${dot + 1}`}
               />

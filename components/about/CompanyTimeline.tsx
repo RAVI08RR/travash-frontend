@@ -132,7 +132,7 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
         <div className="absolute top-10 right-1/4 w-80 h-80 bg-teal-100/40 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
@@ -176,33 +176,30 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
                     aria-label={`Jump to ${item.year} milestone`}
                   >
                     <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-sm transition-all duration-300 shadow-md ${
-                        isActive
-                          ? 'bg-[#004771] text-white ring-4 ring-[#E0F2FE] scale-110 shadow-lg'
-                          : isPassed
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-sm transition-all duration-300 shadow-md ${isActive
+                        ? 'bg-[#004771] text-white ring-4 ring-[#E0F2FE] scale-110 shadow-lg'
+                        : isPassed
                           ? 'bg-[#14B8A6] text-white shadow-sm'
                           : 'bg-white text-gray-600 border border-gray-200 group-hover:border-[#004771] group-hover:text-[#004771]'
-                      }`}
+                        }`}
                     >
                       <ItemIcon className="w-6 h-6" />
                     </div>
 
                     <div className="text-center mt-3">
                       <span
-                        className={`text-sm font-extrabold block transition-colors ${
-                          isActive
-                            ? 'text-[#004771]'
-                            : isPassed
+                        className={`text-sm font-extrabold block transition-colors ${isActive
+                          ? 'text-[#004771]'
+                          : isPassed
                             ? 'text-[#14B8A6]'
                             : 'text-gray-500 group-hover:text-gray-900'
-                        }`}
+                          }`}
                       >
                         {item.year}
                       </span>
                       <span
-                        className={`text-[11px] font-semibold transition-colors block max-w-[110px] truncate ${
-                          isActive ? 'text-gray-700 font-bold' : 'text-gray-400'
-                        }`}
+                        className={`text-[11px] font-semibold transition-colors block max-w-[110px] truncate ${isActive ? 'text-gray-700 font-bold' : 'text-gray-400'
+                          }`}
                       >
                         {item.phase}
                       </span>

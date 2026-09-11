@@ -209,7 +209,7 @@ export default function ServiceTechnologies({ technologyStack }: ServiceTechnolo
       id="technologies"
       className="py-14 sm:py-18 lg:py-24 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -231,15 +231,14 @@ export default function ServiceTechnologies({ technologyStack }: ServiceTechnolo
 
         {/* Categorized Tech Cards Grid */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 ${
-            groups.length === 1
+          className={`grid grid-cols-1 md:grid-cols-2 ${groups.length === 1
               ? 'lg:grid-cols-1 max-w-md mx-auto'
               : groups.length === 2
-              ? 'lg:grid-cols-2 max-w-4xl mx-auto'
-              : groups.length === 3
-              ? 'lg:grid-cols-3 max-w-6xl mx-auto'
-              : 'lg:grid-cols-4'
-          } gap-6 sm:gap-8`}
+                ? 'lg:grid-cols-2 max-w-4xl mx-auto'
+                : groups.length === 3
+                  ? 'lg:grid-cols-3 max-w-6xl mx-auto'
+                  : 'lg:grid-cols-4'
+            } gap-6 sm:gap-8`}
         >
           {groups.map((group, idx) => {
             const techItems = group.items && group.items.length > 0
