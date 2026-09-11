@@ -123,6 +123,8 @@ p {
   font-size: 16px;
   font-weight: 600;
   white-space: nowrap;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Trusted By Client Logos: grayscale(100%) -> hover grayscale(0%) */
