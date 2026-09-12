@@ -216,7 +216,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
           className="border border-gray-200/80 rounded-[24px] sm:rounded-[28px] p-5 sm:p-8 lg:p-10 shadow-[0_6px_30px_rgba(0,0,0,0.06)]"
           style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%)' }}
         >
-          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
             {/* Left Column: Clean Image */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-sm border border-gray-100">
               <Image
@@ -228,19 +228,19 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
               />
             </div>
 
-              {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
-              <div className="lg:col-span-7 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl sm:text-2xl lg:text-[28px] font-[600] text-[#0B4785] tracking-tight break-words leading-snug">
-                    {current.projectName}
-                  </h3>
-                  <p className="text-gray-500 text-[13px] sm:text-[14px] font-normal mt-1.5 mb-5 sm:mb-6 whitespace-pre-line">
-                    {current.clientType}
-                  </p>
+            {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl lg:text-[28px] font-[600] text-[#0B4785] tracking-tight break-words leading-snug">
+                  {current.projectName}
+                </h3>
+                <p className="text-gray-500 text-[13px] sm:text-[14px] font-normal mt-1.5 mb-5 sm:mb-6 whitespace-pre-line">
+                  {current.clientType}
+                </p>
 
-                  <p className="text-[11px] sm:text-xs font-bold text-gray-700 uppercase tracking-widest mb-3">
-                    Key Outcomes
-                  </p>
+                <p className="text-[11px] sm:text-xs font-bold text-gray-700 uppercase tracking-widest mb-3">
+                  Key Outcomes
+                </p>
 
                 {/* 2x2 Outcome Grid */}
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5 sm:mb-7">

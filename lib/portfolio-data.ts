@@ -1,5 +1,6 @@
 export interface PortfolioProject {
   _id?: string
+  _type?: string
   title: string
   slug: string
   portfolioTitle?: string
@@ -90,14 +91,14 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
       'Peer-to-peer vacation rental web app engineered from scratch with zero commission, dynamic date blocking, and interactive map search.',
     shortDescription:
       'Peer-to-peer vacation rental web app engineered from scratch with zero commission, dynamic date blocking, and interactive map search.',
-    category: 'PropTech & Marketplace',
-    industry: 'Hospitality & Real Estate',
+    category: 'Hospitality and Travel',
+    industry: 'Hospitality and Travel',
     projectType: 'Web Application',
-    industries: ['Hospitality & Real Estate', 'Technology'],
+    industries: ['Hospitality and Travel', 'Technology'],
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Mapbox'],
     featured: true,
     portfolioOrder: 3,
-    cardImage: '/casestudy-thumbs/Dreamnest.png',
+    cardImage: '/images/portfolio/direct-owners.png',
     metrics: [
       { value: '0%', label: 'Guest Commission' },
       { value: '100%', label: 'Direct Host Payouts' },
@@ -185,7 +186,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
     featured: true,
     portfolioOrder: 7,
-    cardImage: '/casestudy-thumbs/protectly.png',
+    cardImage: '/images/portfolio/dovehouse.png',
     metrics: [
       { value: '< 0.8s', label: 'Page Load Time' },
       { value: 'Zero Latency', label: 'SPA Transitions' },
@@ -207,7 +208,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React Native', 'Laravel', 'MySQL', 'Offline SQLite'],
     featured: true,
     portfolioOrder: 8,
-    cardImage: '/casestudy-thumbs/Dreamnest.png',
+    cardImage: '/images/portfolio/pekt.webp',
     metrics: [
       { value: '40%', label: 'Time Saved' },
       { value: '98%', label: 'Inventory Accuracy' },
@@ -229,7 +230,7 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     technologies: ['React Native', 'Node.js', 'Python AI Agents', 'OpenVPN', 'AWS'],
     featured: true,
     portfolioOrder: 9,
-    cardImage: '/casestudy-thumbs/protectly.png',
+    cardImage: '/images/portfolio/skipr.png',
     metrics: [
       { value: 'Zero PII', label: 'Zero Knowledge' },
       { value: '100%', label: 'Autonomous Agents' },
@@ -634,16 +635,18 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
 ]
 
 export const DEFAULT_INDUSTRIES: IndustryItem[] = [
-  { name: 'Government & Public Sector', slug: 'government-public-sector' },
-  { name: 'Banking & Financial Services', slug: 'banking-financial-services' },
-  { name: 'Hospitality and Travel', slug: 'hospitality-and-travel' },
-  { name: 'Healthcare', slug: 'healthcare' },
-  { name: 'Real Estate', slug: 'real-estate' },
+  { name: 'Artificial intelligence (AI)', slug: 'ai' },
+  { name: 'Banking', slug: 'banking' },
   { name: 'E-Commerce & Retail', slug: 'ecommerce-retail' },
-  { name: 'Technology', slug: 'technology' },
-  { name: 'Manufacturing', slug: 'manufacturing' },
+  { name: 'Finance', slug: 'finance' },
   { name: 'Health & Wellness', slug: 'health-wellness' },
-  { name: 'Recruitment & HR', slug: 'recruitment-hr' },
+  { name: 'Hospitality and Travel', slug: 'hospitality-and-travel' },
+  { name: 'Industrial Management', slug: 'industrial-management' },
+  { name: 'Inventory Engine', slug: 'inventory-engine' },
+  { name: 'Onsite Job Management', slug: 'onsite-job-management' },
+  { name: 'Real Estate', slug: 'real-estate' },
+  { name: 'Repairs', slug: 'repairs' },
+  { name: 'Technology', slug: 'technology' },
 ]
 
 export const PROJECT_TYPE_FILTERS = [
@@ -651,5 +654,4 @@ export const PROJECT_TYPE_FILTERS = [
   'Web Application',
   'Mobile Application',
   'Website Development',
-  'AI / Artificial Intelligence',
 ] as const

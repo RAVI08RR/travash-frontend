@@ -117,7 +117,7 @@ p {
   border-radius: 5px !important;
   height: 66px !important;
   min-width: auto;
-  width: auto;
+  width: 301px !important;
   max-width: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 16px;
@@ -132,6 +132,14 @@ p {
 .logo-tr-client svg {
   filter: grayscale(100%);
   transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-title-gradient {
+  background: linear-gradient(90deg, #004771 0%, #448ae1 65.38%, #051529 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 44px;
 }
 
 .logo-tr-client:hover img,

@@ -133,7 +133,7 @@ export default async function ServiceDetailPage({
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="min-h-screen bg-gradient-to-b from-[#F4F8FC] via-white to-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-hidden">
+      <main className="min-h-screen bg-gradient-to-b from-[#F4F8FC] via-white to-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-clip">
         {/* 1. Service Hero */}
         {service.hero && (
           <div id="overview">

@@ -4,12 +4,13 @@ import { aboutPageQuery } from '@/lib/queries'
 
 import Navbar from '@/components/sections/Navbar'
 import AboutHero from '@/components/about/AboutHero'
-import CompanyStory from '@/components/about/CompanyStory'
+import LeadershipSection from '@/components/about/LeadershipSection'
 import CompanyTimeline from '@/components/about/CompanyTimeline'
+import CompanyStory from '@/components/about/CompanyStory'
 import MissionVision from '@/components/about/MissionVision'
 import ValuesGrid from '@/components/about/ValuesGrid'
-import LeadershipSection from '@/components/about/LeadershipSection'
 import CultureSection from '@/components/about/CultureSection'
+import TeamShowcase from '@/components/about/TeamShowcase'
 import Stats from '@/components/sections/Stats'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
@@ -52,13 +53,31 @@ export default async function AboutPage() {
     <>
       <Navbar settings={siteSettings} />
       <main className="bg-white">
+        {/* 1. Hero Section */}
         <AboutHero data={aboutPage?.hero} />
-        <CompanyStory data={aboutPage?.story} />
-        <CompanyTimeline timeline={aboutPage?.timeline} />
-        <MissionVision data={aboutPage?.missionVision} />
-        <ValuesGrid values={aboutPage?.values} />
+
+        {/* 2. Executive Leadership: Guiding Vision & Engineering Rigor (Immediately After Hero) */}
         <LeadershipSection leadership={aboutPage?.leadership} />
+
+        {/* 3. Company Timeline: Our Journey of Continuous Innovation (After Leadership) */}
+        <CompanyTimeline timeline={aboutPage?.timeline} />
+
+        {/* 4. Story & Origin */}
+        <CompanyStory data={aboutPage?.story} />
+
+        {/* 5. Mission & Vision */}
+        <MissionVision data={aboutPage?.missionVision} />
+
+        {/* 6. Core Values */}
+        <ValuesGrid values={aboutPage?.values} />
+
+        {/* 7. Culture Pillars */}
         <CultureSection teams={aboutPage?.teams} culture={aboutPage?.culture} />
+
+        {/* 8. Dedicated Team Showcase Card (At the Bottom) */}
+        <TeamShowcase imageUrl={aboutPage?.hero?.heroImage?.asset?.url} />
+
+        {/* 9. Key Performance Stats & Contact */}
         <Stats />
         <Contact />
       </main>

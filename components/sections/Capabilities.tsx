@@ -100,8 +100,13 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
               {/* Action Button */}
               <Link
                 href={card.ctaHref || '/services'}
-                className="h-[66px] rounded-[5px] w-full inline-flex items-center justify-center bg-[#02487D] border border-[#02487D] hover:border-[#0B4785] hover:bg-[#02487D] text-white font-semibold text-sm transition-all duration-200 mt-auto"
-              >
+                className="h-[66px] w-full inline-flex items-center justify-center text-[#02487D] font-semibold text-sm transition-all duration-200 mt-auto hover:opacity-90"
+                style={{
+                  border: '1px solid transparent',
+                  borderRadius: '10px',
+                  background:
+                    'linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #02487D 0%, #639DE3 100%) border-box',
+                }}>
                 {card.ctaLabel || 'Explore More'}
               </Link>
             </div>

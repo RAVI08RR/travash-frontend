@@ -35,7 +35,7 @@ export default function ServiceCapabilities({
   return (
     <section
       id="capabilities"
-      className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
+      className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -55,25 +55,27 @@ export default function ServiceCapabilities({
         </motion.div>
 
         {/* 2-Column Grid: Left Sticky Image, Right Accordion */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Sticky Image (analytics.webp) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6 }}
-              className="relative w-full aspect-[16/11] rounded-2xl overflow-hidden shadow-xl border border-gray-200/90 bg-white group"
-            >
-              <Image
-                src={imageSrc}
-                alt="Our Data & Analytics Services - What We Build"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-103"
-                sizes="(max-width: 1024px) 100vw, 500px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-            </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+          {/* Left Column: Sticky Image */}
+          <div className="lg:col-span-5 relative">
+            <div className="lg:sticky lg:top-28 z-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6 }}
+                className="relative w-full aspect-[16/11] rounded-2xl overflow-hidden shadow-xl border border-gray-200/90 bg-white group"
+              >
+                <Image
+                  src={imageSrc}
+                  alt="Our Data & Analytics Services - What We Build"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-103"
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              </motion.div>
+            </div>
           </div>
 
           {/* Right Column: Interactive Capabilities Accordion */}

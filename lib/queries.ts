@@ -268,9 +268,67 @@ export const caseStudyBySlugQuery = groq`
   }
 `
 
+// Case Studies Listing Page (Singleton) Query
+export const caseStudiesPageQuery = groq`
+  *[_type == "caseStudiesPage"][0] {
+    _id,
+    hero {
+      eyebrow,
+      heading,
+      headingHighlight,
+      description,
+      backgroundImage ${imageFragment},
+      badges
+    },
+    featuredSection {
+      badge,
+      title,
+      subtitle
+    },
+    cta {
+      heading,
+      description,
+      buttonText,
+      buttonHref
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage ${imageFragment}
+    }
+  }
+`
+
 // Portfolio Page Query — fetches all portfolio case studies, industries, technologies, and shared sections
 export const portfolioPageQuery = groq`
   {
+    "listingPage": *[_type == "caseStudiesPage"][0] {
+      _id,
+      hero {
+        eyebrow,
+        heading,
+        headingHighlight,
+        description,
+        backgroundImage ${imageFragment},
+        badges
+      },
+      featuredSection {
+        badge,
+        title,
+        subtitle
+      },
+      cta {
+        heading,
+        description,
+        buttonText,
+        buttonHref
+      },
+      seo {
+        metaTitle,
+        metaDescription,
+        ogImage ${imageFragment}
+      }
+    },
     "projects": *[_type == "caseStudy" && coalesce(portfolioVisible, true) == true] | order(coalesce(portfolioOrder, 100) asc, _createdAt desc) {
       _id,
       title,

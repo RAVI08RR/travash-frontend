@@ -507,17 +507,16 @@ export default async function PortfolioProjectDetailPage({
         {/* 9. Solution Architecture */}
         {caseStudy.solutionArchitecture && (
           <ArchitectureSection
+            slug={slug}
+            client={typeof caseStudy.client === 'string' ? caseStudy.client : caseStudy.title}
             title={caseStudy.solutionArchitecture.title}
             intro={caseStudy.solutionArchitecture.intro}
             imageSrc={
               getSanityImageUrl(caseStudy.solutionArchitecture.image, 1400) ||
-              (caseStudy.gallery && caseStudy.gallery.length > 0
-                ? getSanityImageUrl(caseStudy.gallery[caseStudy.gallery.length - 1], 1400)
-                : null) ||
-              '/casestudy-img/arctature-daigram.webp'
+              (slug === 'satyapaan' ? '/casestudy-img/arctature-daigram.webp' : undefined)
             }
             caption={caseStudy.solutionArchitecture.caption}
-            isSatyaapan={!!caseStudy.solutionArchitecture.isSatyaapan}
+            isSatyaapan={slug === 'satyapaan' || !!caseStudy.solutionArchitecture.isSatyaapan}
           />
         )}
 

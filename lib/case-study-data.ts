@@ -2107,8 +2107,8 @@ export const DEFAULT_PEKT_DATA: CaseStudyData = {
   location: 'Global',
   shortDescription:
     'Mobile-first on-site construction tracking and task automation platform empowering field engineers with daily status reports, automated low-stock inventory alerts, and precise labor attendance tracking.',
-  heroImage: { asset: { url: '/casestudy-thumbs/Dreamnest.png' } },
-  featureImage: '/casestudy-thumbs/Dreamnest.png',
+  heroImage: { asset: { url: '/images/portfolio/pekt.webp' } },
+  featureImage: '/images/portfolio/pekt.webp',
   projectMeta: [
     { label: 'CLIENT', value: 'PEKT Construction Management' },
     { label: 'SOLUTION', value: 'PEKT On-Site Mobile Task Automation Engine' },

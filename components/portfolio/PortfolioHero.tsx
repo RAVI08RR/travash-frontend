@@ -6,14 +6,40 @@ import { ChevronRight, Layers, Sparkles, ShieldCheck } from 'lucide-react'
 
 interface PortfolioHeroProps {
   totalCount?: number
+  eyebrow?: string
+  heading?: string
+  headingHighlight?: string
+  description?: string
+  badges?: string[]
+  backgroundImage?: string
 }
 
-export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
+export default function PortfolioHero({
+  totalCount = 26,
+  eyebrow = 'OUR WORK',
+  heading = 'Real Problems.',
+  headingHighlight = 'Measurable Outcomes.',
+  description,
+  badges,
+  backgroundImage,
+}: PortfolioHeroProps) {
+  const bgImage = backgroundImage || '/images/services/hero-bg.webp'
+  const displayDescription =
+    description ||
+    'Explore web applications, mobile apps, enterprise platforms, and AI solutions engineered by Travash for organizations across banking, government, healthcare, and real estate.'
+  const displayBadges =
+    badges && badges.length > 0
+      ? badges
+      : [
+          `${totalCount}+ Shipped Systems`,
+          'Public Sector & Enterprise Grade',
+          'AI-Powered & Production-Proven',
+        ]
   return (
     <section
       className="relative min-h-[420px] lg:min-h-[480px] flex items-center pt-0 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] text-white overflow-hidden bg-[#022E54]"
       style={{
-        backgroundImage: `url('/images/services/hero-bg.webp')`,
+        backgroundImage: `url('${bgImage}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -49,7 +75,7 @@ export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider mb-5 shadow-xs"
           >
             <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span>OUR WORK</span>
+            <span>{eyebrow}</span>
           </motion.div>
 
           {/* Main H1 Headline */}
@@ -59,10 +85,12 @@ export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold text-white tracking-[-1.5px] leading-[1.14] mb-6"
           >
-            Real Problems.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-[#93C5FD]">
-              Measurable Outcomes.
-            </span>
+            {heading}{' '}
+            {headingHighlight && (
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-[#93C5FD]">
+                {headingHighlight}
+              </span>
+            )}
           </motion.h1>
 
           {/* Subtitle Description */}
@@ -72,8 +100,7 @@ export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed font-normal mb-8"
           >
-            Explore digital products, enterprise platforms, AI solutions, and custom software systems
-            built by Travash for organizations across industries.
+            {displayDescription}
           </motion.p>
 
           {/* Value Badges */}
@@ -83,18 +110,21 @@ export default function PortfolioHero({ totalCount = 26 }: PortfolioHeroProps) {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white">
-              <Layers className="w-4 h-4 text-[#38BDF8]" />
-              <span>{totalCount}+ Shipped Systems</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white">
-              <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
-              <span>Public Sector & Enterprise Grade</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white">
-              <Sparkles className="w-4 h-4 text-[#38BDF8]" />
-              <span>AI-Powered & Production-Proven</span>
-            </div>
+            {displayBadges.map((badge, idx) => (
+              <div
+                key={idx}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white"
+              >
+                {idx === 0 ? (
+                  <Layers className="w-4 h-4 text-[#38BDF8]" />
+                ) : idx === 1 ? (
+                  <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
+                ) : (
+                  <Sparkles className="w-4 h-4 text-[#38BDF8]" />
+                )}
+                <span>{badge}</span>
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>

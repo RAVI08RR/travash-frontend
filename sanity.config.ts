@@ -168,8 +168,19 @@ const customStructure = (S: any) =>
       // Services
       S.documentTypeListItem('service').title('Services'),
 
-      // Case Studies
-      S.documentTypeListItem('caseStudy').title('Case Studies'),
+      // Case Studies Listing Page (Hero & Page Content)
+      S.listItem()
+        .title('Case Studies Listing Page')
+        .id('caseStudiesPage')
+        .child(
+          S.document()
+            .title('Case Studies Listing Page')
+            .schemaType('caseStudiesPage')
+            .documentId('caseStudiesPage')
+        ),
+
+      // Case Studies (Detail Pages)
+      S.documentTypeListItem('caseStudy').title('Case Studies (Detail Pages)'),
 
       // Technologies
       S.documentTypeListItem('technology').title('Technologies'),

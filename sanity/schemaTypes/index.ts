@@ -28,12 +28,14 @@ import { author } from './author'
 // Portfolio system schemas
 import { portfolioProject } from './portfolioProject'
 import { portfolioService } from './portfolioService'
+import { caseStudiesPage } from './caseStudiesPage'
 
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
   homePage,
   aboutPage,
+  caseStudiesPage,
   caseStudy,
   portfolioProject,
   portfolioService,

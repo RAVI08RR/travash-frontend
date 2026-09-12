@@ -21,21 +21,21 @@ const SLUG_FALLBACK_IMAGES: Record<string, string> = {
   'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
   i4c: '/casestudy-thumbs/i4c.png',
   '14c': '/casestudy-thumbs/14c.png',
-  'direct-owners': '/casestudy-thumbs/Dreamnest.png',
-  directowner: '/casestudy-thumbs/Dreamnest.png',
-  ugo: '/casestudy-thumbs/UGO.png',
-  uog: '/casestudy-thumbs/UGO.png',
-  indispare: '/casestudy-thumbs/indispare.png',
-  dovehouse: '/casestudy-thumbs/protectly.png',
-  'dovehouse-capital': '/casestudy-thumbs/protectly.png',
-  pekt: '/casestudy-thumbs/Dreamnest.png',
-  skipr: '/casestudy-thumbs/protectly.png',
+  'direct-owners': '/images/portfolio/direct-owners.png',
+  directowner: '/images/portfolio/direct-owners.png',
+  ugo: '/images/portfolio/ugo.png',
+  uog: '/images/portfolio/ugo.png',
+  indispare: '/images/portfolio/indispare.jpg',
+  dovehouse: '/images/portfolio/dovehouse.png',
+  'dovehouse-capital': '/images/portfolio/dovehouse.png',
+  pekt: '/images/portfolio/pekt.png',
+  skipr: '/images/portfolio/skipr.png',
   protectly: '/casestudy-thumbs/protectly.png',
-  darpan: '/casestudy-thumbs/Darpan.png',
-  'i-verify': '/casestudy-thumbs/i-verify.png',
-  iverify: '/casestudy-thumbs/i-verify.png',
-  'dine-desk': '/casestudy-thumbs/dinedesk.png',
-  dinedesk: '/casestudy-thumbs/dinedesk.png',
+  darpan: '/images/portfolio/darpan.webp',
+  'i-verify': '/images/portfolio/i-verify.webp',
+  iverify: '/images/portfolio/i-verify.webp',
+  'dine-desk': '/images/portfolio/dine-desk.png',
+  dinedesk: '/images/portfolio/dine-desk.png',
   radiantsa: '/casestudy-thumbs/rediantsage.png',
   'radiant-sage': '/casestudy-thumbs/rediantsage.png',
   'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
@@ -43,8 +43,8 @@ const SLUG_FALLBACK_IMAGES: Record<string, string> = {
   'alexander-johnson-group': '/images/portfolio/alexander-johnson-group.png',
   asak: '/images/portfolio/asak.png',
   'arabian-hills': '/images/portfolio/arabian-hills.png',
-  ledray: '/images/portfolio/ledray.webp',
-  konvino: '/images/portfolio/konvino.webp',
+  ledray: '/images/portfolio/ledray.png',
+  konvino: '/images/portfolio/konvino.png',
   medimee: '/images/portfolio/medimee.webp',
   gratus: '/images/portfolio/gratus.png',
   gemba: '/images/portfolio/gemba.png',
@@ -61,19 +61,30 @@ const SLUG_FALLBACK_IMAGES: Record<string, string> = {
 }
 
 export default function PortfolioCard({ project }: PortfolioCardProps) {
-  // Always prioritize authentic live website thumbnail if available for this slug
-  const fallbackThumb = SLUG_FALLBACK_IMAGES[project.slug]
-
-  const rawImage =
-    fallbackThumb ||
-    (project as any).featuredImage ||
+  // 1. Prioritize Sanity CMS image (allows client to update/manage thumbnails via Sanity Studio)
+  const candidateSanityImage =
     project.cardImage ||
+    (project as any).featuredImage ||
     project.featureImage ||
     project.heroImage ||
     (project as any).gallery?.[0]
 
-  let imageUrl = rawImage ? getSanityImageUrl(rawImage, 800) : ''
-  if (!imageUrl || imageUrl.includes('Group 1000003287')) {
+  const fallbackThumb = SLUG_FALLBACK_IMAGES[project.slug]
+
+  let imageUrl = ''
+  if (candidateSanityImage) {
+    const resolvedUrl = getSanityImageUrl(candidateSanityImage, 800)
+    if (
+      resolvedUrl &&
+      !resolvedUrl.includes('Group 1000003287') &&
+      !resolvedUrl.includes('placeholder')
+    ) {
+      imageUrl = resolvedUrl
+    }
+  }
+
+  // 2. Fall back to verified live thumbnail from travash.com/portfolio/ if Sanity has no image
+  if (!imageUrl) {
     imageUrl = fallbackThumb || '/images/services/analytics.webp'
   }
 

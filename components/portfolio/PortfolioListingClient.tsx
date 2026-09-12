@@ -17,7 +17,9 @@ const isHashId = (val: string) => typeof val === 'string' && /^[A-Za-z0-9_-]{18,
 function getProjectIndustry(p: any): string {
   if (!p) return ''
   let ind = ''
-  if (typeof p.industry === 'string') ind = p.industry
+  if (typeof p.category === 'string' && p.category) ind = p.category
+  else if (p.category?.title) ind = p.category.title
+  else if (typeof p.industry === 'string' && p.industry) ind = p.industry
   else if (p.industry?.title) ind = p.industry.title
   else if (p.industry?.name) ind = p.industry.name
   else if (p.industryName) ind = p.industryName
@@ -31,25 +33,43 @@ function getProjectIndustry(p: any): string {
 
 function getProjectType(p: any): string {
   if (!p) return 'Web Application'
-  let raw = ''
-  if (typeof p.projectType === 'string' && p.projectType) raw = p.projectType
-  else if (typeof p.category === 'string' && p.category) raw = p.category
-  else if (p.category?.title) raw = p.category.title
-  else if (Array.isArray(p.services) && p.services[0]) {
-    const s = p.services[0]
-    raw = typeof s === 'string' ? s : s?.title || s?.name || 'Web Application'
+  const pt = p.projectType || ''
+  if (pt === 'Web Application' || pt === 'Mobile Application' || pt === 'Website Development') {
+    return pt
   }
-  else if (typeof p.serviceType === 'string' && p.serviceType) raw = p.serviceType
 
-  if (/ai|artificial intelligence|voice|facial/i.test(raw)) {
-    return 'AI / Artificial Intelligence'
-  }
-  if (/mobile|app|ios|android/i.test(raw)) {
-    return 'Mobile Application'
-  }
-  if (/website|spa|brand/i.test(raw) && !/web app/i.test(raw)) {
-    return 'Website Development'
-  }
+  // Canonical tab mapping matching live https://travash.com/portfolio/
+  const slug = p.slug || ''
+  const mobileSlugs = new Set([
+    'indispare',
+    'konvino',
+    'dine-desk',
+    'medimee',
+    'pekt',
+    'skipr',
+    'gratus',
+    'gemba',
+    'wiggett-app',
+  ])
+  if (mobileSlugs.has(slug)) return 'Mobile Application'
+
+  const websiteSlugs = new Set([
+    'spencer',
+    'dovehouse',
+    'kalsi-estate',
+    'grid-properties',
+    'soul-trips',
+    'alexander-johnson-group',
+    'asak',
+    'arabian-hills',
+  ])
+  if (websiteSlugs.has(slug)) return 'Website Development'
+
+  let raw = pt || p.category || p.category?.title || ''
+  if (typeof raw !== 'string') raw = ''
+  if (/mobile|native|ios|android/i.test(raw)) return 'Mobile Application'
+  if (/website|landing|brand/i.test(raw) && !/web app/i.test(raw)) return 'Website Development'
+
   return 'Web Application'
 }
 
@@ -141,15 +161,18 @@ export default function PortfolioListingClient({
       const pInd = getProjectIndustry(p)
 
       // Check industry match
+      const pIndLower = pInd.toLowerCase().trim()
+      const selIndLower = selectedIndustry.toLowerCase().trim()
       const matchesIndustry =
         selectedIndustry === 'All' ||
-        pInd.toLowerCase() === selectedIndustry.toLowerCase() ||
+        pIndLower === selIndLower ||
+        (selIndLower === 'real estate' && (pIndLower === 'real estate' || p.category === 'Real Estate')) ||
+        (selIndLower === 'artificial intelligence (ai)' && (pIndLower.includes('artificial intelligence') || pIndLower === 'ai')) ||
         (Array.isArray(p.industries) &&
-          p.industries.some((ind: any) =>
-            (typeof ind === 'string' ? ind : ind?.title || ind?.name || '')
-              .toLowerCase()
-              .includes(selectedIndustry.toLowerCase())
-          ))
+          p.industries.some((ind: any) => {
+            const name = (typeof ind === 'string' ? ind : ind?.title || ind?.name || '').toLowerCase().trim()
+            return name === selIndLower
+          }))
 
       // Check search match
       const q = searchQuery.toLowerCase().trim()
@@ -184,6 +207,8 @@ export default function PortfolioListingClient({
     return initialProjects.filter((p) => {
       const pType = getProjectType(p)
       const pInd = getProjectIndustry(p)
+      const pIndLower = pInd.toLowerCase().trim()
+      const selIndLower = selectedIndustry.toLowerCase().trim()
 
       // 1. Primary Project Type Filter
       if (selectedType !== 'All') {
@@ -194,14 +219,16 @@ export default function PortfolioListingClient({
 
       // 2. Industry Filter
       if (selectedIndustry !== 'All') {
-        const matchesMainIndustry = pInd.toLowerCase() === selectedIndustry.toLowerCase()
+        const matchesMainIndustry =
+          pIndLower === selIndLower ||
+          (selIndLower === 'real estate' && (pIndLower === 'real estate' || p.category === 'Real Estate')) ||
+          (selIndLower === 'artificial intelligence (ai)' && (pIndLower.includes('artificial intelligence') || pIndLower === 'ai'))
         const matchesArray =
           Array.isArray(p.industries) &&
-          p.industries.some((ind: any) =>
-            (typeof ind === 'string' ? ind : ind?.title || ind?.name || '')
-              .toLowerCase()
-              .includes(selectedIndustry.toLowerCase())
-          )
+          p.industries.some((ind: any) => {
+            const name = (typeof ind === 'string' ? ind : ind?.title || ind?.name || '').toLowerCase().trim()
+            return name === selIndLower
+          })
         if (!matchesMainIndustry && !matchesArray) {
           return false
         }
