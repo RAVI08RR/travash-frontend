@@ -71,13 +71,56 @@ export const portfolioProject = defineType({
     }),
     defineField({
       name: 'industryName',
-      title: 'Industry Name (Fallback String)',
+      title: 'Industry Name',
       type: 'string',
+      options: {
+        list: [
+          { title: 'Banking & Financial Services', value: 'Banking & Financial Services' },
+          { title: 'E-commerce & Retail', value: 'E-commerce & Retail' },
+          { title: 'Travel & Hospitality', value: 'Travel & Hospitality' },
+          { title: 'Real Estate & Construction', value: 'Real Estate & Construction' },
+          { title: 'SaaS & Technology', value: 'SaaS & Technology' },
+          { title: 'Manufacturing', value: 'Manufacturing' },
+          { title: 'Healthcare', value: 'Healthcare' },
+          { title: 'Government & Public Sector', value: 'Government & Public Sector' },
+          { title: 'Logistics & Supply Chain', value: 'Logistics & Supply Chain' },
+          { title: 'Recruitment & HR', value: 'Recruitment & HR' },
+          { title: 'Legal', value: 'Legal' },
+          { title: 'Other', value: 'Other' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'projectTypes',
+      title: 'Project Types (Multiple Select Supported)',
+      type: 'array',
+      description: 'Select all applicable types for this project (e.g. Web Application, Mobile Application, Branding)',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Website', value: 'Website' },
+          { title: 'Web Application', value: 'Web Application' },
+          { title: 'Mobile Application', value: 'Mobile Application' },
+          { title: 'Desktop Application', value: 'Desktop Application' },
+          { title: 'Branding', value: 'Branding' },
+          { title: 'AI Development', value: 'AI Development' },
+        ],
+      },
     }),
     defineField({
       name: 'serviceType',
-      title: 'Primary Service Type',
+      title: 'Primary Service Type (Legacy Fallback)',
       type: 'string',
+      options: {
+        list: [
+          { title: 'Website', value: 'Website' },
+          { title: 'Web Application', value: 'Web Application' },
+          { title: 'Mobile Application', value: 'Mobile Application' },
+          { title: 'Desktop Application', value: 'Desktop Application' },
+          { title: 'Branding', value: 'Branding' },
+          { title: 'AI Development', value: 'AI Development' },
+        ],
+      },
     }),
     defineField({
       name: 'services',

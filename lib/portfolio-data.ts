@@ -9,6 +9,7 @@ export interface PortfolioProject {
   category?: string
   industry?: string
   projectType?: string
+  projectTypes?: string[]
   industries?: string[]
   technologies?: string[] | { name: string; icon?: string }[]
   featured?: boolean

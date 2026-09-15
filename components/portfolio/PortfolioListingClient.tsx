@@ -14,63 +14,201 @@ interface PortfolioListingClientProps {
 
 const isHashId = (val: string) => typeof val === 'string' && /^[A-Za-z0-9_-]{18,}$/.test(val)
 
-function getProjectIndustry(p: any): string {
-  if (!p) return ''
-  let ind = ''
-  if (typeof p.category === 'string' && p.category) ind = p.category
-  else if (p.category?.title) ind = p.category.title
-  else if (typeof p.industry === 'string' && p.industry) ind = p.industry
-  else if (p.industry?.title) ind = p.industry.title
-  else if (p.industry?.name) ind = p.industry.name
-  else if (p.industryName) ind = p.industryName
-  else if (Array.isArray(p.industries) && p.industries[0]) {
-    const first = p.industries[0]
-    ind = typeof first === 'string' ? first : first.title || first.name || ''
-  }
-  if (!ind || isHashId(ind)) return ''
-  return ind
+// Canonical mapping of project slugs to their official master industry
+const MASTER_SLUG_INDUSTRY: Record<string, string> = {
+  dovehouse: 'Banking & Financial Services',
+  indispare: 'E-commerce & Retail',
+  'direct-owners': 'Travel & Hospitality',
+  ledray: 'E-commerce & Retail',
+  'dine-desk': 'Travel & Hospitality',
+  dinedesk: 'Travel & Hospitality',
+  pekt: 'Real Estate & Construction',
+  skipr: 'SaaS & Technology',
+  gemba: 'Manufacturing',
+  'gemba-concept': 'Manufacturing',
+  'wiggett-app': 'Manufacturing',
+  wiggett: 'Manufacturing',
+  spencer: 'Healthcare',
+  'grid-properties': 'Real Estate & Construction',
+  'soul-trips': 'Healthcare',
+  soultrips: 'Healthcare',
+  'alexander-johnson-group': 'Real Estate & Construction',
+  'alexander-groups': 'Real Estate & Construction',
+  'ai-agents': 'Other',
+  aiagents: 'Other',
+  ugo: 'Other',
+  i4c: 'Banking & Financial Services',
+  'i4c-bank-portal': 'Banking & Financial Services',
+  'i-verify': 'Government & Public Sector',
+  iverify: 'Government & Public Sector',
+  satyapaan: 'Government & Public Sector',
+  darpan: 'Government & Public Sector',
+  'nigaah-videosurvelience': 'Government & Public Sector',
+  nigaah: 'Government & Public Sector',
+  crowdcounting: 'Government & Public Sector',
+  'crowd-counting': 'Government & Public Sector',
+  'unix-parts': 'Logistics & Supply Chain',
+  unixparts: 'Logistics & Supply Chain',
+  'radiantsa-ctms': 'Healthcare',
+  radiantsa: 'Healthcare',
+  pixl: 'SaaS & Technology',
+  'pixl-crm': 'SaaS & Technology',
+  'hrms-hocs': 'Recruitment & HR',
+  hrmshocs: 'Recruitment & HR',
+  'rating-star': 'SaaS & Technology',
+  ratingstar: 'SaaS & Technology',
+  protectly: 'SaaS & Technology',
+  'boardcore-360': 'Legal',
+  boardcore: 'Legal',
+  'casa-serene': 'Real Estate & Construction',
+  casaserene: 'Real Estate & Construction',
+  'a1-properties': 'Real Estate & Construction',
+  a1properties: 'Real Estate & Construction',
+  'paul-carr-estate-agents': 'Real Estate & Construction',
+  paulcarr: 'Real Estate & Construction',
+  'urban-properties': 'Real Estate & Construction',
+  urbanproperties: 'Real Estate & Construction',
+  'h-and-s-property': 'Real Estate & Construction',
+  handsproperty: 'Real Estate & Construction',
+  'treo-homes': 'Real Estate & Construction',
+  treohomes: 'Real Estate & Construction',
+  visionary: 'Real Estate & Construction',
+  'london-gate': 'Real Estate & Construction',
+  londongate: 'Real Estate & Construction',
+  reech: 'Real Estate & Construction',
 }
 
-function getProjectType(p: any): string {
-  if (!p) return 'Web Application'
-  const pt = p.projectType || ''
-  if (pt === 'Web Application' || pt === 'Mobile Application' || pt === 'Website Development') {
-    return pt
+// Canonical mapping of project slugs to their official project types array
+const MASTER_SLUG_PROJECT_TYPES: Record<string, string[]> = {
+  dovehouse: ['Website'],
+  indispare: ['Web Application', 'Mobile Application', 'Branding'],
+  'direct-owners': ['Web Application'],
+  ledray: ['Web Application'],
+  'dine-desk': ['Web Application'],
+  dinedesk: ['Web Application'],
+  pekt: ['Web Application', 'Mobile Application'],
+  skipr: ['Web Application', 'Mobile Application'],
+  gemba: ['Web Application', 'Mobile Application'],
+  'gemba-concept': ['Web Application', 'Mobile Application'],
+  'wiggett-app': ['Web Application', 'Mobile Application'],
+  wiggett: ['Web Application', 'Mobile Application'],
+  spencer: ['Website'],
+  'grid-properties': ['Website'],
+  'soul-trips': ['Website'],
+  soultrips: ['Website'],
+  'alexander-johnson-group': ['Website'],
+  'alexander-groups': ['Website'],
+  'ai-agents': ['Web Application', 'AI Development'],
+  aiagents: ['Web Application', 'AI Development'],
+  ugo: ['Web Application'],
+  i4c: ['Web Application'],
+  'i4c-bank-portal': ['Web Application'],
+  'i-verify': ['Web Application'],
+  iverify: ['Web Application'],
+  satyapaan: ['Web Application'],
+  darpan: ['Web Application', 'Mobile Application'],
+  'nigaah-videosurvelience': ['Web Application', 'Desktop Application'],
+  nigaah: ['Web Application', 'Desktop Application'],
+  crowdcounting: ['Web Application'],
+  'crowd-counting': ['Web Application'],
+  'unix-parts': ['Web Application'],
+  unixparts: ['Web Application'],
+  'radiantsa-ctms': ['Web Application'],
+  radiantsa: ['Web Application'],
+  pixl: ['Web Application'],
+  'pixl-crm': ['Web Application'],
+  'hrms-hocs': ['Web Application'],
+  hrmshocs: ['Web Application'],
+  'rating-star': ['Mobile Application'],
+  ratingstar: ['Mobile Application'],
+  protectly: ['Mobile Application'],
+  'boardcore-360': [],
+  boardcore: [],
+  'casa-serene': [],
+  casaserene: [],
+  'a1-properties': [],
+  a1properties: [],
+  'paul-carr-estate-agents': [],
+  paulcarr: [],
+  'urban-properties': [],
+  urbanproperties: [],
+  'h-and-s-property': [],
+  handsproperty: [],
+  'treo-homes': [],
+  treohomes: [],
+  visionary: [],
+  'london-gate': [],
+  londongate: [],
+  reech: [],
+}
+
+export function getProjectIndustry(p: any): string {
+  if (!p) return ''
+  const slug = (p.slug || '').toLowerCase().trim()
+
+  // 1. Check direct slug mapping first for strict accuracy
+  if (MASTER_SLUG_INDUSTRY[slug]) {
+    return MASTER_SLUG_INDUSTRY[slug]
   }
 
-  // Canonical tab mapping matching live https://travash.com/portfolio/
-  const slug = p.slug || ''
-  const mobileSlugs = new Set([
-    'indispare',
-    'konvino',
-    'dine-desk',
-    'medimee',
-    'pekt',
-    'skipr',
-    'gratus',
-    'gemba',
-    'wiggett-app',
-  ])
-  if (mobileSlugs.has(slug)) return 'Mobile Application'
+  // 2. Sanity dynamic values normalization
+  let raw = ''
+  if (typeof p.industry === 'string' && p.industry) raw = p.industry
+  else if (p.industry?.name) raw = p.industry.name
+  else if (p.industry?.title) raw = p.industry.title
+  else if (typeof p.category === 'string' && p.category) raw = p.category
+  else if (p.category?.title) raw = p.category.title
+  else if (p.industryName) raw = p.industryName
+  else if (Array.isArray(p.industries) && p.industries[0]) {
+    const first = p.industries[0]
+    raw = typeof first === 'string' ? first : first.title || first.name || ''
+  }
 
-  const websiteSlugs = new Set([
-    'spencer',
-    'dovehouse',
-    'kalsi-estate',
-    'grid-properties',
-    'soul-trips',
-    'alexander-johnson-group',
-    'asak',
-    'arabian-hills',
-  ])
-  if (websiteSlugs.has(slug)) return 'Website Development'
+  if (!raw || isHashId(raw)) return 'Other'
 
-  let raw = pt || p.category || p.category?.title || ''
-  if (typeof raw !== 'string') raw = ''
-  if (/mobile|native|ios|android/i.test(raw)) return 'Mobile Application'
-  if (/website|landing|brand/i.test(raw) && !/web app/i.test(raw)) return 'Website Development'
+  const lower = raw.toLowerCase()
+  if (lower.includes('bank') || lower.includes('financ')) return 'Banking & Financial Services'
+  if (lower.includes('commerce') || lower.includes('retail')) return 'E-commerce & Retail'
+  if (lower.includes('travel') || lower.includes('hospitality')) return 'Travel & Hospitality'
+  if (lower.includes('real estate') || lower.includes('construction') || lower.includes('prop'))
+    return 'Real Estate & Construction'
+  if (lower.includes('saas') || lower.includes('tech')) return 'SaaS & Technology'
+  if (lower.includes('manufactur') || lower.includes('industrial')) return 'Manufacturing'
+  if (lower.includes('health') || lower.includes('medic') || lower.includes('clinical'))
+    return 'Healthcare'
+  if (lower.includes('gov') || lower.includes('public')) return 'Government & Public Sector'
+  if (lower.includes('logistics') || lower.includes('supply')) return 'Logistics & Supply Chain'
+  if (lower.includes('recruit') || lower.includes('hr') || lower.includes('payroll'))
+    return 'Recruitment & HR'
+  if (lower.includes('legal') || lower.includes('law') || lower.includes('compliance')) return 'Legal'
 
-  return 'Web Application'
+  return raw
+}
+
+export function getProjectTypes(p: any): string[] {
+  if (!p) return []
+  const slug = (p.slug || '').toLowerCase().trim()
+
+  // 1. Direct master slug mapping
+  if (MASTER_SLUG_PROJECT_TYPES[slug] !== undefined) {
+    return MASTER_SLUG_PROJECT_TYPES[slug]
+  }
+
+  // 2. Check projectTypes array from Sanity
+  if (Array.isArray(p.projectTypes) && p.projectTypes.length > 0) {
+    return p.projectTypes.map((t: string) => t.trim()).filter(Boolean)
+  }
+
+  // 3. Fallback to parsing projectType / serviceType string
+  const raw = p.projectType || p.serviceType || ''
+  if (typeof raw === 'string' && raw.trim()) {
+    return raw
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean)
+  }
+
+  return []
 }
 
 export default function PortfolioListingClient({
@@ -161,21 +299,13 @@ export default function PortfolioListingClient({
       const pInd = getProjectIndustry(p)
 
       // Check industry match
-      const pIndLower = pInd.toLowerCase().trim()
-      const selIndLower = selectedIndustry.toLowerCase().trim()
       const matchesIndustry =
         selectedIndustry === 'All' ||
-        pIndLower === selIndLower ||
-        (selIndLower === 'real estate' && (pIndLower === 'real estate' || p.category === 'Real Estate')) ||
-        (selIndLower === 'artificial intelligence (ai)' && (pIndLower.includes('artificial intelligence') || pIndLower === 'ai')) ||
-        (Array.isArray(p.industries) &&
-          p.industries.some((ind: any) => {
-            const name = (typeof ind === 'string' ? ind : ind?.title || ind?.name || '').toLowerCase().trim()
-            return name === selIndLower
-          }))
+        pInd.toLowerCase().trim() === selectedIndustry.toLowerCase().trim()
 
       // Check search match
       const q = searchQuery.toLowerCase().trim()
+      const pTypes = getProjectTypes(p)
       const techs = (p.technologies || []).map((t: any) =>
         typeof t === 'string' ? t.toLowerCase() : (t?.title || t?.name || '').toLowerCase()
       )
@@ -186,16 +316,17 @@ export default function PortfolioListingClient({
         (p.portfolioTitle && p.portfolioTitle.toLowerCase().includes(q)) ||
         (p.cardDescription && p.cardDescription.toLowerCase().includes(q)) ||
         (p.shortDescription && p.shortDescription.toLowerCase().includes(q)) ||
-        Boolean((p as any).excerpt && String((p as any).excerpt).toLowerCase().includes(q)) ||
         pInd.toLowerCase().includes(q) ||
+        pTypes.some((t) => t.toLowerCase().includes(q)) ||
         techs.some((t: string) => t.includes(q))
 
       if (matchesIndustry && matchesQuery) {
         counts['All'] = (counts['All'] || 0) + 1
-        const type = getProjectType(p)
-        if (counts[type] !== undefined) {
-          counts[type] = counts[type] + 1
-        }
+        pTypes.forEach((type) => {
+          if (counts[type] !== undefined) {
+            counts[type] = counts[type] + 1
+          }
+        })
       }
     })
 
@@ -205,31 +336,19 @@ export default function PortfolioListingClient({
   // Filter the projects for the grid
   const filteredProjects = useMemo(() => {
     return initialProjects.filter((p) => {
-      const pType = getProjectType(p)
+      const pTypes = getProjectTypes(p)
       const pInd = getProjectIndustry(p)
-      const pIndLower = pInd.toLowerCase().trim()
-      const selIndLower = selectedIndustry.toLowerCase().trim()
 
-      // 1. Primary Project Type Filter
+      // 1. Primary Project Type Filter (supports multiple project types per project)
       if (selectedType !== 'All') {
-        if (pType !== selectedType) {
+        if (!pTypes.includes(selectedType)) {
           return false
         }
       }
 
       // 2. Industry Filter
       if (selectedIndustry !== 'All') {
-        const matchesMainIndustry =
-          pIndLower === selIndLower ||
-          (selIndLower === 'real estate' && (pIndLower === 'real estate' || p.category === 'Real Estate')) ||
-          (selIndLower === 'artificial intelligence (ai)' && (pIndLower.includes('artificial intelligence') || pIndLower === 'ai'))
-        const matchesArray =
-          Array.isArray(p.industries) &&
-          p.industries.some((ind: any) => {
-            const name = (typeof ind === 'string' ? ind : ind?.title || ind?.name || '').toLowerCase().trim()
-            return name === selIndLower
-          })
-        if (!matchesMainIndustry && !matchesArray) {
+        if (pInd.toLowerCase().trim() !== selectedIndustry.toLowerCase().trim()) {
           return false
         }
       }
@@ -241,24 +360,14 @@ export default function PortfolioListingClient({
         const inPortfolioTitle = p.portfolioTitle?.toLowerCase().includes(q) || false
         const inCardDesc = p.cardDescription?.toLowerCase().includes(q) || false
         const inShortDesc = p.shortDescription?.toLowerCase().includes(q) || false
-        const inExcerpt = (p as any).excerpt ? String((p as any).excerpt).toLowerCase().includes(q) : false
-        const inCategory = pType.toLowerCase().includes(q)
         const inIndustry = pInd.toLowerCase().includes(q)
+        const inTypes = pTypes.some((t) => t.toLowerCase().includes(q))
         const inTech = (p.technologies || []).some((t: any) => {
           const name = typeof t === 'string' ? t : t?.title || t?.name || ''
           return name.toLowerCase().includes(q)
         })
 
-        if (
-          !inTitle &&
-          !inPortfolioTitle &&
-          !inCardDesc &&
-          !inShortDesc &&
-          !inExcerpt &&
-          !inCategory &&
-          !inIndustry &&
-          !inTech
-        ) {
+        if (!inTitle && !inPortfolioTitle && !inCardDesc && !inShortDesc && !inIndustry && !inTypes && !inTech) {
           return false
         }
       }
@@ -284,7 +393,7 @@ export default function PortfolioListingClient({
       />
 
       {/* Main Grid Section */}
-      <section className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <PortfolioGrid
           projects={filteredProjects}
           onClearFilters={handleClearFilters}

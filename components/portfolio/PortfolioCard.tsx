@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import type { PortfolioProject } from '@/lib/portfolio-data'
 import { getSanityImageUrl } from '@/lib/sanity.image'
+import { getProjectIndustry, getProjectTypes } from './PortfolioListingClient'
 
 interface PortfolioCardProps {
   project: PortfolioProject
@@ -13,51 +14,72 @@ interface PortfolioCardProps {
 const isHashId = (val: string) => typeof val === 'string' && /^[A-Za-z0-9_-]{18,}$/.test(val)
 
 const SLUG_FALLBACK_IMAGES: Record<string, string> = {
-  pixl: '/casestudy-thumbs/pixl-crm.png',
-  'ai-voice-agent': '/casestudy-thumbs/pixl-crm.png',
-  'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
-  satyapaan: '/casestudy-thumbs/Satyaapan.png',
-  satyaapan: '/casestudy-thumbs/Satyaapan.png',
-  'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
-  i4c: '/casestudy-thumbs/i4c.png',
-  '14c': '/casestudy-thumbs/14c.png',
-  'direct-owners': '/images/portfolio/direct-owners.png',
-  directowner: '/images/portfolio/direct-owners.png',
-  ugo: '/images/portfolio/ugo.png',
-  uog: '/images/portfolio/ugo.png',
-  indispare: '/images/portfolio/indispare.jpg',
   dovehouse: '/images/portfolio/dovehouse.png',
   'dovehouse-capital': '/images/portfolio/dovehouse.png',
-  pekt: '/images/portfolio/pekt.png',
+  indispare: '/casestudy-thumbs/indispare.png',
+  'direct-owners': '/images/portfolio/direct-owners.webp',
+  directowner: '/images/portfolio/direct-owners.webp',
+  ledray: '/images/portfolio/ledray.webp',
+  'dine-desk': '/casestudy-thumbs/dinedesk.png',
+  dinedesk: '/casestudy-thumbs/dinedesk.png',
+  pekt: '/images/portfolio/pekt.webp',
   skipr: '/images/portfolio/skipr.png',
-  protectly: '/casestudy-thumbs/protectly.png',
-  darpan: '/images/portfolio/darpan.webp',
-  'i-verify': '/images/portfolio/i-verify.webp',
-  iverify: '/images/portfolio/i-verify.webp',
-  'dine-desk': '/images/portfolio/dine-desk.png',
-  dinedesk: '/images/portfolio/dine-desk.png',
-  radiantsa: '/casestudy-thumbs/rediantsage.png',
-  'radiant-sage': '/casestudy-thumbs/rediantsage.png',
-  'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
-  spencer: '/images/portfolio/spencer.png',
-  'alexander-johnson-group': '/images/portfolio/alexander-johnson-group.png',
-  asak: '/images/portfolio/asak.png',
-  'arabian-hills': '/images/portfolio/arabian-hills.png',
-  ledray: '/images/portfolio/ledray.png',
-  konvino: '/images/portfolio/konvino.png',
-  medimee: '/images/portfolio/medimee.webp',
-  gratus: '/images/portfolio/gratus.png',
   gemba: '/images/portfolio/gemba.png',
+  'gemba-concept': '/images/portfolio/gemba.png',
   'wiggett-app': '/images/portfolio/wiggett-app.png',
-  'kalsi-estate': '/images/portfolio/kalsi-estate.png',
+  wiggett: '/images/portfolio/wiggett-app.png',
+  spencer: '/images/portfolio/spencer.png',
   'grid-properties': '/images/portfolio/grid-properties.png',
   'soul-trips': '/images/portfolio/soul-trips.png',
+  soultrips: '/images/portfolio/soul-trips.png',
+  'alexander-johnson-group': '/images/portfolio/alexander-johnson-group.png',
+  'alexander-groups': '/images/portfolio/alexander-johnson-group.png',
+  'ai-agents': '/casestudy-thumbs/pixl-crm.png',
+  aiagents: '/casestudy-thumbs/pixl-crm.png',
+  ugo: '/casestudy-thumbs/UGO.png',
+  uog: '/casestudy-thumbs/UGO.png',
+  i4c: '/casestudy-thumbs/i4c.png',
+  'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
+  '14c': '/casestudy-thumbs/14c.png',
+  'i-verify': '/casestudy-thumbs/i-verify.png',
+  iverify: '/casestudy-thumbs/i-verify.png',
+  satyapaan: '/casestudy-thumbs/Satyaapan.png',
+  satyaapan: '/casestudy-thumbs/Satyaapan.png',
+  darpan: '/casestudy-thumbs/Darpan.png',
   'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
   nigaah: '/casestudy-thumbs/Nigaah.png',
   crowdcounting: '/casestudy-thumbs/Crowd-Counting.png',
   'crowd-counting': '/casestudy-thumbs/Crowd-Counting.png',
   'unix-parts': '/casestudy-thumbs/unixparts.png',
   unixparts: '/casestudy-thumbs/unixparts.png',
+  'radiantsa-ctms': '/casestudy-thumbs/rediantsage.png',
+  radiantsa: '/casestudy-thumbs/rediantsage.png',
+  'radiant-sage': '/casestudy-thumbs/rediantsage.png',
+  pixl: '/casestudy-thumbs/pixl-crm.png',
+  'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
+  'hrms-hocs': '/casestudy-thumbs/Dreamnest.png',
+  hrmshocs: '/casestudy-thumbs/Dreamnest.png',
+  'rating-star': '/images/portfolio/konvino.webp',
+  ratingstar: '/images/portfolio/konvino.webp',
+  protectly: '/casestudy-thumbs/protectly.png',
+  'boardcore-360': '/images/portfolio/gratus.png',
+  boardcore: '/images/portfolio/gratus.png',
+  'casa-serene': '/images/portfolio/arabian-hills.png',
+  casaserene: '/images/portfolio/arabian-hills.png',
+  'a1-properties': '/images/portfolio/kalsi-estate.png',
+  a1properties: '/images/portfolio/kalsi-estate.png',
+  'paul-carr-estate-agents': '/images/portfolio/grid-properties.png',
+  paulcarr: '/images/portfolio/grid-properties.png',
+  'urban-properties': '/images/portfolio/alexander-johnson-group.png',
+  urbanproperties: '/images/portfolio/alexander-johnson-group.png',
+  'h-and-s-property': '/images/portfolio/arabian-hills.png',
+  handsproperty: '/images/portfolio/arabian-hills.png',
+  'treo-homes': '/images/portfolio/grid-properties.png',
+  treohomes: '/images/portfolio/grid-properties.png',
+  visionary: '/images/portfolio/kalsi-estate.png',
+  'london-gate': '/images/portfolio/alexander-johnson-group.png',
+  londongate: '/images/portfolio/alexander-johnson-group.png',
+  reech: '/images/portfolio/arabian-hills.png',
 }
 
 export default function PortfolioCard({ project }: PortfolioCardProps) {
@@ -83,7 +105,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
     }
   }
 
-  // 2. Fall back to verified live thumbnail from travash.com/portfolio/ if Sanity has no image
+  // 2. Fall back to verified image thumbnail
   if (!imageUrl) {
     imageUrl = fallbackThumb || '/images/services/analytics.webp'
   }
@@ -104,39 +126,10 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
     .map((t: any) => (typeof t === 'string' ? t : t?.title || t?.name || ''))
     .filter((t: string) => Boolean(t) && !isHashId(t))
 
-  // Top industry / category badge (guaranteed clean string)
-  let rawPrimary =
-    (typeof project.category === 'string'
-      ? project.category
-      : (project.category as any)?.title || (project.category as any)?.name) ||
-    project.projectType ||
-    (Array.isArray((project as any).services) && (project as any).services[0]
-      ? typeof (project as any).services[0] === 'string'
-        ? (project as any).services[0]
-        : (project as any).services[0]?.title || (project as any).services[0]?.name
-      : null)
-
-  if (!rawPrimary || isHashId(rawPrimary)) {
-    rawPrimary = 'Web Application'
-  }
-  const primaryBadge: string = rawPrimary
-
-  let rawIndustry =
-    (typeof project.industry === 'string'
-      ? project.industry
-      : (project.industry as any)?.title || (project.industry as any)?.name) ||
-    (Array.isArray(project.industries) && project.industries[0]
-      ? typeof project.industries[0] === 'string'
-        ? project.industries[0]
-        : (project.industries[0] as any)?.title || (project.industries[0] as any)?.name
-      : null) ||
-    (project as any).industryName ||
-    null
-
-  if (rawIndustry && isHashId(rawIndustry)) {
-    rawIndustry = null
-  }
-  const industryBadge: string | null = rawIndustry
+  // Normalized industry and project types
+  const industryBadge = getProjectIndustry(project)
+  const types = getProjectTypes(project)
+  const primaryBadge = types.length > 0 ? types.join(', ') : null
 
   return (
     <div className="group flex flex-col bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:border-[#02487D]/30 hover:shadow-[0_16px_36px_-8px_rgba(2,72,125,0.12)] transition-all duration-300 transform hover:-translate-y-1">
@@ -155,11 +148,17 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
 
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 flex-wrap">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-white/90 text-[#022E54] shadow-xs backdrop-blur-xs">
-            {primaryBadge}
-          </span>
+          {primaryBadge ? (
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-white/95 text-[#022E54] shadow-xs backdrop-blur-xs">
+              {primaryBadge}
+            </span>
+          ) : (
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-white/95 text-[#022E54] shadow-xs backdrop-blur-xs">
+              Project
+            </span>
+          )}
           {industryBadge && (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#022E54]/80 text-[#38BDF8] border border-white/10 backdrop-blur-xs">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#022E54]/90 text-[#38BDF8] border border-white/15 backdrop-blur-xs">
               {industryBadge}
             </span>
           )}

@@ -23,14 +23,14 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
       className="py-14 sm:py-18 lg:py-24 bg-[#E7F2F7] text-black font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Original Eradicate.webp Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, x: -25 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-5 flex justify-start "
           >
             <div className="relative w-full max-w-lg aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <Image
