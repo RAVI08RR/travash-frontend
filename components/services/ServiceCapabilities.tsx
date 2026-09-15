@@ -44,7 +44,7 @@ export default function ServiceCapabilities({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-[30rem] mx-auto mb-12 sm:mb-16"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-2">
             Engineering Capabilities

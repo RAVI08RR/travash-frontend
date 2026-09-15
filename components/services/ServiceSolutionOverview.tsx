@@ -24,25 +24,27 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Original Eradicate.webp Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, x: -25 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 flex justify-start "
-          >
-            <div className="relative w-full max-w-lg aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-              <Image
-                src={imageSrc}
-                alt="How Travash Solves It - Eradicate Data Silos"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-103"
-                sizes="(max-width: 1024px) 100vw, 500px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#02487D]/40 via-transparent to-transparent pointer-events-none" />
+          {/* Left Column: Sticky Image */}
+          <div className="lg:col-span-5 relative">
+            <div className="lg:sticky lg:top-28 z-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, x: -25 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6 }}
+                className="relative w-full aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group bg-white"
+              >
+                <Image
+                  src={imageSrc}
+                  alt="How Travash Solves It - Eradicate Data Silos"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-103"
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#02487D]/40 via-transparent to-transparent pointer-events-none" />
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Title, Description & 3 Feature Items */}
           <motion.div
