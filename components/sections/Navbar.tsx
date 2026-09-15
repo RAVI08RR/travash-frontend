@@ -30,8 +30,19 @@ interface NavLink {
   hasDropdown?: boolean
 }
 
+interface MediaAsset {
+  _id?: string
+  title?: string
+  mediaType?: string
+  alt?: string
+  image?: { asset?: { url: string } }
+  file?: { asset?: { url: string } }
+  externalUrl?: string
+}
+
 interface SiteSettings {
   logo?: { asset?: { url: string } }
+  mediaLogo?: MediaAsset
   navLinks?: NavLink[]
   ctaLabel?: string
   ctaHref?: string
@@ -154,7 +165,11 @@ export default function Navbar({ settings }: NavbarProps) {
   const contactEmail = settings?.contactEmail || 'contact@travash.com'
   const contactPhone = settings?.contactPhone || '(+91) 7416743434'
   const logoUrl =
-    settings?.logo?.asset?.url || 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg'
+    settings?.mediaLogo?.image?.asset?.url ||
+    settings?.mediaLogo?.file?.asset?.url ||
+    settings?.mediaLogo?.externalUrl ||
+    settings?.logo?.asset?.url ||
+    'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg'
 
   // Hover handlers for smooth mega menu appearance
   const handleMouseEnter = () => {

@@ -6,6 +6,25 @@ const imageFragment = `{
   asset->{ _id, url, metadata { dimensions, lqip } }
 }`
 
+// Reusable media library fragment
+export const mediaFragment = `{
+  _id,
+  _type,
+  title,
+  mediaType,
+  alt,
+  caption,
+  category,
+  tags,
+  image ${imageFragment},
+  file {
+    ...,
+    asset->{ _id, url, size, extension, mimeType, originalFilename }
+  },
+  posterImage ${imageFragment},
+  externalUrl
+}`
+
 // Full home page query — fetches everything in one request
 export const homePageQuery = groq`
   {
@@ -26,6 +45,26 @@ export const homePageQuery = groq`
         trustedByLabel,
         trustedByLogos[] {
           alt,
+          name,
+          websiteUrl,
+          href,
+          asset->{ _id, url, metadata { dimensions, lqip } },
+          image ${imageFragment}
+        }
+      },
+      "trustedBy": coalesce(
+        *[_id == "trustedBySection"][0],
+        *[_type == "trustedBySection"][0],
+        *[_type == "homePage"][0].trustedBy
+      ) {
+        heading,
+        label,
+        logos[] {
+          alt,
+          name,
+          websiteUrl,
+          href,
+          asset->{ _id, url, metadata { dimensions, lqip } },
           image ${imageFragment}
         }
       },
@@ -140,10 +179,12 @@ export const homePageQuery = groq`
     },
     "siteSettings": *[_type == "siteSettings"][0] {
       logo ${imageFragment},
+      mediaLogo-> ${mediaFragment},
       navLinks[] { label, href },
       ctaLabel,
       ctaHref,
       footerLogo ${imageFragment},
+      mediaFooterLogo-> ${mediaFragment},
       socialLinks[] { platform, url },
       menuLinks[] { label, href },
       serviceLinks[] { label, href },
@@ -781,7 +822,9 @@ export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
     ...,
     logo ${imageFragment},
-    footerLogo ${imageFragment}
+    mediaLogo-> ${mediaFragment},
+    footerLogo ${imageFragment},
+    mediaFooterLogo-> ${mediaFragment}
   }
 `
 

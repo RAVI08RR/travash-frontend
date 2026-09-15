@@ -7,9 +7,17 @@ export const siteSettings = defineType({
   fields: [
     defineField({
       name: 'logo',
-      title: 'Logo',
+      title: 'Logo (Legacy Image)',
       type: 'image',
       options: { hotspot: true },
+      description: 'Legacy image upload. Note: If "Logo (from Media Library)" is set below, it takes precedence.',
+    }),
+    defineField({
+      name: 'mediaLogo',
+      title: 'Logo (from Media Library)',
+      type: 'reference',
+      to: [{ type: 'mediaItem' }],
+      description: 'Select a reusable logo from the centralized Media Library.',
     }),
     defineField({
       name: 'navLinks',
@@ -40,9 +48,17 @@ export const siteSettings = defineType({
     // Footer fields
     defineField({
       name: 'footerLogo',
-      title: 'Footer Logo',
+      title: 'Footer Logo (Legacy Image)',
       type: 'image',
       options: { hotspot: true },
+      description: 'Legacy image upload. Note: If "Footer Logo (from Media Library)" is set below, it takes precedence.',
+    }),
+    defineField({
+      name: 'mediaFooterLogo',
+      title: 'Footer Logo (from Media Library)',
+      type: 'reference',
+      to: [{ type: 'mediaItem' }],
+      description: 'Select a reusable footer logo from the centralized Media Library.',
     }),
     defineField({
       name: 'socialLinks',

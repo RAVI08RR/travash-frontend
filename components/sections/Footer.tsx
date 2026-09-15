@@ -3,8 +3,19 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Mail, Phone } from 'lucide-react'
 
+interface MediaAsset {
+  _id?: string
+  title?: string
+  mediaType?: string
+  alt?: string
+  image?: { asset?: { url: string } }
+  file?: { asset?: { url: string } }
+  externalUrl?: string
+}
+
 interface SiteSettings {
   footerLogo?: { asset?: { url: string } }
+  mediaFooterLogo?: MediaAsset
   copyrightText?: string
   contactEmail?: string
   contactPhone?: string
@@ -83,6 +94,9 @@ const DEFAULT_SOCIALS = [
 
 export default function Footer({ settings }: { settings?: SiteSettings }) {
   const logoUrl =
+    settings?.mediaFooterLogo?.image?.asset?.url ||
+    settings?.mediaFooterLogo?.file?.asset?.url ||
+    settings?.mediaFooterLogo?.externalUrl ||
     settings?.footerLogo?.asset?.url ||
     'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg'
 

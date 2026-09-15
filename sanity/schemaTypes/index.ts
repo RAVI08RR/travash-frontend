@@ -1,5 +1,8 @@
 import { siteSettings } from './siteSettings'
+import { mediaItem } from './mediaItem'
+import { bulkMediaUpload } from './bulkMediaUpload'
 import { heroSection } from './heroSection'
+import { trustedBySection } from './trustedBySection'
 import { capabilitiesSection } from './capabilitiesSection'
 import { caseStudySection } from './caseStudySection'
 import { statsSection } from './statsSection'
@@ -33,6 +36,8 @@ import { caseStudiesPage } from './caseStudiesPage'
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
+  mediaItem,
+  bulkMediaUpload,
   homePage,
   aboutPage,
   caseStudiesPage,
@@ -51,6 +56,7 @@ export const schemaTypes = [
   job,
   // Section objects
   heroSection,
+  trustedBySection,
   capabilitiesSection,
   caseStudySection,
   statsSection,

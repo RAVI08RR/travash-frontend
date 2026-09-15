@@ -23,7 +23,7 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
     <>
       <section className="relative py-14 lg:py-20 bg-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
         {/* Soft background wave graphic */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30">
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
           <div className="relative w-full h-full">
             <Image
               src="/home-img/Abstract-Photoshop-Background-Amazing-HD-Wallpaper-14105 2.png"
@@ -57,7 +57,7 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
           </div>
 
           {/* Video Container */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-[800px] mx-auto">
             <div
               onClick={() => setIsOpen(true)}
               className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(11,71,133,0.12)] border border-gray-200/60 group cursor-pointer transition-all duration-300 hover:shadow-[0_16px_48px_rgba(11,71,133,0.18)] hover:-translate-y-0.5"

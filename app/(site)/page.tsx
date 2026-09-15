@@ -44,8 +44,16 @@ export default async function HomePage() {
       <main>
         <Hero data={homePage?.hero} />
         <TrustedBy
-          label={homePage?.hero?.trustedByLabel}
-          logos={homePage?.hero?.trustedByLogos}
+          label={
+            homePage?.trustedBy?.heading ||
+            homePage?.trustedBy?.label ||
+            homePage?.hero?.trustedByLabel
+          }
+          logos={
+            (homePage?.trustedBy?.logos && homePage.trustedBy.logos.length > 0)
+              ? homePage.trustedBy.logos
+              : homePage?.hero?.trustedByLogos
+          }
         />
         <Capabilities data={homePage?.capabilities} />
         <CaseStudies data={homePage?.caseStudies} />

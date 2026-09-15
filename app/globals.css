@@ -127,6 +127,23 @@ p {
   padding-right: 20px;
 }
 
+/* Capabilities Card Action Button */
+.btn-capability-card {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, #02487D 0%, #639DE3 100%) border-box;
+  color: #02487D;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-capability-card:hover {
+  background: #02487D;
+  border-color: #02487D;
+  color: #ffffff;
+}
+
 /* Trusted By Client Logos: grayscale(100%) -> hover grayscale(0%) */
 .logo-tr-client img,
 .logo-tr-client svg {

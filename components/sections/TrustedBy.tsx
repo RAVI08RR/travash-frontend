@@ -2,14 +2,19 @@
 
 import Image from 'next/image'
 
-interface TrustedLogo {
+export interface SanityLogoItem {
   alt?: string
-  image?: { asset?: { url: string } }
+  name?: string
+  websiteUrl?: string
+  href?: string
+  asset?: { url?: string; _id?: string }
+  image?: { asset?: { url?: string; _id?: string } }
+  src?: string
 }
 
 interface TrustedByProps {
   label?: string
-  logos?: TrustedLogo[]
+  logos?: SanityLogoItem[]
 }
 
 const LOCAL_LOGOS = [
@@ -42,34 +47,38 @@ const LOCAL_LOGOS = [
     src: '/Visa.svg',
     width: 85,
     height: 32,
-  }
-
+  },
+  {
+    name: 'Gemba',
+    src: '/Gemba.svg',
+    width: 85,
+    height: 32,
+  },
 
 ]
-
-interface SanityLogoItem {
-  alt?: string
-  image?: { asset?: { url: string } }
-}
-
-interface TrustedByProps {
-  label?: string
-  logos?: SanityLogoItem[]
-}
 
 export default function TrustedBy({ label, logos }: TrustedByProps) {
   const dynamicLogos =
     logos && logos.length > 0
-      ? logos.map((l) => ({
-        name: l.alt || 'Client Logo',
-        src: l.image?.asset?.url || '',
-        width: 140,
-        height: 48,
-      })).filter((l) => Boolean(l.src))
+      ? logos
+        .map((l) => {
+          const src = l.asset?.url || l.image?.asset?.url || l.src || ''
+          return {
+            name: l.alt || l.name || 'Client Logo',
+            src,
+            href: l.websiteUrl || l.href,
+            width: 140,
+            height: 48,
+          }
+        })
+        .filter((l) => Boolean(l.src))
       : []
 
   const activeLogos = dynamicLogos.length > 0 ? dynamicLogos : LOCAL_LOGOS
-  const marqueeItems = [...activeLogos, ...activeLogos, ...activeLogos]
+
+  // Repeat enough items so marquee loops seamlessly across ultra-wide monitors
+  const repeatCount = Math.max(3, Math.ceil(12 / (activeLogos.length || 1)))
+  const marqueeItems = Array(repeatCount).fill(activeLogos).flat()
 
   return (
     <section className="bg-[#F0F5FA] py-12 lg:py-16 border-t border-gray-100/60 overflow-hidden">
@@ -87,20 +96,43 @@ export default function TrustedBy({ label, logos }: TrustedByProps) {
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#F0F5FA] to-transparent z-10 pointer-events-none" />
 
           <div className="flex items-center gap-12 sm:gap-16 lg:gap-14 w-max animate-marquee hover:[animation-play-state:paused] px-4">
-            {marqueeItems.map((logo, idx) => (
-              <div
-                key={idx}
-                className="logo-tr-client flex items-center justify-center opacity-75 hover:opacity-100 transition-all duration-300 hover:scale-105 flex-shrink-0 cursor-pointer h-20"
-              >
+            {marqueeItems.map((logo, idx) => {
+              const imageElement = (
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={logo.width}
-                  height={logo.height}
-                  className="max-h-20 sm:max-h-21 w-auto object-contain"
+                  width={logo.width || 140}
+                  height={logo.height || 48}
+                  className="max-h-16 sm:max-h-20 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                  unoptimized={logo.src.endsWith('.svg')}
                 />
-              </div>
-            ))}
+              )
+
+              if ('href' in logo && logo.href) {
+                return (
+                  <a
+                    key={idx}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group logo-tr-client flex items-center justify-center opacity-75 hover:opacity-100 transition-all duration-300 hover:scale-105 flex-shrink-0 cursor-pointer h-20"
+                    title={logo.name}
+                  >
+                    {imageElement}
+                  </a>
+                )
+              }
+
+              return (
+                <div
+                  key={idx}
+                  className="group logo-tr-client flex items-center justify-center opacity-75 hover:opacity-100 transition-all duration-300 hover:scale-105 flex-shrink-0 cursor-pointer h-20"
+                  title={logo.name}
+                >
+                  {imageElement}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

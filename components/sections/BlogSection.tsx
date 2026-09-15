@@ -94,13 +94,13 @@ export default function BlogSection({
 
                 {/* Body */}
                 <div className="pt-5 flex flex-col gap-3 flex-1 justify-between">
-                  <h3 className="text-base sm:text-lg font-bold text-[#0B4785] leading-snug group-hover:text-[#14B8A6] transition-colors line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-bold text-[#0B4785] leading-snug transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
                   <Link
                     href={`/blogs/${postSlug}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#0B4785] group-hover:text-[#14B8A6] pt-2"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#0B4785]  pt-2"
                   >
                     Read More
                     <span className="group-hover:translate-x-1 transition-transform">→</span>

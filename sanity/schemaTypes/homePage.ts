@@ -11,6 +11,11 @@ export const homePage = defineType({
       type: 'heroSection',
     }),
     defineField({
+      name: 'trustedBy',
+      title: 'Trusted By Section',
+      type: 'trustedBySection',
+    }),
+    defineField({
       name: 'capabilities',
       title: 'Capabilities Section',
       type: 'capabilitiesSection',

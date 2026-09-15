@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export const heroSection = defineType({
   name: 'heroSection',
@@ -66,16 +66,50 @@ export const heroSection = defineType({
     }),
     defineField({
       name: 'trustedByLogos',
-      title: 'Trusted By Logos',
+      title: 'Trusted By Logos (Bulk Upload Support)',
+      description: 'Drag & drop multiple logo images here to bulk upload',
       type: 'array',
+      options: {
+        layout: 'grid',
+      },
       of: [
-        {
+        defineArrayMember({
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Client / Company Name',
+              type: 'string',
+            }),
+            defineField({
+              name: 'websiteUrl',
+              title: 'Website URL (Optional)',
+              type: 'url',
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'alt',
+              media: 'asset',
+            },
+            prepare({ title, media }) {
+              return {
+                title: title || 'Client Logo',
+                media,
+              }
+            },
+          },
+        }),
+        defineArrayMember({
           type: 'object',
+          name: 'logoItem',
+          title: 'Logo Item (Legacy Object)',
           fields: [
             { name: 'image', title: 'Logo Image', type: 'image', options: { hotspot: true } },
             { name: 'alt', title: 'Alt Text', type: 'string' },
           ],
-        },
+        }),
       ],
     }),
   ],

@@ -70,7 +70,7 @@ export default function CaseStudyNextStep({
             <div className="flex flex-wrap items-center gap-4 pt-1">
               <Link
                 href={primaryCTA.href || '#contact'}
-                className="btn-global inline-flex items-center justify-center bg-[#003865] hover:bg-[#002847] text-white font-medium px-6 py-3 rounded-lg text-xs sm:text-[13px] transition-colors duration-200 shadow-xs"
+                className=" inline-flex items-center justify-center bg-[#003865] hover:bg-[#002847] text-white font-medium px-6 py-3 rounded-lg text-[16px] sm:text-[15px] transition-colors duration-200 shadow-xs h-[66px]"
               >
                 {primaryCTA.label}
               </Link>
@@ -78,7 +78,7 @@ export default function CaseStudyNextStep({
               {secondaryCTA && (
                 <Link
                   href={secondaryCTA.href || '#contact'}
-                  className="btn-global inline-flex items-center justify-center bg-white hover:bg-gray-50 border border-[#003865] text-[#003865] font-medium px-6 py-3 rounded-lg text-xs sm:text-[13px] transition-colors duration-200 shadow-xs"
+                  className=" inline-flex items-center justify-center bg-white hover:bg-gray-50 border border-[#003865] text-[#003865] font-medium px-6 py-3 rounded-lg text-[16px] sm:text-[15px] transition-colors duration-200 shadow-xs h-[66px]"
                 >
                   {secondaryCTA.label}
                 </Link>
