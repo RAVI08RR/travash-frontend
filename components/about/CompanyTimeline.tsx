@@ -125,7 +125,7 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
   }
 
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden">
+    <section className="py-10 sm:py-14 lg:py-16 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] relative overflow-hidden">
       {/* Decorative gradient backdrops */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 pointer-events-none opacity-50">
         <div className="absolute top-0 left-1/4 w-80 h-80 bg-blue-200/40 rounded-full blur-3xl" />
@@ -134,15 +134,15 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
 
       <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
             <Milestone className="w-3.5 h-3.5 text-[#14B8A6]" />
             <span>TWO DECADES OF IMPACT • 2005 - PRESENT</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight">
             Our Journey of Continuous Innovation
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 mt-4 leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 mt-2 sm:mt-3 leading-relaxed">
             From an ambitious engineering vision in 2005 to an international technology partner powering mission-critical platforms worldwide.
           </p>
         </div>
@@ -211,18 +211,18 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
           </div>
 
           {/* Active Milestone Card */}
-          <div className="relative bg-white rounded-3xl p-8 sm:p-12 border border-gray-200/90 shadow-[0_16px_50px_rgba(11,71,133,0.08)] overflow-hidden transition-all duration-500">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-200/90 shadow-[0_12px_40px_rgba(11,71,133,0.06)] overflow-hidden transition-all duration-500">
             {/* Watermark Year Background */}
-            <div className="absolute right-4 -bottom-6 text-9xl font-black text-slate-100/80 pointer-events-none select-none tracking-tighter">
+            <div className="absolute right-4 -bottom-6 text-7xl sm:text-8xl lg:text-9xl font-black text-slate-100/80 pointer-events-none select-none tracking-tighter">
               {activeItem.year}
             </div>
 
             <div className="relative z-10">
               {/* Top Meta Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-100">
+              <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#004771] to-[#0B4785] text-white flex items-center justify-center shadow-md">
-                    <ActiveIcon className="w-6 h-6 text-teal-300" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-[#004771] to-[#0B4785] text-white flex items-center justify-center shadow-md">
+                    <ActiveIcon className="w-5 h-5 sm:w-6 sm:h-6 text-teal-300" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
@@ -243,43 +243,43 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handlePrev}
-                    className="p-2.5 rounded-xl border border-gray-200 hover:border-[#004771] text-gray-600 hover:text-[#004771] hover:bg-gray-50 transition-all cursor-pointer"
+                    className="p-2 rounded-xl border border-gray-200 hover:border-[#004771] text-gray-600 hover:text-[#004771] hover:bg-gray-50 transition-all cursor-pointer"
                     aria-label="Previous milestone"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="p-2.5 rounded-xl border border-gray-200 hover:border-[#004771] text-gray-600 hover:text-[#004771] hover:bg-gray-50 transition-all cursor-pointer"
+                    className="p-2 rounded-xl border border-gray-200 hover:border-[#004771] text-gray-600 hover:text-[#004771] hover:bg-gray-50 transition-all cursor-pointer"
                     aria-label="Next milestone"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
 
               {/* Title & Description */}
               <div className="max-w-3xl">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B1E3D] tracking-tight mb-4">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0B1E3D] tracking-tight mb-2.5 sm:mb-4">
                   {activeItem.title}
                 </h3>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 sm:mb-6">
                   {activeItem.description}
                 </p>
               </div>
 
               {/* Highlights & Metrics Grid */}
-              <div className="grid md:grid-cols-12 gap-6 pt-2">
+              <div className="grid md:grid-cols-12 gap-4 sm:gap-6 pt-1">
                 {/* Highlights List */}
-                <div className="md:col-span-8 bg-[#F8FAFC] rounded-2xl p-6 border border-gray-100">
-                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <div className="md:col-span-8 bg-[#F8FAFC] rounded-2xl p-4 sm:p-6 border border-gray-100">
+                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Zap className="w-4 h-4 text-[#004771]" />
                     <span>Strategic Highlights & Breakthroughs</span>
                   </h4>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-2.5">
                     {activeItem.highlights?.map((h, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-700">
+                        <CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
                         <span className="font-medium">{h}</span>
                       </li>
                     ))}
@@ -287,16 +287,16 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
                 </div>
 
                 {/* Key Metric Card */}
-                <div className="md:col-span-4 bg-gradient-to-br from-[#004771] to-[#02487D] text-white rounded-2xl p-6 flex flex-col justify-between shadow-md">
+                <div className="md:col-span-4 bg-gradient-to-br from-[#004771] to-[#02487D] text-white rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm">
                   <div>
-                    <span className="text-xs font-bold text-teal-300 uppercase tracking-wider block mb-2">
+                    <span className="text-xs font-bold text-teal-300 uppercase tracking-wider block mb-1.5">
                       Key Milestone Metric
                     </span>
-                    <div className="text-2xl font-extrabold leading-snug">
+                    <div className="text-xl sm:text-2xl font-extrabold leading-snug">
                       {activeItem.metrics}
                     </div>
                   </div>
-                  <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs text-blue-100 font-medium">
+                  <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-white/10 flex items-center justify-between text-xs text-blue-100 font-medium">
                     <span>Proven Continuity</span>
                     <span className="text-teal-300 font-bold">2005 → Today</span>
                   </div>
@@ -306,20 +306,20 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
           </div>
         </div>
 
-        {/* Mobile & Tablet Vertical Timeline (Always intuitive and scrollable) */}
-        <div className="block lg:hidden relative pl-6 sm:pl-8 border-l-2 border-teal-500/30 space-y-10 ml-4 sm:ml-6">
+        {/* Mobile & Tablet Vertical Timeline */}
+        <div className="block lg:hidden relative pl-6 sm:pl-8 border-l-2 border-teal-500/30 space-y-6 sm:space-y-8 ml-3 sm:ml-5">
           {items.map((item, idx) => {
             const ItemIcon = item.icon || Sparkles
             return (
               <div key={idx} className="relative">
                 {/* Icon Node Dot */}
-                <div className="absolute -left-[37px] sm:-left-[45px] top-1 w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-[#004771] to-[#14B8A6] text-white flex items-center justify-center shadow-md ring-4 ring-white">
+                <div className="absolute -left-[37px] sm:-left-[45px] top-1 w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#004771] to-[#14B8A6] text-white flex items-center justify-center shadow-md ring-4 ring-[#F8FAFC]">
                   <ItemIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
 
-                <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-md">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="px-2.5 py-1 rounded-full bg-[#E0F2FE] text-[#004771] text-xs font-extrabold tracking-wider">
+                <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-200/80 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#E0F2FE] text-[#004771] text-xs font-extrabold tracking-wider">
                       {item.year}
                     </span>
                     <span className="text-xs font-bold text-[#14B8A6]">
@@ -327,21 +327,21 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-[#0B1E3D] mt-2 mb-3">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#0B1E3D] mt-1.5 mb-2">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-gray-600 leading-relaxed mb-5">
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
                     {item.description}
                   </p>
 
                   {/* Highlights */}
                   {item.highlights && item.highlights.length > 0 && (
-                    <div className="bg-[#F8FAFC] rounded-xl p-4 border border-gray-100 mb-4">
-                      <ul className="space-y-2">
+                    <div className="bg-[#F8FAFC] rounded-xl p-3.5 border border-gray-100 mb-3.5">
+                      <ul className="space-y-1.5">
                         {item.highlights.map((h, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                          <li key={i} className="flex items-start gap-2 text-xs text-gray-700">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#14B8A6] shrink-0 mt-0.5" />
                             <span>{h}</span>
                           </li>
                         ))}
@@ -350,7 +350,7 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
                   )}
 
                   {/* Metric */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#E0F2FE]/60 text-[#004771] text-xs font-bold">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#E0F2FE]/60 text-[#004771] text-xs font-bold">
                     <span className="w-2 h-2 rounded-full bg-[#14B8A6]" />
                     <span>{item.metrics}</span>
                   </div>

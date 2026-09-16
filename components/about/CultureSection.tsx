@@ -47,57 +47,57 @@ export default function CultureSection({ teams, culture }: CultureSectionProps) 
     'At Travash, we cultivate a culture of innovation, excellence, and collaboration. Our team thrives on cutting-edge technology, problem-solving, and client-centric strategies. We empower talent, embrace diversity, and drive digital transformation with passion and purpose—delivering impact that lasts.'
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="py-10 sm:py-14 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top: Teams Introduction */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
             THE PEOPLE BEHIND TRAVASH
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight mb-3">
             {teamsHeading} & {cultureHeading}
           </h2>
-          <p className="text-base text-gray-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
             {teamsDesc}
           </p>
         </div>
 
         {/* Culture Narrative & Pillars */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto">
           {/* Left: Culture Statement card */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#004771] to-[#02487D] text-white p-8 sm:p-10 rounded-3xl shadow-lg relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#004771] to-[#02487D] text-white p-6 sm:p-8 lg:p-9 rounded-2xl sm:rounded-3xl shadow-md relative overflow-hidden flex flex-col justify-between">
             <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-xl pointer-events-none" />
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-bold mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-bold mb-4 sm:mb-6">
                 <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
                 <span>HOW WE WORK</span>
               </div>
-              <h3 className="text-2xl font-extrabold mb-4 leading-snug">
+              <h3 className="text-xl sm:text-2xl font-extrabold mb-3 leading-snug">
                 Fostering an Environment Where Great Engineers Thrive
               </h3>
-              <p className="text-sm text-gray-200 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
                 {cultureDesc}
               </p>
             </div>
-            <div className="pt-6 border-t border-white/10 text-xs font-semibold text-[#14B8A6]">
+            <div className="pt-5 mt-6 border-t border-white/10 text-xs font-semibold text-[#14B8A6]">
               Work-Life Balance • Psychological Safety • High Velocity
             </div>
           </div>
 
           {/* Right: 4 Culture Pillars */}
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-3.5 sm:gap-4 lg:gap-5">
             {CULTURE_PILLARS.map((pillar, idx) => {
               const Icon = pillar.icon
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-xs hover:border-gray-200 transition-colors"
+                  className="bg-[#F8FAFC] rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-2xs hover:border-gray-200 transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#E0F2FE] text-[#004771] flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#E0F2FE] text-[#004771] flex items-center justify-center mb-3">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-[#0B1E3D] mb-1.5">{pillar.title}</h4>
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{pillar.desc}</p>
+                  <h4 className="text-sm sm:text-base font-bold text-[#0B1E3D] mb-1">{pillar.title}</h4>
+                  <p className="text-xs text-gray-600 leading-relaxed">{pillar.desc}</p>
                 </div>
               )
             })}

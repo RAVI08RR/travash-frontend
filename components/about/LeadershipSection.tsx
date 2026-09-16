@@ -33,16 +33,16 @@ export default function LeadershipSection({ leadership }: LeadershipSectionProps
   const leaders = leadership && leadership.length > 0 ? leadership : [DEFAULT_LEADER]
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
+    <section className="py-10 sm:py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
             EXECUTIVE LEADERSHIP
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight">
             Guiding Vision & Engineering Rigor
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
+          <p className="text-sm sm:text-base text-gray-600 mt-2 sm:mt-3 leading-relaxed">
             Hands-on technology stewardship backed by decades of enterprise software consulting and industrial innovation.
           </p>
         </div>
@@ -53,27 +53,27 @@ export default function LeadershipSection({ leadership }: LeadershipSectionProps
             return (
               <div
                 key={idx}
-                className="bg-[#EEF4FB] rounded-3xl p-6 sm:p-10 lg:p-12 border border-blue-100 shadow-sm grid md:grid-cols-12 gap-8 items-center"
+                className="bg-[#EEF4FB] rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border border-blue-100 shadow-xs grid md:grid-cols-12 gap-6 sm:gap-8 items-center"
               >
                 {/* Profile Photo / Avatar */}
                 <div className="md:col-span-5 flex flex-col items-center text-center">
-                  <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden shadow-md border-4 border-white bg-white mb-4">
+                  <div className="relative w-36 h-36 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-md border-4 border-white bg-white mb-3 sm:mb-4">
                     <Image
                       src={photoUrl}
                       alt={leader.name}
                       fill
                       className="object-cover object-top"
-                      sizes="220px"
+                      sizes="(max-width: 640px) 150px, 200px"
                     />
                   </div>
-                  <h3 className="text-xl font-extrabold text-[#0B1E3D]">{leader.name}</h3>
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#0B1E3D]">{leader.name}</h3>
                   <p className="text-xs sm:text-sm font-semibold text-[#004771] mt-0.5">{leader.role}</p>
                   {leader.linkedinUrl && (
                     <a
                       href={leader.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#004771] mt-3 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#004771] mt-2.5 transition-colors"
                     >
                       <span className="text-[#0A66C2]"><LinkedinIcon /></span>
                       <span>Connect on LinkedIn</span>
@@ -83,22 +83,22 @@ export default function LeadershipSection({ leadership }: LeadershipSectionProps
 
                 {/* Bio & Track Record */}
                 <div className="md:col-span-7 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-[#004771] text-xs font-bold w-fit mb-4 border border-blue-200/60">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-[#004771] text-xs font-bold w-fit mb-3 sm:mb-4 border border-blue-200/60">
                     <Award className="w-3.5 h-3.5 text-[#14B8A6]" />
                     <span>{leader.experienceYears || '24+ Years IT Leadership'}</span>
                   </div>
 
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
                     {leader.bio}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 pt-4 border-t border-blue-200/50">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-4 border-t border-blue-200/50">
                     <div className="flex items-center gap-2 text-xs font-semibold text-gray-700">
-                      <Briefcase className="w-4 h-4 text-[#004771]" />
+                      <Briefcase className="w-4 h-4 text-[#004771] shrink-0" />
                       <span>Satyam • GE • John Deere</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs font-semibold text-gray-700">
-                      <Building2 className="w-4 h-4 text-[#14B8A6]" />
+                      <Building2 className="w-4 h-4 text-[#14B8A6] shrink-0" />
                       <span>PLM & Enterprise Architecture</span>
                     </div>
                   </div>

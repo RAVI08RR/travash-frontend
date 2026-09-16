@@ -22,7 +22,7 @@ export default function AboutHero({ data }: AboutHeroProps) {
     'Founded in 2005 with a clear vision: to transform technology from a business cost center into a powerful engine of growth, scalability, and competitive advantage for enterprises worldwide.'
 
   return (
-    <section className="relative pt-12 pb-16 lg:pt-20 lg:pb-22 bg-gradient-to-b from-[#F4F8FC] via-white to-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="relative pt-10 pb-12 sm:pt-14 sm:pb-14 lg:pt-16 lg:pb-16 bg-gradient-to-b from-[#F4F8FC] via-white to-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
       {/* Decorative subtle background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] pointer-events-none opacity-40">
         <div className="absolute -top-24 left-1/4 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl" />
@@ -32,30 +32,30 @@ export default function AboutHero({ data }: AboutHeroProps) {
       <div className="relative max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5">
             <ShieldCheck className="w-4 h-4 text-[#14B8A6]" />
             <span>{eyebrow}</span>
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0B1E3D] tracking-tight leading-[1.15] mb-6">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#0B1E3D] tracking-tight leading-[1.15] mb-4 sm:mb-6">
             {heading}
           </h1>
 
           {/* Description */}
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-10">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8">
             {description}
           </p>
 
           {/* Quick Credibility Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pt-2 pb-8 text-sm font-semibold text-gray-700">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-1 pb-6 sm:pb-8 text-xs sm:text-sm font-semibold text-gray-700">
             <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-[#14B8A6]" />
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 text-[#14B8A6]" />
               <span>Founded in 2005</span>
             </div>
             <div className="h-4 w-px bg-gray-300 hidden sm:block" />
             <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-[#004771]" />
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#004771]" />
               <span>90%+ Client Retention</span>
             </div>
             <div className="h-4 w-px bg-gray-300 hidden sm:block" />
@@ -66,17 +66,17 @@ export default function AboutHero({ data }: AboutHeroProps) {
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 rounded-xl bg-[#004771] hover:bg-[#02487D] text-white font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-[#004771] hover:bg-[#02487D] text-white font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all"
             >
               <span>Speak with Our Team</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/career"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 rounded-xl bg-white border border-gray-200 hover:border-[#004771] text-[#0B1E3D] hover:text-[#004771] font-semibold text-sm sm:text-base shadow-xs hover:bg-gray-50 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-white border border-gray-200 hover:border-[#004771] text-[#0B1E3D] hover:text-[#004771] font-semibold text-sm sm:text-base shadow-xs hover:bg-gray-50 transition-all"
             >
               <Users className="w-4 h-4 text-[#004771]" />
               <span>Explore Careers & Team</span>
