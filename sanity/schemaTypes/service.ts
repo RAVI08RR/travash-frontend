@@ -319,11 +319,13 @@ export const service = defineType({
       ],
     }),
 
-    // 10. Client Testimonial
+    // 10. Featured Testimonial (legacy single-object — kept for backward compat)
     defineField({
       name: 'testimonial',
-      title: 'Featured Testimonial',
+      title: 'Featured Testimonial (Legacy)',
       type: 'object',
+      description:
+        '⚠️ Legacy field — use "Selected Testimonials" below instead for richer, reusable references.',
       fields: [
         defineField({ name: 'quote', title: 'Quote Text', type: 'text', rows: 4 }),
         defineField({ name: 'author', title: 'Author Name', type: 'string' }),
@@ -333,6 +335,27 @@ export const service = defineType({
         defineField({ name: 'image', title: 'Author Photo / Seal', type: 'image' }),
       ],
     }),
+
+    // 10b. Selected Testimonials — references to standalone Testimonial documents
+    defineField({
+      name: 'testimonials',
+      title: 'Selected Testimonials',
+      type: 'array',
+      description:
+        'Select and order existing testimonials for this service page. These are reused from the shared Testimonial library — no duplication needed. Drag to reorder.',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'testimonial' }],
+          options: {
+            // Shows client name + company in the selector dropdown
+            filter: undefined,
+          },
+        },
+      ],
+      validation: (Rule) => Rule.unique(),
+    }),
+
 
     // 11. Frequently Asked Questions
     defineField({

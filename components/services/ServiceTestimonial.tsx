@@ -3,77 +3,67 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import type { ServiceTestimonial as TestimonialType } from '@/lib/service-data'
+import type { ServiceTestimonial as LegacyTestimonialType, SanityTestimonial } from '@/lib/service-data'
 
-const DEFAULT_TESTIMONIALS = [
-  {
-    quote:
-      'Travash transformed our verification process completely. Their AI-powered solution was not only technically impressive but also delivered real business impact from day one. The team understood our domain deeply and delivered beyond expectations.',
-    author: 'Imran Khan',
-    role: 'Chief Technology Officer',
-    company: 'PIXL Group',
-    avatarImage: '/images/services/imran-khan.png',
-  },
-  {
-    quote:
-      "Travash is our technology partner and the backbone of our national fight against cyber fraud. They engineer and manage the massive coordination application we rely on to track fraudsters in real-time, halt malicious activities, and recover stolen funds. Thanks to their robust infrastructure and deep expertise, we are saving millions of citizens' hard-earned rupees.",
-    author: 'Senior Leadership & National Coordinator',
-    role: 'Cyber Crime Coordination',
-    company: 'National Anti-Fraud Network',
-    avatarImage: '/images/services/testimonial-avatar.jpeg',
-  },
-  {
-    quote:
-      'Their team brought deep architecture rigor to our enterprise data infrastructure. Deployment cycles decreased by 65%, and our analytics pipelines run seamlessly at scale without operational overhead.',
-    author: 'Rajesh Varma',
-    role: 'VP of Engineering',
-    company: 'Global Tech Systems',
-    avatarImage: '/images/services/imran-khan.png',
-  },
-  {
-    quote:
-      'The engineering maturity and proactive problem solving of the Travash team made our cloud migration zero-downtime. They truly act as an extension of our core product engineering team.',
-    author: 'Sarah Jenkins',
-    role: 'Head of Digital Products',
-    company: 'Enterprise Network',
-    avatarImage: '/images/services/testimonial-avatar.jpeg',
-  },
-  {
-    quote:
-      'From architecture review to production rollout, Travash delivered high velocity with exceptional quality standards. Our platform now handles millions of concurrent requests effortlessly.',
-    author: 'David Chen',
-    role: 'Director of Technology',
-    company: 'Apex Cloud Solutions',
-    avatarImage: '/images/services/imran-khan.png',
-  },
-]
+interface Props {
+  /** Legacy single-object testimonial (backward compat) */
+  testimonial?: LegacyTestimonialType
+  /** New: array of referenced testimonial documents — preferred when present */
+  testimonials?: SanityTestimonial[]
+}
 
-export default function ServiceTestimonial({ testimonial }: { testimonial?: TestimonialType }) {
-  // Show only the specific testimonial for this service page
-  const testimonialsList = testimonial && testimonial.quote
-    ? [
-      {
-        quote: testimonial.quote,
-        author: testimonial.author || 'Senior Leadership',
-        role: testimonial.role || '',
-        company: testimonial.company || '',
-        avatarImage:
-          testimonial.image?.asset?.url ||
-          testimonial.avatarImage ||
-          '/images/services/imran-khan.png',
-      },
-    ]
-    : [DEFAULT_TESTIMONIALS[0]]
+export default function ServiceTestimonial({ testimonial, testimonials }: Props) {
+  // Normalise to a unified shape for rendering
+  type NormalItem = {
+    quote: string
+    author: string
+    role: string
+    company: string
+    avatarImage: string
+  }
 
+  function normaliseSanity(t: SanityTestimonial): NormalItem {
+    return {
+      quote: t.quote,
+      author: t.clientName,
+      role: t.designation,
+      company: t.company || '',
+      avatarImage: t.photo?.asset?.url || '/images/services/imran-khan.png',
+    }
+  }
+
+  function normaliseLegacy(t: LegacyTestimonialType): NormalItem {
+    return {
+      quote: t.quote,
+      author: t.author,
+      role: t.role,
+      company: t.company,
+      avatarImage:
+        t.image?.asset?.url || t.avatarImage || '/images/services/imran-khan.png',
+    }
+  }
+
+  // Priority: new reference array → legacy single object → nothing
+  let list: NormalItem[] = []
+
+  if (testimonials && testimonials.length > 0) {
+    list = testimonials.map(normaliseSanity)
+  } else if (testimonial && testimonial.quote) {
+    list = [normaliseLegacy(testimonial)]
+  }
+
+  // If no testimonials are selected, hide the section entirely
+  if (list.length === 0) return null
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [currentIndex, setCurrentIndex] = useState(0)
-  const current = testimonialsList[currentIndex] || testimonialsList[0]
+  const current = list[currentIndex] || list[0]
 
   return (
     <section
       id="testimonial"
       className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
     >
-      {/* Kept container width aligned with the rest of the page */}
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -88,7 +78,7 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
           </h2>
         </motion.div>
 
-        {/* Centered testimonial card container matching screenshot */}
+        {/* Testimonial card */}
         <div className="max-w-5xl mx-auto">
           <div className="bg-white border border-gray-100/90 rounded-[28px] sm:rounded-[36px] lg:rounded-[40px] p-6 sm:p-10 lg:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.03)] transition-all">
             <AnimatePresence mode="wait">
@@ -100,7 +90,7 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
                 transition={{ duration: 0.3 }}
                 className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center"
               >
-                {/* Left: Rectangular photo with rounded corners */}
+                {/* Left: author photo */}
                 <div className="md:col-span-4 flex justify-center md:justify-start">
                   <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[4/3] rounded-2xl sm:rounded-[20px] overflow-hidden shadow-xs bg-gray-100">
                     <Image
@@ -114,7 +104,7 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
                   </div>
                 </div>
 
-                {/* Right: Quote text and author credits */}
+                {/* Right: quote + credits */}
                 <div className="md:col-span-8 flex flex-col justify-center">
                   <p className="text-gray-600 sm:text-gray-700 text-sm sm:text-base lg:text-[16px] xl:text-[17px] leading-relaxed font-normal">
                     {current.quote}
@@ -133,18 +123,19 @@ export default function ServiceTestimonial({ testimonial }: { testimonial?: Test
             </AnimatePresence>
           </div>
 
-          {/* Pagination dots shown only when multiple testimonials exist */}
-          {testimonialsList.length > 1 && (
+          {/* Pagination dots — only when multiple testimonials */}
+          {list.length > 1 && (
             <div className="flex items-center justify-center gap-2 mt-8">
-              {testimonialsList.map((_, idx) => (
+              {list.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to testimonial ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${currentIndex === idx
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    currentIndex === idx
                       ? 'w-2.5 h-2.5 bg-[#02487D]'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                    }`}
+                  }`}
                 />
               ))}
             </div>

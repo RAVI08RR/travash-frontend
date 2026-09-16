@@ -204,9 +204,15 @@ export default async function ServiceDetailPage({
           <ServiceTrust trust={service.trustSection} />
         )}
 
-        {/* 10. Testimonial */}
-        {service.testimonial && (
-          <ServiceTestimonial testimonial={service.testimonial} />
+        {/* 10. Testimonials — shows when references are selected OR legacy object exists */}
+        {(
+          (service.testimonials && service.testimonials.length > 0) ||
+          (service.testimonial && service.testimonial.quote)
+        ) && (
+          <ServiceTestimonial
+            testimonial={service.testimonial}
+            testimonials={service.testimonials}
+          />
         )}
 
         {/* 11. Frequently Asked Questions */}

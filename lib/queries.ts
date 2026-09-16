@@ -567,6 +567,18 @@ export const serviceBySlugQuery = groq`
       badge,
       image ${imageFragment}
     },
+    // Resolved reference array — preferred over legacy testimonial object
+    testimonials[]-> {
+      _id,
+      clientName,
+      designation,
+      company,
+      quote,
+      categories,
+      badge,
+      photo ${imageFragment},
+      clientLogo ${imageFragment}
+    },
     faqs[] {
       question,
       answer

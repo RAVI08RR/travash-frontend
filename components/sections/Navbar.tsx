@@ -156,7 +156,7 @@ const DEFAULT_LINKS: NavLink[] = [
 export default function Navbar({ settings }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(true)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const navLinks = settings?.navLinks || DEFAULT_LINKS
@@ -183,12 +183,13 @@ export default function Navbar({ settings }: NavbarProps) {
     }, 200)
   }
 
-  // Prevent background scrolling when mobile drawer is open
+  // Prevent background scrolling when mobile drawer is open & reset accordion on close
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
+      setMobileServicesOpen(false)
     }
     return () => {
       document.body.style.overflow = ''

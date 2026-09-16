@@ -29,21 +29,23 @@ export default function Contact({ data }: { data?: ContactData }) {
       email: formData.get('email'),
       subject: formData.get('subject'),
       message: formData.get('message'),
+      website: formData.get('website'),
     }
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
-      if (res.ok) {
-        toast.success("Thank you! We'll be in touch shortly.", { duration: 5000 })
+      const result = await res.json()
+
+      if (res.ok && result.success !== false) {
+        toast.success(result.message || "Thank you! We'll be in touch shortly.", { duration: 5000 })
         formRef.current?.reset()
       } else {
-        const err = await res.json()
-        toast.error(err.error || 'Something went wrong. Please try again.')
+        toast.error(result.message || result.error || 'Something went wrong. Please try again.')
       }
     } catch {
       toast.error('Network error. Please try again.')
@@ -93,6 +95,18 @@ export default function Contact({ data }: { data?: ContactData }) {
               </div>
 
               <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* Honeypot field for bot spam protection */}
+                <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                  <label htmlFor="home-contact-website">Website</label>
+                  <input
+                    id="home-contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 {/* Row 1: Name & Phone */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">

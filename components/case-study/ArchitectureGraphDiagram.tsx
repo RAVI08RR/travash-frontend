@@ -10,6 +10,7 @@ import {
   Cog,
   CheckCircle2,
   AlertTriangle,
+  AlertCircle,
   Target,
   Cpu,
   Layers,
@@ -31,11 +32,17 @@ import {
   Activity,
   Server,
   ArrowRight,
+  ArrowDown,
+  Filter,
+  TrendingUp,
+  User,
+  PauseCircle,
+  ScanFace,
 } from 'lucide-react'
 
 export interface ArchNode {
   title: string
-  subtitle: string
+  subtitle?: string
   icon: string
 }
 
@@ -62,27 +69,119 @@ export interface CaseStudyArchitectureData {
   }
 }
 
+// Bespoke SVG Icons matching Screenshot 2 exactly
+function CourtBuildingIcon({ className = 'w-7 h-7 text-[#02487D]' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2.5V1M16 1L19 2.5L16 3.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3.5 11L16 3L28.5 11H3.5Z" fill="#F1F5F9" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <rect x="4.5" y="11" width="23" height="2" fill="currentColor" />
+      <rect x="6.5" y="13" width="2.5" height="11" fill="currentColor" rx="0.5" />
+      <rect x="12" y="13" width="2.5" height="11" fill="currentColor" rx="0.5" />
+      <rect x="17.5" y="13" width="2.5" height="11" fill="currentColor" rx="0.5" />
+      <rect x="23" y="13" width="2.5" height="11" fill="currentColor" rx="0.5" />
+      <rect x="3.5" y="24" width="25" height="2" fill="currentColor" rx="0.5" />
+      <rect x="2" y="26" width="28" height="2.5" fill="currentColor" rx="0.5" />
+    </svg>
+  )
+}
+
+function ShieldCheckPlatformIcon({ className = 'w-7 h-7 text-[#02487D]' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M16 3L5 7.5V14.5C5 21.5 9.8 27.8 16 29.5C22.2 27.8 27 21.5 27 14.5V7.5L16 3Z"
+        fill="#02487D"
+      />
+      <path
+        d="M11 15.5L14.5 19L21 12.5"
+        stroke="white"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function DataExtractionFacialIcon({ className = 'w-7 h-7 text-[#02487D]' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="4" width="13" height="22" rx="2" fill="#F1F5F9" stroke="currentColor" strokeWidth="1.6" />
+      <line x1="6" y1="9" x2="13" y2="9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="6" y1="13" x2="13" y2="13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="6" y1="17" x2="11" y2="17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <g transform="translate(14, 8)">
+        <path d="M3 0H0V3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M12 0H15V3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M0 13V16H3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M15 13V16H12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <circle cx="7.5" cy="6" r="3" fill="currentColor" />
+        <path d="M3 14C3 11.2 5 9.5 7.5 9.5C10 9.5 12 11.2 12 14" fill="currentColor" />
+      </g>
+    </svg>
+  )
+}
+
+function DatabaseSearchIcon({ className = 'w-7 h-7 text-[#02487D]' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="12" cy="7" rx="7.5" ry="3.2" fill="#02487D" />
+      <path d="M4.5 7V13C4.5 14.8 7.8 16.2 12 16.2C13 16.2 14 16.1 14.8 15.9" stroke="#02487D" strokeWidth="1.8" />
+      <path d="M4.5 13V19C4.5 20.8 7.8 22.2 12 22.2C13.2 22.2 14.4 22.1 15.4 21.8" stroke="#02487D" strokeWidth="1.8" />
+      <path d="M4.5 19V25C4.5 26.8 7.8 28.2 12 28.2C13.5 28.2 14.8 28 16 27.6" stroke="#02487D" strokeWidth="1.8" />
+      <circle cx="21" cy="20" r="5" fill="white" stroke="#02487D" strokeWidth="2" />
+      <line x1="25" y1="24" x2="29" y2="28" stroke="#02487D" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="19" y1="20" x2="23" y2="20" stroke="#02487D" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function WorkflowAutomationIcon({ className = 'w-7 h-7 text-[#02487D]' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="3.2" fill="#02487D" />
+      <path d="M16 8.5V10.5M16 21.5V23.5M8.5 16H10.5M21.5 16H23.5M10.8 10.8L12.2 12.2M19.8 19.8L21.2 21.2M10.8 21.2L12.2 19.8M19.8 12.2L21.2 10.8" stroke="#02487D" strokeWidth="2" strokeLinecap="round" />
+      <path d="M16 4.5C22.3 4.5 27.5 9.7 27.5 16C27.5 18.5 26.7 20.8 25.2 22.7" stroke="#02487D" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M16 27.5C9.7 27.5 4.5 22.3 4.5 16C4.5 13.5 5.3 11.2 6.8 9.3" stroke="#02487D" strokeWidth="1.8" strokeLinecap="round" />
+      <polygon points="27,6 27.5,11 23,9.5" fill="#02487D" />
+      <polygon points="5,26 4.5,21 9,22.5" fill="#02487D" />
+    </svg>
+  )
+}
+
 // Icon mapper
-function renderIcon(iconName: string, className = 'w-5 h-5 text-[#02487D]') {
+function renderIcon(iconName: string, className = 'w-7 h-7 text-[#02487D]') {
   switch (iconName) {
     case 'building':
     case 'rpo':
-      return <Building2 className={className} />
+      return <CourtBuildingIcon className={className} />
     case 'shield':
-      return <Shield className={className} />
     case 'shield-check':
-      return <ShieldCheck className={className} />
+      return <ShieldCheckPlatformIcon className={className} />
     case 'file':
     case 'document':
       return <FileText className={className} />
+    case 'scan-face':
+    case 'face':
+    case 'biometric':
+      return <DataExtractionFacialIcon className={className} />
     case 'database':
-      return <Database className={className} />
+      return <DatabaseSearchIcon className={className} />
     case 'gear':
     case 'workflow':
-      return <Cog className={className} />
+      return <WorkflowAutomationIcon className={className} />
     case 'bot':
     case 'ai':
       return <Bot className={className} />
+    case 'filter':
+      return <Filter className={className} />
+    case 'trending-up':
+      return <TrendingUp className={className} />
+    case 'user':
+      return <User className={className} />
+    case 'pause':
+      return <PauseCircle className={className} />
     case 'phone':
       return <PhoneCall className={className} />
     case 'layers':
@@ -116,7 +215,7 @@ function renderIcon(iconName: string, className = 'w-5 h-5 text-[#02487D]') {
     case 'target':
       return <Target className={className} />
     case 'alert':
-      return <AlertTriangle className={className} />
+      return <AlertCircle className={className} />
     case 'check':
       return <CheckCircle2 className={className} />
     default:
@@ -130,11 +229,11 @@ export const ARCHITECTURE_CATALOG: Record<string, CaseStudyArchitectureData> = {
   satyapaan: {
     flowTitle: 'AI-Assisted Passport Verification Workflow',
     nodes: [
-      { title: 'Regional Passport Office (RPO)', subtitle: 'Citizen Intake & Biometrics', icon: 'building' },
-      { title: 'Satyaapan Verification Platform', subtitle: 'Automated Processing Engine', icon: 'shield' },
-      { title: 'Data Extraction + Facial Recognition', subtitle: 'Biometric Vector Matching', icon: 'file' },
-      { title: 'Real-Time Records Matching', subtitle: 'Criminal & Adverse Databases', icon: 'database' },
-      { title: 'Automated Verification Workflow', subtitle: 'Deterministic Risk Scoring', icon: 'workflow' },
+      { title: 'Regional Passport Office (RPO)', icon: 'building' },
+      { title: 'Satyaapan Verification Platform', icon: 'shield-check' },
+      { title: 'Automated Data Extraction + Facial Recognition', icon: 'scan-face' },
+      { title: 'Real-Time Matching Against Relevant Records', icon: 'database' },
+      { title: 'Automated Verification Workflow', icon: 'workflow' },
     ],
     branches: [
       {
@@ -156,9 +255,9 @@ export const ARCHITECTURE_CATALOG: Record<string, CaseStudyArchitectureData> = {
       label: 'Core Principle',
       steps: [
         { title: 'Automate Routine Screening', icon: 'bot' },
-        { title: 'Identify Exceptions', icon: 'search' },
-        { title: 'Escalate', icon: 'zap' },
-        { title: 'Human Investigation', icon: 'users' },
+        { title: 'Identify Exceptions', icon: 'filter' },
+        { title: 'Escalate', icon: 'trending-up' },
+        { title: 'Human Investigation', icon: 'user' },
       ],
     },
   },
@@ -686,45 +785,198 @@ export function getArchitectureDataForSlug(
   caseStudyTitle?: string,
   clientName?: string
 ): CaseStudyArchitectureData {
-  if (ARCHITECTURE_CATALOG[slug]) {
-    return ARCHITECTURE_CATALOG[slug]
+  const normalized = (slug || '').toLowerCase().trim()
+
+  const ALIAS_MAP: Record<string, string> = {
+    satyapaan: 'satyapaan',
+    satyaapan: 'satyapaan',
+    satyapan: 'satyapaan',
+    i4c: 'i4c-bank-portal',
+    'i4c-bank-portal': 'i4c-bank-portal',
+    '14c': 'i4c-bank-portal',
+    pixl: 'pixl',
+    'pixl-crm': 'pixl',
+    'ai-voice-agent': 'pixl',
+    ugo: 'ugo',
+    uog: 'ugo',
+    'direct-owners': 'direct-owners',
+    directowner: 'direct-owners',
+    dreamnest: 'direct-owners',
+    indispare: 'indispare',
+    dovehouse: 'dovehouse',
+    'dovehouse-capital': 'dovehouse',
+    pekt: 'pekt',
+    skipr: 'skipr',
+    darpan: 'darpan',
+    'i-verify': 'i-verify',
+    iverify: 'i-verify',
+    'dine-desk': 'dine-desk',
+    dinedesk: 'dine-desk',
+    gemba: 'gemba',
+    'nigaah-videosurvelience': 'nigaah-videosurvelience',
+    nigaah: 'nigaah-videosurvelience',
+    crowdcounting: 'crowdcounting',
+    'crowd-counting': 'crowdcounting',
   }
 
-  const client = clientName || 'Enterprise Client'
-  const title = caseStudyTitle || 'Digital Platform'
+  const targetKey = ALIAS_MAP[normalized] || normalized
 
+  if (ARCHITECTURE_CATALOG[targetKey]) {
+    return ARCHITECTURE_CATALOG[targetKey]
+  }
+
+  const client = clientName || 'Enterprise System'
+  const title = caseStudyTitle || 'Digital Platform'
+  const lower = (slug + ' ' + title).toLowerCase()
+
+  // Domain-specific dynamic generator
+  if (lower.includes('health') || lower.includes('medical') || lower.includes('radiant') || lower.includes('medimee')) {
+    return {
+      flowTitle: `${title} Healthcare Data & Compliance Pipeline`,
+      nodes: [
+        { title: 'Clinical & Patient Ingestion', icon: 'building' },
+        { title: `${client} Security Platform`, icon: 'shield-check' },
+        { title: 'Data Anonymization & Extraction', icon: 'scan-face' },
+        { title: 'EHR Registry Synchronization', icon: 'database' },
+        { title: 'Automated Diagnostic Workflow', icon: 'workflow' },
+      ],
+      branches: [
+        {
+          status: 'VERIFIED',
+          statusColor: 'green',
+          action: 'Record Validated & Synced',
+          nextStep: 'Secure Clinical Telemetry Broadcast',
+          icon: 'check',
+        },
+        {
+          status: 'ANOMALY',
+          statusColor: 'red',
+          action: 'Compliance Review Triggered',
+          nextStep: 'Medical Officer Manual Audit',
+          icon: 'alert',
+        },
+      ],
+      corePrinciple: {
+        label: 'Core Principle',
+        steps: [
+          { title: 'Automate Routine Ingestion', icon: 'bot' },
+          { title: 'Identify Exceptions', icon: 'filter' },
+          { title: 'Escalate Anomaly', icon: 'trending-up' },
+          { title: 'Clinical Investigation', icon: 'user' },
+        ],
+      },
+    }
+  }
+
+  if (lower.includes('estate') || lower.includes('property') || lower.includes('real') || lower.includes('kalsi') || lower.includes('grid')) {
+    return {
+      flowTitle: `${title} Real Estate & Property Pipeline`,
+      nodes: [
+        { title: 'Property Portals & Lead Ingestion', icon: 'building' },
+        { title: `${client} Platform Engine`, icon: 'shield-check' },
+        { title: 'Automated Buyer Intent Scoring', icon: 'scan-face' },
+        { title: 'Real-Time Inventory Matching', icon: 'database' },
+        { title: 'Automated Dispatch & Booking', icon: 'workflow' },
+      ],
+      branches: [
+        {
+          status: 'CONFIRMED',
+          statusColor: 'green',
+          action: 'Site Visit Confirmed',
+          nextStep: 'Calendar Booking & WhatsApp Invite Sent',
+          icon: 'check',
+        },
+        {
+          status: 'NURTURE',
+          statusColor: 'red',
+          action: 'Inquiry Placed on Follow-up',
+          nextStep: 'Consultant Automated Lead Outreach',
+          icon: 'alert',
+        },
+      ],
+      corePrinciple: {
+        label: 'Core Principle',
+        steps: [
+          { title: 'Instant Lead Capture', icon: 'bot' },
+          { title: 'Intent Classification', icon: 'filter' },
+          { title: 'Escalate Hot Leads', icon: 'trending-up' },
+          { title: 'Consultant Closing', icon: 'user' },
+        ],
+      },
+    }
+  }
+
+  if (lower.includes('commerce') || lower.includes('retail') || lower.includes('store') || lower.includes('shop')) {
+    return {
+      flowTitle: `${title} E-Commerce & Retail Supply Pipeline`,
+      nodes: [
+        { title: 'Customer Storefront & App', icon: 'building' },
+        { title: `${client} Catalog Engine`, icon: 'shield-check' },
+        { title: 'Cart & Inventory Orchestrator', icon: 'scan-face' },
+        { title: 'Payment Gateway & Risk Filter', icon: 'database' },
+        { title: 'Automated Fulfillment Workflow', icon: 'workflow' },
+      ],
+      branches: [
+        {
+          status: 'APPROVED',
+          statusColor: 'green',
+          action: 'Order Placed & Dispatched',
+          nextStep: 'Real-Time Tracking Code Issued',
+          icon: 'check',
+        },
+        {
+          status: 'FLAGGED',
+          statusColor: 'red',
+          action: 'Payment Placed on Hold',
+          nextStep: 'Fraud Screening & Verification Review',
+          icon: 'alert',
+        },
+      ],
+      corePrinciple: {
+        label: 'Core Principle',
+        steps: [
+          { title: 'High-Concurrency Ingestion', icon: 'bot' },
+          { title: 'Real-Time Inventory Check', icon: 'filter' },
+          { title: 'Sub-Second Checkout', icon: 'trending-up' },
+          { title: 'Automated Dispatch SLA', icon: 'user' },
+        ],
+      },
+    }
+  }
+
+  // Universal Dynamic Fallback
   return {
     flowTitle: `${title} End-to-End System Architecture`,
     nodes: [
-      { title: 'Client & User Touchpoints', subtitle: 'Responsive Web, Mobile & Portals', icon: 'laptop' },
-      { title: `${client} Platform Engine`, subtitle: 'High-Concurrency Cloud Microservices', icon: 'cloud' },
-      { title: 'Automated Business Logic Core', subtitle: 'Scalable Workflow & Validation Rules', icon: 'bot' },
-      { title: 'Secure Enterprise Data Layer', subtitle: 'High-Throughput Database & Cache Sync', icon: 'database' },
-      { title: 'Execution & Integration Engine', subtitle: 'Real-Time API & Webhook Pipelines', icon: 'workflow' },
+      { title: 'Client & User Touchpoints', icon: 'building' },
+      { title: `${client} Platform Engine`, icon: 'shield-check' },
+      { title: 'Automated Processing Engine', icon: 'scan-face' },
+      { title: 'Real-Time Enterprise Records Matching', icon: 'database' },
+      { title: 'Automated Verification Workflow', icon: 'workflow' },
     ],
     branches: [
       {
-        status: 'SUCCESS',
+        status: 'CLEAR',
         statusColor: 'green',
-        action: 'Validated Request Executed',
-        nextStep: 'Live Telemetry & Transaction Completed',
+        action: 'Automated Processing Approved',
+        nextStep: 'Direct System Execution Completed',
         icon: 'check',
       },
       {
-        status: 'EXCEPTION',
-        statusColor: 'blue',
-        action: 'Automated Recovery Triggered',
-        nextStep: 'Intelligent Error Handling & Audit Log Recorded',
-        icon: 'workflow',
+        status: 'FLAGGED',
+        statusColor: 'red',
+        action: 'Application Placed on Hold',
+        nextStep: 'Specialist Investigation Assigned',
+        icon: 'alert',
       },
     ],
     corePrinciple: {
       label: 'Core Principle',
       steps: [
-        { title: 'Automated Intake', icon: 'zap' },
-        { title: 'Intelligent Processing', icon: 'bot' },
-        { title: 'Sub-Second Execution', icon: 'activity' },
-        { title: 'Measurable Outcomes', icon: 'shield-check' },
+        { title: 'Automate Routine Screening', icon: 'bot' },
+        { title: 'Identify Exceptions', icon: 'filter' },
+        { title: 'Escalate Anomaly', icon: 'trending-up' },
+        { title: 'Expert Investigation', icon: 'user' },
       ],
     },
   }
@@ -744,116 +996,169 @@ export default function ArchitectureGraphDiagram({
   const data = getArchitectureDataForSlug(slug, title, client)
 
   return (
-    <div className="w-full bg-white rounded-2xl border border-gray-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] p-4 sm:p-7 font-['Plus_Jakarta_Sans',sans-serif]">
-      {/* Top Architecture Flow */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 overflow-x-auto py-2">
+    <div className="w-full bg-white rounded-2xl border border-gray-200/80 shadow-xs p-4 sm:p-6 font-['Plus_Jakarta_Sans',sans-serif]">
+      {/* Top Architecture Flow: Flexes cleanly inside lg:col-span-8 */}
+      <div className="w-full overflow-x-auto scrollbar-none pb-1">
+        <div className="min-w-[680px] w-full flex items-center justify-between gap-1 sm:gap-1.5 xl:gap-2">
         {/* Sequential Process Nodes */}
         {data.nodes.map((node, idx) => (
           <React.Fragment key={idx}>
-            <div className="flex-1 min-w-[140px] sm:min-w-[160px] bg-white border border-gray-200/90 rounded-xl p-3.5 sm:p-4 text-center shadow-xs hover:border-[#02487D]/40 transition-colors flex flex-col items-center justify-center min-h-[140px]">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center mb-2.5 shadow-2xs">
-                {renderIcon(node.icon, 'w-5 h-5 text-[#02487D]')}
+            <div className="flex-1 min-w-0 max-w-[135px] bg-white border border-gray-200/90 rounded-2xl p-2.5 sm:p-3 xl:p-4 text-center shadow-2xs hover:border-[#02487D]/40 transition-all flex flex-col items-center justify-center min-h-[125px] sm:min-h-[135px] xl:min-h-[145px] shrink-0">
+              <div className="flex items-center justify-center mb-2.5 text-[#02487D]">
+                {renderIcon(node.icon, 'w-7 h-7 sm:w-8 sm:h-8 text-[#02487D]')}
               </div>
-              <h4 className="text-xs sm:text-[13px] font-bold text-[#0F172A] leading-tight line-clamp-2">
+              <h4 className="text-[10px] sm:text-[11px] xl:text-[12px] font-bold text-[#0F172A] leading-tight text-center break-words">
                 {node.title}
               </h4>
-              <p className="text-[11px] text-[#64748B] mt-1 line-clamp-2 leading-tight">
-                {node.subtitle}
-              </p>
+              {node.subtitle && (
+                <p className="text-[9.5px] text-[#64748B] mt-1 leading-tight line-clamp-1">
+                  {node.subtitle}
+                </p>
+              )}
             </div>
 
             {/* Connecting Arrow */}
-            <div className="flex-shrink-0 text-gray-400 rotate-90 lg:rotate-0 my-1 lg:my-0">
-              <ArrowRight className="w-4 h-4 text-gray-400" />
+            <div className="shrink-0 text-gray-400 px-0.5 sm:px-1">
+              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gray-400" />
             </div>
           </React.Fragment>
         ))}
 
-        {/* Branching Outcomes on the Right */}
-        <div className="flex flex-col gap-2.5 min-w-[210px] sm:min-w-[230px] w-full lg:w-auto">
+        {/* Branch Fork Connector matching Screenshot */}
+        <div className="flex items-center justify-center shrink-0 w-6 sm:w-8 h-[110px] sm:h-[125px] relative">
+          <svg className="w-full h-full" viewBox="0 0 32 120" fill="none">
+            {/* Origin line from Node 5 */}
+            <line x1="2" y1="60" x2="14" y2="60" stroke="#94A3B8" strokeWidth="1.5" />
+            <circle cx="14" cy="60" r="2.5" fill="#02487D" />
+            {/* Vertical spine */}
+            <line x1="14" y1="28" x2="14" y2="92" stroke="#94A3B8" strokeWidth="1.5" />
+            {/* Top branch to CLEAR card */}
+            <path d="M14 28H28" stroke="#16A34A" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="28" cy="28" r="2.5" fill="#16A34A" />
+            {/* Bottom branch to FLAGGED card */}
+            <path d="M14 92H28" stroke="#DC2626" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="28" cy="92" r="2.5" fill="#DC2626" />
+          </svg>
+        </div>
+
+        {/* Branching Outcomes Cards matching Screenshot */}
+        <div className="flex flex-col gap-2.5 sm:gap-3 shrink-0 w-[260px] sm:w-[285px] xl:w-[310px]">
           {data.branches.map((b, idx) => {
             const isGreen = b.statusColor === 'green'
             const isRed = b.statusColor === 'red'
-            const isAmber = b.statusColor === 'amber'
-
-            const badgeBg = isGreen
-              ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
-              : isRed
-              ? 'bg-rose-50 border-rose-200 text-rose-700'
-              : isAmber
-              ? 'bg-amber-50 border-amber-200 text-amber-700'
-              : 'bg-blue-50 border-blue-200 text-blue-700'
-
-            const circleBg = isGreen
-              ? 'bg-emerald-600 text-white'
-              : isRed
-              ? 'bg-rose-600 text-white'
-              : isAmber
-              ? 'bg-amber-500 text-white'
-              : 'bg-[#02487D] text-white'
 
             return (
               <div
                 key={idx}
-                className={`flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border transition-all ${
+                className={`flex items-center gap-2 sm:gap-2.5 xl:gap-3 px-2.5 sm:px-3.5 py-2 sm:py-2.5 xl:py-3 rounded-xl sm:rounded-2xl border bg-white shadow-2xs transition-all ${
                   isGreen
-                    ? 'border-emerald-200/90 bg-emerald-50/20'
+                    ? 'border-[#86EFAC] hover:border-emerald-400'
                     : isRed
-                    ? 'border-rose-200/90 bg-rose-50/20'
-                    : isAmber
-                    ? 'border-amber-200/90 bg-amber-50/20'
-                    : 'border-blue-200/90 bg-blue-50/20'
+                    ? 'border-[#FCA5A5] hover:border-rose-400'
+                    : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <div className="flex flex-col items-center justify-center flex-shrink-0 pr-3 border-r border-gray-200/80 min-w-[68px]">
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1 ${circleBg}`}>
-                    {renderIcon(b.icon, 'w-3.5 h-3.5 text-white')}
+                {/* Left Status Badge with Circle Icon */}
+                <div className="flex flex-col items-center justify-center shrink-0 min-w-[42px] sm:min-w-[46px]">
+                  <div
+                    className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center mb-0.5 text-white shadow-2xs ${
+                      isGreen
+                        ? 'bg-[#16A34A]'
+                        : isRed
+                        ? 'bg-[#DC2626]'
+                        : 'bg-[#02487D]'
+                    }`}
+                  >
+                    {isGreen ? (
+                      <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[3]" />
+                    ) : isRed ? (
+                      <span className="text-xs sm:text-sm font-black leading-none">!</span>
+                    ) : (
+                      renderIcon(b.icon, 'w-3 h-3 text-white')
+                    )}
                   </div>
-                  <span className={`text-[10px] font-extrabold tracking-wider ${badgeBg.split(' ').pop()}`}>
+                  <span
+                    className={`text-[9px] sm:text-[10px] font-black tracking-wider ${
+                      isGreen
+                        ? 'text-[#16A34A]'
+                        : isRed
+                        ? 'text-[#DC2626]'
+                        : 'text-[#02487D]'
+                    }`}
+                  >
                     {b.status}
                   </span>
                 </div>
 
-                <div className="text-left leading-tight">
-                  <span className="text-xs font-bold text-[#0F172A] block">
+                {/* Vertical line divider */}
+                <div className="w-px h-7 sm:h-8 bg-gray-200 shrink-0" />
+
+                {/* Step 1 Action */}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {isGreen ? (
+                    <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#16A34A] shrink-0" />
+                  ) : (
+                    <PauseCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DC2626] shrink-0" />
+                  )}
+                  <span className="text-[10px] sm:text-[11px] xl:text-[12px] font-semibold text-[#0F172A] whitespace-nowrap">
                     {b.action}
                   </span>
-                  <div className="flex items-center gap-1 text-[11px] text-[#64748B] mt-0.5">
-                    <ArrowRight className="w-3 h-3 flex-shrink-0 text-gray-400" />
-                    <span className="line-clamp-1">{b.nextStep}</span>
-                  </div>
+                </div>
+
+                {/* Directional Circle with Arrow */}
+                <div
+                  className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-white shrink-0 ${
+                    isGreen ? 'bg-[#16A34A]' : 'bg-[#DC2626]'
+                  }`}
+                >
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.5]" />
+                </div>
+
+                {/* Step 2 Next Step */}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {isGreen ? (
+                    <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#16A34A] shrink-0" />
+                  ) : (
+                    <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#DC2626] shrink-0" />
+                  )}
+                  <span className="text-[10px] sm:text-[11px] xl:text-[12px] font-semibold text-[#0F172A] whitespace-nowrap">
+                    {b.nextStep}
+                  </span>
                 </div>
               </div>
             )
           })}
         </div>
       </div>
+    </div>
 
-      {/* Bottom Core Principle Pipeline Bar */}
-      <div className="pt-4 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-3 bg-slate-50/80 rounded-xl p-3.5 sm:p-4">
-        {/* Left Target Badge */}
-        <div className="flex items-center gap-2.5 flex-shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-blue-100/80 text-[#02487D] flex items-center justify-center">
-            <Target className="w-4 h-4" />
+      {/* Bottom Core Principle Banner matching Screenshot */}
+      <div className="mt-6 sm:mt-8">
+        <div className="bg-[#F0F7FF] border border-[#D6E6F7] rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-3">
+          {/* Target Icon & Core Principle Label */}
+          <div className="flex items-center gap-2.5 shrink-0 pr-3 sm:pr-4 border-r border-[#CBD5E1]">
+            <Target className="w-4 h-4 sm:w-5 sm:h-5 text-[#02487D]" />
+            <span className="text-xs sm:text-[13px] font-bold text-[#0F172A] whitespace-nowrap">
+              {data.corePrinciple.label}
+            </span>
           </div>
-          <span className="text-xs sm:text-sm font-bold text-[#0F172A] pr-3 md:border-r border-gray-300">
-            {data.corePrinciple.label}
-          </span>
-        </div>
 
-        {/* 4-Step Pipeline Flow */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap flex-1">
-          {data.corePrinciple.steps.map((step, idx) => (
-            <React.Fragment key={idx}>
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-gray-200 text-xs font-medium text-[#1E293B] shadow-2xs">
-                {renderIcon(step.icon, 'w-3.5 h-3.5 text-[#02487D]')}
-                <span className="text-[11px] sm:text-xs">{step.title}</span>
-              </div>
-              {idx < data.corePrinciple.steps.length - 1 && (
-                <ArrowRight className="w-3 h-3 text-gray-400 flex-shrink-0" />
-              )}
-            </React.Fragment>
-          ))}
+          {/* Seamless Pipeline Steps without outer white boxes */}
+          <div className="flex items-center justify-between flex-1 gap-2 sm:gap-3 pl-2 sm:pl-3">
+            {data.corePrinciple.steps.map((step, idx) => (
+              <React.Fragment key={idx}>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {renderIcon(step.icon, 'w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#02487D] shrink-0')}
+                  <span className="text-[11px] sm:text-xs xl:text-[13px] font-medium text-[#1E293B] whitespace-nowrap">
+                    {step.title}
+                  </span>
+                </div>
+                {idx < data.corePrinciple.steps.length - 1 && (
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gray-400 shrink-0" />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </div>
     </div>

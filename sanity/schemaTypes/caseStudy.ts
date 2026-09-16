@@ -266,18 +266,41 @@ export const caseStudy = defineType({
       name: 'solutionArchitecture',
       title: 'Solution Architecture Section',
       type: 'object',
+      description:
+        'Architecture section container. If no custom diagram image is uploaded, an interactive vector diagram is automatically generated in the frontend container.',
       fields: [
-        { name: 'title', title: 'Section Title', type: 'string', initialValue: 'Solution Architecture' },
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          initialValue: 'Solution Architecture',
+          description: 'Title of the architecture section (defaults to Solution Architecture)',
+        },
         {
           name: 'intro',
-          title: 'Architecture Overview',
+          title: 'Architecture Overview / Pipeline Description',
           type: 'text',
           rows: 3,
+          description:
+            'Pipeline flow text, e.g. "Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged)."',
           initialValue:
-            'A decoupled, secure multi-tier architecture connecting automated ingestion pipelines with real-time biometric and government registry verification.',
+            'Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged).',
         },
-        { name: 'image', title: 'Architecture Diagram / Visual', type: 'image', options: { hotspot: true } },
-        { name: 'caption', title: 'Diagram Caption', type: 'string' },
+        {
+          name: 'image',
+          title: 'Architecture Diagram / Visual (Optional)',
+          type: 'image',
+          options: { hotspot: true },
+          description:
+            'Upload custom architecture diagram image here. It will automatically be rendered inside the exact same enterprise white card container. Leave empty to use the dynamic vector diagram.',
+        },
+        {
+          name: 'caption',
+          title: 'Diagram Caption / Figure Label',
+          type: 'string',
+          description:
+            'Figure caption displayed with a vertical accent bar below the overview text (e.g. "Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture")',
+        },
       ],
     }),
     defineField({

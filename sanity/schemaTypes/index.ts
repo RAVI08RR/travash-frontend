@@ -1,6 +1,7 @@
 import { siteSettings } from './siteSettings'
 import { mediaItem } from './mediaItem'
 import { bulkMediaUpload } from './bulkMediaUpload'
+import { testimonial } from './testimonial'
 import { heroSection } from './heroSection'
 import { trustedBySection } from './trustedBySection'
 import { capabilitiesSection } from './capabilitiesSection'
@@ -36,6 +37,7 @@ import { caseStudiesPage } from './caseStudiesPage'
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
+  testimonial,
   mediaItem,
   bulkMediaUpload,
   homePage,

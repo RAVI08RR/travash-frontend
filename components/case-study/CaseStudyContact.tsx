@@ -27,21 +27,23 @@ export default function CaseStudyContact({
       email: formData.get('email'),
       subject: 'Case Study Inquiry: ' + heading.replace(/\n/g, ' '),
       message: formData.get('message'),
+      website: formData.get('website'),
     }
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
-      if (res.ok) {
-        toast.success("Thank you! We'll be in touch shortly.", { duration: 5000 })
+      const result = await res.json()
+
+      if (res.ok && result.success !== false) {
+        toast.success(result.message || "Thank you! We'll be in touch shortly.", { duration: 5000 })
         formRef.current?.reset()
       } else {
-        const err = await res.json()
-        toast.error(err.error || 'Something went wrong. Please try again.')
+        toast.error(result.message || result.error || 'Something went wrong. Please try again.')
       }
     } catch {
       toast.error('Network error. Please try again.')
@@ -89,6 +91,18 @@ export default function CaseStudyContact({
             >
               <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-gray-100 w-full">
                 <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3.5">
+                  {/* Honeypot field for bot spam protection */}
+                  <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <label htmlFor="cs-website">Website</label>
+                    <input
+                      id="cs-website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   {/* Name */}
                   <div className="flex flex-col gap-1">
                     <label htmlFor="cs-name" className="text-xs font-semibold text-gray-700">

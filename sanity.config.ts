@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemaTypes'
+import { media } from 'sanity-plugin-media'
 
 import React from 'react'
 
@@ -174,88 +175,22 @@ const customStructure = (S: any) =>
             .documentId('siteSettings')
         ),
 
-      // Media Library (Centralized Reusable Assets)
+      // Media Library — powered by sanity-plugin-media (true bulk upload)
+      // The "Media" tool appears in the top nav of Sanity Studio automatically.
+      // Below we keep a quick-access link in the sidebar as well.
       S.listItem()
         .title('Media Library')
         .id('mediaLibrary')
         .child(
-          S.list()
-            .title('Media Library & Bulk Upload')
-            .items([
-              S.listItem()
-                .title('⚡ Bulk Image Upload (Drag & Drop Batches)')
-                .id('bulkMediaUpload')
-                .child(
-                  S.documentTypeList('bulkMediaUpload')
-                    .title('Bulk Image Upload Batches')
-                ),
-              S.divider(),
-              S.listItem()
-                .title('All Media Assets')
-                .id('allMedia')
-                .child(
-                  S.documentTypeList('mediaItem')
-                    .title('All Media Assets')
-                ),
-              S.listItem()
-                .title('Images (PNG, WebP, JPG, GIF)')
-                .id('mediaImages')
-                .child(
-                  S.documentList()
-                    .title('Images')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "image" || image.asset._ref match "*-png*" || image.asset._ref match "*-webp*" || image.asset._ref match "*-jpg*" || image.asset._ref match "*-jpeg*" || image.asset._ref match "*-gif*")')
-                ),
-              S.listItem()
-                .title('Vector & SVGs (Icons & Logos)')
-                .id('mediaVectors')
-                .child(
-                  S.documentList()
-                    .title('Vector & SVGs')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "icon" || mediaType == "logo" || image.asset._ref match "*-svg*")')
-                ),
-              S.listItem()
-                .title('Client & Partner Logos')
-                .id('mediaLogos')
-                .child(
-                  S.documentList()
-                    .title('Logos')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "logo" || category == "client-logos")')
-                ),
-              S.listItem()
-                .title('Videos (MP4, WebM, MOV)')
-                .id('mediaVideos')
-                .child(
-                  S.documentList()
-                    .title('Videos')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "video" || file.asset._ref match "*-mp4*" || file.asset._ref match "*-webm*" || file.asset._ref match "*-mov*")')
-                ),
-              S.listItem()
-                .title('Documents & PDFs')
-                .id('mediaDocuments')
-                .child(
-                  S.documentList()
-                    .title('Documents & PDFs')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "document" || file.asset._ref match "*-pdf*" || file.asset._ref match "*-doc*")')
-                ),
-              S.listItem()
-                .title('Other Assets')
-                .id('mediaOther')
-                .child(
-                  S.documentList()
-                    .title('Other Assets')
-                    .apiVersion('2024-01-01')
-                    .filter('_type == "mediaItem" && (mediaType == "other" || !defined(mediaType))')
-                ),
-            ])
+          S.documentTypeList('mediaItem')
+            .title('Media Assets (Custom Metadata)')
         ),
 
       // Services
       S.documentTypeListItem('service').title('Services'),
+
+      // Testimonial Library — reusable across all service pages
+      S.documentTypeListItem('testimonial').title('Testimonials Library'),
 
       // Case Studies Listing Page (Hero & Page Content)
       S.listItem()
@@ -306,5 +241,9 @@ export default defineConfig({
       structure: customStructure,
     }),
     visionTool(),
+    // Provides a full Media browser tab in Studio with true bulk drag-and-drop upload
+    // Note: media() automatically registers itself as an asset source — no extra form config needed
+    media(),
   ],
 })
+

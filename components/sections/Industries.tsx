@@ -89,7 +89,7 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
     if (isPaused) return
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % totalDots)
-    }, 3500)
+    }, 6500)
     return () => clearInterval(interval)
   }, [isPaused, totalDots])
 

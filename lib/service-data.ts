@@ -130,6 +130,19 @@ export interface ServiceTestimonial {
   image?: { asset?: { url: string } }
 }
 
+/** Testimonial resolved from a standalone `testimonial` document reference */
+export interface SanityTestimonial {
+  _id: string
+  clientName: string
+  designation: string
+  company?: string
+  quote: string
+  categories?: string[]
+  badge?: string
+  photo?: { asset?: { url: string; metadata?: { dimensions?: { width: number; height: number } } } }
+  clientLogo?: { asset?: { url: string } }
+}
+
 export interface ServiceFAQ {
   question: string
   answer: string
@@ -171,11 +184,15 @@ export interface ServiceData {
   engagementBgImage?: string
   technologyStack?: ServiceTechnologyGroup[]
   trustSection?: ServiceTrustSection
+  /** Legacy single testimonial object */
   testimonial?: ServiceTestimonial
+  /** New: array of referenced testimonial documents (preferred over legacy) */
+  testimonials?: SanityTestimonial[]
   faqs?: ServiceFAQ[]
   finalCTA?: ServiceFinalCTA
   seo?: ServiceSEO
 }
+
 
 // -------------------------------------------------------------
 // 1. AI & DATA ENGINEERING

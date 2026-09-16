@@ -17,27 +17,33 @@ interface ArchitectureProps {
 
 export default function ArchitectureSection({
   title = 'Solution\nArchitecture',
-  intro = 'Enterprise System & Workflow Architecture',
+  intro = 'Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged).',
+  caption = 'Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture',
   imageSrc,
-  caption,
-  isSatyaapan,
   slug = '',
   client,
 }: ArchitectureProps) {
-  const titleLines = title.split('\n')
-  const introLines = intro ? intro.split('\n') : []
-
   const normalizedSlug = slug.toLowerCase().trim()
-  const isSatyaapanProject = normalizedSlug === 'satyapaan' || Boolean(isSatyaapan)
 
-  // Check if there is an actual unique custom uploaded diagram from Sanity
-  const hasCustomSanityImage =
-    Boolean(imageSrc) &&
-    !imageSrc?.includes('arctature-daigram') &&
-    !imageSrc?.includes('satyapaan') &&
-    imageSrc !== '/home-img/satyapaan-min 2.png'
+  // Determine diagram image source (from Sanity or satyapaan webp)
+  const effectiveImageSrc =
+    (imageSrc && imageSrc !== '/home-img/satyapaan-min 2.png')
+      ? imageSrc
+      : (normalizedSlug === 'satyapaan' ? '/casestudy-img/arctature-daigram.webp' : undefined)
 
-  const shouldRenderImage = (isSatyaapanProject && Boolean(imageSrc)) || hasCustomSanityImage
+  const defaultIntro =
+    slug === 'satyapaan'
+      ? 'Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged).'
+      : intro ||
+      'Decoupled, high-concurrency system architecture engineered for automated workflow execution, real-time data verification, and secure exception escalation.'
+
+  const defaultCaption =
+    slug === 'satyapaan'
+      ? 'Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture'
+      : caption || `Figure: ${client || 'Enterprise'} Cloud Architecture & System Infrastructure`
+
+  const titleLines = title.split('\n')
+  const introLines = defaultIntro ? defaultIntro.split('\n') : []
 
   return (
     <section
@@ -46,20 +52,20 @@ export default function ArchitectureSection({
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          {/* Left Column: Title & Subtitle */}
+          {/* Left Column (lg:col-span-4): Badge, Title, Intro & Figure Caption */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-8 self-start"
+            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#02487D] text-xs font-bold uppercase tracking-wider mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#02487D] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#02487D]" />
               <span>System Topology</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-4">
               {titleLines.map((line, idx) => (
                 <span key={idx} className="block">
                   {line}
@@ -67,8 +73,8 @@ export default function ArchitectureSection({
               ))}
             </h2>
 
-            {intro && (
-              <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal">
+            {defaultIntro && (
+              <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal mb-5">
                 {introLines.map((line, idx) => (
                   <span key={idx} className="block">
                     {line}
@@ -77,14 +83,14 @@ export default function ArchitectureSection({
               </p>
             )}
 
-            {caption && (
-              <p className="text-xs text-gray-400 mt-4 font-medium border-l-2 border-blue-200 pl-3">
-                {caption}
+            {defaultCaption && (
+              <p className="text-xs text-gray-400 font-medium border-l-2 border-blue-300 pl-3 leading-relaxed">
+                {defaultCaption}
               </p>
             )}
           </motion.div>
 
-          {/* Right Column: Either uploaded custom image OR dynamic architecture graph diagram */}
+          {/* Right Column (lg:col-span-8): Diagram Image in Container or Vector Fallback */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,10 +98,10 @@ export default function ArchitectureSection({
             transition={{ duration: 0.7, delay: 0.1 }}
             className="lg:col-span-8 w-full"
           >
-            {shouldRenderImage && imageSrc ? (
+            {effectiveImageSrc ? (
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/11] rounded-2xl overflow-hidden bg-white border border-gray-200/80 shadow-xs flex items-center justify-center p-2">
                 <Image
-                  src={imageSrc}
+                  src={effectiveImageSrc}
                   alt={title.replace('\n', ' ')}
                   fill
                   className="object-contain"
