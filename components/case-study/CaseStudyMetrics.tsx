@@ -78,28 +78,45 @@ function PoliceShieldIcon() {
   )
 }
 
+interface MetricItem {
+  value: string
+  label: string
+  description?: string
+}
+
 export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
-  const metrics =
+  const defaultMetrics: MetricItem[] = [
+    {
+      value: '1.96 Million',
+      label: 'Passport applications processed',
+      description: 'Handled at state scale with automated verification checks',
+    },
+    {
+      value: '800+',
+      label: 'High-risk adverse cases identified and intercepted',
+      description: 'Identified fraudulent identities and duplicate applications',
+    },
+    {
+      value: 'AI-Assisted Verification',
+      label: 'Automated data extraction, facial recognition and real-time matching',
+      description: 'Integrated directly with state law enforcement databases',
+    },
+    {
+      value: data?.client || 'Telangana State Police',
+      label: 'client-badge',
+      description: 'Public safety digital transformation initiative',
+    },
+  ]
+
+  const rawMetrics: MetricItem[] =
     Array.isArray(data?.metrics) && data.metrics.length > 0
-      ? data.metrics
-      : [
-          {
-            value: '1.96 Million',
-            label: 'Passport applications processed',
-          },
-          {
-            value: '800+',
-            label: 'High-risk adverse cases identified and intercepted',
-          },
-          {
-            value: 'AI-Assisted Verification',
-            label: 'Automated data extraction, facial recognition and real-time matching',
-          },
-          {
-            value: data?.client || 'Telangana State Police',
-            label: 'client-badge',
-          },
-        ]
+      ? (data.metrics as MetricItem[])
+      : defaultMetrics
+
+  const metrics =
+    rawMetrics.length >= 4
+      ? rawMetrics
+      : [...rawMetrics, ...defaultMetrics.slice(rawMetrics.length)]
 
   return (
     <section className="py-8 sm:py-12 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
@@ -113,7 +130,10 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
 
             const isPoliceShield =
               data?.slug?.current === 'satyapaan' &&
-              (label === 'client-badge' || (!label && !description && idx === 3))
+              (idx === 3 ||
+                val.toLowerCase().includes('telangana') ||
+                label.toLowerCase().includes('police') ||
+                label === 'client-badge')
 
             return (
               <motion.div
@@ -139,22 +159,19 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
 
                 {/* Subtitle / Police Shield / Descriptions */}
                 {isPoliceShield ? (
-                  <PoliceShieldIcon />
+                  <div className="flex flex-col items-center justify-center">
+                    <PoliceShieldIcon />
+                  </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center gap-1 max-w-[240px]">
                     {label && label !== 'client-badge' && (
-                      <p className="text-xs sm:text-sm text-[#475569] font-medium leading-snug">
+                      <p className="text-xs sm:text-sm text-[#475569] leading-snug">
                         {label}
                       </p>
                     )}
                     {description && (
                       <p className="text-xs text-[#64748B] leading-snug">
                         {description}
-                      </p>
-                    )}
-                    {label === 'client-badge' && (
-                      <p className="text-xs sm:text-sm text-[#475569] leading-snug">
-                        {data.client || 'Enterprise Deployment'}
                       </p>
                     )}
                   </div>

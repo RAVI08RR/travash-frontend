@@ -432,8 +432,8 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   location: 'Telangana, India',
   shortDescription:
     'Satyaapan is a web-based passport verification platform developed by Travash to help Telangana State Police automate high-volume identity screening, identify potential anomalies and route applications requiring further investigation to authorized officials.',
-  heroImage: { asset: { url: '/casestudy-thumbs/Satyaapan.png' } },
-  featureImage: '/casestudy-thumbs/Satyaapan.png',
+  heroImage: { asset: { url: '/casestudy-img/Satyaapan-Passport-Verification-System.png' } },
+  featureImage: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
   projectMeta: [
     { label: 'CLIENT', value: 'Telangana State Police' },
     { label: 'SOLUTION', value: 'Satyaapan – Passport Verification System' },
@@ -451,7 +451,7 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
     },
     {
       value: '800+',
-      label: 'High-risk adverse cases intercepted',
+      label: 'High-risk adverse cases identified and intercepted',
       description: 'Identified fraudulent identities and duplicate applications',
     },
     {
@@ -461,7 +461,7 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
     },
     {
       value: 'Telangana State Police',
-      label: 'Client Partner',
+      label: 'client-badge',
       description: 'Public safety digital transformation initiative',
     },
   ],
