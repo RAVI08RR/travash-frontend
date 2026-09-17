@@ -381,8 +381,16 @@ export const caseStudy = defineType({
       ],
     }),
     defineField({
+      name: 'testimonialRef',
+      title: 'Client Testimonial (From Global Testimonials Library)',
+      description: 'Select a testimonial from the global Testimonials list.',
+      type: 'reference',
+      to: [{ type: 'testimonial' }],
+    }),
+    defineField({
       name: 'testimonial',
-      title: 'Client Perspective / Testimonial',
+      title: 'Client Perspective / Testimonial (Custom Override)',
+      description: 'Optional custom testimonial specific to this case study (overrides global testimonial if filled).',
       type: 'object',
       fields: [
         { name: 'quote', title: 'Client Quote', type: 'text', rows: 4 },

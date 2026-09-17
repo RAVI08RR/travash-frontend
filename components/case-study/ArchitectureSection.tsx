@@ -48,18 +48,18 @@ export default function ArchitectureSection({
   return (
     <section
       id="architecture"
-      className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden"
+      className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column (lg:col-span-4): Badge, Title, Intro & Figure Caption */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
-          >
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#02487D] text-xs font-bold uppercase tracking-wider mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#02487D]" />
               <span>System Topology</span>
@@ -89,6 +89,7 @@ export default function ArchitectureSection({
               </p>
             )}
           </motion.div>
+          </div>
 
           {/* Right Column (lg:col-span-8): Diagram Image in Container or Vector Fallback */}
           <motion.div

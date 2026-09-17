@@ -30,26 +30,27 @@ export default function CaseStudyNextStep({
   ]
 
   return (
-    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading & Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
-              {heading}
-            </h2>
-            {subtitle && (
-              <h3 className="text-base sm:text-lg font-bold text-[#0F172A] leading-snug max-w-md">
-                {subtitle}
-              </h3>
-            )}
-          </motion.div>
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
+                {heading}
+              </h2>
+              {subtitle && (
+                <h3 className="text-base sm:text-lg font-bold text-[#0F172A] leading-snug max-w-md">
+                  {subtitle}
+                </h3>
+              )}
+            </motion.div>
+          </div>
 
           {/* Right Column: Paragraphs & Action Buttons matching Screenshot 2 */}
           <motion.div

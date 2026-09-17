@@ -31,38 +31,51 @@ export default function ClientPerspective({
 
   const isI4C = authorLower.includes('i4c') || companyLower.includes('i4c')
 
+  const isDirectOwners =
+    authorLower.includes('david burn') ||
+    companyLower.includes('direct owner')
+
   const defaultImg = isPolice
     ? '/casestudy-img/Telangana_Police_Logo.png.bv.webp'
     : isI4C
       ? '/casestudy-img/I4c.svg'
-      : '/images/avatar-placeholder.svg'
+      : isDirectOwners
+        ? 'https://cdn.sanity.io/images/s2k81yej/production/03e1bfe5c72a898954b3cb4fa01cd0e7b6f8a2d3-350x320.png'
+        : '/images/avatar-placeholder.svg'
 
+  const rawImg =
+    (typeof data?.image === 'string' ? data.image : data?.image?.asset?.url)
   const imgSrc =
-    (typeof data?.image === 'string' ? data.image : data?.image?.asset?.url) || defaultImg
+    rawImg && !rawImg.includes('avatar-placeholder') ? rawImg : defaultImg
 
-  const isLogo = isPolice || isI4C
+  const isLogo =
+    isPolice ||
+    isI4C ||
+    isDirectOwners ||
+    (imgSrc && (imgSrc.endsWith('.svg') || imgSrc.includes('logo') || imgSrc.includes('Logo') || imgSrc.includes('Direct-owners') || isDirectOwners))
 
   return (
-    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Heading & Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-4 lg:sticky lg:top-0 self-start"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
-              {heading}
-            </h2>
-            {intro && (
-              <p className="text-sm sm:text-base text-[#475569] leading-snug font-normal max-w-xs">
-                {intro}
-              </p>
-            )}
-          </motion.div>
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
+                {heading}
+              </h2>
+              {intro && (
+                <p className="text-sm sm:text-base text-[#475569] leading-snug font-normal max-w-xs">
+                  {intro}
+                </p>
+              )}
+            </motion.div>
+          </div>
 
           {/* Right Column: Card matching Screenshot 2 row 1 */}
           <motion.div
@@ -85,20 +98,22 @@ export default function ClientPerspective({
               </div>
 
               <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6 sm:gap-7">
-                {/* Left Badge / Avatar Placeholder */}
+                {/* Left Badge / Avatar / Client Logo */}
                 <div
-                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${isLogo
-                    ? 'bg-gradient-to-b from-[#1D4E89] to-[#0D2C54] p-3'
-                    : 'bg-[#1E3A5F]'
-                    }`}
+                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${
+                    isLogo
+                      ? 'bg-white p-2.5 border border-gray-100'
+                      : 'bg-[#1E3A5F]'
+                  }`}
                 >
                   <Image
                     src={imgSrc}
                     alt={data?.author || 'Client Testimonial'}
                     width={112}
                     height={112}
-                    className={`w-full h-full ${isLogo ? 'object-contain drop-shadow p-1' : 'object-cover'
-                      }`}
+                    className={`w-full h-full ${
+                      isLogo ? 'object-contain' : 'object-cover'
+                    }`}
                   />
                 </div>
 

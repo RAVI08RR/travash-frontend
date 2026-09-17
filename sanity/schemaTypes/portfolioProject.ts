@@ -347,8 +347,15 @@ export const portfolioProject = defineType({
       ],
     }),
     defineField({
+      name: 'testimonialRef',
+      title: 'Client Testimonial (From Global Testimonials Library)',
+      description: 'Select a testimonial from the global Testimonials list.',
+      type: 'reference',
+      to: [{ type: 'testimonial' }],
+    }),
+    defineField({
       name: 'testimonial',
-      title: 'Client Testimonial',
+      title: 'Client Testimonial (Custom Override)',
       type: 'object',
       fields: [
         defineField({ name: 'quote', title: 'Quote', type: 'text' }),

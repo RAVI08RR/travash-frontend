@@ -251,7 +251,7 @@ export default async function CaseStudyPage({
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-clip">
+      <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif]">
         {/* 1. Hero Section with Metadata Stack & Mockup */}
         <CaseStudyHero data={caseStudy} />
 

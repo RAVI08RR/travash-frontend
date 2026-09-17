@@ -64,6 +64,15 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
           (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
           { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
       },
+      testimonial: raw?.testimonial && raw.testimonial.quote
+        ? {
+            quote: raw.testimonial.quote,
+            author: raw.testimonial.author || raw.testimonial.name || fallback.testimonial?.author || 'Executive Stakeholder',
+            role: raw.testimonial.role || raw.testimonial.designation || fallback.testimonial?.role,
+            company: raw.testimonial.company || fallback.testimonial?.company || fallback.title,
+            image: raw.testimonial.image || fallback.testimonial?.image,
+          }
+        : fallback.testimonial,
       content: fallback.content || [],
       seo: {
         ...fallback.seo,
@@ -428,7 +437,7 @@ export default async function PortfolioProjectDetailPage({
   return (
     <>
       <Navbar settings={siteSettings} />
-      <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] overflow-x-clip">
+      <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif]">
         {/* 1. Hero Section with Metadata Stack & Mockup */}
         <CaseStudyHero data={caseStudy} />
 

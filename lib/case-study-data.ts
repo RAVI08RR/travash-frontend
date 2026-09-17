@@ -914,7 +914,11 @@ export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
     author: 'David Burn',
     role: 'Owner',
     company: 'Direct Owners',
-    image: { asset: { url: '/images/avatar-placeholder.svg' } },
+    image: {
+      asset: {
+        url: 'https://cdn.sanity.io/images/s2k81yej/production/03e1bfe5c72a898954b3cb4fa01cd0e7b6f8a2d3-350x320.png',
+      },
+    },
   },
   whyItMatters: {
     title: 'Why This Matters for Hospitality & Rentals',

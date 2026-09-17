@@ -138,13 +138,27 @@ export const portfolioProjectBySlugQuery = groq`
       description
     },
     "metrics": coalesce(metrics[] { value, label, description }, []),
-    testimonial {
-      quote,
-      name,
-      designation,
-      company,
-      image ${imageFragment}
-    },
+    "testimonial": select(
+      defined(testimonialRef._ref) => testimonialRef-> {
+        "quote": quote,
+        "author": coalesce(clientName, author, name),
+        "name": coalesce(clientName, author, name),
+        "designation": coalesce(designation, role),
+        "role": coalesce(designation, role),
+        "company": company,
+        "image": coalesce(photo ${imageFragment}, clientLogo ${imageFragment}, avatarImage ${imageFragment})
+      },
+      defined(testimonial.quote) => {
+        "quote": testimonial.quote,
+        "author": coalesce(testimonial.author, testimonial.name, testimonial.clientName),
+        "name": coalesce(testimonial.name, testimonial.author, testimonial.clientName),
+        "designation": coalesce(testimonial.designation, testimonial.role),
+        "role": coalesce(testimonial.role, testimonial.designation),
+        "company": testimonial.company,
+        "image": coalesce(testimonial.image ${imageFragment}, testimonial.photo ${imageFragment}, testimonial.clientLogo ${imageFragment})
+      },
+      null
+    ),
     // Also include legacy case study fields if available for backward compatibility
     executiveSummary {
       title,
