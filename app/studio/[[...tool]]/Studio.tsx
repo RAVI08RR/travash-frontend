@@ -1,20 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { NextStudio } from 'next-sanity/studio'
+import dynamic from 'next/dynamic'
 import config from '@/sanity.config'
 
+// NextStudio uses useMemo internally — dynamic import with ssr:false ensures
+// it only ever mounts client-side, preventing hook dependency size mismatch
+// between SSR (returns null → 0 deps) and client (mounts with deps).
+const NextStudioDynamic = dynamic(
+  () => import('next-sanity/studio').then((mod) => mod.NextStudio),
+  { ssr: false, loading: () => null }
+)
+
 export function Studio() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
-
-  return <NextStudio config={config} />
+  return <NextStudioDynamic config={config} />
 }
-
