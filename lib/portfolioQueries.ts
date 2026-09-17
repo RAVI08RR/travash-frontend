@@ -175,6 +175,11 @@ export const portfolioProjectBySlugQuery = groq`
       points,
       takeaway
     },
+    complexity {
+      title,
+      intro,
+      items[] { title, description, icon }
+    },
     approach {
       title,
       subtitle,
@@ -189,11 +194,42 @@ export const portfolioProjectBySlugQuery = groq`
       description,
       items[] { title, description }
     },
+    solutionArchitecture {
+      title,
+      intro,
+      image ${imageFragment},
+      caption
+    },
     impact {
       title,
       subtitle,
       content,
       outcomes
+    },
+    beforeAfter {
+      title,
+      subtitle,
+      beforeTitle,
+      afterTitle,
+      before,
+      after
+    },
+    whyItMatters {
+      title,
+      subtitle,
+      description,
+      items
+    },
+    nextStep {
+      heading,
+      subtitle,
+      content,
+      primaryCTA { label, href },
+      secondaryCTA { label, href }
+    },
+    contact {
+      heading,
+      description
     },
     technologyStack[] {
       category,

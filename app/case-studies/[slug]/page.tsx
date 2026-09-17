@@ -148,9 +148,35 @@ async function getCaseStudyData(slug: string) {
             ...fallback,
             _id: study?._id || fallback._id,
             slug: fallback.slug || { current: slug },
+            title: (typeof study?.title === 'string' && study.title.trim()) || fallback.title,
+            eyebrow: study?.eyebrow || fallback.eyebrow,
+            category: study?.category || fallback.category,
+            industry: industryStr || fallback.industry,
+            client: clientStr || fallback.client,
+            location: study?.location || fallback.location,
+            shortDescription: study?.shortDescription || fallback.shortDescription,
             heroImage: study?.featuredImage || study?.heroImage || fallback.heroImage,
             featureImage: study?.featuredImage || study?.featureImage || fallback.featureImage,
             gallery: combinedGallery,
+            projectMeta:
+              Array.isArray(study?.projectMeta) && study.projectMeta.length > 0
+                ? study.projectMeta
+                : fallback.projectMeta,
+            metrics:
+              Array.isArray(study?.metrics) && study.metrics.length > 0
+                ? study.metrics
+                : fallback.metrics,
+            executiveSummary: study?.executiveSummary
+              ? {
+                  ...fallback.executiveSummary,
+                  ...study.executiveSummary,
+                  paragraphs:
+                    Array.isArray(study.executiveSummary.paragraphs) &&
+                    study.executiveSummary.paragraphs.length > 0
+                      ? study.executiveSummary.paragraphs
+                      : fallback.executiveSummary?.paragraphs,
+                }
+              : fallback.executiveSummary,
             challenge: study?.challenge
               ? {
                   ...fallback.challenge,
@@ -161,6 +187,16 @@ async function getCaseStudyData(slug: string) {
                       : fallback.challenge?.points,
                 }
               : fallback.challenge,
+            complexity: study?.complexity
+              ? {
+                  ...fallback.complexity,
+                  ...study.complexity,
+                  items:
+                    Array.isArray(study.complexity.items) && study.complexity.items.length > 0
+                      ? study.complexity.items
+                      : fallback.complexity?.items,
+                }
+              : fallback.complexity,
             approach: study?.approach
               ? {
                   ...fallback.approach,
@@ -183,26 +219,91 @@ async function getCaseStudyData(slug: string) {
               : fallback.solution,
             solutionArchitecture: {
               ...fallback.solutionArchitecture,
+              ...(study?.solutionArchitecture || {}),
               image:
                 study?.solutionArchitecture?.image ||
                 fallback.solutionArchitecture?.image ||
                 (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
                 { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
             },
+            technologyStack:
+              Array.isArray(study?.technologyStack) && study.technologyStack.length > 0
+                ? study.technologyStack
+                : fallback.technologyStack,
+            impact: study?.impact
+              ? {
+                  ...fallback.impact,
+                  ...study.impact,
+                  outcomes:
+                    Array.isArray(study.impact.outcomes) && study.impact.outcomes.length > 0
+                      ? study.impact.outcomes
+                      : fallback.impact?.outcomes,
+                }
+              : fallback.impact,
+            beforeAfter: study?.beforeAfter
+              ? {
+                  ...fallback.beforeAfter,
+                  ...study.beforeAfter,
+                  before:
+                    Array.isArray(study.beforeAfter.before) && study.beforeAfter.before.length > 0
+                      ? study.beforeAfter.before
+                      : fallback.beforeAfter?.before,
+                  after:
+                    Array.isArray(study.beforeAfter.after) && study.beforeAfter.after.length > 0
+                      ? study.beforeAfter.after
+                      : fallback.beforeAfter?.after,
+                }
+              : fallback.beforeAfter,
             testimonial: study?.testimonial && study.testimonial.quote
               ? {
+                  heading: study.testimonial.heading || fallback.testimonial?.heading,
+                  intro: study.testimonial.intro || fallback.testimonial?.intro,
                   quote: study.testimonial.quote,
-                  author: study.testimonial.author || study.testimonial.name || fallback.testimonial?.author || 'Executive Stakeholder',
-                  role: study.testimonial.role || study.testimonial.designation || fallback.testimonial?.role,
-                  company: study.testimonial.company || fallback.testimonial?.company || fallback.title,
+                  author:
+                    study.testimonial.author ||
+                    study.testimonial.name ||
+                    fallback.testimonial?.author ||
+                    'Executive Stakeholder',
+                  role:
+                    study.testimonial.role ||
+                    study.testimonial.designation ||
+                    fallback.testimonial?.role,
+                  company:
+                    study.testimonial.company ||
+                    fallback.testimonial?.company ||
+                    fallback.title,
                   image: study.testimonial.image || fallback.testimonial?.image,
                 }
               : fallback.testimonial,
+            whyItMatters: study?.whyItMatters
+              ? {
+                  ...fallback.whyItMatters,
+                  ...study.whyItMatters,
+                  items:
+                    Array.isArray(study.whyItMatters.items) && study.whyItMatters.items.length > 0
+                      ? study.whyItMatters.items
+                      : fallback.whyItMatters?.items,
+                }
+              : fallback.whyItMatters,
+            nextStep: study?.nextStep
+              ? {
+                  ...fallback.nextStep,
+                  ...study.nextStep,
+                }
+              : fallback.nextStep,
+            contact: (study as any)?.contact || (fallback as any).contact,
             content: fallback.content || [],
             seo: {
               ...fallback.seo,
-              metaTitle: fallback.seo?.metaTitle || `${fallback.title} | Travash Software Solutions`,
-              metaDescription: fallback.seo?.metaDescription || fallback.shortDescription,
+              metaTitle:
+                study?.seo?.metaTitle ||
+                fallback.seo?.metaTitle ||
+                `${fallback.title} | Travash Software Solutions`,
+              metaDescription:
+                study?.seo?.metaDescription ||
+                fallback.seo?.metaDescription ||
+                fallback.shortDescription,
+              ogImage: study?.seo?.ogImage || fallback.seo?.ogImage,
             },
           }
         : study

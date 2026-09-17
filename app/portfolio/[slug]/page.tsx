@@ -53,17 +53,35 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
       ...fallback,
       _id: raw?._id || fallback._id,
       slug: fallback.slug || { current: slug },
+      title: (typeof raw?.title === 'string' && raw.title.trim()) || fallback.title,
+      eyebrow: raw?.eyebrow || fallback.eyebrow,
+      category: raw?.category || fallback.category,
+      industry: (typeof raw?.industry === 'string' ? raw.industry : raw?.industry?.title || raw?.industry?.name) || fallback.industry,
+      client: (typeof raw?.client === 'string' ? raw.client : raw?.client?.title || raw?.client?.name) || fallback.client,
+      location: raw?.location || fallback.location,
+      shortDescription: raw?.shortDescription || fallback.shortDescription,
       heroImage: raw?.featuredImage || raw?.heroImage || fallback.heroImage,
-      featureImage: raw?.featuredImage || raw?.heroImage || fallback.featureImage,
+      featureImage: raw?.featuredImage || raw?.featureImage || fallback.featureImage,
       gallery: combinedGallery,
-      solutionArchitecture: {
-        ...fallback.solutionArchitecture,
-        image:
-          raw?.solutionArchitecture?.image ||
-          fallback.solutionArchitecture?.image ||
-          (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
-          { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
-      },
+      projectMeta:
+        Array.isArray(raw?.projectMeta) && raw.projectMeta.length > 0
+          ? raw.projectMeta
+          : fallback.projectMeta,
+      metrics:
+        Array.isArray(raw?.metrics) && raw.metrics.length > 0
+          ? raw.metrics
+          : fallback.metrics,
+      executiveSummary: raw?.executiveSummary
+        ? {
+            ...fallback.executiveSummary,
+            ...raw.executiveSummary,
+            paragraphs:
+              Array.isArray(raw.executiveSummary.paragraphs) &&
+              raw.executiveSummary.paragraphs.length > 0
+                ? raw.executiveSummary.paragraphs
+                : fallback.executiveSummary?.paragraphs,
+          }
+        : fallback.executiveSummary,
       challenge: raw?.challenge
         ? {
             ...fallback.challenge,
@@ -74,6 +92,16 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
                 : fallback.challenge?.points,
           }
         : fallback.challenge,
+      complexity: raw?.complexity
+        ? {
+            ...fallback.complexity,
+            ...raw.complexity,
+            items:
+              Array.isArray(raw.complexity.items) && raw.complexity.items.length > 0
+                ? raw.complexity.items
+                : fallback.complexity?.items,
+          }
+        : fallback.complexity,
       approach: raw?.approach
         ? {
             ...fallback.approach,
@@ -94,20 +122,93 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
                 : fallback.solution?.items,
           }
         : fallback.solution,
+      solutionArchitecture: {
+        ...fallback.solutionArchitecture,
+        ...(raw?.solutionArchitecture || {}),
+        image:
+          raw?.solutionArchitecture?.image ||
+          fallback.solutionArchitecture?.image ||
+          (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
+          { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
+      },
+      technologyStack:
+        Array.isArray(raw?.technologyStack) && raw.technologyStack.length > 0
+          ? raw.technologyStack
+          : fallback.technologyStack,
+      impact: raw?.impact
+        ? {
+            ...fallback.impact,
+            ...raw.impact,
+            outcomes:
+              Array.isArray(raw.impact.outcomes) && raw.impact.outcomes.length > 0
+                ? raw.impact.outcomes
+                : fallback.impact?.outcomes,
+          }
+        : fallback.impact,
+      beforeAfter: raw?.beforeAfter
+        ? {
+            ...fallback.beforeAfter,
+            ...raw.beforeAfter,
+            before:
+              Array.isArray(raw.beforeAfter.before) && raw.beforeAfter.before.length > 0
+                ? raw.beforeAfter.before
+                : fallback.beforeAfter?.before,
+            after:
+              Array.isArray(raw.beforeAfter.after) && raw.beforeAfter.after.length > 0
+                ? raw.beforeAfter.after
+                : fallback.beforeAfter?.after,
+          }
+        : fallback.beforeAfter,
       testimonial: raw?.testimonial && raw.testimonial.quote
         ? {
+            heading: raw.testimonial.heading || fallback.testimonial?.heading,
+            intro: raw.testimonial.intro || fallback.testimonial?.intro,
             quote: raw.testimonial.quote,
-            author: raw.testimonial.author || raw.testimonial.name || fallback.testimonial?.author || 'Executive Stakeholder',
-            role: raw.testimonial.role || raw.testimonial.designation || fallback.testimonial?.role,
-            company: raw.testimonial.company || fallback.testimonial?.company || fallback.title,
+            author:
+              raw.testimonial.author ||
+              raw.testimonial.name ||
+              fallback.testimonial?.author ||
+              'Executive Stakeholder',
+            role:
+              raw.testimonial.role ||
+              raw.testimonial.designation ||
+              fallback.testimonial?.role,
+            company:
+              raw.testimonial.company ||
+              fallback.testimonial?.company ||
+              fallback.title,
             image: raw.testimonial.image || fallback.testimonial?.image,
           }
         : fallback.testimonial,
+      whyItMatters: raw?.whyItMatters
+        ? {
+            ...fallback.whyItMatters,
+            ...raw.whyItMatters,
+            items:
+              Array.isArray(raw.whyItMatters.items) && raw.whyItMatters.items.length > 0
+                ? raw.whyItMatters.items
+                : fallback.whyItMatters?.items,
+          }
+        : fallback.whyItMatters,
+      nextStep: raw?.nextStep
+        ? {
+            ...fallback.nextStep,
+            ...raw.nextStep,
+          }
+        : fallback.nextStep,
+      contact: (raw as any)?.contact || (fallback as any).contact,
       content: fallback.content || [],
       seo: {
         ...fallback.seo,
-        metaTitle: fallback.seo?.metaTitle || `${fallback.title} | Travash Software Solutions`,
-        metaDescription: fallback.seo?.metaDescription || fallback.shortDescription,
+        metaTitle:
+          raw?.seo?.metaTitle ||
+          fallback.seo?.metaTitle ||
+          `${fallback.title} | Travash Software Solutions`,
+        metaDescription:
+          raw?.seo?.metaDescription ||
+          fallback.seo?.metaDescription ||
+          fallback.shortDescription,
+        ogImage: raw?.seo?.ogImage || fallback.seo?.ogImage,
       },
     }
   }
