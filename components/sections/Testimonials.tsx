@@ -92,10 +92,17 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
             AUTHOR_PHOTOS[cleanKey] ||
             fb.authorPhoto
 
+          let title = t.authorTitle || fb.authorTitle
+          if (t.authorCompany && title && !title.toLowerCase().includes(t.authorCompany.trim().toLowerCase())) {
+            title = `${title} · ${t.authorCompany.trim()}`
+          } else if (!title && t.authorCompany) {
+            title = t.authorCompany.trim()
+          }
+
           return {
             quote: t.quote || fb.quote,
             authorName: name,
-            authorTitle: t.authorTitle || fb.authorTitle,
+            authorTitle: title,
             authorPhoto: resolvedPhoto,
           }
         })

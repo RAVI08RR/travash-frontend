@@ -124,13 +124,31 @@ export const homePageQuery = groq`
         *[_type == "homePage"][0].testimonials
       ) {
         heading,
-        testimonials[] {
-          quote,
-          authorName,
-          authorTitle,
-          authorCompany,
-          authorPhoto ${imageFragment}
-        }
+        "testimonials": select(
+          defined(selectedTestimonials) && count(selectedTestimonials) > 0 => selectedTestimonials[]-> {
+            quote,
+            "authorName": coalesce(clientName, authorName, name),
+            "authorTitle": coalesce(
+              select(defined(designation) && defined(company) => designation + " · " + company, designation),
+              authorTitle,
+              role
+            ),
+            "authorCompany": coalesce(company, authorCompany),
+            "authorPhoto": coalesce(photo ${imageFragment}, authorPhoto ${imageFragment}, clientLogo ${imageFragment})
+          },
+          testimonials[] {
+            "quote": coalesce(quote, @->quote),
+            "authorName": coalesce(authorName, @->clientName, @->authorName, @->name),
+            "authorTitle": coalesce(
+              authorTitle,
+              select(defined(@->designation) && defined(@->company) => @->designation + " · " + @->company, @->designation),
+              @->authorTitle,
+              @->role
+            ),
+            "authorCompany": coalesce(authorCompany, @->company, @->authorCompany),
+            "authorPhoto": coalesce(authorPhoto ${imageFragment}, @->photo ${imageFragment}, @->clientLogo ${imageFragment})
+          }
+        )
       },
       "about": coalesce(
         *[_id == "aboutSection"][0],
