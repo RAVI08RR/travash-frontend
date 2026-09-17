@@ -61,7 +61,7 @@ body {
   font-family: var(--font-sans);
   background: #ffffff;
   color: #1F2937;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
   padding: 0;
   overflow-x: clip;
@@ -69,8 +69,8 @@ body {
 }
 
 p {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 /* Hero Title Gradient */

@@ -342,6 +342,22 @@ export const caseStudy = defineType({
       ],
     }),
     defineField({
+      name: 'techStackTitle',
+      title: 'Technology Stack Section Title',
+      type: 'string',
+      initialValue: 'Enterprise Technology Stack',
+      description: 'Heading for technology stack section (defaults to "Enterprise Technology Stack")',
+    }),
+    defineField({
+      name: 'techStackSubtitle',
+      title: 'Technology Stack Section Subtitle / Intro',
+      type: 'text',
+      rows: 2,
+      initialValue:
+        'To deliver a robust custom software solution capable of processing millions of records securely, we utilised a highly resilient tech stack:',
+      description: 'Intro narrative text above technology cards',
+    }),
+    defineField({
       name: 'technologyStack',
       title: 'Enterprise Technology Stack',
       type: 'array',

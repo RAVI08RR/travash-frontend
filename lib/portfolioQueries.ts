@@ -208,6 +208,13 @@ export const portfolioProjectBySlugQuery = groq`
       image ${imageFragment},
       caption
     },
+    techStackTitle,
+    techStackSubtitle,
+    technologyStack[] {
+      category,
+      technologies,
+      description
+    },
     impact {
       title,
       subtitle,

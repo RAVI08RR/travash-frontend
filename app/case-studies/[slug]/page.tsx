@@ -236,6 +236,8 @@ async function getCaseStudyData(slug: string) {
                 (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
                 { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
             },
+            techStackTitle: study?.techStackTitle || (fallback as any)?.techStackTitle,
+            techStackSubtitle: study?.techStackSubtitle || (fallback as any)?.techStackSubtitle,
             technologyStack:
               Array.isArray(study?.technologyStack) && study.technologyStack.length > 0
                 ? study.technologyStack
@@ -522,7 +524,11 @@ export default async function CaseStudyPage({
         />
 
         {/* 10. Enterprise Technology Stack */}
-        <TechnologyStack items={caseStudy.technologyStack} />
+        <TechnologyStack
+          title={caseStudy.techStackTitle || 'Enterprise\nTechnology Stack'}
+          subtitle={caseStudy.techStackSubtitle}
+          items={caseStudy.technologyStack}
+        />
 
         {/* 11. The Impact */}
         {caseStudy.impact && (

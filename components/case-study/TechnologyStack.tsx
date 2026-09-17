@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import StackIcon from 'tech-stack-icons'
 
@@ -16,6 +17,28 @@ interface TechnologyStackProps {
 }
 
 import { VALID_TECH_ICONS } from '@/lib/valid-tech-icons'
+
+const LOCAL_TECH_ICONS: Record<string, string> = {
+  mysql: '/casestudy-img/mysql-1.svg',
+  'mysql enterprise': '/casestudy-img/mysql-1.svg',
+  java: '/casestudy-img/Java.svg',
+  html5: '/casestudy-img/HTML5.svg',
+  html: '/casestudy-img/HTML5.svg',
+  css3: '/casestudy-img/CSS3-1.svg',
+  css: '/casestudy-img/CSS3-1.svg',
+  jquery: '/casestudy-img/jQuery.svg',
+}
+
+function getLocalTechIcon(tech: string): string | null {
+  const clean = tech.toLowerCase().trim()
+  if (LOCAL_TECH_ICONS[clean]) return LOCAL_TECH_ICONS[clean]
+  for (const [key, path] of Object.entries(LOCAL_TECH_ICONS)) {
+    if (clean === key || clean.startsWith(key + ' ') || clean.endsWith(' ' + key)) {
+      return path
+    }
+  }
+  return null
+}
 
 // Mapping aliases and variations to exact valid tech-stack-icons names
 const TECH_ICON_MAP: Record<string, string> = {
@@ -112,6 +135,7 @@ const TECH_ICON_MAP: Record<string, string> = {
   aws: 'aws',
   'aws s3': 'aws',
   'aws kms': 'aws',
+  'aws cloud': 'aws',
   azure: 'azure',
   gcp: 'gcloud',
   'google cloud': 'gcloud',
@@ -126,6 +150,8 @@ const TECH_ICON_MAP: Record<string, string> = {
   rabbitmq: 'rabbitmq',
   git: 'git',
   github: 'github',
+  'github actions': 'github',
+  'github actions ci/cd': 'github',
   gitlab: 'gitlab',
   vault: 'vault',
   'hashicorp vault': 'vault',
@@ -243,10 +269,22 @@ export default function TechnologyStack({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {stackCategories.map((cat, idx) => {
-                const iconItems: { original: string; icon: string }[] = []
+                const iconItems: { original: string; icon?: string; localSrc?: string }[] = []
                 const pillItems: string[] = []
 
-                cat.technologies.forEach((tech) => {
+                const techs: string[] = Array.isArray(cat?.technologies)
+                  ? cat.technologies.map((t: any) => (typeof t === 'string' ? t : t?.name || t?.title || '')).filter(Boolean)
+                  : typeof (cat as any)?.technologies === 'string'
+                    ? (cat as any).technologies.split(',').map((s: string) => s.trim()).filter(Boolean)
+                    : []
+
+                techs.forEach((tech) => {
+                  const localSvg = getLocalTechIcon(tech)
+                  if (localSvg) {
+                    iconItems.push({ original: tech, localSrc: localSvg })
+                    return
+                  }
+
                   const iconName = resolveTechIcon(tech)
                   if (iconName && VALID_TECH_ICONS.has(iconName) && tech.length <= 32) {
                     iconItems.push({ original: tech, icon: iconName })
@@ -272,6 +310,7 @@ export default function TechnologyStack({
                         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full">
                           {iconItems.map((item, tIdx) => {
                             const isDatabaseWide =
+                              item.localSrc?.includes('mysql') ||
                               item.icon === 'mysql' ||
                               (iconItems.length === 1 && (item.icon === 'postgresql' || item.icon === 'mongodb'))
 
@@ -292,15 +331,23 @@ export default function TechnologyStack({
                                     : iconItems.length <= 2
                                       ? 'w-10 h-10 sm:w-12 sm:h-12'
                                       : 'w-8 h-8 sm:w-10 sm:h-10'
-                                    } flex items-center justify-center`}
+                                    } flex items-center justify-center relative`}
                                 >
-                                  {VALID_TECH_ICONS.has(item.icon) ? (
+                                  {item.localSrc ? (
+                                    <Image
+                                      src={item.localSrc}
+                                      alt={item.original}
+                                      width={isDatabaseWide ? 120 : 48}
+                                      height={isDatabaseWide ? 40 : 48}
+                                      className="w-full h-full object-contain"
+                                    />
+                                  ) : item.icon && VALID_TECH_ICONS.has(item.icon) ? (
                                     <StackIcon
                                       name={item.icon as any}
                                       className="w-full h-full object-contain"
                                     />
                                   ) : (
-                                    <span className="text-xs font-semibold text-gray-700">{item.original}</span>
+                                    <span className="text-xs font-semibold text-gray-700 text-center">{item.original}</span>
                                   )}
                                 </div>
                               </div>

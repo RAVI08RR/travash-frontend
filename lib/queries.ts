@@ -265,6 +265,8 @@ export const caseStudyBySlugQuery = groq`
       image ${imageFragment},
       caption
     },
+    techStackTitle,
+    techStackSubtitle,
     technologyStack[] {
       category,
       technologies,

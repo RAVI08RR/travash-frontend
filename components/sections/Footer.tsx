@@ -110,7 +110,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
 
   return (
     <footer className="bg-white text-gray-700 border-t border-gray-200">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      <div className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Column 1: Brand, Socials & Legal */}
           <div className="lg:col-span-3 flex flex-col justify-between gap-6">

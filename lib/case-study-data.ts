@@ -66,6 +66,8 @@ export interface CaseStudyData {
     caption?: string
     isSatyaapan?: boolean
   }
+  techStackTitle?: string
+  techStackSubtitle?: string
   technologyStack?: {
     category: string
     technologies: string[]
