@@ -287,6 +287,15 @@ export const caseStudyBySlugQuery = groq`
     techStackSubtitle,
     technologyStack[] {
       category,
+      displayType,
+      items[] {
+        _type,
+        "name": coalesce(name, @),
+        icon,
+        customImage ${imageFragment},
+        "text": coalesce(text, @),
+        badge
+      },
       technologies,
       description
     },

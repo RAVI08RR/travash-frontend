@@ -360,22 +360,115 @@ export const caseStudy = defineType({
     defineField({
       name: 'technologyStack',
       title: 'Enterprise Technology Stack',
+      description:
+        'Configure technology categories. In each category, you can choose icons (from library or custom image upload) OR free-hand text cards.',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'category', title: 'Category (e.g. Backend / Frameworks)', type: 'string' },
-            {
-              name: 'technologies',
-              title: 'Technologies',
+            defineField({
+              name: 'category',
+              title: 'Category (e.g. BACKEND ARCHITECTURE, DATABASE INFRASTRUCTURE, FRONTEND INTERFACE, ADVANCED INTEGRATIONS & AI AUTOMATION)',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'displayType',
+              title: 'Display Style',
+              type: 'string',
+              description: 'Select how this category presents its content',
+              options: {
+                list: [
+                  { title: 'Auto (Icons if known/valid, text cards for custom free-hand text)', value: 'auto' },
+                  { title: 'Icons / Logos Grid', value: 'icons' },
+                  { title: 'Text Cards (Free-hand text boxes / badges)', value: 'text' },
+                ],
+                layout: 'radio',
+              },
+              initialValue: 'auto',
+            }),
+            defineField({
+              name: 'items',
+              title: 'Category Items (Icons or Free-hand Text)',
               type: 'array',
+              description:
+                'Add icons or free-hand text. Give user full flexibility to add anything!',
+              of: [
+                {
+                  type: 'object',
+                  name: 'techIconItem',
+                  title: 'Icon / Logo Item',
+                  fields: [
+                    {
+                      name: 'name',
+                      title: 'Technology Name (e.g. Java, Laravel, MySQL, HTML5, CSS3, jQuery, React, Node.js)',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'icon',
+                      title: 'Icon Key / Identifier (Optional)',
+                      type: 'string',
+                      description: 'e.g. java, laravel, mysql, html5, css3, jquery, react, nodejs, python, aws',
+                    },
+                    {
+                      name: 'customImage',
+                      title: 'Custom Icon / Logo Image (Optional)',
+                      type: 'image',
+                      description: 'Upload any custom SVG, PNG or WebP logo icon free-hand',
+                      options: { hotspot: true },
+                    },
+                  ],
+                  preview: {
+                    select: { title: 'name', media: 'customImage' },
+                  },
+                },
+                {
+                  type: 'object',
+                  name: 'techTextItem',
+                  title: 'Free-hand Text / Card Item',
+                  fields: [
+                    {
+                      name: 'text',
+                      title: 'Text Content (Free-hand)',
+                      type: 'text',
+                      rows: 3,
+                      description: 'e.g. "DARPAN technology, AFIS (Automated Fingerprint Identification System)"',
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'badge',
+                      title: 'Optional Badge / Label',
+                      type: 'string',
+                    },
+                  ],
+                  preview: {
+                    select: { title: 'text', subtitle: 'badge' },
+                  },
+                },
+                {
+                  type: 'string',
+                  title: 'Quick Text / Tech Name',
+                },
+              ],
+            }),
+            defineField({
+              name: 'technologies',
+              title: 'Technologies (Quick List / Legacy Fallback)',
+              type: 'array',
+              description:
+                'Simple string list of technologies or free-hand text (e.g. Java, Laravel)',
               of: [{ type: 'string' }],
-            },
-            { name: 'description', title: 'Usage Context / Description', type: 'string' },
+            }),
+            defineField({
+              name: 'description',
+              title: 'Usage Context / Description (Optional)',
+              type: 'string',
+            }),
           ],
           preview: {
-            select: { title: 'category' },
+            select: { title: 'category', subtitle: 'displayType' },
           },
         },
       ],

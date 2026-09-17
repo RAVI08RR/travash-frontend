@@ -248,6 +248,15 @@ export const portfolioProjectBySlugQuery = groq`
     },
     technologyStack[] {
       category,
+      displayType,
+      items[] {
+        _type,
+        "name": coalesce(name, @),
+        icon,
+        customImage ${imageFragment},
+        "text": coalesce(text, @),
+        badge
+      },
       technologies,
       description
     },

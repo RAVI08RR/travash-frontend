@@ -4,9 +4,20 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import StackIcon from 'tech-stack-icons'
 
+export interface TechStackItem {
+  _type?: string
+  name?: string
+  icon?: string
+  customImage?: { asset?: { url: string } } | string
+  text?: string
+  badge?: string
+}
+
 export interface TechnologyCategory {
   category: string
-  technologies: string[]
+  displayType?: 'auto' | 'icons' | 'text'
+  items?: (TechStackItem | string)[]
+  technologies?: (string | TechStackItem)[]
   description?: string
 }
 
@@ -27,9 +38,11 @@ const LOCAL_TECH_ICONS: Record<string, string> = {
   css3: '/casestudy-img/CSS3-1.svg',
   css: '/casestudy-img/CSS3-1.svg',
   jquery: '/casestudy-img/jQuery.svg',
+  laravel: '/casestudy-img/laravel-icon-1990x2048-xawylrh0-292x300.png.bv.webp',
 }
 
 function getLocalTechIcon(tech: string): string | null {
+  if (!tech || typeof tech !== 'string') return null
   const clean = tech.toLowerCase().trim()
   if (LOCAL_TECH_ICONS[clean]) return LOCAL_TECH_ICONS[clean]
   for (const [key, path] of Object.entries(LOCAL_TECH_ICONS)) {
@@ -200,19 +213,41 @@ function resolveTechIcon(tech: string): string | null {
 
 const DEFAULT_FALLBACK_STACK: TechnologyCategory[] = [
   {
-    category: 'Backend Architecture',
+    category: 'BACKEND ARCHITECTURE',
+    displayType: 'icons',
+    items: [
+      { name: 'Java', icon: 'java' },
+      { name: 'Laravel', icon: 'laravel' },
+    ],
     technologies: ['Java', 'Laravel'],
   },
   {
-    category: 'Database Infrastructure',
+    category: 'DATABASE INFRASTRUCTURE',
+    displayType: 'icons',
+    items: [{ name: 'MySQL', icon: 'mysql' }],
     technologies: ['MySQL Enterprise'],
   },
   {
-    category: 'Frontend Interface',
+    category: 'FRONTEND INTERFACE',
+    displayType: 'icons',
+    items: [
+      { name: 'HTML5', icon: 'html5' },
+      { name: 'CSS3', icon: 'css3' },
+      { name: 'jQuery', icon: 'jquery' },
+    ],
     technologies: ['HTML5', 'CSS3', 'jQuery'],
   },
   {
-    category: 'Advanced Integrations & AI Automation',
+    category: 'ADVANCED INTEGRATIONS & AI AUTOMATION',
+    displayType: 'text',
+    items: [
+      {
+        text: 'DARPAN technology, AFIS (Automated Fingerprint Identification System)',
+      },
+      {
+        text: 'Artificial Intelligence, Automated Data Extraction, Advanced Facial Recognition, Real-Time Matching',
+      },
+    ],
     technologies: [
       'DARPAN technology, AFIS (Automated Fingerprint Identification System)',
       'Artificial Intelligence, Automated Data Extraction, Advanced Facial Recognition, Real-Time Matching',
@@ -269,41 +304,175 @@ export default function TechnologyStack({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {stackCategories.map((cat, idx) => {
-                const iconItems: { original: string; icon?: string; localSrc?: string }[] = []
-                const pillItems: string[] = []
+                const iconItems: {
+                  original: string
+                  icon?: string
+                  localSrc?: string
+                  customImageUrl?: string
+                }[] = []
+                const pillItems: { text: string; badge?: string }[] = []
 
-                const techs: string[] = Array.isArray(cat?.technologies)
-                  ? cat.technologies.map((t: any) => (typeof t === 'string' ? t : t?.name || t?.title || '')).filter(Boolean)
-                  : typeof (cat as any)?.technologies === 'string'
-                    ? (cat as any).technologies.split(',').map((s: string) => s.trim()).filter(Boolean)
-                    : []
+                // Combine both items and technologies arrays seamlessly
+                const rawItems: any[] = []
+                if (Array.isArray(cat?.items) && cat.items.length > 0) {
+                  rawItems.push(...cat.items)
+                }
+                if (Array.isArray(cat?.technologies) && cat.technologies.length > 0) {
+                  if (rawItems.length === 0) {
+                    rawItems.push(...cat.technologies)
+                  }
+                } else if (typeof (cat as any)?.technologies === 'string' && rawItems.length === 0) {
+                  rawItems.push(
+                    ...(cat as any).technologies
+                      .split(',')
+                      .map((s: string) => s.trim())
+                      .filter(Boolean)
+                  )
+                }
 
-                techs.forEach((tech) => {
-                  const localSvg = getLocalTechIcon(tech)
-                  if (localSvg) {
-                    iconItems.push({ original: tech, localSrc: localSvg })
+                const forceText = cat?.displayType === 'text'
+                const forceIcons = cat?.displayType === 'icons'
+
+                rawItems.forEach((raw) => {
+                  if (!raw) return
+
+                  // 1. Explicit text item from Sanity schema
+                  if (
+                    forceText ||
+                    raw._type === 'techTextItem' ||
+                    (typeof raw === 'object' && raw.text && !raw.icon && !raw.name)
+                  ) {
+                    const txt =
+                      typeof raw === 'string'
+                        ? raw
+                        : raw.text || raw.title || raw.name || ''
+                    if (txt) {
+                      pillItems.push({ text: txt, badge: raw.badge })
+                    }
                     return
                   }
 
-                  const iconName = resolveTechIcon(tech)
-                  if (iconName && VALID_TECH_ICONS.has(iconName) && tech.length <= 32) {
-                    iconItems.push({ original: tech, icon: iconName })
-                  } else {
-                    pillItems.push(tech)
+                  // 2. Explicit icon item from Sanity schema
+                  if (raw._type === 'techIconItem') {
+                    const name = raw.name || raw.title || 'Tech'
+                    const customImgUrl =
+                      raw.customImage?.asset?.url ||
+                      (typeof raw.customImage === 'string' ? raw.customImage : undefined)
+
+                    if (customImgUrl) {
+                      iconItems.push({
+                        original: name,
+                        customImageUrl: customImgUrl,
+                      })
+                      return
+                    }
+
+                    const localSvg = getLocalTechIcon(raw.icon || name)
+                    if (localSvg) {
+                      iconItems.push({ original: name, localSrc: localSvg })
+                      return
+                    }
+
+                    const iconName = resolveTechIcon(raw.icon || name)
+                    if (iconName && VALID_TECH_ICONS.has(iconName)) {
+                      iconItems.push({ original: name, icon: iconName })
+                      return
+                    }
+
+                    iconItems.push({ original: name })
+                    return
+                  }
+
+                  // 3. String item (can be icon or free-hand text)
+                  if (typeof raw === 'string') {
+                    const str = raw.trim()
+                    if (!str) return
+
+                    const localSvg = getLocalTechIcon(str)
+                    if (localSvg) {
+                      iconItems.push({ original: str, localSrc: localSvg })
+                      return
+                    }
+
+                    const iconName = resolveTechIcon(str)
+                    if (iconName && VALID_TECH_ICONS.has(iconName) && str.length <= 32) {
+                      iconItems.push({ original: str, icon: iconName })
+                      return
+                    }
+
+                    // If it's a long sentence / free-hand note / complex integration
+                    if (
+                      forceText ||
+                      str.length > 32 ||
+                      str.includes(',') ||
+                      str.includes('(') ||
+                      str.includes('·') ||
+                      str.includes('-')
+                    ) {
+                      pillItems.push({ text: str })
+                    } else if (forceIcons) {
+                      iconItems.push({ original: str })
+                    } else {
+                      // Short text: if icon list already exists, add as icon item, else as pill
+                      if (iconItems.length > 0) {
+                        iconItems.push({ original: str })
+                      } else {
+                        pillItems.push({ text: str })
+                      }
+                    }
+                    return
+                  }
+
+                  // 4. Object item with generic fields
+                  if (typeof raw === 'object') {
+                    const name = raw.name || raw.title || ''
+                    const customImgUrl =
+                      raw.customImage?.asset?.url ||
+                      (typeof raw.customImage === 'string' ? raw.customImage : undefined)
+
+                    if (customImgUrl) {
+                      iconItems.push({ original: name || 'Tech', customImageUrl: customImgUrl })
+                      return
+                    }
+
+                    if (raw.text && !name) {
+                      pillItems.push({ text: raw.text, badge: raw.badge })
+                      return
+                    }
+
+                    if (name) {
+                      const localSvg = getLocalTechIcon(raw.icon || name)
+                      if (localSvg) {
+                        iconItems.push({ original: name, localSrc: localSvg })
+                        return
+                      }
+
+                      const iconName = resolveTechIcon(raw.icon || name)
+                      if (iconName && VALID_TECH_ICONS.has(iconName)) {
+                        iconItems.push({ original: name, icon: iconName })
+                        return
+                      }
+
+                      if (name.length > 32 || raw.text) {
+                        pillItems.push({ text: raw.text || name, badge: raw.badge })
+                      } else {
+                        iconItems.push({ original: name })
+                      }
+                    }
                   }
                 })
 
                 return (
                   <div
                     key={idx}
-                    className="bg-[#F4F6FB] rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-between min-h-[175px] border border-gray-100/70 shadow-2xs"
+                    className="bg-[#F4F6FB] rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-between min-h-[185px] border border-gray-100/70 shadow-2xs"
                   >
                     {/* Centered Uppercase Category Title */}
                     <h3 className="text-xs font-bold uppercase tracking-wider text-[#0B3B66] text-center mb-4 sm:mb-5">
                       {cat.category}
                     </h3>
 
-                    {/* Content: Icons in clean white boxes (NO text underneath) or wide pills */}
+                    {/* Content: Icons in clean white boxes or free-hand text cards */}
                     <div className="my-auto w-full flex flex-col items-center justify-center gap-3">
                       {/* Icon Boxes matching Screenshot */}
                       {iconItems.length > 0 && (
@@ -312,28 +481,41 @@ export default function TechnologyStack({
                             const isDatabaseWide =
                               item.localSrc?.includes('mysql') ||
                               item.icon === 'mysql' ||
-                              (iconItems.length === 1 && (item.icon === 'postgresql' || item.icon === 'mongodb'))
+                              item.original.toLowerCase().includes('mysql') ||
+                              (iconItems.length === 1 &&
+                                (item.icon === 'postgresql' || item.icon === 'mongodb'))
 
                             return (
                               <div
                                 key={tIdx}
                                 title={item.original}
-                                className={`${isDatabaseWide
-                                  ? 'w-48 sm:w-56 h-18 sm:h-20 px-6'
-                                  : iconItems.length <= 2
-                                    ? 'w-20 h-18 sm:w-24 sm:h-20 p-3'
-                                    : 'w-16 h-16 sm:w-20 sm:h-20 p-2.5 sm:p-3'
-                                  } bg-white rounded-xl shadow-xs border border-gray-100/80 flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-default`}
+                                className={`${
+                                  isDatabaseWide
+                                    ? 'w-48 sm:w-56 h-18 sm:h-20 px-6'
+                                    : iconItems.length <= 2
+                                      ? 'w-20 h-18 sm:w-24 sm:h-20 p-3'
+                                      : 'w-16 h-16 sm:w-20 sm:h-20 p-2.5 sm:p-3'
+                                } bg-white rounded-xl shadow-xs border border-gray-100/80 flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-default`}
                               >
                                 <div
-                                  className={`${isDatabaseWide
-                                    ? 'w-28 sm:w-36 h-10'
-                                    : iconItems.length <= 2
-                                      ? 'w-10 h-10 sm:w-12 sm:h-12'
-                                      : 'w-8 h-8 sm:w-10 sm:h-10'
-                                    } flex items-center justify-center relative`}
+                                  className={`${
+                                    isDatabaseWide
+                                      ? 'w-28 sm:w-36 h-10'
+                                      : iconItems.length <= 2
+                                        ? 'w-10 h-10 sm:w-12 sm:h-12'
+                                        : 'w-8 h-8 sm:w-10 sm:h-10'
+                                  } flex items-center justify-center relative`}
                                 >
-                                  {item.localSrc ? (
+                                  {item.customImageUrl ? (
+                                    <Image
+                                      src={item.customImageUrl}
+                                      alt={item.original}
+                                      width={isDatabaseWide ? 120 : 48}
+                                      height={isDatabaseWide ? 40 : 48}
+                                      className="w-full h-full object-contain"
+                                      unoptimized
+                                    />
+                                  ) : item.localSrc ? (
                                     <Image
                                       src={item.localSrc}
                                       alt={item.original}
@@ -347,7 +529,9 @@ export default function TechnologyStack({
                                       className="w-full h-full object-contain"
                                     />
                                   ) : (
-                                    <span className="text-xs font-semibold text-gray-700 text-center">{item.original}</span>
+                                    <span className="text-xs font-semibold text-gray-700 text-center">
+                                      {item.original}
+                                    </span>
                                   )}
                                 </div>
                               </div>
@@ -356,15 +540,20 @@ export default function TechnologyStack({
                         </div>
                       )}
 
-                      {/* Wide Text Pills for complex integrations */}
+                      {/* Wide Free-hand Text Cards matching Screenshot */}
                       {pillItems.length > 0 && (
                         <div className="flex flex-col gap-2.5 w-full">
                           {pillItems.map((pill, pIdx) => (
                             <div
                               key={pIdx}
-                              className="bg-white rounded-xl shadow-xs border border-gray-100/80 px-4 py-2.5 text-center text-xs text-gray-700 font-medium leading-snug"
+                              className="bg-white rounded-xl shadow-xs border border-gray-100/80 px-4 py-3 text-center text-xs text-gray-700 font-medium leading-relaxed"
                             >
-                              {pill}
+                              <span>{pill.text}</span>
+                              {pill.badge && (
+                                <span className="ml-2 inline-block px-2 py-0.5 text-[10px] font-semibold bg-blue-50 text-blue-700 rounded-full">
+                                  {pill.badge}
+                                </span>
+                              )}
                             </div>
                           ))}
                         </div>
