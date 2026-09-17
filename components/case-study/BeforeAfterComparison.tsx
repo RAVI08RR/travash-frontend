@@ -12,6 +12,20 @@ interface BeforeAfterProps {
   after: string[]
 }
 
+const DEFAULT_BEFORE = [
+  'Manual cross-referencing across disconnected databases and physical records',
+  'Higher administrative turnaround time for routine applicant verifications',
+  'Elevated risk of undetected duplicate or fraudulent submission entries',
+  'Limited automated auditability and real-time dashboard analytics',
+]
+
+const DEFAULT_AFTER = [
+  'Centralized web platform with automated screening and verification queues',
+  'Significant reduction in application processing and review timelines',
+  'Automated facial recognition & duplicate identification algorithms',
+  'Seamless exception escalation to authorized officers with full audit trails',
+]
+
 export default function BeforeAfterComparison({
   title = 'Before vs. After',
   subtitle = 'Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow',
@@ -20,6 +34,9 @@ export default function BeforeAfterComparison({
   before,
   after,
 }: BeforeAfterProps) {
+  const beforeList = Array.isArray(before) && before.length > 0 ? before : DEFAULT_BEFORE
+  const afterList = Array.isArray(after) && after.length > 0 ? after : DEFAULT_AFTER
+
   return (
     <section id="transformation" className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +78,7 @@ export default function BeforeAfterComparison({
                   </span>
                 </div>
                 <div className="p-6 sm:p-7 flex flex-col gap-3.5 flex-1 justify-start">
-                  {before.map((point, idx) => (
+                  {beforeList.map((point, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <XCircle className="w-4 h-4 text-[#DC2626] flex-shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm text-[#475569] leading-relaxed font-normal">
@@ -80,7 +97,7 @@ export default function BeforeAfterComparison({
                   </span>
                 </div>
                 <div className="p-6 sm:p-7 flex flex-col gap-3.5 flex-1 justify-start">
-                  {after.map((point, idx) => (
+                  {afterList.map((point, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <CheckCircle2 className="w-4 h-4 text-[#0B3B66] flex-shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm text-[#0F172A] leading-relaxed font-medium">

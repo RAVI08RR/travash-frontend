@@ -29,6 +29,22 @@ export default function CaseStudyNextStep({
     'Start with one clearly defined process or use case and determine whether the right next step is an assessment, POC or implementation',
   ]
 
+  const pCTA =
+    primaryCTA && primaryCTA.label
+      ? primaryCTA
+      : {
+          label: 'Discuss a Public Safety Technology Initiative',
+          href: '#contact',
+        }
+
+  const sCTA =
+    secondaryCTA && secondaryCTA.label
+      ? secondaryCTA
+      : {
+          label: 'Discuss an AI / Automation POC',
+          href: '#contact',
+        }
+
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,18 +86,18 @@ export default function CaseStudyNextStep({
 
             <div className="flex flex-wrap items-center gap-4 pt-1">
               <Link
-                href={primaryCTA.href || '#contact'}
+                href={pCTA.href || '#contact'}
                 className=" inline-flex items-center justify-center bg-[#003865] hover:bg-[#002847] text-white font-medium px-6 py-3 rounded-lg text-[16px] sm:text-[15px] transition-colors duration-200 shadow-xs h-[66px]"
               >
-                {primaryCTA.label}
+                {pCTA.label}
               </Link>
 
-              {secondaryCTA && (
+              {sCTA && sCTA.label && (
                 <Link
-                  href={secondaryCTA.href || '#contact'}
+                  href={sCTA.href || '#contact'}
                   className=" inline-flex items-center justify-center bg-white hover:bg-gray-50 border border-[#003865] text-[#003865] font-medium px-6 py-3 rounded-lg text-[16px] sm:text-[15px] transition-colors duration-200 shadow-xs h-[66px]"
                 >
-                  {secondaryCTA.label}
+                  {sCTA.label}
                 </Link>
               )}
             </div>

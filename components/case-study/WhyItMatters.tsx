@@ -9,18 +9,22 @@ interface WhyItMattersProps {
   items?: string[]
 }
 
+const DEFAULT_WHY_ITEMS = [
+  'High-volume identity or application verification',
+  'Fraud or duplicate-record detection',
+  'Multiple verification systems and data sources',
+  'Automated screening with human exception review',
+]
+
 export default function WhyItMatters({
   title = 'Why This Matters',
   subtitle = 'Does Your Organization\nFace a Similar Challenge?',
   description = 'The objective is not simply to introduce AI.',
-  items = [
-    'High-volume identity or application verification',
-    'Fraud or duplicate-record detection',
-    'Multiple verification systems and data sources',
-    'Automated screening with human exception review',
-  ],
+  items = DEFAULT_WHY_ITEMS,
 }: WhyItMattersProps) {
-  const subtitleLines = subtitle.split('\n')
+  const subtitleStr = subtitle || 'Does Your Organization\nFace a Similar Challenge?'
+  const subtitleLines = subtitleStr.split('\n')
+  const whyItems = Array.isArray(items) && items.length > 0 ? items : DEFAULT_WHY_ITEMS
 
   return (
     <section className="py-14 sm:py-20 bg-[#EAEBED] font-['Plus_Jakarta_Sans',sans-serif] relative"
@@ -72,7 +76,7 @@ export default function WhyItMatters({
             </h4>
 
             <ul className="space-y-2 mb-6 sm:mb-8">
-              {items.map((item, idx) => (
+              {whyItems.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#334155] leading-relaxed">
                   <span className="text-[#0F172A] font-bold select-none">•</span>
                   <span>{item}</span>

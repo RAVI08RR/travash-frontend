@@ -79,24 +79,27 @@ function PoliceShieldIcon() {
 }
 
 export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
-  const metrics = data.metrics || [
-    {
-      value: '1.96 Million',
-      label: 'Passport applications processed',
-    },
-    {
-      value: '800+',
-      label: 'High-risk adverse cases identified and intercepted',
-    },
-    {
-      value: 'AI–Assisted Verification',
-      label: 'Automated data extraction, facial recognition and real-time matching',
-    },
-    {
-      value: data.client || 'Telangana State Police',
-      label: 'client-badge',
-    },
-  ]
+  const metrics =
+    Array.isArray(data?.metrics) && data.metrics.length > 0
+      ? data.metrics
+      : [
+          {
+            value: '1.96 Million',
+            label: 'Passport applications processed',
+          },
+          {
+            value: '800+',
+            label: 'High-risk adverse cases identified and intercepted',
+          },
+          {
+            value: 'AI-Assisted Verification',
+            label: 'Automated data extraction, facial recognition and real-time matching',
+          },
+          {
+            value: data?.client || 'Telangana State Police',
+            label: 'client-badge',
+          },
+        ]
 
   return (
     <section className="py-8 sm:py-12 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
@@ -104,9 +107,13 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
         {/* 4 Cards Grid across the page */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {metrics.slice(0, 4).map((metric, idx) => {
-            const val = String(metric?.value || '')
+            const val = String(metric?.value || '').trim()
+            const label = String(metric?.label || '').trim()
+            const description = String(metric?.description || '').trim()
+
             const isPoliceShield =
-              data?.slug?.current === 'satyapaan' && (idx === 3 || metric.label === 'client-badge')
+              data?.slug?.current === 'satyapaan' &&
+              (label === 'client-badge' || (!label && !description && idx === 3))
 
             return (
               <motion.div
@@ -118,22 +125,39 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
                 className="bg-[#F8F8F8] rounded-2xl border border-[#E8EEF5] shadow-[0_4px_24px_rgba(2,46,84,0.04)] p-6 sm:p-7 text-center flex flex-col items-center justify-center min-h-[175px] hover:border-[#02487D]/30 hover:shadow-[0_8px_30px_rgba(2,72,125,0.08)] transition-all duration-300"
               >
                 {/* Metric Value / Title */}
-                <h3
-                  className={`${val.length > 15
-                    ? 'text-lg sm:text-xl'
-                    : 'text-2xl sm:text-3xl lg:text-[32px]'
+                {val && (
+                  <h3
+                    className={`${
+                      val.length > 15
+                        ? 'text-lg sm:text-xl'
+                        : 'text-2xl sm:text-3xl lg:text-[32px]'
                     } font-extrabold text-[#02487D] tracking-tight leading-snug mb-2`}
-                >
-                  <MetricNumberCounter val={val} delay={idx * 0.12} />
-                </h3>
+                  >
+                    <MetricNumberCounter val={val} delay={idx * 0.12} />
+                  </h3>
+                )}
 
-                {/* Subtitle / Police Shield */}
+                {/* Subtitle / Police Shield / Descriptions */}
                 {isPoliceShield ? (
                   <PoliceShieldIcon />
                 ) : (
-                  <p className="text-xs sm:text-sm text-[#475569] leading-snug max-w-[240px]">
-                    {metric.label === 'client-badge' ? data.client || 'Enterprise Deployment' : metric.label}
-                  </p>
+                  <div className="flex flex-col items-center justify-center gap-1 max-w-[240px]">
+                    {label && label !== 'client-badge' && (
+                      <p className="text-xs sm:text-sm text-[#475569] font-medium leading-snug">
+                        {label}
+                      </p>
+                    )}
+                    {description && (
+                      <p className="text-xs text-[#64748B] leading-snug">
+                        {description}
+                      </p>
+                    )}
+                    {label === 'client-badge' && (
+                      <p className="text-xs sm:text-sm text-[#475569] leading-snug">
+                        {data.client || 'Enterprise Deployment'}
+                      </p>
+                    )}
+                  </div>
                 )}
               </motion.div>
             )
@@ -143,3 +167,4 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
     </section>
   )
 }
+

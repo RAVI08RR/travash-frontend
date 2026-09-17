@@ -75,12 +75,16 @@ export const portfolioProjectBySlugQuery = groq`
     title,
     "slug": slug.current,
     shortTitle,
+    eyebrow,
+    category,
+    shortDescription,
     "excerpt": coalesce(excerpt, shortDescription, cardDescription),
     "description": coalesce(description, shortDescription),
     projectUrl,
     originalWordPressUrl,
     publishedAt,
     updatedAt,
+    projectMeta[] { label, value },
     "industry": select(
       defined(industry._ref) => industry->{ _id, title, "name": coalesce(title, name), "slug": slug.current, description },
       defined(industry) && count(*[_type == "industry" && _id == ^.industry]) > 0 => *[_type == "industry" && _id == ^.industry][0]{ _id, title, "name": coalesce(title, name), "slug": slug.current, description },
@@ -140,6 +144,8 @@ export const portfolioProjectBySlugQuery = groq`
     "metrics": coalesce(metrics[] { value, label, description }, []),
     "testimonial": select(
       defined(testimonialRef._ref) => testimonialRef-> {
+        "heading": "Client Perspective",
+        "intro": "Insights, expectations, and feedback from the client's point of view.",
         "quote": quote,
         "author": coalesce(clientName, author, name),
         "name": coalesce(clientName, author, name),
@@ -148,7 +154,9 @@ export const portfolioProjectBySlugQuery = groq`
         "company": company,
         "image": coalesce(photo ${imageFragment}, clientLogo ${imageFragment}, avatarImage ${imageFragment})
       },
-      defined(testimonial.quote) => {
+      defined(testimonial.quote) || defined(testimonial.heading) || defined(testimonial.author) => {
+        "heading": coalesce(testimonial.heading, "Client Perspective"),
+        "intro": coalesce(testimonial.intro, "Insights, expectations, and feedback from the client's point of view."),
         "quote": testimonial.quote,
         "author": coalesce(testimonial.author, testimonial.name, testimonial.clientName),
         "name": coalesce(testimonial.name, testimonial.author, testimonial.clientName),

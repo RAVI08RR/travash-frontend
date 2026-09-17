@@ -86,10 +86,14 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
         ? {
             ...fallback.challenge,
             ...raw.challenge,
+            subtitle: raw.challenge.subtitle || raw.challenge.headline || fallback.challenge?.subtitle,
+            content: raw.challenge.content || (raw.challenge as any).description || fallback.challenge?.content,
+            pointsLabel: raw.challenge.pointsLabel || fallback.challenge?.pointsLabel,
             points:
               Array.isArray(raw.challenge.points) && raw.challenge.points.length > 0
                 ? raw.challenge.points
                 : fallback.challenge?.points,
+            takeaway: raw.challenge.takeaway || fallback.challenge?.takeaway,
           }
         : fallback.challenge,
       complexity: raw?.complexity
@@ -125,6 +129,9 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
       solutionArchitecture: {
         ...fallback.solutionArchitecture,
         ...(raw?.solutionArchitecture || {}),
+        title: raw?.solutionArchitecture?.title || fallback.solutionArchitecture?.title,
+        intro: raw?.solutionArchitecture?.intro || fallback.solutionArchitecture?.intro,
+        caption: raw?.solutionArchitecture?.caption || fallback.solutionArchitecture?.caption,
         image:
           raw?.solutionArchitecture?.image ||
           fallback.solutionArchitecture?.image ||
@@ -159,11 +166,11 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
                 : fallback.beforeAfter?.after,
           }
         : fallback.beforeAfter,
-      testimonial: raw?.testimonial && raw.testimonial.quote
+      testimonial: raw?.testimonial && (raw.testimonial.quote || raw.testimonial.author)
         ? {
-            heading: raw.testimonial.heading || fallback.testimonial?.heading,
-            intro: raw.testimonial.intro || fallback.testimonial?.intro,
-            quote: raw.testimonial.quote,
+            heading: raw.testimonial.heading || fallback.testimonial?.heading || 'Client Perspective',
+            intro: raw.testimonial.intro || fallback.testimonial?.intro || "Insights, expectations, and feedback from the client's point of view.",
+            quote: raw.testimonial.quote || fallback.testimonial?.quote,
             author:
               raw.testimonial.author ||
               raw.testimonial.name ||
@@ -321,7 +328,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
     metrics: metricsList,
     executiveSummary,
     complexity:
-      challengesList.length > 0
+      raw?.complexity ||
+      (challengesList.length > 0
         ? {
             title: 'The Complexity',
             intro: 'Key operational challenges and engineering constraints encountered during development.',
@@ -330,71 +338,93 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
               description: typeof c === 'string' ? c : c.description || c.title,
             })),
           }
-        : undefined,
-    challenge: {
-      title: 'The Challenge',
-      subtitle: 'Overcoming architectural hurdles and manual inefficiencies.',
-      content: challengeContent,
-      points:
-        challengesList.length > 0
-          ? challengesList.map((c: any) => (typeof c === 'string' ? c : c.title || c.description))
-          : [
-              'Fragmented workflows requiring manual intervention and administrative overhead',
-              'Need for real-time synchronization and high-availability data handling',
-              'Demanding security, data protection, and auditability standards',
-              'Scalable infrastructure capable of supporting rapid transaction growth',
-            ],
-    },
-    approach: {
-      title: 'Travash Approach',
-      intro: 'Systematic Discovery, Engineering, and Iterative Deployment',
-      steps: [
-        {
-          stepNumber: '01',
-          title: 'Discover',
-          description: 'Collaborated with key stakeholders to map workflow friction and technical dependencies.',
-        },
-        {
-          stepNumber: '02',
-          title: 'Architect',
-          description: 'Formulated a modular, secure architecture optimized for high uptime and responsive performance.',
-        },
-        {
-          stepNumber: '03',
-          title: 'Implement',
-          description: 'Developed intuitive UI components backed by robust microservices and secure database layers.',
-        },
-        {
-          stepNumber: '04',
-          title: 'Validate',
-          description: 'Executed rigorous automated testing and security audits prior to full-scale deployment.',
-        },
-      ],
-    },
-    solution: {
-      title: 'The Solution',
-      intro: `${title} – Engineered for Scale, Usability, and Speed`,
-      items:
-        solutionsList.length > 0
-          ? solutionsList.map((s: any) => ({
-              title: typeof s === 'string' ? s : s.title,
-              description: typeof s === 'string' ? s : s.description || s.title,
-            }))
-          : [
-              {
-                title: 'Automated Core Workflows',
-                description: 'Streamlined data capture and processing to minimize administrative delays.',
-              },
-              {
-                title: 'Responsive User Experience',
-                description: 'Designed clean, intuitive interfaces that maximize employee and user productivity.',
-              },
-              {
-                title: 'Robust Data Integrity',
-                description: 'Ensured high-level encryption and continuous backup protection across all interactions.',
-              },
-            ],
-    },
+        : undefined),
+    challenge:
+      raw?.challenge
+        ? {
+            title: raw.challenge.title || 'The Challenge',
+            subtitle: raw.challenge.subtitle || raw.challenge.headline || 'Overcoming architectural hurdles and manual inefficiencies.',
+            content: sanitizeScrapedText(raw.challenge.content, '') || cleanDesc || challengeContent,
+            pointsLabel: raw.challenge.pointsLabel || 'Key Operational Challenges:',
+            points:
+              Array.isArray(raw.challenge.points) && raw.challenge.points.length > 0
+                ? raw.challenge.points
+                : challengesList.length > 0
+                ? challengesList.map((c: any) => (typeof c === 'string' ? c : c.title || c.description))
+                : [
+                    'Fragmented workflows requiring manual intervention and administrative overhead',
+                    'Need for real-time synchronization and high-availability data handling',
+                    'Demanding security, data protection, and auditability standards',
+                    'Scalable infrastructure capable of supporting rapid transaction growth',
+                  ],
+            takeaway: raw.challenge.takeaway,
+          }
+        : {
+            title: 'The Challenge',
+            subtitle: 'Overcoming architectural hurdles and manual inefficiencies.',
+            content: challengeContent,
+            points:
+              challengesList.length > 0
+                ? challengesList.map((c: any) => (typeof c === 'string' ? c : c.title || c.description))
+                : [
+                    'Fragmented workflows requiring manual intervention and administrative overhead',
+                    'Need for real-time synchronization and high-availability data handling',
+                    'Demanding security, data protection, and auditability standards',
+                    'Scalable infrastructure capable of supporting rapid transaction growth',
+                  ],
+          },
+    approach:
+      raw?.approach || {
+        title: 'Travash Approach',
+        intro: 'Systematic Discovery, Engineering, and Iterative Deployment',
+        steps: [
+          {
+            stepNumber: '01',
+            title: 'Discover',
+            description: 'Collaborated with key stakeholders to map workflow friction and technical dependencies.',
+          },
+          {
+            stepNumber: '02',
+            title: 'Architect',
+            description: 'Formulated a modular, secure architecture optimized for high uptime and responsive performance.',
+          },
+          {
+            stepNumber: '03',
+            title: 'Implement',
+            description: 'Developed intuitive UI components backed by robust microservices and secure database layers.',
+          },
+          {
+            stepNumber: '04',
+            title: 'Validate',
+            description: 'Executed rigorous automated testing and security audits prior to full-scale deployment.',
+          },
+        ],
+      },
+    solution:
+      raw?.solution || {
+        title: 'The Solution',
+        intro: `${title} – Engineered for Scale, Usability, and Speed`,
+        items:
+          solutionsList.length > 0
+            ? solutionsList.map((s: any) => ({
+                title: typeof s === 'string' ? s : s.title,
+                description: typeof s === 'string' ? s : s.description || s.title,
+              }))
+            : [
+                {
+                  title: 'Automated Core Workflows',
+                  description: 'Streamlined data capture and processing to minimize administrative delays.',
+                },
+                {
+                  title: 'Responsive User Experience',
+                  description: 'Designed clean, intuitive interfaces that maximize employee and user productivity.',
+                },
+                {
+                  title: 'Robust Data Integrity',
+                  description: 'Ensured high-level encryption and continuous backup protection across all interactions.',
+                },
+              ],
+      },
     technologyStack:
       raw?.technologyStack && Array.isArray(raw.technologyStack) && raw.technologyStack.length > 0
         ? raw.technologyStack
@@ -415,42 +445,49 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
                 },
               ].filter((c) => c.technologies.length > 0)
             : undefined),
-    impact: {
-      title: 'The Impact',
-      subtitle: 'Measurable Operational Enhancements and Business Value',
-      content: `The implementation of ${title} established automated efficiency and empowered stakeholders with immediate visibility.`,
-      outcomes: [
-        'Significant reduction in manual processing latency and error rates',
-        'Enhanced user engagement and satisfaction across all user segments',
-        'High-availability uptime and scalable system performance',
-        'Zero security infractions with end-to-end data protection',
-      ],
-    },
-    testimonial: raw?.testimonial
+    impact:
+      raw?.impact || {
+        title: 'The Impact',
+        subtitle: 'Measurable Operational Enhancements and Business Value',
+        content: `The implementation of ${title} established automated efficiency and empowered stakeholders with immediate visibility.`,
+        outcomes: [
+          'Significant reduction in manual processing latency and error rates',
+          'Enhanced user engagement and satisfaction across all user segments',
+          'High-availability uptime and scalable system performance',
+          'Zero security infractions with end-to-end data protection',
+        ],
+      },
+    beforeAfter: raw?.beforeAfter,
+    testimonial: raw?.testimonial && (raw.testimonial.quote || raw.testimonial.author)
       ? {
+          heading: raw.testimonial.heading || 'Client Perspective',
+          intro: raw.testimonial.intro || "Insights, expectations, and feedback from the client's point of view.",
           quote: raw.testimonial.quote,
-          author: raw.testimonial.name || 'Executive Stakeholder',
-          role: raw.testimonial.designation || 'Client Leadership',
+          author: raw.testimonial.author || raw.testimonial.name || 'Executive Stakeholder',
+          role: raw.testimonial.role || raw.testimonial.designation || 'Client Leadership',
           company: raw.testimonial.company || title,
           image: raw.testimonial.image || { asset: { url: '/images/avatar-placeholder.svg' } },
         }
       : FALLBACK_CASE_STUDIES[slug]?.testimonial || undefined,
-    whyItMatters: {
-      title: 'Why This Matters',
-      subtitle: 'Is Your Organization Facing Similar Scale Challenges?',
-      items: [
-        'Eliminating manual bottlenecks in core business processes',
-        'Modernizing legacy software infrastructure with modern web standards',
-        'Integrating disparate data sources into a unified single pane of glass',
-        'Delivering dependable, secure user experiences for mission-critical operations',
-      ],
-    },
-    nextStep: {
-      heading: 'The Next Step',
-      content: `Accelerate your organization's digital transformation. Travash combines custom software engineering, AI-assisted workflows, and deep architecture expertise to build scalable platforms tailored to your business goals.`,
-      primaryCTA: { label: 'Discuss Your Initiative', href: '#contact' },
-      secondaryCTA: { label: 'Explore Engineering Consultation', href: '#contact' },
-    },
+    whyItMatters:
+      raw?.whyItMatters || {
+        title: 'Why This Matters',
+        subtitle: 'Is Your Organization Facing Similar Scale Challenges?',
+        items: [
+          'Eliminating manual bottlenecks in core business processes',
+          'Modernizing legacy software infrastructure with modern web standards',
+          'Integrating disparate data sources into a unified single pane of glass',
+          'Delivering dependable, secure user experiences for mission-critical operations',
+        ],
+      },
+    nextStep:
+      raw?.nextStep || {
+        heading: 'The Next Step',
+        content: `Accelerate your organization's digital transformation. Travash combines custom software engineering, AI-assisted workflows, and deep architecture expertise to build scalable platforms tailored to your business goals.`,
+        primaryCTA: { label: 'Discuss Your Initiative', href: '#contact' },
+        secondaryCTA: { label: 'Explore Engineering Consultation', href: '#contact' },
+      },
+    contact: raw?.contact,
     gallery: raw.gallery || [],
     solutionArchitecture: raw.solutionArchitecture || {
       title: 'Solution Architecture',
@@ -547,12 +584,12 @@ export default async function PortfolioProjectDetailPage({
 
   try {
     const [projectResult, homeResult] = await Promise.all([
-      client.fetch(portfolioProjectBySlugQuery, { slug }),
-      client.fetch(homePageQuery),
+      client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } }),
+      client.fetch(homePageQuery, {}, { cache: 'no-store', next: { revalidate: 0 } }),
     ])
     rawProject = projectResult
     if (!rawProject) {
-      rawProject = await client.fetch(caseStudyBySlugQuery, { slug })
+      rawProject = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
     siteSettings = homeResult?.siteSettings || null
   } catch (err) {
@@ -678,29 +715,31 @@ export default async function PortfolioProjectDetailPage({
         <TechnologyStack items={caseStudy.technologyStack} />
 
         {/* 11. The Impact */}
-        <TheImpact
-          title={caseStudy.impact?.title || 'The Impact'}
-          content={
-            caseStudy.impact?.content ||
-            (Array.isArray(caseStudy.impact?.outcomes) && caseStudy.impact.outcomes.length > 0
-              ? `Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow ${caseStudy.impact.outcomes.join('. ')}.`
-              : undefined)
-          }
-        />
+        {caseStudy.impact && (
+          <TheImpact
+            title={caseStudy.impact.title || 'The Impact'}
+            subtitle={caseStudy.impact.subtitle}
+            content={
+              caseStudy.impact.content ||
+              (Array.isArray(caseStudy.impact.outcomes) && caseStudy.impact.outcomes.length > 0
+                ? undefined
+                : 'Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow Reduced manual effort and accelerated verification turnaround times.')
+            }
+            outcomes={caseStudy.impact.outcomes}
+          />
+        )}
 
         {/* 12. Before vs. After Comparison */}
-        {caseStudy.beforeAfter &&
-          Array.isArray(caseStudy.beforeAfter.before) &&
-          Array.isArray(caseStudy.beforeAfter.after) && (
-            <BeforeAfterComparison
-              title={caseStudy.beforeAfter.title}
-              subtitle={caseStudy.beforeAfter.subtitle}
-              beforeTitle={caseStudy.beforeAfter.beforeTitle}
-              afterTitle={caseStudy.beforeAfter.afterTitle}
-              before={caseStudy.beforeAfter.before}
-              after={caseStudy.beforeAfter.after}
-            />
-          )}
+        {caseStudy.beforeAfter && (
+          <BeforeAfterComparison
+            title={caseStudy.beforeAfter.title}
+            subtitle={caseStudy.beforeAfter.subtitle}
+            beforeTitle={caseStudy.beforeAfter.beforeTitle}
+            afterTitle={caseStudy.beforeAfter.afterTitle}
+            before={caseStudy.beforeAfter.before}
+            after={caseStudy.beforeAfter.after}
+          />
+        )}
 
         {/* 13. Client Perspective / Testimonial */}
         {caseStudy.testimonial && (
@@ -712,7 +751,7 @@ export default async function PortfolioProjectDetailPage({
         )}
 
         {/* 14. Why This Matters */}
-        {caseStudy.whyItMatters && Array.isArray(caseStudy.whyItMatters.items) && (
+        {caseStudy.whyItMatters && (
           <WhyItMatters
             title={caseStudy.whyItMatters.title}
             subtitle={caseStudy.whyItMatters.subtitle}
@@ -725,19 +764,22 @@ export default async function PortfolioProjectDetailPage({
         <CaseStudyNextStep
           heading={caseStudy.nextStep?.heading || 'The Next Step'}
           subtitle={
-            (caseStudy.nextStep as any)?.subtitle ||
+            caseStudy.nextStep?.subtitle ||
             'Looking to Modernize a High-Volume Verification or Public-Safety Workflow?'
           }
+          content={caseStudy.nextStep?.content}
+          primaryCTA={caseStudy.nextStep?.primaryCTA}
+          secondaryCTA={caseStudy.nextStep?.secondaryCTA}
         />
 
         {/* 16. Contact Form */}
         <CaseStudyContact
           heading={
-            (caseStudy as any).contact?.heading ||
+            caseStudy.contact?.heading ||
             'Ready to automate and solve operational bottlenecks?'
           }
           description={
-            (caseStudy as any).contact?.description ||
+            caseStudy.contact?.description ||
             'At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts.'
           }
         />

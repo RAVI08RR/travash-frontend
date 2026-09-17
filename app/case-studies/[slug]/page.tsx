@@ -118,12 +118,12 @@ export async function generateStaticParams() {
 async function getCaseStudyData(slug: string) {
   try {
     let [study, pageData] = await Promise.all([
-      client.fetch(caseStudyBySlugQuery, { slug }),
-      client.fetch(homePageQuery),
+      client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } }),
+      client.fetch(homePageQuery, {}, { cache: 'no-store', next: { revalidate: 0 } }),
     ])
 
     if (!study) {
-      study = await client.fetch(portfolioProjectBySlugQuery, { slug })
+      study = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
 
     const fallback = FALLBACK_CASE_STUDIES[slug]
@@ -181,10 +181,14 @@ async function getCaseStudyData(slug: string) {
               ? {
                   ...fallback.challenge,
                   ...study.challenge,
+                  subtitle: study.challenge.subtitle || study.challenge.headline || fallback.challenge?.subtitle,
+                  content: study.challenge.content || (study.challenge as any).description || fallback.challenge?.content,
+                  pointsLabel: study.challenge.pointsLabel || fallback.challenge?.pointsLabel,
                   points:
                     Array.isArray(study.challenge.points) && study.challenge.points.length > 0
                       ? study.challenge.points
                       : fallback.challenge?.points,
+                  takeaway: study.challenge.takeaway || fallback.challenge?.takeaway,
                 }
               : fallback.challenge,
             complexity: study?.complexity
@@ -220,6 +224,9 @@ async function getCaseStudyData(slug: string) {
             solutionArchitecture: {
               ...fallback.solutionArchitecture,
               ...(study?.solutionArchitecture || {}),
+              title: study?.solutionArchitecture?.title || fallback.solutionArchitecture?.title,
+              intro: study?.solutionArchitecture?.intro || fallback.solutionArchitecture?.intro,
+              caption: study?.solutionArchitecture?.caption || fallback.solutionArchitecture?.caption,
               image:
                 study?.solutionArchitecture?.image ||
                 fallback.solutionArchitecture?.image ||
@@ -254,11 +261,11 @@ async function getCaseStudyData(slug: string) {
                       : fallback.beforeAfter?.after,
                 }
               : fallback.beforeAfter,
-            testimonial: study?.testimonial && study.testimonial.quote
+            testimonial: study?.testimonial && (study.testimonial.quote || study.testimonial.author)
               ? {
-                  heading: study.testimonial.heading || fallback.testimonial?.heading,
-                  intro: study.testimonial.intro || fallback.testimonial?.intro,
-                  quote: study.testimonial.quote,
+                  heading: study.testimonial.heading || fallback.testimonial?.heading || 'Client Perspective',
+                  intro: study.testimonial.intro || fallback.testimonial?.intro || "Insights, expectations, and feedback from the client's point of view.",
+                  quote: study.testimonial.quote || fallback.testimonial?.quote,
                   author:
                     study.testimonial.author ||
                     study.testimonial.name ||
@@ -327,10 +334,12 @@ async function getCaseStudyData(slug: string) {
               rawParas.length > 0
                 ? {
                     title: study.executiveSummary?.title || 'Executive Summary',
+                    subtitle: study.executiveSummary?.subtitle,
                     paragraphs: rawParas,
                   }
                 : {
                     title: 'Executive Summary',
+                    subtitle: study.executiveSummary?.subtitle,
                     paragraphs: [
                       cleanDesc || cleanExcerpt || fallbackShortDesc,
                       'Through user-centric design, resilient architecture, and modern automation, Travash delivered measurable performance improvements and seamless user experiences.',
@@ -347,12 +356,24 @@ async function getCaseStudyData(slug: string) {
               challenge: study.challenge
                 ? {
                     ...study.challenge,
+                    subtitle: study.challenge.subtitle || study.challenge.headline,
                     content:
                       sanitizeScrapedText(study.challenge.content, '') ||
                       cleanDesc ||
                       study.challenge.content,
                   }
                 : undefined,
+              complexity: study.complexity,
+              approach: study.approach,
+              solution: study.solution,
+              solutionArchitecture: study.solutionArchitecture,
+              technologyStack: study.technologyStack,
+              impact: study.impact,
+              beforeAfter: study.beforeAfter,
+              testimonial: study.testimonial,
+              whyItMatters: study.whyItMatters,
+              nextStep: study.nextStep,
+              contact: (study as any)?.contact,
               content: cleanCaseStudyContent(study.content),
             }
           })()
@@ -501,15 +522,19 @@ export default async function CaseStudyPage({
         <TechnologyStack items={caseStudy.technologyStack} />
 
         {/* 11. The Impact */}
-        <TheImpact
-          title={caseStudy.impact?.title || 'The Impact'}
-          content={
-            caseStudy.impact?.content ||
-            (Array.isArray(caseStudy.impact?.outcomes) && caseStudy.impact.outcomes.length > 0
-              ? `Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow ${caseStudy.impact.outcomes.join('. ')}.`
-              : undefined)
-          }
-        />
+        {caseStudy.impact && (
+          <TheImpact
+            title={caseStudy.impact.title || 'The Impact'}
+            subtitle={caseStudy.impact.subtitle}
+            content={
+              caseStudy.impact.content ||
+              (Array.isArray(caseStudy.impact.outcomes) && caseStudy.impact.outcomes.length > 0
+                ? undefined
+                : 'Turning High-Volume Manual Verification Into an AI-Assisted Digital Workflow Reduced manual effort and accelerated verification turnaround times.')
+            }
+            outcomes={caseStudy.impact.outcomes}
+          />
+        )}
 
         {/* 12. Before vs. After Comparison */}
         {caseStudy.beforeAfter && (
@@ -549,16 +574,19 @@ export default async function CaseStudyPage({
             caseStudy.nextStep?.subtitle ||
             'Looking to Modernize a High-Volume Verification or Public-Safety Workflow?'
           }
+          content={caseStudy.nextStep?.content}
+          primaryCTA={caseStudy.nextStep?.primaryCTA}
+          secondaryCTA={caseStudy.nextStep?.secondaryCTA}
         />
 
         {/* 16. Contact Form */}
         <CaseStudyContact
           heading={
-            (caseStudy as any).contact?.heading ||
+            caseStudy.contact?.heading ||
             'Ready to automate and solve operational bottlenecks?'
           }
           description={
-            (caseStudy as any).contact?.description ||
+            caseStudy.contact?.description ||
             'At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts.'
           }
         />
