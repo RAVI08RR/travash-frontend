@@ -33,6 +33,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     const defaultRedirects = [
       {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host' as const,
+            value: 'www.travash.com',
+          },
+        ],
+        destination: 'https://travash.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/about',
         destination: '/about-us',
         permanent: true,

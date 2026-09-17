@@ -51,9 +51,9 @@ export default function Hero({ data }: { data?: HeroData }) {
                 backgroundClip: 'text',
               }}
             >
-              AI-Assisted Software &amp;
+              AI-Assisted Software &amp;{' '}
               <br />
-              Product Development
+              Product Development{' '}
               <br />
               Company
             </h1>

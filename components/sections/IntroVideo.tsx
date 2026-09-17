@@ -27,7 +27,7 @@ export default function IntroVideo({ data }: { data?: IntroVideoData }) {
           <div className="relative w-full h-full">
             <Image
               src="/home-img/Abstract-Photoshop-Background-Amazing-HD-Wallpaper-14105 2.png"
-              alt=""
+              alt="Travash technology innovation wave background"
               fill
               className="object-cover object-center"
             />

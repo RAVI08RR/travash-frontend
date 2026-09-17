@@ -58,7 +58,7 @@ export default function ServiceHeroBanner({ slug }: ServiceHeroBannerProps) {
     >
       <Image
         src={bannerSrc}
-        alt=""
+        alt={`${slug ? slug.replace(/-/g, ' ') : 'Service'} banner`}
         fill
         priority
         className="object-cover object-center"
