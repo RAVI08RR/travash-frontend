@@ -130,9 +130,9 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
 
             const isPoliceShield =
               data?.slug?.current === 'satyapaan' &&
-              (idx === 3 ||
-                val.toLowerCase().includes('telangana') ||
+              (val.toLowerCase().includes('telangana') ||
                 label.toLowerCase().includes('police') ||
+                val.toLowerCase().includes('police') ||
                 label === 'client-badge')
 
             return (

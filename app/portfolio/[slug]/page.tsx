@@ -516,9 +516,9 @@ export async function generateMetadata({
 
   let raw: any = null
   try {
-    raw = await client.fetch(portfolioProjectBySlugQuery, { slug })
+    raw = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     if (!raw) {
-      raw = await client.fetch(caseStudyBySlugQuery, { slug })
+      raw = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
   } catch {
     // fallback
@@ -583,14 +583,12 @@ export default async function PortfolioProjectDetailPage({
   let siteSettings: any = null
 
   try {
-    const [projectResult, homeResult] = await Promise.all([
+    const [caseStudyResult, projectResult, homeResult] = await Promise.all([
+      client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } }),
       client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } }),
       client.fetch(homePageQuery, {}, { cache: 'no-store', next: { revalidate: 0 } }),
     ])
-    rawProject = projectResult
-    if (!rawProject) {
-      rawProject = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
-    }
+    rawProject = caseStudyResult || projectResult
     siteSettings = homeResult?.siteSettings || null
   } catch (err) {
     console.warn(`Sanity fetch error for portfolio slug ${slug}:`, err)

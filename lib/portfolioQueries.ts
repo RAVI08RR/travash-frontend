@@ -68,7 +68,7 @@ export const allPortfolioProjectsQuery = groq`
 
 // Fetch single portfolio project by slug
 export const portfolioProjectBySlugQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && slug.current == $slug][0] {
+  *[_type in ["caseStudy", "portfolioProject"] && slug.current == $slug] | order(select(_type == "caseStudy" => 0, 1) asc)[0] {
     _id,
     _type,
     wordpressId,

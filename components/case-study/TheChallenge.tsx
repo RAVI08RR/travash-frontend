@@ -73,7 +73,7 @@ export default function TheChallenge({
 
               {/* List with red circular "x" badges */}
               <div className="flex flex-col gap-3.5 mb-8">
-                {challengePoints.map((point, idx) => (
+                {displayPoints.map((point, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#B44B4B] text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
                       <X className="w-3 h-3 stroke-[3]" />

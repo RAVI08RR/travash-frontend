@@ -32,15 +32,16 @@ export default function ArchitectureSection({
       : (normalizedSlug === 'satyapaan' ? '/casestudy-img/arctature-daigram.webp' : undefined)
 
   const defaultIntro =
-    slug === 'satyapaan'
+    intro ||
+    (slug === 'satyapaan'
       ? 'Regional Passport Office (RPO) → Satyaapan Verification Platform → Automated Data Extraction + Facial Recognition → Real-Time Matching Against Relevant Records → Automated Verification Workflow (Clear vs Flagged).'
-      : intro ||
-      'Decoupled, high-concurrency system architecture engineered for automated workflow execution, real-time data verification, and secure exception escalation.'
+      : 'Decoupled, high-concurrency system architecture engineered for automated workflow execution, real-time data verification, and secure exception escalation.')
 
   const defaultCaption =
-    slug === 'satyapaan'
+    caption ||
+    (slug === 'satyapaan'
       ? 'Figure: Satyaapan Multi-Tier AI Verification & Escalation Architecture'
-      : caption || `Figure: ${client || 'Enterprise'} Cloud Architecture & System Infrastructure`
+      : `Figure: ${client || 'Enterprise'} Cloud Architecture & System Infrastructure`)
 
   const titleLines = title.split('\n')
   const introLines = defaultIntro ? defaultIntro.split('\n') : []

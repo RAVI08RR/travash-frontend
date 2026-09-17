@@ -48,7 +48,10 @@ export async function generateMetadata({
   const { slug } = await params
 
   try {
-    const study: CaseStudyData | null = await client.fetch(caseStudyBySlugQuery, { slug })
+    let study: CaseStudyData | null = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
+    if (!study) {
+      study = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
+    }
     const data = study || FALLBACK_CASE_STUDIES[slug] || null
 
     if (!data) {

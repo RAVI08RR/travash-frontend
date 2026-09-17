@@ -296,7 +296,7 @@ export const caseStudyBySlugQuery = groq`
         "company": company,
         "image": coalesce(photo ${imageFragment}, clientLogo ${imageFragment}, avatarImage ${imageFragment})
       },
-      defined(testimonial.quote) => {
+      defined(testimonial.quote) || defined(testimonial.heading) || defined(testimonial.author) => {
         "heading": coalesce(testimonial.heading, "Client Perspective"),
         "intro": coalesce(testimonial.intro, "Insights, expectations, and feedback from the client's point of view."),
         "quote": testimonial.quote,

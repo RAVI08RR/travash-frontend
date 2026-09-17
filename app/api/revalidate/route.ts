@@ -10,9 +10,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
     }
 
-    // Revalidate the home page and root layout
+    // Revalidate the home page, root layout, and dynamic portfolio/case-study routes
     revalidatePath('/', 'page')
     revalidatePath('/', 'layout')
+    revalidatePath('/portfolio', 'page')
+    revalidatePath('/portfolio/[slug]', 'page')
+    revalidatePath('/case-studies', 'page')
+    revalidatePath('/case-studies/[slug]', 'page')
 
     return NextResponse.json({
       revalidated: true,
