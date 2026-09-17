@@ -141,21 +141,33 @@ export const caseStudy = defineType({
         { name: 'title', title: 'Section Title', type: 'string', initialValue: 'The Challenge' },
         {
           name: 'subtitle',
-          title: 'Subtitle',
+          title: 'Subtitle / Headline',
           type: 'string',
-          initialValue: 'Officials needed to identify high-risk cases while processing surging verification requests.',
+          initialValue: 'High-Volume Passport Verification Was Creating an Administrative Bottleneck',
         },
         {
           name: 'content',
-          title: 'Introduction Text',
+          title: 'Introduction Text / Description',
           type: 'text',
           rows: 3,
+        },
+        {
+          name: 'pointsLabel',
+          title: 'Problem Points Header',
+          type: 'string',
+          initialValue: 'OFFICIALS NEEDED TO IDENTIFY :',
         },
         {
           name: 'points',
           title: 'Challenge Problem Points',
           type: 'array',
           of: [{ type: 'string' }],
+        },
+        {
+          name: 'takeaway',
+          title: 'Takeaway / Concluding Note',
+          type: 'text',
+          rows: 2,
         },
       ],
     }),
@@ -206,10 +218,23 @@ export const caseStudy = defineType({
       fields: [
         { name: 'title', title: 'Section Title', type: 'string', initialValue: 'Travash Approach' },
         {
-          name: 'intro',
-          title: 'Approach Philosophy',
+          name: 'subtitle',
+          title: 'Subtitle / Headline',
           type: 'string',
           initialValue: 'Automate Routine Screening. Surface Exceptions for Investigation.',
+        },
+        {
+          name: 'intro',
+          title: 'Intro Narrative / Description',
+          type: 'text',
+          rows: 3,
+          initialValue: 'Travash approached Satyaapan as an intelligent verification workflow rather than simply an administrative portal.',
+        },
+        {
+          name: 'description',
+          title: 'Alternative Description',
+          type: 'text',
+          rows: 3,
         },
         {
           name: 'steps',
@@ -238,10 +263,23 @@ export const caseStudy = defineType({
       fields: [
         { name: 'title', title: 'Section Title', type: 'string', initialValue: 'The Solution' },
         {
-          name: 'intro',
-          title: 'Solution Tagline',
+          name: 'subtitle',
+          title: 'Subtitle / Headline',
           type: 'string',
           initialValue: 'Satyaapan – An Intelligent Digital Verification Workflow',
+        },
+        {
+          name: 'intro',
+          title: 'Intro Narrative / Description',
+          type: 'text',
+          rows: 3,
+          initialValue: 'Travash developed Satyaapan as a centralized custom web application that automates critical stages of passport verification.',
+        },
+        {
+          name: 'description',
+          title: 'Alternative Description',
+          type: 'text',
+          rows: 3,
         },
         {
           name: 'items',
@@ -393,11 +431,24 @@ export const caseStudy = defineType({
       description: 'Optional custom testimonial specific to this case study (overrides global testimonial if filled).',
       type: 'object',
       fields: [
+        {
+          name: 'heading',
+          title: 'Section Heading',
+          type: 'string',
+          initialValue: 'Client Perspective',
+          description: 'Defaults to "Client Perspective"',
+        },
+        {
+          name: 'intro',
+          title: 'Section Subtitle / Description',
+          type: 'string',
+          initialValue: "Insights, expectations, and feedback from the client's point of view.",
+        },
         { name: 'quote', title: 'Client Quote', type: 'text', rows: 4 },
-        { name: 'author', title: 'Author Name', type: 'string' },
+        { name: 'author', title: 'Author Name (e.g. Telangana Police Dept (team))', type: 'string' },
         { name: 'role', title: 'Author Role / Title', type: 'string' },
         { name: 'company', title: 'Organization / Department', type: 'string' },
-        { name: 'image', title: 'Client / Author Photo', type: 'image', options: { hotspot: true } },
+        { name: 'image', title: 'Client / Author Photo or Logo', type: 'image', options: { hotspot: true } },
       ],
     }),
     defineField({
@@ -408,9 +459,17 @@ export const caseStudy = defineType({
         { name: 'title', title: 'Section Title', type: 'string', initialValue: 'Why This Matters' },
         {
           name: 'subtitle',
-          title: 'Challenge Question',
+          title: 'Challenge Question / Subtitle',
           type: 'string',
           initialValue: 'Does Your Organization Face a Similar Challenge?',
+        },
+        {
+          name: 'description',
+          title: 'Section Description / Narrative',
+          type: 'text',
+          rows: 3,
+          initialValue:
+            'This case study is highly relevant for civic authorities, enterprises, and public-sector leaders evaluating scalable, automated identity solutions.',
         },
         {
           name: 'items',
@@ -426,6 +485,12 @@ export const caseStudy = defineType({
       type: 'object',
       fields: [
         { name: 'heading', title: 'Heading', type: 'string', initialValue: 'The Next Step' },
+        {
+          name: 'subtitle',
+          title: 'Section Subtitle',
+          type: 'string',
+          initialValue: 'Looking to Modernize a High-Volume Verification or Public-Safety Workflow?',
+        },
         {
           name: 'content',
           title: 'Next Step Narrative',
@@ -451,6 +516,27 @@ export const caseStudy = defineType({
             { name: 'label', title: 'Label', type: 'string', initialValue: 'Discuss an AI / Automation POC' },
             { name: 'href', title: 'Link', type: 'string', initialValue: '#contact' },
           ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'contact',
+      title: 'Contact Form Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'heading',
+          title: 'Heading',
+          type: 'string',
+          initialValue: 'Ready to automate and solve operational bottlenecks?',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          rows: 3,
+          initialValue:
+            'At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts.',
         },
       ],
     }),

@@ -4,9 +4,13 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 interface TestimonialData {
-  quote: string
-  author: string
+  heading?: string
+  intro?: string
+  quote?: string
+  author?: string
+  name?: string
   role?: string
+  designation?: string
   company?: string
   image?: { asset?: { url: string } } | string
 }
@@ -30,10 +34,10 @@ function cleanTestimonialField(raw: string = ''): string {
   return text
 }
 
-function extractQuoteAndAuthor(data: TestimonialData) {
+function extractQuoteAndAuthor(data?: TestimonialData) {
   let quote = data?.quote || ''
-  let author = data?.author || ''
-  let role = data?.role || ''
+  let author = data?.author || data?.name || ''
+  let role = data?.role || data?.designation || ''
   let company = data?.company || ''
 
   // If quote contains embedded author in <h4> or <div class="clint-info">
@@ -41,7 +45,13 @@ function extractQuoteAndAuthor(data: TestimonialData) {
     const h4Match = quote.match(/<h[1-6][^>]*>(.*?)<\/h[1-6]>/i)
     if (h4Match) {
       const extracted = h4Match[1].replace(/<[^>]+>/g, '').trim()
-      if (extracted && (!author || author === 'Executive Stakeholder' || author === 'Client Leadership' || author.toLowerCase().includes('police'))) {
+      if (
+        extracted &&
+        (!author ||
+          author === 'Executive Stakeholder' ||
+          author === 'Client Leadership' ||
+          author.toLowerCase().includes('police'))
+      ) {
         author = extracted
       }
     }
@@ -59,19 +69,39 @@ function extractQuoteAndAuthor(data: TestimonialData) {
   role = cleanTestimonialField(role)
   company = cleanTestimonialField(company)
 
+  // Default fallback for Satyaapan if quote is empty
+  const defaultSatyaapanQuote =
+    'The Satyaapan web application built by Travash has successfully solved our biggest challenge: identifying fraudulent activity and fake records during the passport verification process. Our officers use the platform daily to securely cross-reference applications, making the entire process highly convenient and incredibly efficient. Our top officials have praised the Travash team for their dedication, technical expertise, and the reliable yearly maintenance they continue to provide. We are extremely happy with the results.'
+
+  if (!quote) {
+    quote = defaultSatyaapanQuote
+    if (!author) {
+      author = 'Telangana Police Dept (team)'
+    }
+  }
+
   return { quote, author, role, company }
 }
 
 export default function ClientPerspective({
   data,
-  heading = 'Client Perspective',
-  intro = "Insights, expectations, and feedback from the client's point of view.",
+  heading,
+  intro,
 }: {
-  data: TestimonialData
+  data?: TestimonialData
   heading?: string
   intro?: string
 }) {
   const { quote, author, role, company } = extractQuoteAndAuthor(data)
+
+  const sectionHeading =
+    heading || data?.heading || 'Client Perspective'
+  const sectionIntro =
+    intro !== undefined
+      ? intro
+      : data?.intro !== undefined
+        ? data.intro
+        : "Insights, expectations, and feedback from the client's point of view."
 
   const authorLower = (author || '').toLowerCase()
   const companyLower = (company || '').toLowerCase()
@@ -146,11 +176,11 @@ export default function ClientPerspective({
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-3">
-                {heading}
+                {sectionHeading}
               </h2>
-              {intro && (
+              {sectionIntro && (
                 <p className="text-sm sm:text-base text-[#475569] leading-snug font-normal max-w-xs">
-                  {intro}
+                  {sectionIntro}
                 </p>
               )}
             </motion.div>
@@ -218,4 +248,5 @@ export default function ClientPerspective({
     </section>
   )
 }
+
 

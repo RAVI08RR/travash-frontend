@@ -47,12 +47,16 @@ export interface CaseStudyData {
   }
   approach?: {
     title?: string
+    subtitle?: string
     intro?: string
+    description?: string
     steps: { stepNumber?: string; title: string; description: string }[]
   }
   solution?: {
     title?: string
+    subtitle?: string
     intro?: string
+    description?: string
     items: { title: string; description: string }[]
   }
   solutionArchitecture?: {
@@ -467,14 +471,14 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
     title: 'The Challenge',
     subtitle: 'High-Volume Passport Verification Was Creating an Administrative Bottleneck',
     content:
-      'Processing passport applications at significant scale required considerable administrative effort while maintaining strong verification controls. Officials needed to determine whether applicants were:',
+      'The existing verifcation process relied heavily on manual checks, making it difficult to efficiently screen large volumes of applications.',
     points: [
-      'Attempting to obtain duplicate passports using fabricated credentials',
-      'Using fraudulent identities, forged documentation, or false details',
-      'Matching records associated with criminal activity or state watchlists',
-      'Submitting applications requiring further investigation by Special Branch officers',
+      'Duplicate passport attempts',
+      'Fraudulent identities or false information',
+      'Relevant matches against criminal records',
+      'Applications requiring further investigation',
     ],
-    pointsLabel: 'OFFICIALS NEEDED TO IDENTIFY:',
+    pointsLabel: 'OFFICIALS NEEDED TO IDENTIFY :',
     takeaway:
       'The challenge was to reduce repetitive manual screening without removing human involvement from sensitive investigation decisions.',
   },
@@ -511,7 +515,9 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   },
   approach: {
     title: 'Travash Approach',
-    intro: 'Automate Routine Screening. Surface Exceptions for Investigation.',
+    subtitle: 'Automate Routine Screening. Surface Exceptions for Investigation.',
+    intro:
+      'Travash approached Satyaapan as an intelligent verification workflow rather than simply an administrative portal.',
     steps: [
       {
         stepNumber: '01',
@@ -542,7 +548,9 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   },
   solution: {
     title: 'The Solution',
-    intro: 'Automated Identity Screening with Intelligent Escalation',
+    subtitle: 'Satyaapan – An Intelligent Digital Verification Workflow',
+    intro:
+      'Travash developed Satyaapan as a centralized custom web application that automates critical stages of passport verification.',
     items: [
       {
         title: 'Automated Data Extraction',

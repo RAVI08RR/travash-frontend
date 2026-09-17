@@ -168,12 +168,25 @@ export const portfolioProjectBySlugQuery = groq`
     challenge {
       title,
       subtitle,
+      headline,
       content,
-      points
+      description,
+      pointsLabel,
+      points,
+      takeaway
+    },
+    approach {
+      title,
+      subtitle,
+      intro,
+      description,
+      steps[] { stepNumber, title, description }
     },
     solution {
       title,
+      subtitle,
       intro,
+      description,
       items[] { title, description }
     },
     impact {

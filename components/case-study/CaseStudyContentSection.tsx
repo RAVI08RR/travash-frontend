@@ -8,6 +8,7 @@ interface CaseStudyContentSectionProps {
   eyebrow?: string
   title: string
   subtitle?: string
+  description?: string
   children: React.ReactNode
   variant?: 'white' | 'gray' | 'blue'
   className?: string
@@ -18,6 +19,7 @@ export default function CaseStudyContentSection({
   eyebrow,
   title,
   subtitle,
+  description,
   children,
   variant = 'white',
   className = '',
@@ -28,6 +30,11 @@ export default function CaseStudyContentSection({
       : variant === 'blue'
         ? 'bg-[#F0F5FA]'
         : 'bg-white'
+
+  const subtitleColor =
+    variant === 'gray'
+      ? 'text-[#0B4785]'
+      : 'text-[#0F172A]'
 
   return (
     <section
@@ -48,8 +55,13 @@ export default function CaseStudyContentSection({
                 {title}
               </h2>
               {subtitle && (
-                <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed">
+                <h3 className={`text-xl sm:text-2xl font-bold leading-snug mb-3 ${subtitleColor}`}>
                   {subtitle}
+                </h3>
+              )}
+              {description && (
+                <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed">
+                  {description}
                 </p>
               )}
             </FadeUpWeb>
@@ -66,3 +78,4 @@ export default function CaseStudyContentSection({
     </section>
   )
 }
+

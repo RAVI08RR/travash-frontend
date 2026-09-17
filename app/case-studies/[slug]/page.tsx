@@ -151,6 +151,36 @@ async function getCaseStudyData(slug: string) {
             heroImage: study?.featuredImage || study?.heroImage || fallback.heroImage,
             featureImage: study?.featuredImage || study?.featureImage || fallback.featureImage,
             gallery: combinedGallery,
+            challenge: study?.challenge
+              ? {
+                  ...fallback.challenge,
+                  ...study.challenge,
+                  points:
+                    Array.isArray(study.challenge.points) && study.challenge.points.length > 0
+                      ? study.challenge.points
+                      : fallback.challenge?.points,
+                }
+              : fallback.challenge,
+            approach: study?.approach
+              ? {
+                  ...fallback.approach,
+                  ...study.approach,
+                  steps:
+                    Array.isArray(study.approach.steps) && study.approach.steps.length > 0
+                      ? study.approach.steps
+                      : fallback.approach?.steps,
+                }
+              : fallback.approach,
+            solution: study?.solution
+              ? {
+                  ...fallback.solution,
+                  ...study.solution,
+                  items:
+                    Array.isArray(study.solution.items) && study.solution.items.length > 0
+                      ? study.solution.items
+                      : fallback.solution?.items,
+                }
+              : fallback.solution,
             solutionArchitecture: {
               ...fallback.solutionArchitecture,
               image:
@@ -159,6 +189,15 @@ async function getCaseStudyData(slug: string) {
                 (combinedGallery.length > 0 ? combinedGallery[combinedGallery.length - 1] : null) ||
                 { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
             },
+            testimonial: study?.testimonial && study.testimonial.quote
+              ? {
+                  quote: study.testimonial.quote,
+                  author: study.testimonial.author || study.testimonial.name || fallback.testimonial?.author || 'Executive Stakeholder',
+                  role: study.testimonial.role || study.testimonial.designation || fallback.testimonial?.role,
+                  company: study.testimonial.company || fallback.testimonial?.company || fallback.title,
+                  image: study.testimonial.image || fallback.testimonial?.image,
+                }
+              : fallback.testimonial,
             content: fallback.content || [],
             seo: {
               ...fallback.seo,
@@ -271,9 +310,9 @@ export default async function CaseStudyPage({
           <TheChallenge
             title={caseStudy.challenge.title || 'The Challenge'}
             headline={caseStudy.challenge.subtitle}
-            description={caseStudy.challenge.content}
+            description={caseStudy.challenge.content || (caseStudy.challenge as any).description}
             points={caseStudy.challenge.points}
-            pointsLabel={caseStudy.challenge.pointsLabel || 'OFFICIALS NEEDED TO IDENTIFY:'}
+            pointsLabel={caseStudy.challenge.pointsLabel || 'OFFICIALS NEEDED TO IDENTIFY :'}
             takeaway={caseStudy.challenge.takeaway}
           />
         )}
@@ -305,9 +344,17 @@ export default async function CaseStudyPage({
         {caseStudy.approach && (
           <CaseStudyContentSection
             id="approach"
-            eyebrow="Methodology"
             title={caseStudy.approach.title || 'Travash Approach'}
-            subtitle={caseStudy.approach.intro}
+            subtitle={
+              caseStudy.approach.subtitle ||
+              (caseStudy.approach.intro && !caseStudy.approach.description
+                ? caseStudy.approach.intro
+                : undefined)
+            }
+            description={
+              caseStudy.approach.description ||
+              (caseStudy.approach.subtitle ? caseStudy.approach.intro : undefined)
+            }
             variant="gray"
           >
             <ApproachSteps steps={caseStudy.approach.steps} />
@@ -318,9 +365,17 @@ export default async function CaseStudyPage({
         {caseStudy.solution && (
           <CaseStudyContentSection
             id="solution"
-            eyebrow="Platform Capabilities"
             title={caseStudy.solution.title || 'The Solution'}
-            subtitle={caseStudy.solution.intro}
+            subtitle={
+              caseStudy.solution.subtitle ||
+              (caseStudy.solution.intro && !caseStudy.solution.description
+                ? caseStudy.solution.intro
+                : undefined)
+            }
+            description={
+              caseStudy.solution.description ||
+              (caseStudy.solution.subtitle ? caseStudy.solution.intro : undefined)
+            }
             variant="blue"
           >
             <SolutionGrid items={caseStudy.solution.items} />
@@ -369,7 +424,11 @@ export default async function CaseStudyPage({
 
         {/* 13. Client Perspective / Testimonial */}
         {caseStudy.testimonial && (
-          <ClientPerspective data={caseStudy.testimonial} />
+          <ClientPerspective
+            data={caseStudy.testimonial}
+            heading={(caseStudy.testimonial as any)?.heading}
+            intro={(caseStudy.testimonial as any)?.intro}
+          />
         )}
 
         {/* 14. Why This Matters */}
@@ -384,14 +443,23 @@ export default async function CaseStudyPage({
 
         {/* 15. The Next Step Banner */}
         <CaseStudyNextStep
-          heading="The Next Step"
-          subtitle="Looking to Modernize a High-Volume Verification or Public-Safety Workflow?"
+          heading={caseStudy.nextStep?.heading || 'The Next Step'}
+          subtitle={
+            caseStudy.nextStep?.subtitle ||
+            'Looking to Modernize a High-Volume Verification or Public-Safety Workflow?'
+          }
         />
 
         {/* 16. Contact Form */}
         <CaseStudyContact
-          heading="Ready to automate and solve operational bottlenecks?"
-          description="At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts."
+          heading={
+            (caseStudy as any).contact?.heading ||
+            'Ready to automate and solve operational bottlenecks?'
+          }
+          description={
+            (caseStudy as any).contact?.description ||
+            'At Travash, we engineer enterprise-grade AI and automation solutions that solve complex business challenges and streamline operations. Visit travash.com to connect with our digital transformation experts.'
+          }
         />
       </main>
 

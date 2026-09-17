@@ -232,8 +232,12 @@ export const caseStudyBySlugQuery = groq`
     challenge {
       title,
       subtitle,
+      headline,
       content,
-      points
+      description,
+      pointsLabel,
+      points,
+      takeaway
     },
     featureImage ${imageFragment},
     complexity {
@@ -243,12 +247,16 @@ export const caseStudyBySlugQuery = groq`
     },
     approach {
       title,
+      subtitle,
       intro,
+      description,
       steps[] { stepNumber, title, description }
     },
     solution {
       title,
+      subtitle,
       intro,
+      description,
       items[] { title, description }
     },
     solutionArchitecture {
@@ -278,6 +286,8 @@ export const caseStudyBySlugQuery = groq`
     },
     "testimonial": select(
       defined(testimonialRef._ref) => testimonialRef-> {
+        "heading": "Client Perspective",
+        "intro": "Insights, expectations, and feedback from the client's point of view.",
         "quote": quote,
         "author": coalesce(clientName, author, name),
         "name": coalesce(clientName, author, name),
@@ -287,6 +297,8 @@ export const caseStudyBySlugQuery = groq`
         "image": coalesce(photo ${imageFragment}, clientLogo ${imageFragment}, avatarImage ${imageFragment})
       },
       defined(testimonial.quote) => {
+        "heading": coalesce(testimonial.heading, "Client Perspective"),
+        "intro": coalesce(testimonial.intro, "Insights, expectations, and feedback from the client's point of view."),
         "quote": testimonial.quote,
         "author": coalesce(testimonial.author, testimonial.name, testimonial.clientName),
         "name": coalesce(testimonial.name, testimonial.author, testimonial.clientName),
@@ -300,13 +312,19 @@ export const caseStudyBySlugQuery = groq`
     whyItMatters {
       title,
       subtitle,
+      description,
       items
     },
     nextStep {
       heading,
+      subtitle,
       content,
       primaryCTA { label, href },
       secondaryCTA { label, href }
+    },
+    contact {
+      heading,
+      description
     },
     relatedServices[]-> {
       _id,
