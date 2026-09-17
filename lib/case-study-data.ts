@@ -86,11 +86,13 @@ export interface CaseStudyData {
     after: string[]
   }
   testimonial?: {
+    heading?: string
+    intro?: string
     quote: string
     author: string
-    role: string
-    company: string
-    image?: { asset?: { url: string } }
+    role?: string
+    company?: string
+    image?: { asset?: { url: string } } | string
   }
   whyItMatters?: {
     title?: string
@@ -100,9 +102,14 @@ export interface CaseStudyData {
   }
   nextStep?: {
     heading?: string
+    subtitle?: string
     content?: string
     primaryCTA?: { label: string; href: string }
     secondaryCTA?: { label: string; href: string }
+  }
+  contact?: {
+    heading?: string
+    description?: string
   }
   technicalHighlights?: TechnicalHighlight[]
   walkthroughSteps?: WalkthroughStep[]

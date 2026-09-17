@@ -22,7 +22,7 @@ function cleanTestimonialField(raw: string = ''): string {
   // If text contains HTML tags
   if (text.includes('<') && text.includes('>')) {
     text = text
-      .replace(/<div\s+class=["']clint-info["'].*?<\/div>/gis, '')
+      .replace(/<div\s+class=["']clint-info["'][\s\S]*?<\/div>/gi, '')
       .replace(/<[^>]+>/g, ' ')
       .replace(/&ldquo;|&rdquo;|&quot;/g, '"')
       .replace(/&rsquo;|&lsquo;/g, "'")
