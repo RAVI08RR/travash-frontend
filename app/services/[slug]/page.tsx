@@ -30,6 +30,35 @@ import ServiceStaffSpotlights from '@/components/services/ServiceStaffSpotlights
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
+const SLUG_ALIASES: Record<string, string[]> = {
+  qa: ['quality-assurance-testing', 'quality-assurance', 'qa-testing'],
+  'quality-assurance': ['quality-assurance-testing', 'qa', 'qa-testing'],
+  'quality-assurance-testing': ['quality-assurance', 'qa', 'qa-testing'],
+  analytics: ['data-analytics-solutions', 'data-analytics'],
+  'data-analytics': ['data-analytics-solutions', 'analytics'],
+  'data-analytics-solutions': ['data-analytics', 'analytics'],
+  'ai-data': ['ai-data-engineering', 'ai-automation'],
+  'ai-automation': ['ai-data-engineering', 'ai-data'],
+  'ai-data-engineering': ['ai-data', 'ai-automation'],
+  software: ['software-engineering'],
+  'software-engineering': ['software'],
+  cloud: ['cloud-devops', 'cloud-and-devops'],
+  'cloud-devops': ['cloud-and-devops', 'cloud'],
+  'cloud-and-devops': ['cloud-devops', 'cloud'],
+  digital: ['digital-experiences', 'digital-experiences-web-mobile'],
+  'digital-experiences': ['digital-experiences-web-mobile', 'digital'],
+  'digital-experiences-web-mobile': ['digital-experiences', 'digital'],
+  enterprise: ['enterprise-applications'],
+  'enterprise-applications': ['enterprise'],
+  'dedicated-teams': ['dedicated-talent-and-teams', 'dedicated-talent'],
+  'dedicated-talent': ['dedicated-teams', 'dedicated-talent-and-teams'],
+  'dedicated-talent-and-teams': ['dedicated-teams', 'dedicated-talent'],
+  staffing: ['staff-augmentation'],
+  'staff-augmentation': ['staffing'],
+  platform: ['platform-engineering'],
+  'platform-engineering': ['platform'],
+}
+
 // Dynamic SEO Metadata Generation
 export async function generateMetadata({
   params,
@@ -37,9 +66,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
+  const slugAliases = SLUG_ALIASES[slug] || []
 
   try {
-    const study: ServiceData | null = await client.fetch(serviceBySlugQuery, { slug })
+    const study: ServiceData | null = await client.fetch(serviceBySlugQuery, { slug, slugAliases })
     const data = study || FALLBACK_SERVICES[slug] || null
 
     if (!data) {
@@ -97,9 +127,10 @@ export async function generateStaticParams() {
 }
 
 async function getServiceData(slug: string) {
+  const slugAliases = SLUG_ALIASES[slug] || []
   try {
     const [fetchedService, pageData] = await Promise.all([
-      client.fetch(serviceBySlugQuery, { slug }),
+      client.fetch(serviceBySlugQuery, { slug, slugAliases }),
       client.fetch(homePageQuery),
     ])
 

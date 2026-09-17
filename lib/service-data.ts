@@ -455,7 +455,8 @@ export const DEFAULT_AI_DATA_ENGINEERING_SERVICE: ServiceData = {
     author: 'Founder & CEO',
     role: 'Sales Operations',
     company: 'AI Voice Agent Client',
-    avatarImage: '/images/services/imran-khan.png',
+    avatarImage:
+      'https://cdn.sanity.io/images/s2k81yej/production/6ac8bfa7016c85cd2a8365fb68f150e6fe7b9673-828x730.webp',
     badge: 'Verified Enterprise Client',
   },
   faqs: [
@@ -958,7 +959,8 @@ export const DEFAULT_SOFTWARE_ENGINEERING_SERVICE: ServiceData = {
     author: 'Operations Director',
     role: 'Head of Operations',
     company: 'UGO',
-    avatarImage: '/images/services/imran-khan.png',
+    avatarImage:
+      'https://cdn.sanity.io/images/s2k81yej/production/018360e1d493a20b9a7a3436bb569bc0bbfe25b5-300x260.webp',
     badge: 'Logistics Enterprise UK',
   },
   faqs: [
@@ -1935,7 +1937,8 @@ export const DEFAULT_QA_TESTING_SERVICE: ServiceData = {
     author: 'Chander',
     role: 'Project Director',
     company: 'RadiantSA (CTMS)',
-    avatarImage: '/images/services/imran-khan.png',
+    avatarImage:
+      'https://cdn.sanity.io/images/s2k81yej/production/dee849f0d9b94d874c7902a0052c214d309d34bc-350x320.png',
     badge: 'Clinical Research Director',
   },
   faqs: [

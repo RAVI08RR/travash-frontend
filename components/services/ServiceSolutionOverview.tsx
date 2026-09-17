@@ -20,13 +20,13 @@ export default function ServiceSolutionOverview({ solution }: { solution: Soluti
   return (
     <section
       id="solution"
-      className="py-14 sm:py-18 lg:py-24 bg-[#E7F2F7] text-black font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden"
+      className="relative py-14 sm:py-18 lg:py-24 bg-[#E7F2F7] text-black font-['Plus_Jakarta_Sans',sans-serif] overflow-x-clip"
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Left Column: Sticky Image */}
-          <div className="lg:col-span-5 relative">
-            <div className="lg:sticky lg:top-28 z-10">
+          <div className="lg:col-span-5 relative h-full">
+            <div className="lg:sticky lg:top-28 z-10 self-start">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, x: -25 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}

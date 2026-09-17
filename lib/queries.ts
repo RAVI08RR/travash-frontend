@@ -486,7 +486,7 @@ export const allCaseStudySlugsQuery = groq`
 
 // Query for a single service by slug with resolved references
 export const serviceBySlugQuery = groq`
-  *[_type == "service" && slug.current == $slug][0] {
+  *[_type == "service" && (slug.current == $slug || (defined($slugAliases) && slug.current in $slugAliases))] | order(_updatedAt desc)[0] {
     _id,
     _type,
     title,

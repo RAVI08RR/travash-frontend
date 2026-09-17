@@ -100,20 +100,18 @@ export default function ClientPerspective({
               <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6 sm:gap-7">
                 {/* Left Badge / Avatar / Client Logo */}
                 <div
-                  className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${
-                    isLogo
-                      ? 'bg-white p-2.5 border border-gray-100'
-                      : 'bg-[#1E3A5F]'
-                  }`}
+                  className={`w-50 h-50 sm:w-58 sm:h-58 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${isLogo
+                    ? 'bg-white p-2.5 border border-gray-100'
+                    : 'bg-[#1E3A5F]'
+                    }`}
                 >
                   <Image
                     src={imgSrc}
                     alt={data?.author || 'Client Testimonial'}
-                    width={112}
-                    height={112}
-                    className={`w-full h-full ${
-                      isLogo ? 'object-contain' : 'object-cover'
-                    }`}
+                    width={150}
+                    height={150}
+                    className={`w-full h-full ${isLogo ? 'object-contain' : 'object-cover'
+                      }`}
                   />
                 </div>
 

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { urlFor } from '@/lib/sanity'
 import type { ServiceTestimonial as LegacyTestimonialType, SanityTestimonial } from '@/lib/service-data'
 
 interface Props {
@@ -10,6 +11,81 @@ interface Props {
   testimonial?: LegacyTestimonialType
   /** New: array of referenced testimonial documents — preferred when present */
   testimonials?: SanityTestimonial[]
+}
+
+// Name and company keyed lookup for verified client portraits
+const CLIENT_AVATARS: Record<string, string> = {
+  chander: 'https://cdn.sanity.io/images/s2k81yej/production/dee849f0d9b94d874c7902a0052c214d309d34bc-350x320.png',
+  radiantsa: 'https://cdn.sanity.io/images/s2k81yej/production/dee849f0d9b94d874c7902a0052c214d309d34bc-350x320.png',
+  'radiantsa (ctms)': 'https://cdn.sanity.io/images/s2k81yej/production/dee849f0d9b94d874c7902a0052c214d309d34bc-350x320.png',
+  ctms: 'https://cdn.sanity.io/images/s2k81yej/production/dee849f0d9b94d874c7902a0052c214d309d34bc-350x320.png',
+  'imran khan': 'https://travash.com/wp-content/uploads/2026/08/imran-pixl-client-dubai-1.webp',
+  pixl: 'https://travash.com/wp-content/uploads/2026/08/imran-pixl-client-dubai-1.webp',
+  'senior officer': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  'national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  'senior leadership & national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  'national anti-fraud network': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  i4c: 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  'ross redfern': 'https://travash.com/wp-content/uploads/2026/08/swd-ross-travash-client.webp',
+  'swd group': 'https://travash.com/wp-content/uploads/2026/08/swd-ross-travash-client.webp',
+  'david burn': 'https://cdn.sanity.io/images/s2k81yej/production/03e1bfe5c72a898954b3cb4fa01cd0e7b6f8a2d3-350x320.png',
+  'direct owners': 'https://cdn.sanity.io/images/s2k81yej/production/03e1bfe5c72a898954b3cb4fa01cd0e7b6f8a2d3-350x320.png',
+  'operations director': 'https://cdn.sanity.io/images/s2k81yej/production/018360e1d493a20b9a7a3436bb569bc0bbfe25b5-300x260.webp',
+  ugo: 'https://cdn.sanity.io/images/s2k81yej/production/018360e1d493a20b9a7a3436bb569bc0bbfe25b5-300x260.webp',
+  'founder & ceo': 'https://cdn.sanity.io/images/s2k81yej/production/6ac8bfa7016c85cd2a8365fb68f150e6fe7b9673-828x730.webp',
+  'ai voice agent client': 'https://cdn.sanity.io/images/s2k81yej/production/6ac8bfa7016c85cd2a8365fb68f150e6fe7b9673-828x730.webp',
+  indispare: 'https://cdn.sanity.io/images/s2k81yej/production/eb618fd321fceb80ae039150f431ad9f507d303c-550x350.jpg',
+  'bhushan gupta': 'https://cdn.sanity.io/images/s2k81yej/production/eb618fd321fceb80ae039150f431ad9f507d303c-550x350.jpg',
+  'delivery head': 'https://cdn.sanity.io/images/s2k81yej/production/58a2b2713b6d61850c64017d66727c02caa90151-130x83.svg',
+  infosys: 'https://cdn.sanity.io/images/s2k81yej/production/58a2b2713b6d61850c64017d66727c02caa90151-130x83.svg',
+  'senior commissioner': 'https://cdn.sanity.io/images/s2k81yej/production/c7716eed43afd71bfba1d16b06f53533f4f93e11-350x320.png',
+  'telangana police': 'https://cdn.sanity.io/images/s2k81yej/production/c7716eed43afd71bfba1d16b06f53533f4f93e11-350x320.png',
+  'telangana state police': 'https://cdn.sanity.io/images/s2k81yej/production/c7716eed43afd71bfba1d16b06f53533f4f93e11-350x320.png',
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function resolveAvatar(explicitImage: any, authorName?: string, company?: string): string {
+  // 1. Sanity asset url (pre-expanded from GROQ)
+  if (explicitImage?.asset?.url) {
+    return explicitImage.asset.url
+  }
+
+  // 2. urlFor if it's a Sanity image object/reference
+  if (explicitImage?.asset?._ref || explicitImage?._type === 'image') {
+    try {
+      const url = urlFor(explicitImage).url()
+      if (url) return url
+    } catch {
+      // ignore
+    }
+  }
+
+  // 3. Direct url string from CMS or props
+  if (typeof explicitImage === 'string' && (explicitImage.startsWith('/') || explicitImage.startsWith('http'))) {
+    // If it's a stale placeholder imran-khan image, check if the actual author is someone else
+    if (explicitImage.includes('imran-khan') && authorName && !authorName.toLowerCase().includes('imran')) {
+      // Fall through to name/company lookup below
+    } else {
+      return explicitImage
+    }
+  }
+
+  // 4. Name/Company key lookup
+  const cleanName = (authorName || '').trim().toLowerCase()
+  const cleanCompany = (company || '').trim().toLowerCase()
+
+  for (const [key, val] of Object.entries(CLIENT_AVATARS)) {
+    if (cleanName.includes(key) || cleanCompany.includes(key)) {
+      return val
+    }
+  }
+
+  // 5. Default based on author
+  if (cleanName.includes('imran')) {
+    return '/images/services/imran-khan.png'
+  }
+
+  return '/images/avatar-placeholder.svg'
 }
 
 export default function ServiceTestimonial({ testimonial, testimonials }: Props) {
@@ -20,26 +96,38 @@ export default function ServiceTestimonial({ testimonial, testimonials }: Props)
     role: string
     company: string
     avatarImage: string
+    isLogo?: boolean
   }
 
   function normaliseSanity(t: SanityTestimonial): NormalItem {
+    const avatar = resolveAvatar(t.photo, t.clientName, t.company)
+    const isLogo =
+      avatar.endsWith('.svg') ||
+      Boolean(t.company?.toLowerCase().includes('infosys')) ||
+      Boolean(t.clientName?.toLowerCase().includes('infosys'))
     return {
       quote: t.quote,
       author: t.clientName,
       role: t.designation,
       company: t.company || '',
-      avatarImage: t.photo?.asset?.url || '/images/services/imran-khan.png',
+      avatarImage: avatar,
+      isLogo,
     }
   }
 
   function normaliseLegacy(t: LegacyTestimonialType): NormalItem {
+    const avatar = resolveAvatar(t.image || t.avatarImage, t.author, t.company)
+    const isLogo =
+      avatar.endsWith('.svg') ||
+      Boolean(t.company?.toLowerCase().includes('infosys')) ||
+      Boolean(t.author?.toLowerCase().includes('infosys'))
     return {
       quote: t.quote,
       author: t.author,
       role: t.role,
       company: t.company,
-      avatarImage:
-        t.image?.asset?.url || t.avatarImage || '/images/services/imran-khan.png',
+      avatarImage: avatar,
+      isLogo,
     }
   }
 
@@ -92,14 +180,19 @@ export default function ServiceTestimonial({ testimonial, testimonials }: Props)
               >
                 {/* Left: author photo */}
                 <div className="md:col-span-4 flex justify-center md:justify-start">
-                  <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[4/3] rounded-2xl sm:rounded-[20px] overflow-hidden shadow-xs bg-gray-100">
+                  <div
+                    className={`relative w-full max-w-[280px] sm:max-w-[320px] aspect-[4/3] rounded-2xl sm:rounded-[20px] overflow-hidden shadow-xs ${
+                      current.isLogo ? 'bg-white border border-gray-100 p-6 flex items-center justify-center' : 'bg-gray-100'
+                    }`}
+                  >
                     <Image
                       src={current.avatarImage}
                       alt={current.author}
                       fill
                       priority
-                      className="object-cover object-top"
+                      className={current.isLogo ? 'object-contain p-4' : 'object-cover object-top'}
                       sizes="(max-width: 768px) 100vw, 320px"
+                      unoptimized={current.avatarImage.endsWith('.svg')}
                     />
                   </div>
                 </div>

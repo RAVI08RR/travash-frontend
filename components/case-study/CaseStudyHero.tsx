@@ -262,7 +262,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
                 <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
                   CAPABILITIES
                 </span>
-                <span className="text-sm sm:text-[15px] font-bold text-[#0F172A] leading-snug">
+                <span className="text-sm sm:text-lg font-bold text-[#0F172A] leading-snug">
                   {capabilitiesValue}
                 </span>
               </div>

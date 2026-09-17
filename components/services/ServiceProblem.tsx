@@ -11,7 +11,7 @@ export default function ServiceProblem({ problem }: { problem: ServiceProblemSec
     '/images/services/critical.webp'
 
   return (
-    <section id="problem" className="py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-hidden">
+    <section id="problem" className="relative py-12 sm:py-16 lg:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100 overflow-x-clip">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Problem Narrative */}
