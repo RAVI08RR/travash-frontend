@@ -129,25 +129,27 @@ const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
 ]
 
 export default function ServiceCaseStudies({ caseStudies, serviceTitle }: ServiceCaseStudiesProps) {
-  // Ensure we have at least 6 slides so 3-at-a-time loop operates smoothly
+  // Use exactly what Sanity selected — never pad with unrelated fallbacks.
+  // If admin picked some studies, clone them to reach the 6-slide minimum for
+  // smooth 3-at-a-time looping. Only use defaults when nothing is selected.
   const displayedStudies: RelatedCaseStudy[] = (() => {
-    const list = Array.isArray(caseStudies) && caseStudies.length > 0 ? [...caseStudies] : []
-    const existingSlugs = new Set(list.map((s) => s.slug))
+    const sanityList = Array.isArray(caseStudies) && caseStudies.length > 0
+      ? [...caseStudies]
+      : null
 
-    for (const fallback of DEFAULT_FALLBACK_STUDIES) {
-      if (!existingSlugs.has(fallback.slug) && list.length < 6) {
-        list.push(fallback)
-        existingSlugs.add(fallback.slug)
-      }
+    // Nothing selected in Sanity → show defaults
+    if (!sanityList) return DEFAULT_FALLBACK_STUDIES
+
+    // Enough slides → use as-is
+    if (sanityList.length >= 6) return sanityList
+
+    // Clone selected studies until we hit 6 for carousel loop smoothness
+    const padded = [...sanityList]
+    const original = [...sanityList]
+    while (padded.length < 6) {
+      padded.push(...original)
     }
-    // If list is still < 6, clone items so loop has sufficient slides for 3-at-a-time
-    if (list.length > 0 && list.length < 6) {
-      const original = [...list]
-      while (list.length < 6) {
-        list.push(...original)
-      }
-    }
-    return list.length >= 6 ? list : DEFAULT_FALLBACK_STUDIES
+    return padded
   })()
 
   // Embla Carousel: Exactly 3 visible cards on web with loop enabled
@@ -270,12 +272,13 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
         >
           <div className="flex touch-pan-y -ml-6">
             {displayedStudies.map((study, idx) => {
+              // Prefer the Sanity-resolved hero image, then the local slug→thumb map,
+              // then any raw string set on the study, then a safe placeholder.
+              const sanityImg =
+                study.heroImage?.asset?.url ||
+                study.featureImage?.asset?.url
               const thumbFromMap = study.slug ? SLUG_TO_THUMB[study.slug] : undefined
-              const rawImage =
-                thumbFromMap ||
-                study.image ||
-                study.featureImage?.asset?.url ||
-                study.heroImage?.asset?.url
+              const rawImage = sanityImg || thumbFromMap || study.image
               const isValidPath =
                 typeof rawImage === 'string' &&
                 (rawImage.startsWith('/') || rawImage.startsWith('http'))
