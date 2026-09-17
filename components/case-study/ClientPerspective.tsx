@@ -11,6 +11,57 @@ interface TestimonialData {
   image?: { asset?: { url: string } } | string
 }
 
+function cleanTestimonialField(raw: string = ''): string {
+  if (!raw || typeof raw !== 'string') return ''
+  let text = raw.trim()
+
+  // If text contains HTML tags
+  if (text.includes('<') && text.includes('>')) {
+    text = text
+      .replace(/<div\s+class=["']clint-info["'].*?<\/div>/gis, '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&ldquo;|&rdquo;|&quot;/g, '"')
+      .replace(/&rsquo;|&lsquo;/g, "'")
+      .replace(/&amp;/g, '&')
+      .replace(/\s+/g, ' ')
+      .trim()
+  }
+
+  return text
+}
+
+function extractQuoteAndAuthor(data: TestimonialData) {
+  let quote = data?.quote || ''
+  let author = data?.author || ''
+  let role = data?.role || ''
+  let company = data?.company || ''
+
+  // If quote contains embedded author in <h4> or <div class="clint-info">
+  if (quote.includes('<') && quote.includes('>')) {
+    const h4Match = quote.match(/<h[1-6][^>]*>(.*?)<\/h[1-6]>/i)
+    if (h4Match) {
+      const extracted = h4Match[1].replace(/<[^>]+>/g, '').trim()
+      if (extracted && (!author || author === 'Executive Stakeholder' || author === 'Client Leadership' || author.toLowerCase().includes('police'))) {
+        author = extracted
+      }
+    }
+  }
+
+  quote = cleanTestimonialField(quote)
+  // Strip leading/trailing quotes if doubly wrapped
+  quote = quote.replace(/^["'“”\s]+|["'“”\s]+$/g, '').trim()
+
+  author = cleanTestimonialField(author)
+  if (author.toLowerCase().startsWith('by ')) {
+    author = author.substring(3).trim()
+  }
+
+  role = cleanTestimonialField(role)
+  company = cleanTestimonialField(company)
+
+  return { quote, author, role, company }
+}
+
 export default function ClientPerspective({
   data,
   heading = 'Client Perspective',
@@ -20,20 +71,31 @@ export default function ClientPerspective({
   heading?: string
   intro?: string
 }) {
-  const authorLower = (data?.author || '').toLowerCase()
-  const companyLower = (data?.company || '').toLowerCase()
+  const { quote, author, role, company } = extractQuoteAndAuthor(data)
+
+  const authorLower = (author || '').toLowerCase()
+  const companyLower = (company || '').toLowerCase()
+  const quoteLower = (quote || '').toLowerCase()
 
   const isPolice =
     authorLower.includes('police') ||
     companyLower.includes('police') ||
+    authorLower.includes('telangana') ||
+    companyLower.includes('telangana') ||
+    quoteLower.includes('satyaapan') ||
+    quoteLower.includes('telangana police') ||
     authorLower.includes('intelligence dept') ||
     authorLower.includes('commissioner')
 
-  const isI4C = authorLower.includes('i4c') || companyLower.includes('i4c')
+  const isI4C =
+    authorLower.includes('i4c') ||
+    companyLower.includes('i4c') ||
+    quoteLower.includes('i4c')
 
   const isDirectOwners =
     authorLower.includes('david burn') ||
-    companyLower.includes('direct owner')
+    companyLower.includes('direct owner') ||
+    quoteLower.includes('direct owners')
 
   const defaultImg = isPolice
     ? '/casestudy-img/Telangana_Police_Logo.png.bv.webp'
@@ -44,7 +106,7 @@ export default function ClientPerspective({
         : '/images/avatar-placeholder.svg'
 
   const rawImg =
-    (typeof data?.image === 'string' ? data.image : data?.image?.asset?.url)
+    typeof data?.image === 'string' ? data.image : data?.image?.asset?.url
   const imgSrc =
     rawImg && !rawImg.includes('avatar-placeholder') ? rawImg : defaultImg
 
@@ -52,7 +114,24 @@ export default function ClientPerspective({
     isPolice ||
     isI4C ||
     isDirectOwners ||
-    (imgSrc && (imgSrc.endsWith('.svg') || imgSrc.includes('logo') || imgSrc.includes('Logo') || imgSrc.includes('Direct-owners') || isDirectOwners))
+    Boolean(
+      imgSrc &&
+        (imgSrc.endsWith('.svg') ||
+          imgSrc.includes('logo') ||
+          imgSrc.includes('Logo') ||
+          imgSrc.includes('Direct-owners') ||
+          isDirectOwners)
+    )
+
+  const displayAuthor = author || 'Client Leadership'
+  const authorTextLower = displayAuthor.toLowerCase()
+  const showRole = role && !authorTextLower.includes(role.toLowerCase())
+  const showCompany =
+    company &&
+    !authorTextLower.includes(company.toLowerCase()) &&
+    !(company.toLowerCase().includes('police') && authorTextLower.includes('police')) &&
+    !(company.toLowerCase().includes('telangana') && authorTextLower.includes('telangana')) &&
+    (!role || !role.toLowerCase().includes(company.toLowerCase()))
 
   return (
     <section className="py-14 sm:py-20 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
@@ -100,40 +179,36 @@ export default function ClientPerspective({
               <div className="relative z-10 flex flex-col sm:flex-row items-start gap-6 sm:gap-7">
                 {/* Left Badge / Avatar / Client Logo */}
                 <div
-                  className={`w-50 h-50 sm:w-58 sm:h-58 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${isLogo
-                    ? 'bg-white p-2.5 border border-gray-100'
-                    : 'bg-[#1E3A5F]'
-                    }`}
+                  className={`w-50 h-50 sm:w-58 sm:h-58 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-md relative overflow-hidden ${
+                    isLogo
+                      ? 'bg-white p-2.5 border border-gray-100'
+                      : 'bg-[#1E3A5F]'
+                  }`}
                 >
                   <Image
                     src={imgSrc}
-                    alt={data?.author || 'Client Testimonial'}
+                    alt={displayAuthor}
                     width={150}
                     height={150}
-                    className={`w-full h-full ${isLogo ? 'object-contain' : 'object-cover'
-                      }`}
+                    className={`w-full h-full ${
+                      isLogo ? 'object-contain' : 'object-cover'
+                    }`}
                   />
                 </div>
 
                 {/* Right Text Content */}
                 <div className="flex-1 flex flex-col gap-4 pt-1">
                   <p className="text-[#334155] text-xs sm:text-[13px] sm:leading-[1.75] leading-relaxed font-normal">
-                    {data?.quote}
+                    {quote}
                   </p>
 
-                  <p className="text-xs sm:text-[13px] font-bold text-[#02487D]">
-                    By {data?.author || 'Client Leadership'}
-                    {data?.role &&
-                      !data?.author?.toLowerCase().includes(data.role.toLowerCase())
-                      ? ` — ${data.role}`
-                      : ''}
-                    {data?.company &&
-                      !data?.author?.toLowerCase().includes(data.company.toLowerCase()) &&
-                      (!data?.role ||
-                        !data?.role?.toLowerCase().includes(data.company.toLowerCase()))
-                      ? ` (${data.company})`
-                      : ''}
-                  </p>
+                  <div className="clint-info">
+                    <h4 className="text-xs sm:text-[13px] font-bold text-[#02487D]">
+                      By {displayAuthor}
+                      {showRole ? ` — ${role}` : ''}
+                      {showCompany ? ` (${company})` : ''}
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,3 +218,4 @@ export default function ClientPerspective({
     </section>
   )
 }
+

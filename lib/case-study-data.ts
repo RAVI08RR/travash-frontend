@@ -627,10 +627,10 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
   },
   testimonial: {
     quote:
-      "Criminals exploiting our infrastructure to acquire multiple passports was a massive security crisis. Travash stepped in and engineered the Satyaapan platform, completely transforming our identity verification process. They didn't just build software; they built a real-time firewall that instantly flags duplicates and halts fraud in its tracks. This system literally saved our department's operational integrity. We are incredibly relieved and proud to rely on Travash as our trusted technology partner in law enforcement.",
-    author: 'Senior Commissioner',
-    role: 'State Police Department',
-    company: 'Telangana State Police',
+      'The Satyaapan web application built by Travash has successfully solved our biggest challenge: identifying fraudulent activity and fake records during the passport verification process. Our officers use the platform daily to securely cross-reference applications, making the entire process highly convenient and incredibly efficient. Our top officials have praised the Travash team for their dedication, technical expertise, and the reliable yearly maintenance they continue to provide. We are extremely happy with the results.',
+    author: 'Telangana Police Dept (team)',
+    role: '',
+    company: 'Telangana Police Dept',
     image: { asset: { url: '/casestudy-img/Telangana_Police_Logo.png.bv.webp' } },
   },
   whyItMatters: {
