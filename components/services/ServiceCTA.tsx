@@ -17,7 +17,7 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
 
   if (!cta) return null
 
-  const bgImage = cta.backgroundImage || '/images/services/cta-bg.webp'
+  const bgImage = cta.backgroundImage || '/images/services/light-abstract.png'
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,9 +48,9 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
   return (
     <section
       id="contact"
-      className="relative py-16 sm:py-20 lg:py-24 font-['Plus_Jakarta_Sans',sans-serif] bg-[#066095] text-white bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-24 font-['Plus_Jakarta_Sans',sans-serif] text-white bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(6, 96, 149, 0.92) 0%, rgba(4, 76, 118, 0.95) 100%), url('${bgImage}')`,
+        backgroundImage: `url('${bgImage}')`,
       }}
     >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -63,10 +63,10 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
             transition={{ duration: 0.6 }}
             className="lg:col-span-6 flex flex-col items-start"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-white tracking-[-1.5px] leading-[1.18] mb-5">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-black tracking-[-1.5px] leading-[1.18] mb-5">
               {cta.heading || 'Ready to build infrastructure that accelerates your business?'}
             </h2>
-            <p className="text-white/90 text-sm sm:text-base leading-relaxed font-normal mb-8 max-w-xl">
+            <p className="text-black text-sm sm:text-base leading-relaxed font-normal mb-8 max-w-xl">
               {cta.description ||
                 'Connect with our certified architects to review your roadmap, audit your cloud spend, or scale your engineering capacity.'}
             </p>
@@ -84,10 +84,10 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-base font-bold text-white mb-0.5 leading-snug">
+                      <h4 className="text-base font-bold text-black mb-0.5 leading-snug">
                         {feat.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
+                      <p className="text-xs sm:text-sm text-black leading-relaxed font-normal">
                         {feat.description}
                       </p>
                     </div>

@@ -447,10 +447,6 @@ export const caseStudy = defineType({
                     select: { title: 'text', subtitle: 'badge' },
                   },
                 },
-                {
-                  type: 'string',
-                  title: 'Quick Text / Tech Name',
-                },
               ],
             }),
             defineField({
