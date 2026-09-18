@@ -225,10 +225,9 @@ async function seed() {
       description:
         'Our multidisciplinary squad of 50+ engineers, designers, cloud architects, and data scientists collaborate across time zones to build digital products that make an enduring difference.',
       highlights: [
-        'Average engineer tenure of 4.5+ years',
-        '85%+ senior and lead-level engineering staff',
-        'Dedicated R&D lab for Generative AI & Voice Tech',
-        '100% agile certified sprint masters and leads',
+        { _key: 'h1', label: 'Headquarters', value: 'Hyderabad, India', iconName: 'MapPin' },
+        { _key: 'h2', label: 'Global Delivery', value: 'USA • UK • India', iconName: 'CheckCircle2' },
+        { _key: 'h3', label: 'Engineering Bench', value: 'Full-Stack & Cloud Architects', iconName: 'Users' },
       ],
       ctaText: 'Explore Career Opportunities',
       ctaHref: '/career',

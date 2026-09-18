@@ -4,18 +4,37 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Sparkles, MapPin, CheckCircle2, Users, ArrowRight } from 'lucide-react'
 
+const ICON_MAP: Record<string, any> = {
+  mappin: MapPin,
+  checkcircle2: CheckCircle2,
+  users: Users,
+  sparkles: Sparkles,
+}
+
+interface HighlightItem {
+  label?: string
+  value?: string
+  iconName?: string
+}
+
 interface TeamShowcaseProps {
   data?: {
     badge?: string
     heading?: string
     description?: string
     image?: { asset?: { url: string } }
-    highlights?: { label: string; value: string; iconName?: string }[]
+    highlights?: (HighlightItem | string | null | undefined)[]
     ctaText?: string
     ctaHref?: string
   }
   imageUrl?: string
 }
+
+const DEFAULT_HIGHLIGHTS = [
+  { label: 'Headquarters', value: 'Hyderabad, India', iconName: 'MapPin' },
+  { label: 'Global Delivery', value: 'USA • UK • India', iconName: 'CheckCircle2' },
+  { label: 'Engineering Bench', value: 'Full-Stack & Cloud Architects', iconName: 'Users' },
+]
 
 export default function TeamShowcase({ data, imageUrl }: TeamShowcaseProps) {
   const finalImage = data?.image?.asset?.url || imageUrl || '/teams.webp'
@@ -25,11 +44,29 @@ export default function TeamShowcase({ data, imageUrl }: TeamShowcaseProps) {
     data?.description ||
     'Decades of combined engineering excellence delivering mission-critical web, mobile, AI, and enterprise platforms globally.'
 
-  const highlights = Array.isArray(data?.highlights) && data.highlights.length > 0 ? data.highlights : [
-    { label: 'Headquarters', value: 'Hyderabad, India', iconName: 'MapPin' },
-    { label: 'Global Delivery', value: 'USA • UK • India', iconName: 'CheckCircle2' },
-    { label: 'Engineering Bench', value: 'Full-Stack & Cloud Architects', iconName: 'Users' },
-  ]
+  const parsedHighlights = Array.isArray(data?.highlights)
+    ? data.highlights
+        .filter((hl): hl is NonNullable<typeof hl> => Boolean(hl))
+        .map((hl) => {
+          if (typeof hl === 'string') {
+            return { label: 'Highlight', value: hl, iconName: 'CheckCircle2' }
+          }
+          if (typeof hl === 'object' && hl !== null) {
+            return {
+              label: hl.label || '',
+              value: hl.value || '',
+              iconName: hl.iconName || '',
+            }
+          }
+          return null
+        })
+        .filter(
+          (hl): hl is { label: string; value: string; iconName: string } =>
+            Boolean(hl && (hl.value || hl.label))
+        )
+    : []
+
+  const highlights = parsedHighlights.length > 0 ? parsedHighlights : DEFAULT_HIGHLIGHTS
 
   const ctaText = data?.ctaText || 'Explore Careers & Team'
   const ctaHref = data?.ctaHref || '/career'
@@ -71,20 +108,28 @@ export default function TeamShowcase({ data, imageUrl }: TeamShowcaseProps) {
                 {/* Badges / Highlights */}
                 <div className="space-y-2 pt-0.5">
                   {highlights.map((hl, idx) => {
+                    const iconKey = (hl?.iconName || '').toLowerCase().replace(/[^a-z0-9]/g, '')
+                    let IconComponent = ICON_MAP[iconKey]
+                    if (!IconComponent) {
+                      IconComponent = idx === 0 ? MapPin : idx === 1 ? CheckCircle2 : Users
+                    }
+
                     return (
                       <div key={idx} className="p-2.5 sm:p-3 rounded-xl bg-gray-50/90 border border-gray-100 flex items-start gap-2.5 sm:gap-3">
                         <div className="p-1.5 sm:p-2 rounded-lg bg-[#004771]/10 text-[#004771] shrink-0 mt-0.5">
-                          {idx === 0 ? (
-                            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
-                          ) : idx === 1 ? (
-                            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
-                          ) : (
-                            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
-                          )}
+                          <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
                         </div>
                         <div>
-                          <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">{hl.label}</div>
-                          <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">{hl.value}</div>
+                          {hl?.label && (
+                            <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">
+                              {hl.label}
+                            </div>
+                          )}
+                          {hl?.value && (
+                            <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">
+                              {hl.value}
+                            </div>
+                          )}
                         </div>
                       </div>
                     )
