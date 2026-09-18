@@ -6,9 +6,14 @@ import { Search, Briefcase, Filter } from 'lucide-react'
 
 interface JobListProps {
   jobs: JobItem[]
+  header?: {
+    eyebrow?: string
+    heading?: string
+    description?: string
+  }
 }
 
-export default function JobList({ jobs }: JobListProps) {
+export default function JobList({ jobs, header }: JobListProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
@@ -41,13 +46,14 @@ export default function JobList({ jobs }: JobListProps) {
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            JOIN OUR TEAM
+            {header?.eyebrow || 'JOIN OUR TEAM'}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight">
-            Explore Open Positions
+            {header?.heading || 'Explore Open Positions'}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-            Find the role where you can make a tangible mark on enterprise software and scale your engineering capabilities.
+            {header?.description ||
+              'Find the role where you can make a tangible mark on enterprise software and scale your engineering capabilities.'}
           </p>
         </div>
 

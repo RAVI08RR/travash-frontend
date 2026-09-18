@@ -15,9 +15,15 @@ interface Leader {
   bio: string
   image?: { asset?: { url: string } }
   linkedinUrl?: string
+  highlights?: string[]
 }
 
 interface LeadershipSectionProps {
+  header?: {
+    eyebrow?: string
+    heading?: string
+    subheading?: string
+  }
   leadership?: Leader[]
 }
 
@@ -27,29 +33,39 @@ const DEFAULT_LEADER: Leader = {
   experienceYears: '24+ Years of Industry Experience',
   bio: 'With over 24 years of experience in the IT industry, Gaurav has gained extensive expertise as a PLM consultant while working with global engineering leaders including Satyam, Geometric Software, GE, and John Deere. In addition to his corporate tenure, he founded Travash Software Solutions to provide premier IT engineering and consulting, and Indi spare Seller Services, a pioneering marketplace for industrial components. His specialization lies in delivering enterprise-grade web, cloud, and mobile platforms at optimal total-cost-of-ownership.',
   linkedinUrl: 'https://www.linkedin.com/company/travash-software-solutions/',
+  highlights: ['Satyam • GE • John Deere', 'PLM & Enterprise Architecture'],
 }
 
-export default function LeadershipSection({ leadership }: LeadershipSectionProps) {
+export default function LeadershipSection({ header, leadership }: LeadershipSectionProps) {
   const leaders = leadership && leadership.length > 0 ? leadership : [DEFAULT_LEADER]
+  const eyebrow = header?.eyebrow || 'EXECUTIVE LEADERSHIP'
+  const heading = header?.heading || 'Guiding Vision & Engineering Rigor'
+  const subheading =
+    header?.subheading ||
+    'Hands-on technology stewardship backed by decades of enterprise software consulting and industrial innovation.'
 
   return (
     <section className="py-10 sm:py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            EXECUTIVE LEADERSHIP
+            {eyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight">
-            Guiding Vision & Engineering Rigor
+            {heading}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-2 sm:mt-3 leading-relaxed">
-            Hands-on technology stewardship backed by decades of enterprise software consulting and industrial innovation.
+            {subheading}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           {leaders.map((leader, idx) => {
             const photoUrl = leader.image?.asset?.url || '/gavrav-gupta.webp'
+            const hl = Array.isArray(leader.highlights) && leader.highlights.length > 0
+              ? leader.highlights
+              : ['Satyam • GE • John Deere', 'PLM & Enterprise Architecture']
+
             return (
               <div
                 key={idx}
@@ -93,14 +109,16 @@ export default function LeadershipSection({ leadership }: LeadershipSectionProps
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-4 border-t border-blue-200/50">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700">
-                      <Briefcase className="w-4 h-4 text-[#004771] shrink-0" />
-                      <span>Satyam • GE • John Deere</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs font-semibold text-gray-700">
-                      <Building2 className="w-4 h-4 text-[#14B8A6] shrink-0" />
-                      <span>PLM & Enterprise Architecture</span>
-                    </div>
+                    {hl.map((item, hIdx) => (
+                      <div key={hIdx} className="flex items-center gap-2 text-xs font-semibold text-gray-700">
+                        {hIdx === 0 ? (
+                          <Briefcase className="w-4 h-4 text-[#004771] shrink-0" />
+                        ) : (
+                          <Building2 className="w-4 h-4 text-[#14B8A6] shrink-0" />
+                        )}
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

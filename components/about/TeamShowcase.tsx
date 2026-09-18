@@ -5,11 +5,34 @@ import Link from 'next/link'
 import { Sparkles, MapPin, CheckCircle2, Users, ArrowRight } from 'lucide-react'
 
 interface TeamShowcaseProps {
+  data?: {
+    badge?: string
+    heading?: string
+    description?: string
+    image?: { asset?: { url: string } }
+    highlights?: { label: string; value: string; iconName?: string }[]
+    ctaText?: string
+    ctaHref?: string
+  }
   imageUrl?: string
 }
 
-export default function TeamShowcase({ imageUrl = '/teams.webp' }: TeamShowcaseProps) {
-  const finalImage = imageUrl || '/teams.webp'
+export default function TeamShowcase({ data, imageUrl }: TeamShowcaseProps) {
+  const finalImage = data?.image?.asset?.url || imageUrl || '/teams.webp'
+  const badge = data?.badge || 'The Minds Behind Travash'
+  const heading = data?.heading || 'High-Impact Engineers & Technology Leaders'
+  const description =
+    data?.description ||
+    'Decades of combined engineering excellence delivering mission-critical web, mobile, AI, and enterprise platforms globally.'
+
+  const highlights = Array.isArray(data?.highlights) && data.highlights.length > 0 ? data.highlights : [
+    { label: 'Headquarters', value: 'Hyderabad, India', iconName: 'MapPin' },
+    { label: 'Global Delivery', value: 'USA • UK • India', iconName: 'CheckCircle2' },
+    { label: 'Engineering Bench', value: 'Full-Stack & Cloud Architects', iconName: 'Users' },
+  ]
+
+  const ctaText = data?.ctaText || 'Explore Careers & Team'
+  const ctaHref = data?.ctaHref || '/career'
 
   return (
     <section className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
@@ -35,56 +58,46 @@ export default function TeamShowcase({ imageUrl = '/teams.webp' }: TeamShowcaseP
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold mb-2">
                     <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
-                    <span>The Minds Behind Travash</span>
+                    <span>{badge}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#0B1E3D] tracking-tight leading-tight">
-                    High-Impact Engineers & Technology Leaders
+                    {heading}
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-600 mt-1.5 leading-relaxed">
-                    Decades of combined engineering excellence delivering mission-critical web, mobile, AI, and enterprise platforms globally.
+                    {description}
                   </p>
                 </div>
 
                 {/* Badges / Highlights */}
                 <div className="space-y-2 pt-0.5">
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-gray-50/90 border border-gray-100 flex items-start gap-2.5 sm:gap-3">
-                    <div className="p-1.5 sm:p-2 rounded-lg bg-[#004771]/10 text-[#004771] shrink-0 mt-0.5">
-                      <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Headquarters</div>
-                      <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">Hyderabad, India</div>
-                    </div>
-                  </div>
-
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-gray-50/90 border border-gray-100 flex items-start gap-2.5 sm:gap-3">
-                    <div className="p-1.5 sm:p-2 rounded-lg bg-[#14B8A6]/10 text-[#14B8A6] shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Global Delivery</div>
-                      <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">USA • UK • India</div>
-                    </div>
-                  </div>
-
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-gray-50/90 border border-gray-100 flex items-start gap-2.5 sm:gap-3">
-                    <div className="p-1.5 sm:p-2 rounded-lg bg-blue-50 text-[#004771] shrink-0 mt-0.5">
-                      <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Engineering Bench</div>
-                      <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">Full-Stack & Cloud Architects</div>
-                    </div>
-                  </div>
+                  {highlights.map((hl, idx) => {
+                    return (
+                      <div key={idx} className="p-2.5 sm:p-3 rounded-xl bg-gray-50/90 border border-gray-100 flex items-start gap-2.5 sm:gap-3">
+                        <div className="p-1.5 sm:p-2 rounded-lg bg-[#004771]/10 text-[#004771] shrink-0 mt-0.5">
+                          {idx === 0 ? (
+                            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
+                          ) : idx === 1 ? (
+                            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
+                          ) : (
+                            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#004771]" />
+                          )}
+                        </div>
+                        <div>
+                          <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-semibold">{hl.label}</div>
+                          <div className="text-xs sm:text-sm font-bold text-[#0B1E3D]">{hl.value}</div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
 
                 {/* CTA Link */}
                 <div className="pt-1">
                   <Link
-                    href="/career"
+                    href={ctaHref}
                     className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#004771] hover:bg-[#02487D] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all"
                   >
-                    <span>Explore Careers & Team</span>
+                    <span>{ctaText}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

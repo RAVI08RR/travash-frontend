@@ -1,6 +1,25 @@
-import { Heart, BookOpen, Rocket, Users, ShieldCheck, Laptop } from 'lucide-react'
+import { Heart, BookOpen, Rocket, Users, ShieldCheck, Laptop, Sparkles, Trophy, CheckCircle2 } from 'lucide-react'
 
-const BENEFITS = [
+const ICON_MAP: Record<string, any> = {
+  heart: Heart,
+  bookopen: BookOpen,
+  book: BookOpen,
+  rocket: Rocket,
+  users: Users,
+  laptop: Laptop,
+  shieldcheck: ShieldCheck,
+  shield: ShieldCheck,
+  sparkles: Sparkles,
+  trophy: Trophy,
+}
+
+export interface BenefitItem {
+  title: string
+  desc: string
+  icon?: string | any
+}
+
+const DEFAULT_BENEFITS: BenefitItem[] = [
   {
     icon: Heart,
     title: 'Award-Winning Work-Life Balance',
@@ -33,25 +52,50 @@ const BENEFITS = [
   },
 ]
 
-export default function CareerBenefits() {
+interface CareerBenefitsProps {
+  data?: {
+    eyebrow?: string
+    heading?: string
+    description?: string
+    benefits?: BenefitItem[]
+  }
+}
+
+export default function CareerBenefits({ data }: CareerBenefitsProps = {}) {
+  const eyebrow = data?.eyebrow || 'WHY JOIN TRAVASH'
+  const heading = data?.heading || 'Perks Built Around People'
+  const description =
+    data?.description ||
+    'We provide the resources, freedom, and support you need to do your best work while enjoying life outside of it.'
+  const benefits = data?.benefits && data.benefits.length > 0 ? data.benefits : DEFAULT_BENEFITS
+
   return (
     <section id="life-at-travash" className="py-16 sm:py-20 lg:py-24 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            WHY JOIN TRAVASH
+            {eyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight">
-            Perks Built Around People
+            {heading}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-            We provide the resources, freedom, and support you need to do your best work while enjoying life outside of it.
+            {description}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-          {BENEFITS.map((benefit, idx) => {
-            const Icon = benefit.icon
+          {benefits.map((benefit, idx) => {
+            let Icon = CheckCircle2
+            if (typeof benefit.icon === 'function') {
+              Icon = benefit.icon
+            } else if (typeof benefit.icon === 'string') {
+              const key = benefit.icon.toLowerCase().replace(/[^a-z]/g, '')
+              Icon = ICON_MAP[key] || CheckCircle2
+            } else {
+              Icon = DEFAULT_BENEFITS[idx]?.icon || CheckCircle2
+            }
+
             return (
               <div
                 key={idx}

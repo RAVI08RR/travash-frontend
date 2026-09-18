@@ -27,6 +27,11 @@ interface TimelineItem {
 }
 
 interface CompanyTimelineProps {
+  header?: {
+    eyebrow?: string
+    heading?: string
+    subheading?: string
+  }
   timeline?: TimelineItem[]
 }
 
@@ -103,14 +108,20 @@ const DEFAULT_TIMELINE: TimelineItem[] = [
   },
 ]
 
-export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
+export default function CompanyTimeline({ header, timeline }: CompanyTimelineProps) {
   const items = timeline && timeline.length > 0 ? timeline.map((item, idx) => ({
     ...item,
     phase: item.phase || DEFAULT_TIMELINE[idx % DEFAULT_TIMELINE.length].phase,
     icon: DEFAULT_TIMELINE[idx % DEFAULT_TIMELINE.length].icon || Milestone,
     metrics: item.metrics || DEFAULT_TIMELINE[idx % DEFAULT_TIMELINE.length].metrics,
-    highlights: item.highlights || DEFAULT_TIMELINE[idx % DEFAULT_TIMELINE.length].highlights,
+    highlights: Array.isArray(item.highlights) && item.highlights.length > 0 ? item.highlights : DEFAULT_TIMELINE[idx % DEFAULT_TIMELINE.length].highlights,
   })) : DEFAULT_TIMELINE
+
+  const eyebrow = header?.eyebrow || 'TWO DECADES OF IMPACT • 2005 - PRESENT'
+  const heading = header?.heading || 'Our Journey of Continuous Innovation'
+  const subheading =
+    header?.subheading ||
+    'Two decades of delivering mission-critical enterprise engineering, cloud transformation, and AI-accelerated business velocity worldwide.'
 
   const [activeIdx, setActiveIdx] = useState(0)
   const activeItem = items[activeIdx]
@@ -137,13 +148,13 @@ export default function CompanyTimeline({ timeline }: CompanyTimelineProps) {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E0F2FE] text-[#02487D] text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
             <Milestone className="w-3.5 h-3.5 text-[#14B8A6]" />
-            <span>TWO DECADES OF IMPACT • 2005 - PRESENT</span>
+            <span>{eyebrow}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight leading-tight">
-            Our Journey of Continuous Innovation
+            {heading}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 mt-2 sm:mt-3 leading-relaxed">
-            From an ambitious engineering vision in 2005 to an international technology partner powering mission-critical platforms worldwide.
+            {subheading}
           </p>
         </div>
 

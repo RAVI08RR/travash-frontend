@@ -3,48 +3,70 @@ import { Sparkles, Code2, Users2, Rocket, Lightbulb } from 'lucide-react'
 
 interface CultureSectionProps {
   teams?: {
+    eyebrow?: string
     heading?: string
     description?: string
   }
   culture?: {
     heading?: string
+    cardHeading?: string
     description?: string
+    cardFooter?: string
   }
+  pillars?: {
+    title: string
+    desc: string
+    iconName?: string
+  }[]
 }
 
-const CULTURE_PILLARS = [
+const DEFAULT_PILLARS = [
   {
-    icon: Code2,
+    iconName: 'Code2',
     title: 'Craftsmanship Over Shortcuts',
     desc: 'Clean, secure, test-driven architectures built to scale gracefully without technical debt.',
   },
   {
-    icon: Lightbulb,
+    iconName: 'Lightbulb',
     title: 'Continuous Mastery',
     desc: 'Dedicated R&D time for engineers to explore generative AI, sovereign LLMs, and modern cloud patterns.',
   },
   {
-    icon: Users2,
+    iconName: 'Users2',
     title: 'Radical Collaboration',
     desc: 'Cross-functional squads where designers, architects, and product strategists work side-by-side.',
   },
   {
-    icon: Rocket,
+    iconName: 'Rocket',
     title: 'Client-Obsessed Delivery',
     desc: 'We measure success not by lines of code deployed, but by actual business velocity and outcomes achieved.',
   },
 ]
 
-export default function CultureSection({ teams, culture }: CultureSectionProps) {
+const pillarIconMap: Record<string, any> = {
+  Code2,
+  Lightbulb,
+  Users2,
+  Rocket,
+  Sparkles,
+}
+
+export default function CultureSection({ teams, culture, pillars }: CultureSectionProps) {
+  const teamsEyebrow = teams?.eyebrow || 'THE PEOPLE BEHIND TRAVASH'
   const teamsHeading = teams?.heading || 'Our Teams'
   const teamsDesc =
     teams?.description ||
     'At Travash Software Solutions, our team is the backbone of our success. We are a passionate group of developers, designers, and innovators dedicated to building cutting-edge software solutions that drive businesses forward.'
 
   const cultureHeading = culture?.heading || 'Our Culture'
+  const cultureCardHeading = culture?.cardHeading || 'Fostering an Environment Where Great Engineers Thrive'
   const cultureDesc =
     culture?.description ||
     'At Travash, we cultivate a culture of innovation, excellence, and collaboration. Our team thrives on cutting-edge technology, problem-solving, and client-centric strategies. We empower talent, embrace diversity, and drive digital transformation with passion and purpose—delivering impact that lasts.'
+  const cultureCardFooter =
+    culture?.cardFooter || 'Work-Life Balance • Psychological Safety • High Velocity'
+
+  const activePillars = Array.isArray(pillars) && pillars.length > 0 ? pillars : DEFAULT_PILLARS
 
   return (
     <section className="py-10 sm:py-14 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
@@ -52,7 +74,7 @@ export default function CultureSection({ teams, culture }: CultureSectionProps) 
         {/* Top: Teams Introduction */}
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            THE PEOPLE BEHIND TRAVASH
+            {teamsEyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight mb-3">
             {teamsHeading} & {cultureHeading}
@@ -73,21 +95,21 @@ export default function CultureSection({ teams, culture }: CultureSectionProps) 
                 <span>HOW WE WORK</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-extrabold mb-3 leading-snug">
-                Fostering an Environment Where Great Engineers Thrive
+                {cultureCardHeading}
               </h3>
               <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
                 {cultureDesc}
               </p>
             </div>
             <div className="pt-5 mt-6 border-t border-white/10 text-xs font-semibold text-[#14B8A6]">
-              Work-Life Balance • Psychological Safety • High Velocity
+              {cultureCardFooter}
             </div>
           </div>
 
-          {/* Right: 4 Culture Pillars */}
+          {/* Right: Culture Pillars */}
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-3.5 sm:gap-4 lg:gap-5">
-            {CULTURE_PILLARS.map((pillar, idx) => {
-              const Icon = pillar.icon
+            {activePillars.map((pillar, idx) => {
+              const Icon = (pillar.iconName && pillarIconMap[pillar.iconName]) || Code2
               return (
                 <div
                   key={idx}

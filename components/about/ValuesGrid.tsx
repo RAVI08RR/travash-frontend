@@ -7,9 +7,15 @@ interface ValueItem {
 }
 
 interface ValuesGridProps {
+  header?: {
+    eyebrow?: string
+    heading?: string
+    subheading?: string
+  }
   values?: ValueItem[]
   heading?: string
   eyebrow?: string
+  subheading?: string
 }
 
 const DEFAULT_VALUES: ValueItem[] = [
@@ -60,21 +66,27 @@ const iconMap: Record<string, any> = {
   Sparkles,
 }
 
-export default function ValuesGrid({ values, heading, eyebrow }: ValuesGridProps) {
+export default function ValuesGrid({ header, values, heading, eyebrow, subheading }: ValuesGridProps) {
   const items = values && values.length > 0 ? values : DEFAULT_VALUES
+  const finalEyebrow = header?.eyebrow || eyebrow || 'WHAT GUIDES US'
+  const finalHeading = header?.heading || heading || 'Our Core Values'
+  const finalSubheading =
+    header?.subheading ||
+    subheading ||
+    'The enduring principles that define how we build software, collaborate with clients, and nurture talent.'
 
   return (
     <section className="py-10 sm:py-14 lg:py-16 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            {eyebrow || 'WHAT GUIDES US'}
+            {finalEyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B1E3D] tracking-tight">
-            {heading || 'Our Core Values'}
+            {finalHeading}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-2 sm:mt-3 leading-relaxed">
-            The enduring principles that define how we build software, collaborate with clients, and nurture talent.
+            {finalSubheading}
           </p>
         </div>
 

@@ -57,10 +57,10 @@ export default async function AboutPage() {
         <AboutHero data={aboutPage?.hero} />
 
         {/* 2. Executive Leadership: Guiding Vision & Engineering Rigor (Immediately After Hero) */}
-        <LeadershipSection leadership={aboutPage?.leadership} />
+        <LeadershipSection header={aboutPage?.leadershipHeader} leadership={aboutPage?.leadership} />
 
         {/* 3. Company Timeline: Our Journey of Continuous Innovation (After Leadership) */}
-        <CompanyTimeline timeline={aboutPage?.timeline} />
+        <CompanyTimeline header={aboutPage?.timelineHeader} timeline={aboutPage?.timeline} />
 
         {/* 4. Story & Origin */}
         <CompanyStory data={aboutPage?.story} />
@@ -69,13 +69,13 @@ export default async function AboutPage() {
         <MissionVision data={aboutPage?.missionVision} />
 
         {/* 6. Core Values */}
-        <ValuesGrid values={aboutPage?.values} />
+        <ValuesGrid header={aboutPage?.valuesHeader} values={aboutPage?.values} />
 
         {/* 7. Culture Pillars */}
-        <CultureSection teams={aboutPage?.teams} culture={aboutPage?.culture} />
+        <CultureSection teams={aboutPage?.teams} culture={aboutPage?.culture} pillars={aboutPage?.culturePillars} />
 
         {/* 8. Dedicated Team Showcase Card (At the Bottom) */}
-        <TeamShowcase imageUrl={aboutPage?.hero?.heroImage?.asset?.url} />
+        <TeamShowcase data={aboutPage?.teamShowcase} imageUrl={aboutPage?.teamShowcase?.image?.asset?.url || aboutPage?.hero?.heroImage?.asset?.url} />
 
         {/* 9. Key Performance Stats & Contact */}
         <Stats />

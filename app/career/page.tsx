@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { client } from '@/lib/sanity'
-import { jobsQuery, siteSettingsQuery } from '@/lib/queries'
+import { careerPageQuery, jobsQuery, siteSettingsQuery } from '@/lib/queries'
 
 import Navbar from '@/components/sections/Navbar'
 import CareerHero from '@/components/career/CareerHero'
@@ -12,12 +12,6 @@ import Footer from '@/components/sections/Footer'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
-
-export const metadata: Metadata = {
-  title: 'Careers — Engineering Opportunities & Culture | Travash',
-  description:
-    'Join Travash Software Solutions. Explore career opportunities in frontend, backend, Java, AI, and full-stack engineering in a high-growth environment.',
-}
 
 const DEFAULT_JOBS = [
   {
@@ -52,18 +46,52 @@ const DEFAULT_JOBS = [
   },
 ]
 
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const data = await client.fetch(careerPageQuery)
+    const seo = data?.careerPage?.seo
+    return {
+      title: seo?.metaTitle || 'Careers — Engineering Opportunities & Culture | Travash',
+      description:
+        seo?.metaDescription ||
+        'Join Travash Software Solutions. Explore career opportunities in frontend, backend, Java, AI, and full-stack engineering in a high-growth environment.',
+    }
+  } catch {
+    return {
+      title: 'Careers — Engineering Opportunities & Culture | Travash',
+      description:
+        'Join Travash Software Solutions. Explore career opportunities in frontend, backend, Java, AI, and full-stack engineering in a high-growth environment.',
+    }
+  }
+}
+
 async function getCareerData() {
+  try {
+    const res = await client.fetch(careerPageQuery)
+    if (res) {
+      return {
+        careerPage: res.careerPage || null,
+        jobs: res.jobs && res.jobs.length > 0 ? res.jobs : DEFAULT_JOBS,
+        siteSettings: res.siteSettings || null,
+      }
+    }
+  } catch {
+    // fallback
+  }
+
   try {
     const [jobs, siteSettings] = await Promise.all([
       client.fetch(jobsQuery),
       client.fetch(siteSettingsQuery),
     ])
     return {
+      careerPage: null,
       jobs: jobs && jobs.length > 0 ? jobs : DEFAULT_JOBS,
       siteSettings,
     }
   } catch {
     return {
+      careerPage: null,
       jobs: DEFAULT_JOBS,
       siteSettings: null,
     }
@@ -71,15 +99,15 @@ async function getCareerData() {
 }
 
 export default async function CareerPage() {
-  const { jobs, siteSettings } = await getCareerData()
+  const { careerPage, jobs, siteSettings } = await getCareerData()
 
   return (
     <>
       <Navbar settings={siteSettings} />
       <main>
-        <CareerHero openPositionsCount={jobs.length} />
-        <CareerBenefits />
-        <JobList jobs={jobs} />
+        <CareerHero data={careerPage?.hero} openPositionsCount={jobs.length} />
+        <CareerBenefits data={careerPage?.benefitsSection} />
+        <JobList jobs={jobs} header={careerPage?.jobsSection} />
         <Testimonials />
         <Contact />
       </main>

@@ -712,27 +712,15 @@ export const aboutPageQuery = groq`
         eyebrow,
         heading,
         description,
+        credibilityBadges,
+        primaryCTA { label, href },
+        secondaryCTA { label, href },
         heroImage ${imageFragment}
       },
-      story {
+      leadershipHeader {
+        eyebrow,
         heading,
-        content
-      },
-      timeline[] {
-        year,
-        title,
-        description
-      },
-      missionVision {
-        missionTitle,
-        missionDescription,
-        visionTitle,
-        visionDescription
-      },
-      values[] {
-        title,
-        description,
-        iconName
+        subheading
       },
       leadership[] {
         name,
@@ -740,20 +728,147 @@ export const aboutPageQuery = groq`
         experienceYears,
         bio,
         image ${imageFragment},
-        linkedinUrl
+        linkedinUrl,
+        highlights
+      },
+      timelineHeader {
+        eyebrow,
+        heading,
+        subheading
+      },
+      timeline[] {
+        year,
+        title,
+        phase,
+        metrics,
+        description,
+        highlights
+      },
+      story {
+        eyebrow,
+        heading,
+        image ${imageFragment},
+        imageBadge,
+        content,
+        stats[] {
+          value,
+          label
+        }
+      },
+      missionVision {
+        eyebrow,
+        heading,
+        missionTitle,
+        missionDescription,
+        missionBadge,
+        visionTitle,
+        visionDescription,
+        visionBadge
+      },
+      valuesHeader {
+        eyebrow,
+        heading,
+        subheading
+      },
+      values[] {
+        title,
+        description,
+        iconName
       },
       teams {
+        eyebrow,
         heading,
         description
       },
       culture {
         heading,
+        cardHeading,
+        description,
+        cardFooter
+      },
+      culturePillars[] {
+        title,
+        desc,
+        iconName
+      },
+      teamShowcase {
+        badge,
+        heading,
+        description,
+        image ${imageFragment},
+        highlights[] {
+          label,
+          value,
+          iconName
+        },
+        ctaText,
+        ctaHref
+      },
+      seo {
+        metaTitle,
+        metaDescription,
+        ogImage ${imageFragment}
+      }
+    },
+    "siteSettings": *[_type == "siteSettings"][0] {
+      ...,
+      logo ${imageFragment},
+      footerLogo ${imageFragment}
+    }
+  }
+`
+
+// Career Page Queries
+export const careerPageQuery = groq`
+  {
+    "careerPage": coalesce(
+      *[_id == "careerPage"][0],
+      *[_type == "careerPage"][0]
+    ) {
+      hero {
+        eyebrow,
+        heading,
+        description,
+        highlights[] {
+          label,
+          icon
+        },
+        primaryCTA { label, href },
+        secondaryCTA { label, href }
+      },
+      benefitsSection {
+        eyebrow,
+        heading,
+        description,
+        benefits[] {
+          title,
+          desc,
+          icon
+        }
+      },
+      jobsSection {
+        eyebrow,
+        heading,
         description
       },
       seo {
         metaTitle,
-        metaDescription
+        metaDescription,
+        ogImage ${imageFragment}
       }
+    },
+    "jobs": *[_type == "job" && active != false] | order(order asc, publishedAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      category,
+      employmentType,
+      location,
+      experience,
+      salary,
+      shortDescription,
+      active,
+      publishedAt
     },
     "siteSettings": *[_type == "siteSettings"][0] {
       ...,

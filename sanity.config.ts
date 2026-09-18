@@ -164,6 +164,39 @@ const customStructure = (S: any) =>
             ])
         ),
 
+      // Singleton: About Us Page
+      S.listItem()
+        .title('About Us Page')
+        .id('aboutPage')
+        .child(
+          S.document()
+            .title('About Us Page')
+            .schemaType('aboutPage')
+            .documentId('aboutPage')
+        ),
+
+      // Careers
+      S.listItem()
+        .title('Careers')
+        .id('careersSection')
+        .child(
+          S.list()
+            .title('Careers Management')
+            .items([
+              S.listItem()
+                .title('Career Page (Hero, Perks & SEO)')
+                .id('careerPage')
+                .child(
+                  S.document()
+                    .title('Career Page Configuration')
+                    .schemaType('careerPage')
+                    .documentId('careerPage')
+                ),
+              S.documentTypeListItem('job')
+                .title('All Job Postings (Open Positions)'),
+            ])
+        ),
+
       // Singleton: Site Settings
       S.listItem()
         .title('Site Settings (Navbar & Footer)')

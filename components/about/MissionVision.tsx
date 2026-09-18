@@ -2,33 +2,41 @@ import { Compass, Eye, CheckCircle2 } from 'lucide-react'
 
 interface MissionVisionProps {
   data?: {
+    eyebrow?: string
+    heading?: string
     missionTitle?: string
     missionDescription?: string
+    missionBadge?: string
     visionTitle?: string
     visionDescription?: string
+    visionBadge?: string
   }
 }
 
 export default function MissionVision({ data }: MissionVisionProps) {
+  const eyebrow = data?.eyebrow || 'PURPOSE & DIRECTION'
+  const heading = data?.heading || 'Defining Our Purpose: Mission & Vision'
   const missionTitle = data?.missionTitle || 'Our Mission'
   const missionDescription =
     data?.missionDescription ||
     'To empower global enterprises, forward-thinking startups, and public-sector institutions with production-grade digital solutions, transforming software from an operational cost into a sustainable profit and growth driver.'
+  const missionBadge = data?.missionBadge || 'Engineering excellence with measurable ROI'
 
   const visionTitle = data?.visionTitle || 'Our Vision'
   const visionDescription =
     data?.visionDescription ||
     'To be the world’s most trusted technology partner, renowned for engineering rigor, innovative AI acceleration, and enduring client partnerships exceeding 90% retention.'
+  const visionBadge = data?.visionBadge || 'Built for high-trust, multi-year technological leadership'
 
   return (
     <section className="py-10 sm:py-12 lg:py-14 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">
-            PURPOSE & DIRECTION
+            {eyebrow}
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1E3D] tracking-tight">
-            Defining Our Purpose: Mission & Vision
+            {heading}
           </h2>
         </div>
 
@@ -45,7 +53,7 @@ export default function MissionVision({ data }: MissionVisionProps) {
             </div>
             <div className="mt-6 pt-4 sm:mt-8 sm:pt-5 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-[#14B8A6]">
               <CheckCircle2 className="w-4 h-4 shrink-0" />
-              <span>Engineering excellence with measurable ROI</span>
+              <span>{missionBadge}</span>
             </div>
           </div>
 
@@ -60,7 +68,7 @@ export default function MissionVision({ data }: MissionVisionProps) {
             </div>
             <div className="mt-6 pt-4 sm:mt-8 sm:pt-5 border-t border-gray-200 flex items-center gap-2 text-xs font-semibold text-[#004771]">
               <CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0" />
-              <span>Built for high-trust, multi-year technological leadership</span>
+              <span>{visionBadge}</span>
             </div>
           </div>
         </div>
