@@ -328,29 +328,12 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
                         </h3>
 
                         {study.shortDescription && (
-                          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-4 line-clamp-2">
+                          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-3 line-clamp-2">
                             {study.shortDescription}
                           </p>
                         )}
 
-                        {/* Metrics Mini-Pills */}
-                        {study.metrics && study.metrics.length > 0 && (
-                          <div className="grid grid-cols-2 gap-2 pt-3.5 border-t border-gray-100 mb-1">
-                            {study.metrics.slice(0, 2).map((m, mIdx) => (
-                              <div
-                                key={mIdx}
-                                className="p-2.5 rounded-xl bg-[#F8FAFC] border border-gray-100"
-                              >
-                                <div className="text-sm sm:text-base font-bold text-[#02487D] leading-none">
-                                  {m.value}
-                                </div>
-                                <div className="text-[11px] text-gray-500 font-medium truncate mt-1">
-                                  {m.label}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+
                       </div>
                     </div>
 

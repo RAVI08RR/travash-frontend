@@ -265,7 +265,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
               <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 pt-2">
                 <Link
                   href={current.ctaHref || '/work'}
-                  className="inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-7 py-3 rounded-[6px] text-[14px] transition-all duration-200 shadow-sm w-full sm:w-auto"
+                  className="inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-7 py-3 rounded-[10px] text-[14px] transition-all duration-200 shadow-sm w-full sm:w-auto"
                 >
                   {current.ctaLabel || 'View Case Study'}
                 </Link>

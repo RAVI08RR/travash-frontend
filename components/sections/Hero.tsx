@@ -86,7 +86,7 @@ export default function Hero({ data }: { data?: HeroData }) {
             </p>
 
             {/* Action CTAs */}
-            <div className="w-full max-w-[380px] sm:max-w-none mx-auto lg:mx-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
+            <div className="w-full max-w-[380px] sm:max-w-none mx-auto lg:mx-0 flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
               <Link
                 href={data?.primaryCta?.href || '/contact'}
                 className="btn-global w-full sm:w-auto h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[8px] inline-flex items-center justify-center bg-[#004771] hover:bg-[#003859] text-white font-semibold px-6 sm:px-7 transition-all duration-200 text-[15px] sm:text-[14px] shadow-sm active:scale-[0.99]"
@@ -95,7 +95,7 @@ export default function Hero({ data }: { data?: HeroData }) {
               </Link>
               <Link
                 href={data?.secondaryCta?.href || '/work'}
-                className="btn-global w-full sm:w-auto h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[8px] inline-flex items-center justify-center bg-white border border-[#004771] sm:border-[#D1D5DB] text-[#004771] sm:text-[#374151] hover:border-[#004771] hover:text-[#004771] font-semibold px-6 sm:px-7 transition-all duration-200 text-[15px] sm:text-[14px] active:scale-[0.99]"
+                className="secondary-btn btn-global w-full sm:w-auto h-[52px] sm:h-[56px] rounded-[10px] sm:rounded-[8px] inline-flex items-center justify-center bg-white border border-[#004771] sm:border-[#D1D5DB] text-[#004771] sm:text-[#374151] hover:border-[#004771] hover:text-[#004771] font-semibold px-6 sm:px-7 transition-all duration-200 text-[15px] sm:text-[14px] active:scale-[0.99]"
               >
                 {data?.secondaryCta?.label || 'View Our Portfolio'}
               </Link>

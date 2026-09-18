@@ -8,8 +8,8 @@ interface TeamShowcaseProps {
   imageUrl?: string
 }
 
-export default function TeamShowcase({ imageUrl = '/team.webp' }: TeamShowcaseProps) {
-  const finalImage = imageUrl || '/team.webp'
+export default function TeamShowcase({ imageUrl = '/teams.webp' }: TeamShowcaseProps) {
+  const finalImage = imageUrl || '/teams.webp'
 
   return (
     <section className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">

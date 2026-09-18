@@ -12,10 +12,10 @@ interface ServiceHeroProps {
 
 export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
   return (
-    <section className="relative bg-gradient-to-b from-[#F4F8FC] via-white to-white pt-8 pb-14 sm:pt-12 sm:pb-18 lg:pt-14 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+    <section className="relative bg-white pt-8 pb-14 sm:pt-12 sm:pb-18 lg:pt-14 lg:pb-24 font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
       {/* Subtle ambient lighting effects */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#38BDF8]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-[#0284C7]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-white rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-white rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         {/* Breadcrumb Navigation */}
@@ -58,10 +58,10 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-5xl lg:text-[52px] xl:text-[52px] font-[500] leading-[1.14] lg:leading-[68px] xl:leading-[80px] tracking-[-0.03em] hero-title-gradient mb-6"
+            className="text-3xl sm:text-5xl lg:text-[52px] xl:text-[52px] font-[600] leading-[1.14] lg:leading-[68px] xl:leading-[80px] tracking-[-0.03em]  mb-6"
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontWeight: 500,
+              fontWeight: 600,
             }}
           >
             {hero.title}
@@ -104,25 +104,7 @@ export default function ServiceHero({ hero, serviceTitle }: ServiceHeroProps) {
             )}
           </motion.div>
 
-          {/* Highlights / Feature Badges */}
-          {hero.highlights && hero.highlights.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-1"
-            >
-              {hero.highlights.map((highlight, idx) => (
-                <span
-                  key={idx}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-gray-200/90 text-gray-700 text-xs sm:text-[13px] font-medium shadow-2xs hover:border-[#02487D]/30 transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7]" />
-                  {highlight}
-                </span>
-              ))}
-            </motion.div>
-          )}
+
         </div>
       </div>
     </section>

@@ -112,9 +112,24 @@ p {
   }
 }
 
+
+.text-gray-600 {
+  color: #1a1a1a !important;
+}
+
+
+.secondary-btn {
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, #1FE04C 0%, #004575 100%) border-box;
+}
+
+
 /* Global Button styling: height: 66px; border-radius: 5px; */
 .btn-global {
-  border-radius: 5px !important;
+  border-radius: 10px !important;
   height: 66px !important;
   min-width: auto;
   width: 301px !important;

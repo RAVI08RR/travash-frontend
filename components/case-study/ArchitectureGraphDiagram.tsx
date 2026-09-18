@@ -373,39 +373,39 @@ export const ARCHITECTURE_CATALOG: Record<string, CaseStudyArchitectureData> = {
     },
   },
 
-  // 5. DIRECT OWNERS (Vacation Rentals Platform)
+  // 5. DIRECT OWNERS: AI Voice Agent (Pixl)
   'direct-owners': {
-    flowTitle: 'Direct Vacation Rental Booking & Channel Manager Architecture',
+    flowTitle: 'AI Voice Agent Telephony & Conversational RAG Architecture',
     nodes: [
-      { title: 'Guest Discovery & Search', subtitle: 'High-Performance Web Portal', icon: 'hotel' },
-      { title: 'Direct Owners Booking Engine', subtitle: 'Commission-Free Reservation Core', icon: 'shield' },
-      { title: 'Bi-Directional iCal Channel Sync', subtitle: 'Airbnb / VRBO Real-Time Calendar Lock', icon: 'refresh' },
-      { title: 'Stripe Secure Split-Escrow', subtitle: 'Damage Deposit & Automated Host Payout', icon: 'lock' },
-      { title: 'Automated Guest Messaging Hub', subtitle: 'Digital Smart Lock Code Delivery', icon: 'workflow' },
+      { title: 'Multichannel Lead Ingestion', subtitle: 'Facebook, Google & Property Portals', icon: 'mobile' },
+      { title: 'Sub-3s Outbound Telephony', subtitle: 'Twilio SIP Trunking Engine', icon: 'zap' },
+      { title: 'Conversational Intelligence', subtitle: 'Deepgram STT/TTS + GPT-4 RAG', icon: 'workflow' },
+      { title: 'Automated Lead Qualification', subtitle: 'Dynamic Scoring (Hot/Warm/Cold)', icon: 'shield' },
+      { title: 'Live CRM Sync & SIP Handover', subtitle: 'HubSpot Sync & Rep Transfer', icon: 'refresh' },
     ],
     branches: [
       {
-        status: 'INSTANT BOOKING',
+        status: 'HOT PROSPECT DETECTED',
         statusColor: 'green',
-        action: 'Payment Confirmed & Calendar Locked',
-        nextStep: 'Digital Door Pin & Check-In Guide Dispatched',
+        action: 'High Intent Budget & Timeline Qualified',
+        nextStep: 'Sub-Second SIP Transfer to Sales Rep or Calendar Booking',
         icon: 'check',
       },
       {
-        status: 'INQUIRY REVIEW',
+        status: 'NURTURE / COLD LEAD',
         statusColor: 'blue',
-        action: 'Host Instant Notification',
-        nextStep: '24-Hour Hold Timer & Automated Reminders',
+        action: 'Standard Property Inquiries Answered',
+        nextStep: 'Full Transcript Logged to HubSpot & Auto-Nurture Sequence',
         icon: 'workflow',
       },
     ],
     corePrinciple: {
       label: 'Core Principle',
       steps: [
-        { title: 'Zero Middleman Commissions', icon: 'zap' },
-        { title: 'Two-Way Channel Sync', icon: 'refresh' },
-        { title: 'Escrow Payment Security', icon: 'lock' },
-        { title: 'Automated Guest Concierge', icon: 'mobile' },
+        { title: 'Sub-3s Speed-to-Lead', icon: 'zap' },
+        { title: 'Natural Human Dialogue', icon: 'mobile' },
+        { title: '100% Automated CRM Sync', icon: 'refresh' },
+        { title: 'Sub-Second Live Escalation', icon: 'lock' },
       ],
     },
   },

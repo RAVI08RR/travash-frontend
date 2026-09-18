@@ -722,215 +722,235 @@ export const DEFAULT_SATYAPAAN_DATA: CaseStudyData = {
 }
 
 // ----------------------------------------------------------------------
-// 3. Direct Owners: Vacation Rentals Custom Web Application
+// 3. Direct Owners: AI Voice Agent (Pixl)
 // ----------------------------------------------------------------------
 export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
-  _id: 'caseStudy-directowners',
-  title: 'Revolutionizing Vacation Rentals with a Custom Web Application for Direct Owners',
+  _id: 'caseStudy-direct-owners',
+  title: 'AI Voice Agent: How We Built a Human-Sounding Voice AI Agent that Quadrupled Site Visits',
   slug: { current: 'direct-owners' },
   eyebrow: 'CASE STUDY',
-  category: 'Bespoke Web Application & E-Commerce',
-  industry: 'Travel & Vacation Rentals',
-  client: 'Direct Owner Services Limited (USA)',
-  location: 'USA & UK',
+  category: 'AI Voice Agent',
+  industry: 'Real Estate',
+  client: 'Pixl',
+  location: 'Global / Enterprise',
   shortDescription:
-    'Custom bespoke web application and e-commerce portal engineered to UK and US standards, solving the 70% rental platform gap with transparent checkout, dynamic date blocking, and interactive map search.',
+    'Natural language processing, automated lead qualification, and real-time CRM syncing engineered for Pixl to eliminate speed-to-lead bottlenecks and quadruple confirmed site visits.',
   heroImage: { asset: { url: '/casestudy-thumbs/Dreamnest.png' } },
   featureImage: '/casestudy-thumbs/Dreamnest.png',
   projectMeta: [
-    { label: 'CLIENT', value: 'Direct Owner Services Limited (USA)' },
-    { label: 'SOLUTION', value: 'Direct Owners – Vacation Rental Web Platform' },
-    { label: 'INDUSTRY', value: 'Travel / Vacation Rentals / Real Estate' },
+    { label: 'CLIENT', value: 'Pixl' },
+    { label: 'SOLUTION', value: 'AI Voice Agent' },
+    { label: 'INDUSTRY', value: 'Real Estate' },
     {
       label: 'CAPABILITIES',
-      value: 'Bespoke Web App Development • E-Commerce Checkout • Dynamic Calendar Sync • Geolocation Map Routing',
+      value:
+        'Conversational Intelligence • Knowledge Retrieval (RAG) • Voice & Speech AI • Telephony Infrastructure • Workflow Automation',
     },
   ],
   metrics: [
     {
-      value: '8 Months',
-      label: 'End-to-End Development',
-      description: 'From requirements mapping to launch and international compliance QA',
+      value: '< 3s',
+      label: 'Average speed-to-lead response time',
+      description: 'Average speed-to-lead response time across all inbound channels',
     },
     {
-      value: '70%',
-      label: 'Market Gap Solved',
-      description: 'Addressed the critical industry flaw where vacation rental platforms lack seamless booking',
+      value: '+310%',
+      label: 'Increase in confirmed site visits',
+      description: 'Increase in confirmed site visit appointments month-over-month',
     },
     {
-      value: 'UK & USA',
-      label: 'International Standards',
-      description: 'Engineered strictly to strict international compliance and responsive performance',
+      value: 'Conversational AI',
+      label: 'Core Technology',
+      description: 'Natural language processing, automated lead qualification, and real-time CRM syncing',
     },
     {
-      value: 'Dr. David S. Burn',
-      label: 'Managing Director Endorsement',
-      description: 'Direct Owner Services Limited (USA)',
+      value: '24/7/365',
+      label: 'Inbound Lead Coverage',
+      description: 'Pixl Real Estate Agency automated frontline qualification availability',
     },
   ],
   executiveSummary: {
-    title: 'Executive Impact Snapshot',
-    subtitle: 'Bridging the Trust and Transparency Gap in Global Vacation Rentals',
+    title: 'Executive Summary',
+    subtitle: 'Pixl Real Estate Agency',
     paragraphs: [
-      'The global vacation rental market is highly lucrative but fraught with friction. For property owners and holidaymakers alike, legacy booking portals have historically struggled with pricing transparency, clunky interfaces, and a lack of trust. Industry data revealed that 70% of existing vacation rental platforms were failing to provide a seamless booking and management experience.',
-      'Travash Software Solutions partnered with Direct Owners for an intensive 8-month development cycle. Our objective was to engineer a highly responsive, custom web application that solved the core issues of booking constraints, pricing opacity, and owner control—handling complex, real-time financial transactions, dynamic property mapping, and transparent booking timelines across the US and UK.',
+      'The AI Voice Agent is an advanced conversational AI solution engineered to automate frontline sales inquiries, streamline lead qualification, and manage multichannel ingestion instantly. Designed for enterprise scalability, it delivers natural, human-like voice interactions to eliminate lead decay and elevate the digital customer experience.',
     ],
   },
   challenge: {
-    title: 'The Operational Challenge',
-    subtitle: 'Overcoming Pricing Opacity, Hidden Fees, and Calendar Conflicts',
+    title: 'The Challenge',
+    subtitle:
+      'Real estate sales teams needed to modernize legacy lead-response workflows and eliminate speed-to-lead bottlenecks.',
     content:
-      'Direct Owners identified a massive opportunity to revolutionize vacation rentals globally by overcoming key market hurdles:',
+      'The existing inquiry process relied heavily on manual agent availability, leaving hot prospects waiting for hours outside of office times and causing rapid lead decay.',
+    pointsLabel: 'SALES TEAMS NEEDED TO IDENTIFY :',
     points: [
-      'Hidden fees and pricing opacity creating high user abandonment on legacy platforms',
-      'Double-booking conflicts caused by out-of-sync calendar availability tools',
-      'Disjointed communication between holidaymakers, property owners, and platform administrators',
-      'Strict regulatory, data privacy, and secure payment processing requirements across US and UK jurisdictions',
+      'Overcoming manual administrative fatigue with modern automated qualification solutions',
+      'Ensuring sub-second response latency and 24/7 conversational availability',
+      'Establishing instantaneous CRM data syncing and frictionless buyer journeys',
+      'Integrating distributed multi-channel inquiries into a unified voice orchestrator',
     ],
+    takeaway:
+      'The challenge was to reduce repetitive manual lead qualification without removing human involvement from hot lead conversions and complex sales negotiations.',
   },
   complexity: {
-    title: 'Persona-Driven Architecture',
-    intro: 'The platform was architected around three distinct user personas to deliver tailored operational control:',
+    title: 'The Complexity',
+    intro: 'Scaling conversational speed-to-lead required solving multi-tier operational challenges:',
     items: [
       {
-        title: 'THE HOLIDAY MAKER',
-        description: 'Seeking transparent upfront pricing, intuitive interactive map search, and instant secure online bookings.',
+        title: 'HIGH INQUIRY VOLUME',
+        description:
+          'Handling 24/7 inbound leads from Facebook, Google, and property portals simultaneously without response latency.',
       },
       {
-        title: 'THE PROPERTY OWNER',
-        description: 'Requiring complete control over listings, real-time calendar date blocking, and direct inquiry management.',
+        title: 'NATURAL CONVERSATION FLOW',
+        description:
+          'Utilizing LLMs and Retrieval-Augmented Generation (RAG) to understand user intent, pause naturally, and answer complex property questions in real-time.',
       },
       {
-        title: 'THE PLATFORM OWNER',
-        description: 'Needing global administrative oversight, automated commission handling, lead management, and scalable infrastructure.',
+        title: 'LIVE CRM SYNCING',
+        description:
+          'Securely extracting data, scoring leads (Hot/Warm/Cold), and updating HubSpot records during active calls.',
       },
       {
-        title: 'REAL-TIME DATA SYNC',
-        description: 'Synchronizing multi-device transactions and blocking calendar dates across time zones with zero latency.',
+        title: 'EXCEPTION HANDLING',
+        description:
+          'Accurately identifying high-intent buyers and executing a sub-second SIP transfer to human agents with full context.',
       },
     ],
   },
   approach: {
     title: 'Travash Approach',
-    intro: 'Bespoke, Persona-Driven Engineering for Transparent Global Bookings.',
+    subtitle: 'Automate Routine Qualification. Surface Hot Leads for Live Agents.',
+    intro: 'Automate Routine Qualification. Surface Hot Leads for Live Agents.',
     steps: [
       {
         stepNumber: '01',
-        title: 'Persona & Journey Mapping',
-        description: 'Mapped workflows for holidaymakers, property owners, and platform administrators to eliminate booking friction.',
+        title: 'DISCOVER',
+        description:
+          'Mapped out existing sales workflows and identified the most repetitive qualification questions causing administrative fatigue.',
       },
       {
         stepNumber: '02',
-        title: 'Real-Time Checkout Architecture',
-        description: 'Engineered an integrated, encrypted payment flow allowing users to pay required booking deposits instantly.',
+        title: 'ARCHITECT',
+        description:
+          'Designed a highly scalable, low-latency AI voice infrastructure using advanced Large Language Models (LLMs) and RAG.',
       },
       {
         stepNumber: '03',
-        title: 'Dynamic Availability Engine',
-        description: 'Built an automated date blocking calendar that synchronizes confirmed bookings in real time.',
+        title: 'INTEGRATE',
+        description:
+          'Connected the conversational AI engine seamlessly with HubSpot CRM and Twilio SIP telephony networks.',
       },
       {
         stepNumber: '04',
-        title: 'Geolocation Map Integration',
-        description: 'Integrated interactive map filters enabling users to visually explore rental properties across holiday destinations.',
+        title: 'AUTOMATE',
+        description:
+          'Deployed autonomous AI agents to initiate outbound calls within 3 seconds of multichannel lead ingestion.',
       },
       {
         stepNumber: '05',
-        title: 'Multi-Device Optimization',
-        description: 'Executed rigorous responsiveness QA across smartphone, tablet, and desktop viewports.',
+        title: 'ESCALATE',
+        description:
+          'Engineered a smart routing protocol to instantly transfer hot leads to human agents or automatically book calendar site visits.',
       },
     ],
   },
   solution: {
     title: 'The Solution',
-    intro: 'Key Platform Features Engineered for Direct Owners',
+    subtitle: 'AI Voice Agent – An Intelligent Conversational Sales Workflow',
+    intro: 'AI Voice Agent – An Intelligent Conversational Sales Workflow',
     items: [
       {
-        title: 'Transparent Booking & Payment Processing',
-        description: 'Secure, real-time checkout system allowing users to book online and pay instantly, eliminating direct rental trust friction.',
+        title: 'SUB-SECOND SPEED-TO-LEAD',
+        description:
+          'Initiates an outbound phone call within 3 seconds of a prospect submitting an inquiry, eliminating lead decay.',
       },
       {
-        title: 'Dynamic Calendar & Real-Time Date Blocking',
-        description: 'The moment a property is booked, dates are transparently displayed as blocked, eliminating double-booking risks.',
+        title: 'NATURAL HUMAN-LIKE DIALOGUE',
+        description:
+          'Leverages LLMs and Vector DBs to manage conversational nuance, understand intent, and answer precise property queries.',
       },
       {
-        title: 'Interactive Map Search & Location Filters',
-        description: 'Geolocation APIs enable users to browse destinations, filter by arrival/departure dates, and explore properties on an interactive map.',
+        title: 'AUTOMATED LEAD SCORING',
+        description:
+          'Dynamically categorizes prospects as Hot, Warm, or Cold based on budget, timeline, and intent.',
       },
       {
-        title: 'Promotional Offers & Featured Rentals',
-        description: 'Dynamic modules to spotlight special promotions and featured holiday homes across the homepage and search result pages.',
+        title: 'SEAMLESS LIVE HANDOVER',
+        description:
+          'Executes instant SIP transfers to human consultants for hot leads or automatically books site visits into team calendars.',
       },
     ],
   },
   solutionArchitecture: {
-    title: 'Application Architecture',
+    title: 'Enterprise Voice AI Architecture',
     intro:
-      'Multi-Device Users (Holiday Makers • Property Owners • Admin) → Direct Owners Platform → Property Search & Map Routing / Booking Engine & Payment Gateway / Owner Control Dashboard → Real-Time Synchronization → Central Data Infrastructure.',
+      'Distributed multi-channel inquiry ingestion → Low-latency Twilio SIP Telephony & Deepgram STT/TTS → GPT-4 + Vector DB (RAG) Orchestration → Live HubSpot CRM Sync & Smart Sub-Second Agent Transfer.',
     image: { asset: { url: '/casestudy-img/arctature-daigram.webp' } },
-    caption: 'Figure: Direct Owners Secure Multi-Tenant Booking & Real-Time Calendar Architecture',
+    caption: 'Figure: AI Voice Agent Autonomous Lead Qualification & Telephony Routing Architecture',
   },
+  techStackTitle: 'Enterprise Technology Stack',
+  techStackSubtitle:
+    'Engineered with a high-throughput, sub-second latency voice intelligence stack to ensure human-like responsiveness and seamless CRM automation:',
   technologyStack: [
     {
-      category: 'Frontend Interface',
-      technologies: ['HTML5', 'CSS3', 'jQuery', 'Responsive Mobile-First UI'],
-      description: 'Strictly responsive design delivering an app-like browsing and checkout experience across all devices.',
+      category: 'BACKEND ARCHITECTURE',
+      technologies: ['Python (FastAPI)', 'Node.js', 'PostgreSQL', 'MongoDB'],
+      description: 'Asynchronous event routing and real-time state management.',
     },
     {
-      category: 'Backend Architecture',
-      technologies: ['PHP-Laravel', 'Java Application Services'],
-      description: 'High-throughput transactional logic, availability calculation, and secure booking management.',
+      category: 'DATABASE & INFRASTRUCTURE',
+      technologies: ['AWS', 'Google Cloud (Docker)', 'HubSpot CRM'],
+      description: 'Elastic cloud containers and real-time CRM data synchronization.',
     },
     {
-      category: 'Database Infrastructure',
-      technologies: ['MySQL Enterprise'],
-      description: 'ACID-compliant relational structure for property catalogs, date reservations, and user profiles.',
+      category: 'ADVANCED INTEGRATIONS',
+      technologies: ['Twilio & SIP Trunking', 'n8n Enterprise', 'Deepgram (STT/TTS)'],
+      description: 'Carrier-grade SIP telephony networks and ultra-low-latency voice synthesis.',
     },
     {
-      category: 'Integrations & APIs',
-      technologies: ['Geolocation APIs', 'Enterprise Payment Gateway', 'Calendar Sync Engine'],
-      description: 'Interactive map search and PCI-DSS compliant payment processing.',
+      category: 'AI & AUTOMATION',
+      technologies: ['OpenAI GPT-4', 'Pinecone / Weaviate Vector DB (RAG)'],
+      description: 'Domain-specific property knowledge retrieval and intent-guided dialogue.',
     },
   ],
   impact: {
-    title: 'The Business Impact',
-    subtitle: 'Bridging the 70% Market Gap and Driving Confirmed Bookings Globally',
+    title: 'The Impact',
+    subtitle: 'Turning High-Volume Lead Ingestion Into a High-Speed Growth Engine',
     content:
-      'The launch of the custom web application fundamentally transformed Direct Owners digital presence and operational capacity, delivering verified commercial success across the USA and UK.',
+      'Through strategic AI architecture and scalable cloud software engineering, Travash enabled Pixl to achieve immediate operational velocity and complete ROI within 60 days.',
     outcomes: [
-      'Successfully solved the 70% rental platform transparency gap identified in industry research',
-      'Significantly increased inbound lead generation and confirmed property bookings',
-      'Eliminated double-booking incidents through real-time calendar synchronization',
-      'Delivered seamless multi-device responsiveness from smartphones to desktop screens',
-      'Built a transparent, trust-first e-commerce booking ecosystem praised by management and holidaymakers',
+      'Eliminated 4.2-hour average response times, dropping speed-to-lead to under 3 seconds',
+      'Achieved a 310% month-over-month increase in confirmed site visit appointments',
+      'Reduced repetitive administrative workload for the sales team by 72%',
+      'Empowered leadership with 100% automated HubSpot CRM logging, capturing transcripts, summaries, and lead scores',
     ],
   },
   beforeAfter: {
-    title: 'Industry Evolution: Before vs. After',
-    subtitle: 'From Clunky Directory Listings to Real-Time Booking Commerce',
-    beforeTitle: 'LEGACY RENTAL PLATFORMS',
-    afterTitle: 'DIRECT OWNERS PLATFORM',
+    title: 'Before vs. After',
+    subtitle: 'Transformation from manual response bottlenecks to autonomous 24/7 speed-to-lead execution.',
+    beforeTitle: 'BEFORE AI VOICE AGENT',
+    afterTitle: 'AFTER AI VOICE AGENT',
     before: [
-      'Hidden fees, price markups, and lack of billing transparency',
-      'Manual date inquiries frequently resulting in double-bookings',
-      'Static text-based listings with poor map discovery',
-      'Disjointed third-party communication creating booking mistrust',
-      'Clunky mobile experiences discouraging on-the-go reservations',
+      '4.2-hour average speed-to-lead, causing hot prospects to lose interest.',
+      '~38% inbound lead coverage, limited strictly to standard office hours.',
+      '15 minutes of manual CRM logging per call, creating massive administrative fatigue.',
+      'Sales reps spent 65% of their day asking basic qualification questions.',
     ],
     after: [
-      '100% upfront pricing with secure online deposit checkout',
-      'Dynamic real-time calendar synchronization with instant date blocking',
-      'Interactive geolocation map search with arrival/departure filters',
-      'Direct owner dashboards with automated lead and reservation management',
-      'Flawless responsive app-like experience across all modern devices',
+      '< 3 seconds response time, engaging buyers while they are at peak intent.',
+      '100% (24/7/365) coverage, answering inquiries around the clock.',
+      '0 minutes of manual entry; 100% automated HubSpot CRM sync.',
+      '+310% increase in booked site visits as reps focus entirely on closing deals.',
     ],
   },
   testimonial: {
+    heading: 'Client Perspective',
     quote:
-      'Our vision was to revolutionize the vacation rental space by cutting out massive platform fees and connecting guests directly with property owners. Travash took this ambitious concept and engineered a flawless, custom web application from the ground up. They completely understood the complexities of the rental market and delivered a robust, intuitive platform that makes direct booking seamless for both sides. Travash didn’t just build our software; they built the exact engine we needed to disrupt the industry.',
-    author: 'David Burn',
-    role: 'Owner',
-    company: 'Direct Owners',
+      'We needed a solution that could scale instantly, operate around the clock, and connect with prospective buyers immediately—without feeling like a rigid, frustrating automated phone system. Travash\'s AI Voice Agent transformed our sales pipeline into an automated growth engine, allowing our consultants to stop chasing unvetted leads and spend 100% of their time conducting viewings and closing deals.',
+    author: 'Leadership Team',
+    role: 'Sales Leadership',
+    company: 'Pixl',
     image: {
       asset: {
         url: 'https://cdn.sanity.io/images/s2k81yej/production/03e1bfe5c72a898954b3cb4fa01cd0e7b6f8a2d3-350x320.png',
@@ -938,73 +958,79 @@ export const DEFAULT_DIRECTOWNERS_DATA: CaseStudyData = {
     },
   },
   whyItMatters: {
-    title: 'Why This Matters for Hospitality & Rentals',
-    subtitle: 'Is Your Booking Platform Losing Revenue to Platform Friction?',
+    title: 'Why This Matters',
+    subtitle:
+      'THIS CASE STUDY IS RELEVANT FOR ORGANIZATIONS MANAGING high-volume sales pipelines, rapid lead decay, and CRM automation.',
+    description:
+      'The objective wasn\'t simply to introduce an IVR system; it was to build a natural, context-aware dialogue engine. By automating routine qualification with human-like precision, enterprises can scale their sales efforts infinitely and secure a complete return on technology investment within 60 days.',
     items: [
-      'Eliminating hidden fees to build direct consumer trust and higher checkout conversion',
-      'Automating date reservations to completely prevent double-booking discrepancies',
-      'Providing property owners with total autonomy over listing content and rates',
-      'Engineering to international UK/US standards for security and payment compliance',
+      'High-volume sales pipelines experiencing rapid lead decay outside office hours',
+      'Sales teams spending over 60% of their time on repetitive basic qualification questions',
+      'Need for real-time, zero-latency CRM data synchronization and automated scoring',
+      'Desire to harness human-sounding Conversational AI without sacrificing conversion rates',
     ],
   },
   nextStep: {
     heading: 'The Next Step',
+    subtitle: 'Looking to Modernize a High-Volume Sales Pipeline or Speed-to-Lead Workflow?',
     content:
-      'Ready to build a custom web application that disrupts your industry? At Travash, we specialize in building bespoke, high-performance software solutions tailored to international standards. Speak with our engineering team today.',
-    primaryCTA: { label: 'Discuss a Custom Web Platform', href: '#contact' },
-    secondaryCTA: { label: 'Explore E-Commerce Architecture', href: '#contact' },
+      'Start with one clearly defined process to evaluate whether this high-tech, low-friction approach is right for your organization.',
+    primaryCTA: { label: 'Discuss an AI Voice Agent Initiative', href: '#contact' },
+    secondaryCTA: { label: 'Schedule an AI Discovery Session', href: '#contact' },
+  },
+  contact: {
+    heading: 'Ready to automate and solve operational bottlenecks?',
+    description:
+      'At Travash, we engineer enterprise-grade conversational AI and automation workflows that eliminate lead decay and scale customer acquisition. Visit travash.com to connect with our digital transformation experts.',
   },
   technicalHighlights: [
-    { label: 'Timeline', value: '8 Months', subtext: 'End-to-end launch & QA', icon: 'clock' },
-    { label: 'Market Gap', value: '70%', subtext: 'Transparency gap bridged', icon: 'chart' },
-    { label: 'Standards', value: 'US & UK', subtext: 'PCI-DSS & GDPR compliance', icon: 'shield' },
-    { label: 'Architecture', value: '3 Personas', subtext: 'Holiday Maker, Owner, Admin', icon: 'layers' },
+    { label: 'Speed to Lead', value: '< 3s', subtext: 'Immediate outbound engagement', icon: 'zap' },
+    { label: 'Conversion', value: '+310%', subtext: 'Confirmed site visits surge', icon: 'chart' },
+    { label: 'Admin Reduced', value: '72%', subtext: 'Repetitive workload eliminated', icon: 'clock' },
+    { label: 'Coverage', value: '24/7/365', subtext: 'Zero inbound lead decay', icon: 'shield' },
   ],
   walkthroughSteps: [
     {
       stepNumber: '01',
-      title: 'Transparent Booking & Payment Processing Engine',
+      title: 'Multichannel Lead Ingestion & Sub-3-Second Trigger',
       description:
-        'Engineered a secure, real-time checkout system that allows users to book a property online and pay the required deposit amount instantly. By processing transactions securely within the application, friction and trust issues were eliminated.',
+        'Captures inquiries instantly from Facebook Ads, Google Search, and property portals, immediately initiating an outbound call via high-throughput SIP trunks.',
       subItems: [
-        { label: 'PCI-DSS Compliance', text: 'Tokenized transaction processing via enterprise payment gateways.' },
-        { label: 'Instant Receipts', text: 'Automated booking confirmations dispatched to both holidaymaker and owner.' },
+        { label: 'Speed-to-Lead', text: 'Sub-3s response time while buyer interest is at its absolute peak.' },
+        { label: 'Webhook Ingestion', text: 'Zero latency webhook listeners routing inquiries to the AI orchestrator.' },
       ],
     },
     {
       stepNumber: '02',
-      title: 'Dynamic Calendar & Real-Time Date Blocking',
+      title: 'Human-Sounding Speech Synthesis & Natural Dialogue',
       description:
-        'Developed an intelligent calendar synchronization system. The moment a holidaymaker secures a property, the application transparently displays the booked dates as blocked across all viewports.',
+        'Leverages ultra-fast streaming STT (Deepgram) and fine-tuned LLMs with natural pause handling, human tonality, and localized accents.',
       subItems: [
-        { label: 'Zero Double-Booking', text: 'Atomic transaction locking guarantees conflicting dates cannot be reserved.' },
+        { label: 'Zero Awkward Latency', text: 'Streaming audio pipeline responds in sub-500ms.' },
       ],
     },
     {
       stepNumber: '03',
-      title: 'Interactive Map Search & Geolocation Filters',
+      title: 'Retrieval-Augmented Generation (RAG) Property Knowledge',
       description:
-        'Integrated advanced geolocation mapping services, allowing users to browse thousands of holiday destinations visually. Users can explore neighborhoods, set date ranges, and view pricing overlays on the map.',
-      subItems: [
-        { label: 'Spatial Indexing', text: 'Sub-second bounding box queries for rapid property pin clustering.' },
-      ],
+        'Connects directly to property listing databases and vectorized brochures to provide exact specifications, pricing, and floor plans in real time.',
     },
     {
       stepNumber: '04',
-      title: 'Promotional Offers & Owner Control Dashboard',
+      title: 'Dynamic Lead Scoring & Instant HubSpot CRM Synchronization',
       description:
-        'Property owners gain total governance over their listings, availability rules, and custom seasonal discounts, while platform admins manage featured properties across the homepage.',
+        'Automatically scores prospect intent (Hot, Warm, Cold), generates call transcripts, and logs structured deal records directly into HubSpot without manual rep intervention.',
       callout: {
-        title: 'Owner Autonomy',
-        text: 'Owners update pricing, seasonal rates, and availability without needing technical assistance.',
-        badge: 'Self-Serve',
+        title: 'Zero Admin Fatigue',
+        text: 'Saves 15 minutes of manual CRM logging per call, reclaiming 25+ hours weekly for sales reps.',
+        badge: 'Automated',
       },
     },
     {
       stepNumber: '05',
-      title: 'Seamless Multi-Device Responsiveness',
+      title: 'Smart SIP Telephony Transfer & Instant Calendar Booking',
       description:
-        'Engineered with a mobile-first responsive design framework ensuring desktop, tablet, and smartphone users enjoy fluid navigation, fast page renders, and frictionless booking checkouts.',
+        'Transfers high-intent buyers directly to human sales reps with full caller context, or seamlessly reserves a viewing slot directly into the consultant calendar.',
     },
   ],
 }
