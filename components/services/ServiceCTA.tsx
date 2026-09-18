@@ -78,7 +78,7 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
                 return (
                   <div
                     key={idx}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/15"
+                    className="flex items-start gap-4 p-4 rounded-xl bg-white shadow-2xl"
                   >
                     <div className="w-10 h-10 rounded-lg bg-white text-[#066095] flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Icon className="w-5 h-5" />
