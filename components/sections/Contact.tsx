@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { User, Phone, Mail, MessageSquare, FileText, Send } from 'lucide-react'
 import { Toaster, toast } from 'sonner'
+import CountryPhoneInput from '@/components/ui/CountryPhoneInput'
 
 interface ContactData {
   heading?: string
@@ -124,14 +125,12 @@ export default function Contact({ data }: { data?: ContactData }) {
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <label htmlFor="contact-phone" className="text-xs font-semibold text-gray-700">
-                      Phone
+                      Phone Number
                     </label>
-                    <input
+                    <CountryPhoneInput
                       id="contact-phone"
                       name="phone"
-                      type="tel"
-                      placeholder="Enter Your Phone"
-                      className={inputClass}
+                      placeholder="98765 43210"
                     />
                   </div>
                 </div>

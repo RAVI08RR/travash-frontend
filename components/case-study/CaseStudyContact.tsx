@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Toaster, toast } from 'sonner'
+import CountryPhoneInput from '@/components/ui/CountryPhoneInput'
 
 interface CaseStudyContactProps {
   heading?: string
@@ -121,14 +122,12 @@ export default function CaseStudyContact({
                   {/* Phone */}
                   <div className="flex flex-col gap-1">
                     <label htmlFor="cs-phone" className="text-xs font-semibold text-gray-700">
-                      Phone
+                      Phone Number
                     </label>
-                    <input
+                    <CountryPhoneInput
                       id="cs-phone"
                       name="phone"
-                      type="tel"
-                      placeholder="Enter Phone"
-                      className="w-full bg-white border border-gray-200 rounded-lg px-3.5 py-2 text-xs text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#003865] transition-colors"
+                      placeholder="98765 43210"
                     />
                   </div>
 

@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { toast, Toaster } from 'sonner'
 import OfficeLocations, { OfficeLocation } from './OfficeLocations'
+import CountryPhoneInput from '@/components/ui/CountryPhoneInput'
 
 interface ContactPageLayoutProps {
   email?: string
@@ -181,15 +182,13 @@ export default function ContactPageLayout({
                     </div>
                     <div>
                       <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">
-                        Phone <span className="text-red-500">*</span>
+                        Phone Number <span className="text-red-500">*</span>
                       </label>
-                      <input
+                      <CountryPhoneInput
                         id="contact-phone"
                         name="phone"
-                        type="tel"
                         required
-                        placeholder="Enter Your Phone"
-                        className="w-full bg-white rounded-xl px-4 py-3 text-sm text-[#0B1E3D] placeholder:text-gray-400 border border-gray-200 focus:outline-none focus:border-[#004771] focus:ring-2 focus:ring-[#E0F2FE] transition-all shadow-2xs"
+                        placeholder="98765 43210"
                       />
                     </div>
                   </div>

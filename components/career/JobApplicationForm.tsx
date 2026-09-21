@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import { Upload, Send, CheckCircle2, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
+import CountryPhoneInput from '@/components/ui/CountryPhoneInput'
 
 interface JobApplicationFormProps {
   jobTitle: string
@@ -90,13 +91,11 @@ export default function JobApplicationForm({ jobTitle, jobSlug }: JobApplication
           <label htmlFor="applicant-phone" className="block text-xs font-semibold text-gray-700 mb-1">
             Phone Number <span className="text-red-500">*</span>
           </label>
-          <input
+          <CountryPhoneInput
             id="applicant-phone"
             name="phone"
-            type="tel"
             required
-            placeholder="e.g. +91 98765 43210"
-            className="w-full px-3.5 py-2.5 bg-[#F8FAFC] border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#004771] focus:bg-white transition-all"
+            placeholder="98765 43210"
           />
         </div>
 

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Compass, LineChart, ShieldCheck } from 'lucide-react'
 import type { ServiceFinalCTA } from '@/lib/service-data'
+import CountryPhoneInput from '@/components/ui/CountryPhoneInput'
 
 export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
   const [formState, setFormState] = useState({
@@ -11,21 +12,46 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
     email: '',
     phone: '',
     message: '',
+    website: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   if (!cta) return null
 
   const bgImage = cta.backgroundImage || '/images/services/light-abstract.png'
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setTimeout(() => {
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          subject: 'Service Consultation Request',
+          message: formState.message,
+          website: formState.website,
+        }),
+      })
+
+      const data = await res.json()
+      if (res.ok && data.success !== false) {
+        setIsSubmitted(true)
+      } else {
+        setErrorMessage(data.message || data.error || 'Failed to submit request. Please try again.')
+      }
+    } catch {
+      setErrorMessage('Network error. Please try again.')
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 800)
+    }
   }
 
   const features = cta.features || [
@@ -127,6 +153,24 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  {/* Honeypot anti-spam */}
+                  <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <input
+                      type="text"
+                      name="website"
+                      value={formState.website}
+                      onChange={(e) => setFormState({ ...formState, website: e.target.value })}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {errorMessage && (
+                    <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs font-semibold">
+                      {errorMessage}
+                    </div>
+                  )}
+
                   <div>
                     <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-1">
                       Full Name *
@@ -159,12 +203,11 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
                       <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-1">
                         Phone Number
                       </label>
-                      <input
-                        type="tel"
-                        placeholder="+1 (555) 000-0000"
-                        value={formState.phone}
-                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-[#066095] focus:ring-1 focus:ring-[#066095]"
+                      <CountryPhoneInput
+                        name="phone"
+                        defaultValue={formState.phone}
+                        onChange={(fullPhone) => setFormState((prev) => ({ ...prev, phone: fullPhone }))}
+                        placeholder="98765 43210"
                       />
                     </div>
                   </div>
@@ -200,3 +243,4 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
     </section>
   )
 }
+
