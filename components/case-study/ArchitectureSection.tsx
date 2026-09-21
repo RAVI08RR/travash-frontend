@@ -106,6 +106,7 @@ export default function ArchitectureSection({
                   src={effectiveImageSrc}
                   alt={title.replace('\n', ' ')}
                   fill
+                  unoptimized
                   className="object-contain"
                   sizes="(max-width: 1024px) 100vw, 900px"
                   priority

@@ -223,6 +223,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                 src={current.image || '/casestudy-thumbs/Satyaapan.png'}
                 alt={current.projectName}
                 fill
+                unoptimized
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 450px"
               />

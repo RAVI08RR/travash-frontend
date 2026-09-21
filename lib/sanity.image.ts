@@ -11,17 +11,22 @@ export function urlForImage(source: SanityImageSource) {
   return imageBuilder.image(source)
 }
 
-export function getSanityImageUrl(source: SanityImageSource, width = 1200, height?: number): string {
+export function getSanityImageUrl(
+  source: SanityImageSource,
+  width = 2400,
+  height?: number,
+  quality = 100
+): string {
   if (!source) return '/home-img/Group 1000003287.png'
   if (typeof source === 'string') return source
-  if (source?.asset?.url) return source.asset.url
 
   try {
-    let builder = imageBuilder.image(source).auto('format').fit('max')
-    if (width) builder = builder.width(width)
-    if (height) builder = builder.height(height)
+    let builder = imageBuilder.image(source).quality(quality).auto('format').fit('max')
+    if (width && width > 0) builder = builder.width(width)
+    if (height && height > 0) builder = builder.height(height)
     return builder.url()
   } catch {
+    if (source?.asset?.url) return source.asset.url
     return '/home-img/Group 1000003287.png'
   }
 }

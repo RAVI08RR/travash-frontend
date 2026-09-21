@@ -282,6 +282,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
                 alt={data.title}
                 fill
                 priority
+                unoptimized
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

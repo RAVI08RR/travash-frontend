@@ -28,6 +28,7 @@ export default function ProjectVisual({
             src={imageSrc}
             alt={alt}
             fill
+            unoptimized
             className="object-cover object-center"
             sizes="(max-width: 1024px) 100vw, 1280px"
             priority
