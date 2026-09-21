@@ -195,24 +195,24 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     _id: 'proj-pekt',
-    title: 'PEKT: Mobile-First Construction Management & Task Tracking Platform',
-    portfolioTitle: 'PEKT - Construction Automation',
+    title: 'PEKT: Dynamic Automation for Streamlining All Construction Management Activities',
+    portfolioTitle: 'PEKT - Dynamic Construction Management',
     slug: 'pekt',
     cardDescription:
-      'Dynamic field tracking app empowering on-site construction engineers with daily task updates, stockout alerts, and wage management.',
+      'A centralized mobile platform designed to eliminate on-site tracking fragmentation and automate daily construction workflows.',
     shortDescription:
-      'Dynamic field tracking app empowering on-site construction engineers with daily task updates, stockout alerts, and wage management.',
-    category: 'Field Automation & Mobile',
+      'A centralized mobile platform designed to eliminate on-site tracking fragmentation and automate daily construction workflows.',
+    category: 'Construction Management Mobile App',
     industry: 'Real Estate & Construction',
     projectType: 'Mobile Application',
-    industries: ['Real Estate & Construction', 'Manufacturing', 'Technology'],
-    technologies: ['React Native', 'Laravel', 'MySQL', 'Offline SQLite'],
+    industries: ['Real Estate & Construction', 'Technology'],
+    technologies: ['React Native', 'UI/UX Design', 'PHP (Laravel)', 'MySQL'],
     featured: true,
     portfolioOrder: 8,
     cardImage: '/images/portfolio/pekt.webp',
     metrics: [
-      { value: '40%', label: 'Time Saved' },
-      { value: '98%', label: 'Inventory Accuracy' },
+      { value: '40%', label: 'Time Savings' },
+      { value: '60%', label: 'Productivity Improvement' },
     ],
   },
   {

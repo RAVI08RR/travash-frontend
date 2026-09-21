@@ -157,24 +157,17 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
               Project
             </span>
           )}
-          {industryBadge && (
+          {/* {industryBadge && (
             <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#022E54]/90 text-[#38BDF8] border border-white/15 backdrop-blur-xs">
               {industryBadge}
             </span>
-          )}
+          )} */}
         </div>
 
         {/* Bottom Key Metric Preview (if present) */}
         {project.metrics && project.metrics.length > 0 && (
           <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center gap-3">
-            <div className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center gap-2">
-              <span className="text-xs font-bold text-[#38BDF8]">
-                {project.metrics[0].value}
-              </span>
-              <span className="text-[10px] text-white/80 font-medium">
-                {project.metrics[0].label}
-              </span>
-            </div>
+         
           </div>
         )}
       </Link>

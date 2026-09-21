@@ -18,11 +18,7 @@ const AUTHOR_PHOTOS: Record<string, string> = {
   'senior officer': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
   'national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
   'senior leadership & national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
-  'elena rostova': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
-  'sarah jenkins': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
-  'michael chen': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
-  'rajesh verma': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop',
-  'david miller': 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop',
+
 }
 
 const TESTIMONIALS: Testimonial[] = [
@@ -47,20 +43,7 @@ const TESTIMONIALS: Testimonial[] = [
     authorTitle: 'Managing Director · SWD Group',
     authorPhoto: 'https://travash.com/wp-content/uploads/2026/08/swd-ross-travash-client.webp',
   },
-  {
-    quote:
-      'The speed and precision of Travash’s engineering team is unmatched. From architecture design to microservices deployment, every milestone was hit with flawless execution.',
-    authorName: 'Elena Rostova',
-    authorTitle: 'Head of Engineering · SaaS Logistics',
-    authorPhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    quote:
-      'Travash transformed our legacy infrastructure into a scalable cloud-native microservices architecture. Their proactive communication, technical depth, and agility made them an indispensable extension of our product engineering team from day one.',
-    authorName: 'Michael Chen',
-    authorTitle: 'Chief Product Officer · FinTech Nexus',
-    authorPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
-  },
+ 
 ]
 
 interface SanityTestimonial {
