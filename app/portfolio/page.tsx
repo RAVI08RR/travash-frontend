@@ -89,38 +89,70 @@ export default async function PortfolioPage() {
     }
   }
 
-  // Map master 37 default projects, merging Sanity CMS content where available
-  const projects: PortfolioProject[] = DEFAULT_PORTFOLIO_PROJECTS.map((fallback) => {
-    const slugKey = fallback.slug.toLowerCase().trim()
-    const sp = sanitySlugMap.get(slugKey) || {}
+  // Master list of 11 approved active case study slugs to display on the portfolio page
+  const UPDATED_PORTFOLIO_SLUGS = [
+    'pekt',
+    'satyapaan',
+    'direct-owners',
+    'ugo',
+    'indispare',
+    'i4c-bank-portal',
+    'dovehouse',
+    'skipr',
+    'darpan',
+    'i-verify',
+    'dine-desk',
+  ]
 
-    return {
-      ...fallback,
-      ...sp,
-      // Ensure master fields take proper precedence
-      title: sp.title || fallback.title,
-      portfolioTitle: sp.portfolioTitle || fallback.portfolioTitle || fallback.title,
-      slug: fallback.slug,
-      cardDescription:
-        sp.cardDescription ||
-        sp.excerpt ||
-        sp.shortDescription ||
-        fallback.cardDescription ||
-        fallback.shortDescription,
-      cardImage: sp.cardImage || sp.featuredImage || sp.heroImage || fallback.cardImage,
-      category: fallback.category,
-      industry: fallback.industry,
-      projectType: fallback.projectType,
-      projectTypes:
-        Array.isArray(sp.projectTypes) && sp.projectTypes.length > 0
-          ? sp.projectTypes
-          : fallback.projectTypes,
-      technologies:
-        sp.technologies && sp.technologies.length > 0 ? sp.technologies : fallback.technologies,
-      metrics: sp.metrics && sp.metrics.length > 0 ? sp.metrics : fallback.metrics,
-      portfolioOrder: fallback.portfolioOrder,
-    }
-  }).sort((a, b) => (a.portfolioOrder || 100) - (b.portfolioOrder || 100))
+  // Map and filter default projects to include ONLY the 11 updated case studies
+  const projects: PortfolioProject[] = DEFAULT_PORTFOLIO_PROJECTS
+    .filter((p) => {
+      const slug = p.slug.toLowerCase().trim()
+      return (
+        UPDATED_PORTFOLIO_SLUGS.includes(slug) ||
+        (slug === 'i4c' && UPDATED_PORTFOLIO_SLUGS.includes('i4c-bank-portal')) ||
+        (slug === 'dinedesk' && UPDATED_PORTFOLIO_SLUGS.includes('dine-desk'))
+      )
+    })
+    .map((fallback) => {
+      const slugKey = fallback.slug.toLowerCase().trim()
+      const sp = sanitySlugMap.get(slugKey) || {}
+
+      let orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf(slugKey)
+      if (orderIdx === -1 && slugKey === 'i4c') {
+        orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf('i4c-bank-portal')
+      }
+      if (orderIdx === -1 && slugKey === 'dinedesk') {
+        orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf('dine-desk')
+      }
+
+      return {
+        ...fallback,
+        ...sp,
+        title: sp.title || fallback.title,
+        portfolioTitle: sp.portfolioTitle || fallback.portfolioTitle || fallback.title,
+        slug: fallback.slug,
+        cardDescription:
+          sp.cardDescription ||
+          sp.excerpt ||
+          sp.shortDescription ||
+          fallback.cardDescription ||
+          fallback.shortDescription,
+        cardImage: sp.cardImage || sp.featuredImage || sp.heroImage || fallback.cardImage,
+        category: fallback.category,
+        industry: fallback.industry,
+        projectType: fallback.projectType,
+        projectTypes:
+          Array.isArray(sp.projectTypes) && sp.projectTypes.length > 0
+            ? sp.projectTypes
+            : fallback.projectTypes,
+        technologies:
+          sp.technologies && sp.technologies.length > 0 ? sp.technologies : fallback.technologies,
+        metrics: sp.metrics && sp.metrics.length > 0 ? sp.metrics : fallback.metrics,
+        portfolioOrder: orderIdx !== -1 ? orderIdx + 1 : fallback.portfolioOrder || 100,
+      }
+    })
+    .sort((a, b) => (a.portfolioOrder || 100) - (b.portfolioOrder || 100))
 
   const industries: IndustryItem[] = DEFAULT_INDUSTRIES
 
