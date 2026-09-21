@@ -8,14 +8,14 @@ const imageBuilder = createImageUrlBuilder(client)
 
 export function urlForImage(source: SanityImageSource) {
   if (!source) return null
-  return imageBuilder.image(source)
+  return imageBuilder.image(source).quality(80)
 }
 
 export function getSanityImageUrl(
   source: SanityImageSource,
   width = 2400,
   height?: number,
-  quality = 100
+  quality = 80
 ): string {
   if (!source) return '/home-img/Group 1000003287.png'
   if (typeof source === 'string') return source

@@ -637,12 +637,14 @@ export default async function PortfolioProjectDetailPage({
         {/* 5. Center Laptop Visual Mockup */}
         <ProjectVisual
           imageSrc={
-            (typeof caseStudy.heroImage === 'string'
-              ? caseStudy.heroImage
-              : caseStudy.heroImage?.asset?.url) ||
-            (typeof caseStudy.featureImage === 'string'
-              ? caseStudy.featureImage
-              : caseStudy.featureImage?.asset?.url) ||
+            (caseStudy.featureImage && getSanityImageUrl(caseStudy.featureImage, 1800) !== '/home-img/Group 1000003287.png'
+              ? getSanityImageUrl(caseStudy.featureImage, 1800)
+              : undefined) ||
+            (caseStudy.heroImage && getSanityImageUrl(caseStudy.heroImage, 1800) !== '/home-img/Group 1000003287.png'
+              ? getSanityImageUrl(caseStudy.heroImage, 1800)
+              : undefined) ||
+            (typeof caseStudy.featureImage === 'string' ? caseStudy.featureImage : undefined) ||
+            (typeof caseStudy.heroImage === 'string' ? caseStudy.heroImage : undefined) ||
             '/home-img/satyapaan-min 2.png'
           }
           alt={caseStudy.title}

@@ -28,5 +28,5 @@ export const client = isValidProjectId
 const builder = createImageUrlBuilder(client)
 
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+  return builder.image(source).quality(80)
 }
