@@ -379,7 +379,8 @@ export default function TechnologyStack({
                       return
                     }
 
-                    iconItems.push({ original: name })
+                    // No icon asset found: treat as text pill
+                    pillItems.push({ text: name, badge: raw.badge })
                     return
                   }
 
@@ -395,31 +396,13 @@ export default function TechnologyStack({
                     }
 
                     const iconName = resolveTechIcon(str)
-                    if (iconName && VALID_TECH_ICONS.has(iconName) && str.length <= 32) {
+                    if (iconName && VALID_TECH_ICONS.has(iconName) && str.length <= 25) {
                       iconItems.push({ original: str, icon: iconName })
                       return
                     }
 
-                    // If it's a long sentence / free-hand note / complex integration
-                    if (
-                      forceText ||
-                      str.length > 32 ||
-                      str.includes(',') ||
-                      str.includes('(') ||
-                      str.includes('·') ||
-                      str.includes('-')
-                    ) {
-                      pillItems.push({ text: str })
-                    } else if (forceIcons) {
-                      iconItems.push({ original: str })
-                    } else {
-                      // Short text: if icon list already exists, add as icon item, else as pill
-                      if (iconItems.length > 0) {
-                        iconItems.push({ original: str })
-                      } else {
-                        pillItems.push({ text: str })
-                      }
-                    }
+                    // Text item without icon: move to pill items for full-width presentation
+                    pillItems.push({ text: str })
                     return
                   }
 
@@ -453,12 +436,18 @@ export default function TechnologyStack({
                         return
                       }
 
-                      if (name.length > 32 || raw.text) {
-                        pillItems.push({ text: raw.text || name, badge: raw.badge })
-                      } else {
-                        iconItems.push({ original: name })
-                      }
+                      pillItems.push({ text: raw.text || name, badge: raw.badge })
                     }
+                  }
+                })
+
+                // If any item in iconItems lacks an icon asset, convert it to pillItems
+                const validIconsOnly: typeof iconItems = []
+                iconItems.forEach((item) => {
+                  if (item.customImageUrl || item.localSrc || (item.icon && VALID_TECH_ICONS.has(item.icon))) {
+                    validIconsOnly.push(item)
+                  } else {
+                    pillItems.push({ text: item.original })
                   }
                 })
 
@@ -475,14 +464,14 @@ export default function TechnologyStack({
                     {/* Content: Icons in clean white boxes or free-hand text cards */}
                     <div className="my-auto w-full flex flex-col items-center justify-center gap-3">
                       {/* Icon Boxes matching Screenshot */}
-                      {iconItems.length > 0 && (
+                      {validIconsOnly.length > 0 && (
                         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full">
-                          {iconItems.map((item, tIdx) => {
+                          {validIconsOnly.map((item, tIdx) => {
                             const isDatabaseWide =
                               item.localSrc?.includes('mysql') ||
                               item.icon === 'mysql' ||
                               item.original.toLowerCase().includes('mysql') ||
-                              (iconItems.length === 1 &&
+                              (validIconsOnly.length === 1 &&
                                 (item.icon === 'postgresql' || item.icon === 'mongodb'))
 
                             return (
@@ -492,7 +481,7 @@ export default function TechnologyStack({
                                 className={`${
                                   isDatabaseWide
                                     ? 'w-48 sm:w-56 h-18 sm:h-20 px-6'
-                                    : iconItems.length <= 2
+                                    : validIconsOnly.length <= 2
                                       ? 'w-20 h-18 sm:w-24 sm:h-20 p-3'
                                       : 'w-16 h-16 sm:w-20 sm:h-20 p-2.5 sm:p-3'
                                 } bg-white rounded-xl shadow-xs border border-gray-100/80 flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-default`}
@@ -501,7 +490,7 @@ export default function TechnologyStack({
                                   className={`${
                                     isDatabaseWide
                                       ? 'w-28 sm:w-36 h-10'
-                                      : iconItems.length <= 2
+                                      : validIconsOnly.length <= 2
                                         ? 'w-10 h-10 sm:w-12 sm:h-12'
                                         : 'w-8 h-8 sm:w-10 sm:h-10'
                                   } flex items-center justify-center relative`}
@@ -546,11 +535,11 @@ export default function TechnologyStack({
                           {pillItems.map((pill, pIdx) => (
                             <div
                               key={pIdx}
-                              className="bg-white rounded-xl shadow-xs border border-gray-100/80 px-4 py-3 text-center text-xs text-gray-700 font-medium leading-relaxed"
+                              className="bg-white rounded-xl shadow-xs border border-gray-100/90 px-4 py-3.5 text-center text-xs sm:text-sm text-[#0F172A] font-semibold leading-relaxed w-full hover:border-gray-200 transition-colors"
                             >
                               <span>{pill.text}</span>
                               {pill.badge && (
-                                <span className="ml-2 inline-block px-2 py-0.5 text-[10px] font-semibold bg-blue-50 text-blue-700 rounded-full">
+                                <span className="ml-2 inline-block px-2.5 py-0.5 text-[10px] font-bold bg-blue-50 text-[#02487D] rounded-full">
                                   {pill.badge}
                                 </span>
                               )}

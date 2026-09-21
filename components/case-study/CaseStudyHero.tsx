@@ -9,10 +9,16 @@ import type { CaseStudyData } from '@/lib/case-study-data'
 import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
 
 export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
-  // Resolve Sanity CDN image, direct URL, or fallback
-  const resolvedSanityUrl =
-    getSanityImageUrl(data.featureImage, 1400) ||
-    getSanityImageUrl(data.heroImage, 1400)
+  // Resolve Sanity CDN image, direct URL, or fallback for Hero block (prioritizes heroImage)
+  const heroSanityUrl =
+    data.heroImage && getSanityImageUrl(data.heroImage, 1400) !== '/home-img/Group 1000003287.png'
+      ? getSanityImageUrl(data.heroImage, 1400)
+      : undefined
+
+  const featureSanityUrl =
+    data.featureImage && getSanityImageUrl(data.featureImage, 1400) !== '/home-img/Group 1000003287.png'
+      ? getSanityImageUrl(data.featureImage, 1400)
+      : undefined
 
   const SLUG_THUMBS: Record<string, string> = {
     pixl: '/casestudy-thumbs/pixl-crm.png',
@@ -53,17 +59,11 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
   const slugFallback = SLUG_THUMBS[slug] || '/casestudy-thumbs/Satyaapan.png'
 
   const featureVisual =
-    resolvedSanityUrl && !resolvedSanityUrl.includes('Group 1000003287.png')
-      ? resolvedSanityUrl
-      : typeof data.featureImage === 'string' && data.featureImage
-        ? data.featureImage
-        : (typeof data.featureImage === 'object' ? data.featureImage?.asset?.url : undefined) ||
-        (typeof data.heroImage === 'string' && data.heroImage
-          ? data.heroImage
-          : typeof data.heroImage === 'object'
-            ? data.heroImage?.asset?.url
-            : undefined) ||
-        slugFallback
+    heroSanityUrl ||
+    (typeof data.heroImage === 'string' && data.heroImage ? data.heroImage : undefined) ||
+    featureSanityUrl ||
+    (typeof data.featureImage === 'string' && data.featureImage ? data.featureImage : undefined) ||
+    slugFallback
 
   const title = data?.title || 'Case Study'
 

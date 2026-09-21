@@ -60,8 +60,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
       client: (typeof raw?.client === 'string' ? raw.client : raw?.client?.title || raw?.client?.name) || fallback.client,
       location: raw?.location || fallback.location,
       shortDescription: raw?.shortDescription || fallback.shortDescription,
-      heroImage: raw?.featuredImage || raw?.heroImage || fallback.heroImage,
-      featureImage: raw?.featuredImage || raw?.featureImage || fallback.featureImage,
+      heroImage: raw?.heroImage || raw?.featuredImage || fallback.heroImage,
+      featureImage: raw?.featureImage || raw?.featuredImage || fallback.featureImage,
       gallery: combinedGallery,
       projectMeta:
         Array.isArray(raw?.projectMeta) && raw.projectMeta.length > 0
@@ -269,8 +269,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
         ]
 
   const fallbackThumb = defaultProj?.cardImage || `/images/portfolio/${slug}.webp`
-  const featureImage = raw?.featuredImage || raw?.heroImage || raw?.cardImage || fallbackThumb
-  const heroImage = raw?.featuredImage || raw?.heroImage || raw?.cardImage || fallbackThumb
+  const heroImage = raw?.heroImage || raw?.featuredImage || raw?.cardImage || fallbackThumb
+  const featureImage = raw?.featureImage || raw?.featuredImage || raw?.cardImage || fallbackThumb
 
   const cleanExcerpt = sanitizeScrapedText(raw?.excerpt, '')
   const cleanDesc = sanitizeScrapedText(raw?.description, '')
