@@ -194,6 +194,9 @@ const customStructure = (S: any) =>
                 ),
               S.documentTypeListItem('job')
                 .title('All Job Postings (Open Positions)'),
+              S.divider(),
+              S.documentTypeListItem('jobApplicationSubmission')
+                .title('Received Candidate Applications'),
             ])
         ),
 
@@ -244,6 +247,12 @@ const customStructure = (S: any) =>
 
       // Industries
       S.documentTypeListItem('industry').title('Industries'),
+
+      S.divider(),
+
+      // 📬 Form Submissions & Candidate Leads Section
+      S.documentTypeListItem('enquirySubmission').title('📩 Website Enquiries (Contact Forms)'),
+      S.documentTypeListItem('jobApplicationSubmission').title('💼 Job Applications (Careers)'),
 
       S.divider(),
 
