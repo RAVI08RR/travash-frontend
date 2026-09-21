@@ -7,6 +7,7 @@ export interface MailOptions {
   subject: string
   text: string
   html: string
+  attachments?: Array<{ filename: string; content: Buffer }>
 }
 
 // Standard Nodemailer SMTP Transporter
@@ -181,6 +182,7 @@ export async function sendEnquiryEmail(options: MailOptions): Promise<void> {
     subject: options.subject,
     text: options.text,
     html: options.html,
+    attachments: options.attachments,
   })
 }
 

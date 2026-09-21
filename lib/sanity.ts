@@ -25,8 +25,20 @@ export const client = isValidProjectId
       useCdn: false,
     })
 
+export const writeClient =
+  isValidProjectId && process.env.SANITY_API_TOKEN
+    ? createClient({
+        projectId,
+        dataset,
+        apiVersion,
+        token: process.env.SANITY_API_TOKEN,
+        useCdn: false,
+      })
+    : null
+
 const builder = createImageUrlBuilder(client)
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source).quality(80)
 }
+

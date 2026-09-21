@@ -35,6 +35,10 @@ import { portfolioProject } from './portfolioProject'
 import { portfolioService } from './portfolioService'
 import { caseStudiesPage } from './caseStudiesPage'
 
+// Form Submissions schemas
+import { enquirySubmission } from './enquirySubmission'
+import { jobApplicationSubmission } from './jobApplicationSubmission'
+
 export const schemaTypes = [
   // Singletons / documents
   siteSettings,
@@ -58,6 +62,8 @@ export const schemaTypes = [
   author,
   post,
   job,
+  enquirySubmission,
+  jobApplicationSubmission,
   // Section objects
   heroSection,
   trustedBySection,
