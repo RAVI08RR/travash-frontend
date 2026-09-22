@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendEnquiryEmail } from '@/lib/mailer'
 import { writeClient } from '@/lib/sanity'
-import { NOTIFICATION_RECIPIENTS, generateMinimalEnquiryEmailHtml } from '@/lib/email-templates'
+import { NOTIFICATION_RECIPIENTS, generateMinimalEnquiryEmailHtml, generateUserThankYouEmailHtml } from '@/lib/email-templates'
 
 export const runtime = 'nodejs'
 
@@ -246,6 +246,25 @@ export async function POST(request: NextRequest) {
       text: plainTextMessage,
       html: htmlMessage,
     })
+
+    // 3. SEND AUTOMATED THANK YOU CONFIRMATION EMAIL TO THE USER
+    try {
+      const userThankYouHtml = generateUserThankYouEmailHtml({
+        name,
+        type: 'enquiry',
+      })
+
+      await sendEnquiryEmail({
+        from: `"Travash Software Solutions" <${smtpUser}>`,
+        to: email,
+        subject: 'Thank you for reaching out to Travash Software',
+        text: `Hi ${name},\n\nThank you for reaching out to Travash Software Solutions! We have successfully received your enquiry and our engineering advisory team will get in touch with you within 24 business hours.\n\nWarm regards,\nTravash Software Solutions Team\nwww.travash.com`,
+        html: userThankYouHtml,
+      })
+      console.log(`📧 User thank-you confirmation sent to ${email}`)
+    } catch (thankYouErr) {
+      console.warn('⚠️ User thank-you email dispatch warning:', thankYouErr)
+    }
 
     return NextResponse.json({
       success: true,

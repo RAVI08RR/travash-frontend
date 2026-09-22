@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendEnquiryEmail } from '@/lib/mailer'
 import { writeClient } from '@/lib/sanity'
-import { NOTIFICATION_RECIPIENTS, generateMinimalJobApplicationEmailHtml } from '@/lib/email-templates'
+import { NOTIFICATION_RECIPIENTS, generateMinimalJobApplicationEmailHtml, generateUserThankYouEmailHtml } from '@/lib/email-templates'
 
 export const runtime = 'nodejs'
 
@@ -101,6 +101,26 @@ export async function POST(request: NextRequest) {
         },
       ],
     } as any)
+
+    // 3. SEND AUTOMATED THANK YOU CONFIRMATION EMAIL TO CANDIDATE
+    try {
+      const candidateThankYouHtml = generateUserThankYouEmailHtml({
+        name,
+        type: 'career',
+        jobTitle,
+      })
+
+      await sendEnquiryEmail({
+        from: `"Travash Careers" <${smtpUser}>`,
+        to: email,
+        subject: `Application Received: ${jobTitle} — Travash Software`,
+        text: `Hi ${name},\n\nThank you for applying for the ${jobTitle} position at Travash Software Solutions! We have successfully received your application and resume.\n\nOur talent acquisition team is actively reviewing your qualifications and will get in touch with you if your profile matches our criteria.\n\nBest regards,\nTravash Careers Team\nwww.travash.com`,
+        html: candidateThankYouHtml,
+      })
+      console.log(`📧 Candidate thank-you confirmation sent to ${email}`)
+    } catch (thankYouErr) {
+      console.warn('⚠️ Candidate thank-you email dispatch warning:', thankYouErr)
+    }
 
     return NextResponse.json({
       success: true,
