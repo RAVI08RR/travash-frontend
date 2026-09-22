@@ -10,19 +10,22 @@ export interface MailOptions {
   attachments?: Array<{ filename: string; content: Buffer }>
 }
 
+const DEFAULT_SMTP_USER = process.env.SMTP_USER || 'leads.travash@gmail.com'
+const DEFAULT_SMTP_PASS = process.env.SMTP_PASSWORD || process.env.SMTP_PASS || 'hjihbjgfgeqnsfrl'
+
 // Standard Nodemailer SMTP Transporter
 export const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: Number(process.env.SMTP_PORT || 587),
   secure: process.env.SMTP_SECURE === 'true',
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD || process.env.SMTP_PASS,
+    user: DEFAULT_SMTP_USER,
+    pass: DEFAULT_SMTP_PASS,
   },
   requireTLS: true,
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 20000,
+  connectionTimeout: 15000,
+  greetingTimeout: 15000,
+  socketTimeout: 30000,
 })
 
 /**
@@ -175,8 +178,9 @@ export async function sendEnquiryEmail(options: MailOptions): Promise<void> {
   }
 
   // Fallback to Nodemailer SMTP
-  await transporter.sendMail({
-    from: options.from || `"Travash Website" <${process.env.SMTP_USER}>`,
+  const senderUser = process.env.SMTP_USER || DEFAULT_SMTP_USER
+  const info = await transporter.sendMail({
+    from: options.from || `"Travash Website" <${senderUser}>`,
     to: options.to,
     replyTo: options.replyTo,
     subject: options.subject,
@@ -184,6 +188,7 @@ export async function sendEnquiryEmail(options: MailOptions): Promise<void> {
     html: options.html,
     attachments: options.attachments,
   })
+  console.log(`📧 Email dispatched via SMTP to ${options.to}. MessageID: ${info.messageId}`)
 }
 
 export default transporter
