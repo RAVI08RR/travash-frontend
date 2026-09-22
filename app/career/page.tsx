@@ -15,6 +15,26 @@ export const revalidate = 0
 
 const DEFAULT_JOBS = [
   {
+    title: 'Business Development Manager (BDM)',
+    slug: 'business-development-manager',
+    category: 'Business Development & Sales',
+    employmentType: 'Full-time',
+    location: 'Hyderabad, India (Hybrid)',
+    experience: '3-6 Years',
+    shortDescription:
+      'Drive enterprise client acquisition, lead strategic B2B partnerships, and expand global IT software engineering revenue streams for Travash Software Solutions.',
+  },
+  {
+    title: 'Digital Marketing Expert',
+    slug: 'digital-marketing-expert',
+    category: 'Marketing & Growth',
+    employmentType: 'Full-time',
+    location: 'Hyderabad, India (Hybrid)',
+    experience: '3-5 Years',
+    shortDescription:
+      'Lead digital marketing campaigns, SEO strategy, inbound lead generation, and performance marketing to scale Travash’s global brand presence.',
+  },
+  {
     title: 'PHP Developer',
     slug: 'php-developer',
     category: 'Backend Development',

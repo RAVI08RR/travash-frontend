@@ -17,6 +17,78 @@ interface PageProps {
 }
 
 const DEFAULT_JOB_DETAILS: Record<string, JobDetailData> = {
+  'business-development-manager': {
+    title: 'Business Development Manager (BDM)',
+    slug: 'business-development-manager',
+    category: 'Business Development & Sales',
+    employmentType: 'Full-time',
+    location: 'Hyderabad, India (Hybrid)',
+    experience: '3-6 Years',
+    salary: 'Competitive / Best in Industry + Performance Incentives',
+    shortDescription:
+      'Drive enterprise client acquisition, lead strategic B2B partnerships, and expand global IT software engineering revenue streams for Travash Software Solutions.',
+    overview:
+      'We are seeking a results-driven Business Development Manager (BDM) to spearhead our enterprise sales and client acquisition initiatives. You will identify new market opportunities, cultivate relationships with CXOs and engineering directors, manage end-to-end sales cycles, and present tailored IT service solutions in custom software development, cloud modernization, and dedicated engineering squads.',
+    responsibilities: [
+      'Identify, pitch, and close enterprise B2B accounts across North America, Europe, and India.',
+      'Build and manage a robust pipeline of qualified enterprise leads through consultative selling and strategic outreach.',
+      'Partner closely with solution architects to draft technical proposals, RFPs, scope documents, and commercial contracts.',
+      'Establish long-term relationships with key decision-makers (CTOs, CIOs, VP of Engineering).',
+      'Achieve and exceed quarterly and annual revenue targets while maintaining high account satisfaction.',
+    ],
+    requirements: [
+      '3+ years of proven track record in B2B IT services sales, software consulting, or staff augmentation.',
+      'Deep understanding of custom software engineering, cloud solutions, and agile squad models.',
+      'Strong negotiation, presentation, and contract closure capabilities.',
+      'Exceptional verbal and written business communication skills.',
+    ],
+    preferredSkills: [
+      'Experience selling to US or international enterprise accounts.',
+      'Familiarity with CRM tools (HubSpot, Salesforce) and LinkedIn Sales Navigator.',
+    ],
+    benefits: [
+      'Attractive uncapped commission & performance bonuses',
+      'Flexible hybrid work environment',
+      'Comprehensive health & life insurance',
+      'Global client exposure and fast-track leadership growth',
+    ],
+  },
+  'digital-marketing-expert': {
+    title: 'Digital Marketing Expert',
+    slug: 'digital-marketing-expert',
+    category: 'Marketing & Growth',
+    employmentType: 'Full-time',
+    location: 'Hyderabad, India (Hybrid)',
+    experience: '3-5 Years',
+    salary: 'Competitive / Based on experience',
+    shortDescription:
+      'Lead digital marketing campaigns, SEO strategy, inbound lead generation, and performance marketing to scale Travash’s global brand presence.',
+    overview:
+      'We are looking for a creative and analytical Digital Marketing Expert to own and execute our multi-channel growth strategies. In this role, you will lead SEO optimization, performance marketing (PPC/LinkedIn Ads), content strategy, social media growth, and conversion rate optimization (CRO) to drive qualified enterprise leads and establish Travash as a thought leader in software engineering.',
+    responsibilities: [
+      'Plan, execute, and optimize organic (SEO) and paid (Google Ads, LinkedIn Ads) marketing campaigns.',
+      'Perform technical SEO audits, keyword research, and content optimization to drive organic enterprise traffic.',
+      'Manage company social media presence (LinkedIn, Twitter, YouTube) and brand messaging.',
+      'Collaborate with content creators and designers to publish high-converting landing pages, blogs, and whitepapers.',
+      'Track, measure, and report campaign ROI and lead conversion metrics using Google Analytics 4, Search Console, and CRM tools.',
+    ],
+    requirements: [
+      '3+ years of hands-on experience in digital marketing for IT services, B2B software, or tech agencies.',
+      'Proven experience with Google Ads, LinkedIn Campaign Manager, Google Analytics 4, and SEO tools (AHrefs, SEMrush).',
+      'Solid understanding of lead generation funnels, email marketing, and conversion rate optimization.',
+      'Strong analytical skills with a data-driven approach to campaign budget allocation.',
+    ],
+    preferredSkills: [
+      'Experience with marketing automation tools (HubSpot, Mailchimp).',
+      'Basic HTML/CSS knowledge and WordPress/Sanity CMS familiarity.',
+    ],
+    benefits: [
+      'Competitive compensation package',
+      'Hybrid working model & flexible hours',
+      'Comprehensive health insurance for self and family',
+      'Professional development budget for certifications & events',
+    ],
+  },
   'php-developer': {
     title: 'PHP Developer',
     slug: 'php-developer',

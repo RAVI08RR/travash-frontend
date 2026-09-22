@@ -70,7 +70,7 @@ export default function CareerBenefits({ data }: CareerBenefitsProps = {}) {
   const benefits = data?.benefits && data.benefits.length > 0 ? data.benefits : DEFAULT_BENEFITS
 
   return (
-    <section id="life-at-travash" className="py-16 sm:py-20 lg:py-24 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
+    <section id="life-at-travash" className="py-5 sm:py-5 lg:py-5 bg-white font-['Plus_Jakarta_Sans',sans-serif] border-b border-gray-100">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-[#14B8A6] uppercase tracking-widest block mb-2">

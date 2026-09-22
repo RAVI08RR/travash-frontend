@@ -51,7 +51,7 @@ export default function CareerHero({
   const customHighlights = data?.highlights && data.highlights.length > 0 ? data.highlights : null
 
   return (
-    <section className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 bg-gradient-to-b from-[#F4F8FC] via-white to-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="relative pt-5 pb-5 lg:pt-5 lg:pb-5 bg-gradient-to-b from-[#F4F8FC] via-white to-white overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
       {/* Decorative background glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] pointer-events-none opacity-40">
         <div className="absolute -top-20 left-1/3 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />

@@ -22,7 +22,7 @@ export default function ProjectVisual({
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] rounded-2xl sm:rounded-3xl lg:rounded-[36px] overflow-hidden border border-gray-200/90 shadow-2xl bg-gray-50"
+          className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] rounded-2xl sm:rounded-3xl lg:rounded-[36px] overflow-hidden bg-gray-50"
         >
           <Image
             src={imageSrc}
