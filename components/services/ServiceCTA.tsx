@@ -77,11 +77,20 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
   return (
     <section
       id="contact"
-      className="relative py-16 sm:py-20 lg:py-24 font-['Plus_Jakarta_Sans',sans-serif] text-white bg-cover bg-center bg-no-repeat overflow-hidden"
-      style={{
-        backgroundImage: `url('${bgImage}')`,
-      }}
+      className="relative py-16 sm:py-20 lg:py-24 font-['Plus_Jakarta_Sans',sans-serif] text-white bg-slate-900 overflow-hidden"
     >
+      {/* Background Image Container */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={bgImage}
+          alt="CTA Background Image"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+      </div>
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Title & Strategic Guidance Points */}
