@@ -68,7 +68,13 @@ export const service = defineType({
         }),
         defineField({
           name: 'heroImage',
-          title: 'Hero Showcase Image',
+          title: 'Hero Showcase Image / Banner',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'heroBgImage',
+          title: 'Hero Background Image',
           type: 'image',
           options: { hotspot: true },
         }),
@@ -97,6 +103,18 @@ export const service = defineType({
         defineField({ name: 'headline', title: 'Problem Headline', type: 'string' }),
         defineField({ name: 'description', title: 'Narrative Description', type: 'text', rows: 4 }),
         defineField({
+          name: 'image',
+          title: 'Problem Section Illustration Image',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'sideImage',
+          title: 'Side Image (Alternative)',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
           name: 'painPoints',
           title: 'Key Pain Points / Bottlenecks',
           type: 'array',
@@ -123,6 +141,18 @@ export const service = defineType({
       fields: [
         defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Section Subtitle / Description', type: 'text', rows: 3 }),
+        defineField({
+          name: 'image',
+          title: 'Solution Overview Illustration Image',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'solutionImage',
+          title: 'Solution Image (Alternative)',
+          type: 'image',
+          options: { hotspot: true },
+        }),
         defineField({
           name: 'benefits',
           title: 'Strategic Benefits',
@@ -170,6 +200,18 @@ export const service = defineType({
             defineField({ name: 'businessImpact', title: 'The Business Impact', type: 'text', rows: 3 }),
             defineField({ name: 'icon', title: 'Icon (e.g. server, cpu, cloud)', type: 'string' }),
             defineField({
+              name: 'image',
+              title: 'Capability Image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'customImage',
+              title: 'Custom Asset Image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+            defineField({
               name: 'technologies',
               title: 'Associated Technologies',
               type: 'array',
@@ -198,6 +240,12 @@ export const service = defineType({
         defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Process Description', type: 'text', rows: 3 }),
         defineField({
+          name: 'processImage',
+          title: 'Process Section Illustration Image',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
           name: 'steps',
           title: 'Process Steps',
           type: 'array',
@@ -211,6 +259,12 @@ export const service = defineType({
                 defineField({ name: 'title', title: 'Step Title', type: 'string' }),
                 defineField({ name: 'description', title: 'Step Description', type: 'text', rows: 3 }),
                 defineField({ name: 'icon', title: 'Optional Icon Identifier', type: 'string' }),
+                defineField({
+                  name: 'image',
+                  title: 'Step Image',
+                  type: 'image',
+                  options: { hotspot: true },
+                }),
               ],
             }),
           ],
@@ -294,6 +348,18 @@ export const service = defineType({
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Narrative', type: 'text', rows: 4 }),
         defineField({
+          name: 'trustImage',
+          title: 'Trust Section Illustration Image',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'sideImage',
+          title: 'Side Image (Alternative)',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
           name: 'stats',
           title: 'Authority Statistics',
           type: 'array',
@@ -332,7 +398,7 @@ export const service = defineType({
         defineField({ name: 'role', title: 'Author Role', type: 'string' }),
         defineField({ name: 'company', title: 'Company / Organization', type: 'string' }),
         defineField({ name: 'badge', title: 'Verification Badge (e.g. National Coordinator)', type: 'string' }),
-        defineField({ name: 'image', title: 'Author Photo / Seal', type: 'image' }),
+        defineField({ name: 'image', title: 'Author Photo / Seal', type: 'image', options: { hotspot: true } }),
       ],
     }),
 
@@ -348,14 +414,12 @@ export const service = defineType({
           type: 'reference',
           to: [{ type: 'testimonial' }],
           options: {
-            // Shows client name + company in the selector dropdown
             filter: undefined,
           },
         },
       ],
       validation: (Rule) => Rule.unique(),
     }),
-
 
     // 11. Frequently Asked Questions
     defineField({
@@ -383,6 +447,18 @@ export const service = defineType({
       fields: [
         defineField({ name: 'heading', title: 'Headline', type: 'string' }),
         defineField({ name: 'description', title: 'Subtext', type: 'text', rows: 3 }),
+        defineField({
+          name: 'backgroundImage',
+          title: 'CTA Background Image',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: 'advisorImage',
+          title: 'Client Success Advisor Photo',
+          type: 'image',
+          options: { hotspot: true },
+        }),
         defineField({
           name: 'primaryCTA',
           title: 'Primary CTA Button',

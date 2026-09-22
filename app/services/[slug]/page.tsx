@@ -173,7 +173,7 @@ export default async function ServiceDetailPage({
         )}
 
         {/* 1b. Hero Banner Image */}
-        <ServiceHeroBanner slug={slug} />
+        <ServiceHeroBanner slug={slug} heroImage={service.hero?.heroImage || service.hero?.heroBgImage} />
 
         {/* 2. Business Problem Section */}
         {service.problemSection && (

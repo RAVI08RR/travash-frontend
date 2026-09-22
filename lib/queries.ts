@@ -548,6 +548,7 @@ export const serviceBySlugQuery = groq`
       primaryCTA { label, href },
       secondaryCTA { label, href },
       heroImage ${imageFragment},
+      heroBgImage ${imageFragment},
       heroImageAlt,
       highlights
     },
@@ -556,6 +557,8 @@ export const serviceBySlugQuery = groq`
       title,
       headline,
       description,
+      image ${imageFragment},
+      sideImage ${imageFragment},
       painPoints[] {
         title,
         description
@@ -564,6 +567,8 @@ export const serviceBySlugQuery = groq`
     solutionOverview {
       heading,
       description,
+      image ${imageFragment},
+      solutionImage ${imageFragment},
       benefits[] {
         icon,
         title,
@@ -578,17 +583,21 @@ export const serviceBySlugQuery = groq`
       solution,
       businessImpact,
       icon,
+      image ${imageFragment},
+      customImage ${imageFragment},
       technologies,
       optionalCTA { label, href }
     },
     process {
       heading,
       description,
+      processImage ${imageFragment},
       steps[] {
         number,
         title,
         description,
-        icon
+        icon,
+        image ${imageFragment}
       }
     },
     relatedCaseStudies[]-> {
@@ -617,6 +626,9 @@ export const serviceBySlugQuery = groq`
     trustSection {
       heading,
       description,
+      trustImage ${imageFragment},
+      sideImage ${imageFragment},
+      backgroundImage ${imageFragment},
       stats[] { value, label, description },
       trustPoints
     },
@@ -647,6 +659,8 @@ export const serviceBySlugQuery = groq`
     finalCTA {
       heading,
       description,
+      backgroundImage ${imageFragment},
+      advisorImage ${imageFragment},
       primaryCTA { label, href },
       secondaryCTA { label, href }
     },

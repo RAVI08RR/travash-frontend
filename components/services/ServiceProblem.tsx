@@ -8,6 +8,7 @@ import type { ServiceProblemSection } from '@/lib/service-data'
 export default function ServiceProblem({ problem }: { problem: ServiceProblemSection }) {
   const imageSrc =
     (typeof problem.image === 'string' ? problem.image : problem.image?.asset?.url) ||
+    (typeof problem.sideImage === 'string' ? problem.sideImage : problem.sideImage?.asset?.url) ||
     '/images/services/critical.webp'
 
   return (

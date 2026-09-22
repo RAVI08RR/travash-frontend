@@ -11,11 +11,16 @@ export interface ServiceHero {
   secondaryCTA?: ServiceCTA
   heroImage?: {
     asset?: {
-      _id: string
+      _id?: string
       url: string
     }
   } | string
-  backgroundImage?: string
+  heroBgImage?: {
+    asset?: {
+      _id?: string
+      url: string
+    }
+  } | string
   heroImageAlt?: string
   highlights?: string[]
 }
@@ -31,6 +36,7 @@ export interface ServiceProblemSection {
   headline?: string
   description?: string
   image?: { asset?: { url: string } } | string
+  sideImage?: { asset?: { url: string } } | string
   painPoints?: ProblemPainPoint[]
 }
 
@@ -44,6 +50,7 @@ export interface ServiceSolutionOverview {
   heading?: string
   description?: string
   image?: { asset?: { url: string } } | string
+  solutionImage?: { asset?: { url: string } } | string
   benefits?: SolutionBenefit[]
   cta?: ServiceCTA
 }
@@ -55,6 +62,8 @@ export interface ServiceCapability {
   solution?: string
   businessImpact?: string
   icon?: string
+  image?: { asset?: { url: string } } | string
+  customImage?: { asset?: { url: string } } | string
   technologies?: string[]
   optionalCTA?: ServiceCTA
 }
@@ -64,11 +73,13 @@ export interface ServiceProcessStep {
   title: string
   description: string
   icon?: string
+  image?: { asset?: { url: string } } | string
 }
 
 export interface ServiceProcess {
   heading?: string
   description?: string
+  processImage?: { asset?: { url: string } } | string
   steps?: ServiceProcessStep[]
 }
 
@@ -114,7 +125,9 @@ export interface ServiceTrustStat {
 export interface ServiceTrustSection {
   heading?: string
   description?: string
-  backgroundImage?: string
+  trustImage?: { asset?: { url: string } } | string
+  sideImage?: { asset?: { url: string } } | string
+  backgroundImage?: { asset?: { url: string } } | string
   stats?: ServiceTrustStat[]
   trustPoints?: string[]
 }
@@ -151,7 +164,8 @@ export interface ServiceFAQ {
 export interface ServiceFinalCTA {
   heading: string
   description: string
-  backgroundImage?: string
+  backgroundImage?: { asset?: { url: string } } | string
+  advisorImage?: { asset?: { url: string } } | string
   primaryCTA?: ServiceCTA
   secondaryCTA?: ServiceCTA
   features?: { title: string; description: string }[]

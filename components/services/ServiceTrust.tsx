@@ -7,7 +7,12 @@ import type { ServiceTrustSection } from '@/lib/service-data'
 export default function ServiceTrust({ trust }: { trust: ServiceTrustSection }) {
   if (!trust) return null
 
-  const bgImage = trust.backgroundImage || '/images/services/global-leaders.webp'
+  const customBg =
+    (typeof trust.trustImage === 'string' ? trust.trustImage : trust.trustImage?.asset?.url) ||
+    (typeof trust.sideImage === 'string' ? trust.sideImage : trust.sideImage?.asset?.url) ||
+    (typeof trust.backgroundImage === 'string' ? trust.backgroundImage : trust.backgroundImage?.asset?.url)
+
+  const bgImage = customBg || '/images/services/global-leaders.webp'
 
   return (
     <section

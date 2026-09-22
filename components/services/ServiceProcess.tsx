@@ -38,13 +38,14 @@ export default function ServiceProcess({ process }: { process: ProcessType }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {steps.map((step, idx) => {
             const stepNum = step.number || String(idx + 1).padStart(2, '0')
+            const stepImgUrl = typeof step.image === 'string' ? step.image : step.image?.asset?.url
             const hasValidIcon =
               typeof step.icon === 'string' &&
               (step.icon.startsWith('/') ||
                 step.icon.startsWith('http://') ||
                 step.icon.startsWith('https://'))
             const iconSrc: string =
-              hasValidIcon && step.icon ? step.icon : '/images/services/process-icon.svg'
+              stepImgUrl || (hasValidIcon && step.icon ? step.icon : '/images/services/process-icon.svg')
 
             return (
               <motion.div

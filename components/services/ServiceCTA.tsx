@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Compass, LineChart, ShieldCheck } from 'lucide-react'
 import type { ServiceFinalCTA } from '@/lib/service-data'
@@ -20,7 +21,9 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
 
   if (!cta) return null
 
-  const bgImage = cta.backgroundImage || '/images/services/light-abstract.png'
+  const customBg = typeof cta.backgroundImage === 'string' ? cta.backgroundImage : cta.backgroundImage?.asset?.url
+  const bgImage = customBg || '/images/services/light-abstract.png'
+  const advisorPhoto = typeof cta.advisorImage === 'string' ? cta.advisorImage : cta.advisorImage?.asset?.url
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -132,16 +135,28 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
             className="lg:col-span-6"
           >
             <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl text-gray-900 border border-white/20">
-              <div className="mb-6">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-1">
-                  Client Success
-                </span>
-                <h3 className="text-2xl font-bold text-gray-900 leading-tight">
-                  Sneha Sharma - Client Success
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  You’re in the right place – let’s talk!
-                </p>
+              <div className="mb-6 flex items-center gap-4">
+                {advisorPhoto && (
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#066095] flex-shrink-0 shadow-sm">
+                    <Image
+                      src={advisorPhoto}
+                      alt="Client Success Advisor"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-0.5">
+                    Client Success
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
+                    Sneha Sharma - Client Success
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
+                    You’re in the right place – let’s talk!
+                  </p>
+                </div>
               </div>
 
               {isSubmitted ? (

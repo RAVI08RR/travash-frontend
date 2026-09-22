@@ -13,7 +13,9 @@ const BENEFIT_ICONS: Record<string, typeof Database> = {
 }
 
 export default function ServiceSolutionOverview({ solution }: { solution: SolutionType }) {
-  const rawImage = typeof solution.image === 'string' ? solution.image : solution.image?.asset?.url
+  const rawImage =
+    (typeof solution.image === 'string' ? solution.image : solution.image?.asset?.url) ||
+    (typeof solution.solutionImage === 'string' ? solution.solutionImage : solution.solutionImage?.asset?.url)
   const isValidPath = typeof rawImage === 'string' && (rawImage.startsWith('/') || rawImage.startsWith('http'))
   const imageSrc = isValidPath ? rawImage : '/images/services/eradicate.webp'
 

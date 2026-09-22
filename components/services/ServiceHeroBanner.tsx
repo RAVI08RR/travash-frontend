@@ -43,10 +43,16 @@ const FALLBACK_BANNER =
 
 interface ServiceHeroBannerProps {
   slug: string
+  heroImage?: {
+    asset?: {
+      url: string
+    }
+  } | string
 }
 
-export default function ServiceHeroBanner({ slug }: ServiceHeroBannerProps) {
-  const bannerSrc = SERVICE_BANNER_MAP[slug] || FALLBACK_BANNER
+export default function ServiceHeroBanner({ slug, heroImage }: ServiceHeroBannerProps) {
+  const customSrc = typeof heroImage === 'string' ? heroImage : heroImage?.asset?.url
+  const bannerSrc = customSrc || SERVICE_BANNER_MAP[slug] || FALLBACK_BANNER
 
   return (
     <motion.div

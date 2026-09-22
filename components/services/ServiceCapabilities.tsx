@@ -9,24 +9,29 @@ import type { ServiceCapability } from '@/lib/service-data'
 interface ServiceCapabilitiesProps {
   capabilities: ServiceCapability[]
   serviceTitle?: string
-  capabilitiesImage?: string
+  capabilitiesImage?: { asset?: { url: string } } | string
 }
 
 export default function ServiceCapabilities({
   capabilities,
   serviceTitle,
-  capabilitiesImage = '/images/services/analytics.webp',
+  capabilitiesImage,
 }: ServiceCapabilitiesProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   if (!capabilities || capabilities.length === 0) return null
 
+  const firstCapImg = capabilities?.[0]?.image || capabilities?.[0]?.customImage
+  const rawCapImg =
+    (typeof capabilitiesImage === 'string' ? capabilitiesImage : capabilitiesImage?.asset?.url) ||
+    (typeof firstCapImg === 'string' ? firstCapImg : firstCapImg?.asset?.url)
+
   const isImageValid =
-    typeof capabilitiesImage === 'string' &&
-    (capabilitiesImage.startsWith('/') ||
-      capabilitiesImage.startsWith('http://') ||
-      capabilitiesImage.startsWith('https://'))
-  const imageSrc = isImageValid ? capabilitiesImage : '/images/services/analytics.webp'
+    typeof rawCapImg === 'string' &&
+    (rawCapImg.startsWith('/') ||
+      rawCapImg.startsWith('http://') ||
+      rawCapImg.startsWith('https://'))
+  const imageSrc = isImageValid ? rawCapImg : '/images/services/analytics.webp'
 
   const toggleItem = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx))
