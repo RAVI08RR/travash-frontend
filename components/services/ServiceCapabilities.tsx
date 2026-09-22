@@ -10,21 +10,38 @@ interface ServiceCapabilitiesProps {
   capabilities: ServiceCapability[]
   serviceTitle?: string
   capabilitiesImage?: { asset?: { url: string } } | string
+  capabilitiesSection?: {
+    eyebrow?: string
+    heading?: string
+    image?: { asset?: { url: string } } | string
+  }
 }
 
 export default function ServiceCapabilities({
   capabilities,
   serviceTitle,
   capabilitiesImage,
+  capabilitiesSection,
 }: ServiceCapabilitiesProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   if (!capabilities || capabilities.length === 0) return null
 
-  const firstCapImg = capabilities?.[0]?.image || capabilities?.[0]?.customImage
-  const rawCapImg =
+  // Resolve active open capability item image
+  const activeCap = openIndex !== null ? capabilities[openIndex] : null
+  const activeCapImg =
+    (typeof activeCap?.image === 'string' ? activeCap.image : activeCap?.image?.asset?.url) ||
+    (typeof activeCap?.customImage === 'string' ? activeCap.customImage : activeCap?.customImage?.asset?.url)
+
+  const sectionCapImg =
     (typeof capabilitiesImage === 'string' ? capabilitiesImage : capabilitiesImage?.asset?.url) ||
-    (typeof firstCapImg === 'string' ? firstCapImg : firstCapImg?.asset?.url)
+    (typeof capabilitiesSection?.image === 'string' ? capabilitiesSection.image : capabilitiesSection?.image?.asset?.url)
+
+  const firstCapImg =
+    (typeof capabilities?.[0]?.image === 'string' ? capabilities[0].image : capabilities?.[0]?.image?.asset?.url) ||
+    (typeof capabilities?.[0]?.customImage === 'string' ? capabilities[0].customImage : capabilities?.[0]?.customImage?.asset?.url)
+
+  const rawCapImg = activeCapImg || sectionCapImg || firstCapImg
 
   const isImageValid =
     typeof rawCapImg === 'string' &&
@@ -32,6 +49,11 @@ export default function ServiceCapabilities({
       rawCapImg.startsWith('http://') ||
       rawCapImg.startsWith('https://'))
   const imageSrc = isImageValid ? rawCapImg : '/images/services/analytics.webp'
+
+  const eyebrowText = capabilitiesSection?.eyebrow || 'Engineering Capabilities'
+  const headingText =
+    capabilitiesSection?.heading ||
+    `Our ${serviceTitle || 'Data & Analytics'} Services: What We Build`
 
   const toggleItem = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx))
@@ -52,10 +74,10 @@ export default function ServiceCapabilities({
           className="text-center max-w-[30rem] mx-auto mb-12 sm:mb-16"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-[#066095] block mb-2">
-            Engineering Capabilities
+            {eyebrowText}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#3D3C3C] tracking-tight leading-tight">
-            Our {serviceTitle || 'Data & Analytics'} Services: What We Build
+            {headingText}
           </h2>
         </motion.div>
 

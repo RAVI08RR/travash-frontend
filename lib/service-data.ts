@@ -179,6 +179,12 @@ export interface ServiceSEO {
   noIndex?: boolean
 }
 
+export interface ServiceCapabilitiesSection {
+  eyebrow?: string
+  heading?: string
+  image?: { asset?: { url: string } } | string
+}
+
 export interface ServiceData {
   _id?: string
   _type?: 'service'
@@ -190,7 +196,8 @@ export interface ServiceData {
   hero?: ServiceHero
   problemSection?: ServiceProblemSection
   solutionOverview?: ServiceSolutionOverview
-  capabilitiesImage?: string
+  capabilitiesImage?: { asset?: { url: string } } | string
+  capabilitiesSection?: ServiceCapabilitiesSection
   capabilities?: ServiceCapability[]
   process?: ServiceProcess
   relatedCaseStudies?: RelatedCaseStudy[]

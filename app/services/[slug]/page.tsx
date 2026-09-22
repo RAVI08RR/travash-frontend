@@ -195,6 +195,7 @@ export default async function ServiceDetailPage({
             capabilities={service.capabilities}
             serviceTitle={service.menuTitle || service.title}
             capabilitiesImage={service.capabilitiesImage}
+            capabilitiesSection={service.capabilitiesSection}
           />
         )}
 

@@ -184,6 +184,22 @@ export const service = defineType({
 
     // 4. Detailed Service Capabilities ("What We Build")
     defineField({
+      name: 'capabilitiesImage',
+      title: 'Capabilities Section Main Showcase Image',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'capabilitiesSection',
+      title: 'Capabilities Section Header & Eyebrow',
+      type: 'object',
+      fields: [
+        defineField({ name: 'eyebrow', title: 'Section Eyebrow (e.g. Engineering Capabilities)', type: 'string' }),
+        defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
+        defineField({ name: 'image', title: 'Default Section Image', type: 'image', options: { hotspot: true } }),
+      ],
+    }),
+    defineField({
       name: 'capabilities',
       title: 'Detailed Service Capabilities',
       type: 'array',

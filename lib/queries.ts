@@ -576,6 +576,12 @@ export const serviceBySlugQuery = groq`
       },
       cta { label, href }
     },
+    capabilitiesImage ${imageFragment},
+    capabilitiesSection {
+      eyebrow,
+      heading,
+      image ${imageFragment}
+    },
     capabilities[] {
       title,
       shortDescription,
