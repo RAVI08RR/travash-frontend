@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import {
   Mail,
   Phone,
@@ -130,80 +131,130 @@ export default function ContactPageLayout({
               </div>
 
               {/* Department & Specialized Contacts */}
-              <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-gray-200/90 space-y-3 shadow-2xs">
+              <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-gray-200/90 space-y-3.5 shadow-2xs">
                 <span className="text-[11px] font-bold text-[#004771] uppercase tracking-widest block mb-1">
                   Department &amp; Specialized Contacts
                 </span>
 
-                <div className="space-y-2.5">
+                <div className="space-y-3">
                   {/* HR - Travash */}
-                  <a
-                    href="tel:+917416743434"
-                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#004771]/30 transition-all group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-[#E0F2FE] text-[#004771] flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                        HR
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
-                          HR &ndash; Travash
+                  <div className="p-3.5 rounded-xl bg-white border border-gray-200/80 hover:border-[#004771]/40 transition-all shadow-2xs group">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-lg bg-[#F0F7FF] border border-[#004771]/15 p-1.5 flex items-center justify-center flex-shrink-0">
+                          <Image
+                            src="/casestudy-img/New-latest-logo.svg"
+                            alt="Travash Logo"
+                            width={32}
+                            height={32}
+                            className="object-contain w-full h-full"
+                          />
                         </div>
-                        <div className="text-[11px] text-gray-500 font-medium">
-                          Ravi
+                        <div className="min-w-0">
+                          <div className="text-xs font-extrabold text-[#0B1E3D] truncate">
+                            HR &ndash; Travash
+                          </div>
+                          <div className="text-[11px] font-semibold text-[#004771]">
+                            Human Resources &middot; Ravi
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-[#004771] group-hover:underline whitespace-nowrap">
-                      +91 7416743434
-                    </span>
-                  </a>
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs text-gray-600 gap-2 flex-wrap">
+                      <a
+                        href="mailto:contact@travash.com"
+                        className="hover:text-[#004771] flex items-center gap-1 text-[11px] font-medium"
+                      >
+                        <Mail className="w-3 h-3 text-gray-400" />
+                        <span>contact@travash.com</span>
+                      </a>
+                      <a
+                        href="tel:+917416743434"
+                        className="font-bold text-[#004771] hover:underline flex items-center gap-1 text-xs"
+                      >
+                        <Phone className="w-3 h-3 text-[#004771]" />
+                        <span>+91 7416743434</span>
+                      </a>
+                    </div>
+                  </div>
 
                   {/* Recruitments - Travash */}
-                  <a
-                    href="tel:+918686907076"
-                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#14B8A6]/30 transition-all group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-[#CCFBF1] text-[#0D9488] flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                        REC
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
-                          Recruitments &ndash; Travash
+                  <div className="p-3.5 rounded-xl bg-white border border-gray-200/80 hover:border-[#0D9488]/40 transition-all shadow-2xs group">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-lg bg-[#F0F7FF] border border-[#004771]/15 p-1.5 flex items-center justify-center flex-shrink-0">
+                          <Image
+                            src="/casestudy-img/New-latest-logo.svg"
+                            alt="Travash Logo"
+                            width={32}
+                            height={32}
+                            className="object-contain w-full h-full"
+                          />
                         </div>
-                        <div className="text-[11px] text-gray-500 font-medium">
-                          Sachin
+                        <div className="min-w-0">
+                          <div className="text-xs font-extrabold text-[#0B1E3D] truncate">
+                            Recruitments &ndash; Travash
+                          </div>
+                          <div className="text-[11px] font-semibold text-[#0D9488]">
+                            Talent Acquisition &middot; Sachin
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-[#0D9488] group-hover:underline whitespace-nowrap">
-                      +91 8686907076
-                    </span>
-                  </a>
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs text-gray-600 gap-2 flex-wrap">
+                      <a
+                        href="mailto:sachin@travash.com"
+                        className="hover:text-[#0D9488] flex items-center gap-1 text-[11px] font-medium"
+                      >
+                        <Mail className="w-3 h-3 text-gray-400" />
+                        <span>sachin@travash.com</span>
+                      </a>
+                      <a
+                        href="tel:+918686907076"
+                        className="font-bold text-[#0D9488] hover:underline flex items-center gap-1 text-xs"
+                      >
+                        <Phone className="w-3 h-3 text-[#0D9488]" />
+                        <span>+91 8686907076</span>
+                      </a>
+                    </div>
+                  </div>
 
                   {/* I4C Banks - Related Concerns */}
-                  <a
-                    href="tel:+919642922922"
-                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#D97706]/30 transition-all group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-[#FEF3C7] text-[#D97706] flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                        I4C
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
-                          I4C Banks &ndash; Related Concerns
+                  <div className="p-3.5 rounded-xl bg-white border border-gray-200/80 hover:border-[#D97706]/40 transition-all shadow-2xs group">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-lg bg-[#FFFBEB] border border-[#D97706]/20 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                          <Image
+                            src="/images/services/i4c.png"
+                            alt="I4C Indian Cyber Crime Coordination Centre Logo"
+                            width={36}
+                            height={36}
+                            className="object-contain w-full h-full"
+                          />
                         </div>
-                        <div className="text-[11px] text-gray-500 font-medium">
-                          Supriya
+                        <div className="min-w-0">
+                          <div className="text-xs font-extrabold text-[#0B1E3D] truncate">
+                            I4C Banks &ndash; Related Concerns
+                          </div>
+                          <div className="text-[11px] font-semibold text-[#B45309]">
+                            Indian Cyber Crime Coordination &middot; Supriya
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-[#B45309] group-hover:underline whitespace-nowrap">
-                      +91 9642922922
-                    </span>
-                  </a>
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs text-gray-600 gap-2 flex-wrap">
+                      <span className="text-[11px] font-medium text-amber-800">
+                        Cyber Fraud &amp; Bank Concerns
+                      </span>
+                      <a
+                        href="tel:+919642922922"
+                        className="font-bold text-[#B45309] hover:underline flex items-center gap-1 text-xs"
+                      >
+                        <Phone className="w-3 h-3 text-[#B45309]" />
+                        <span>+91 9642922922</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
