@@ -129,6 +129,84 @@ export default function ContactPageLayout({
                 </a>
               </div>
 
+              {/* Department & Specialized Contacts */}
+              <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-gray-200/90 space-y-3 shadow-2xs">
+                <span className="text-[11px] font-bold text-[#004771] uppercase tracking-widest block mb-1">
+                  Department &amp; Specialized Contacts
+                </span>
+
+                <div className="space-y-2.5">
+                  {/* HR - Travash */}
+                  <a
+                    href="tel:+917416743434"
+                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#004771]/30 transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-[#E0F2FE] text-[#004771] flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                        HR
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
+                          HR &ndash; Travash
+                        </div>
+                        <div className="text-[11px] text-gray-500 font-medium">
+                          Ravi
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-[#004771] group-hover:underline whitespace-nowrap">
+                      +91 7416743434
+                    </span>
+                  </a>
+
+                  {/* Recruitments - Travash */}
+                  <a
+                    href="tel:+918686907076"
+                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#14B8A6]/30 transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-[#CCFBF1] text-[#0D9488] flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                        REC
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
+                          Recruitments &ndash; Travash
+                        </div>
+                        <div className="text-[11px] text-gray-500 font-medium">
+                          Sachin
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-[#0D9488] group-hover:underline whitespace-nowrap">
+                      +91 8686907076
+                    </span>
+                  </a>
+
+                  {/* I4C Banks - Related Concerns */}
+                  <a
+                    href="tel:+919642922922"
+                    className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white hover:bg-[#EEF4FB] border border-gray-100 hover:border-[#D97706]/30 transition-all group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-[#FEF3C7] text-[#D97706] flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                        I4C
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-[#0B1E3D] truncate">
+                          I4C Banks &ndash; Related Concerns
+                        </div>
+                        <div className="text-[11px] text-gray-500 font-medium">
+                          Supriya
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-[#B45309] group-hover:underline whitespace-nowrap">
+                      +91 9642922922
+                    </span>
+                  </a>
+                </div>
+              </div>
+
               {/* Office Locations */}
               <OfficeLocations offices={offices} />
             </div>

@@ -15,7 +15,7 @@ interface CompanyStoryProps {
 export default function CompanyStory({ data }: CompanyStoryProps) {
   const eyebrow = data?.eyebrow || 'OUR HERITAGE & VISION'
   const heading = data?.heading || 'How Our Vision Became Reality'
-  const imageUrl = data?.image?.asset?.url || '/about-vision.jpg'
+  const imageUrl = data?.image?.asset?.url || '/About-us.png'
   const imageBadge = data?.imageBadge || 'Global Engineering & AI Lab'
 
   const paragraphs = data?.content && data.content.length > 0 ? data.content : [
