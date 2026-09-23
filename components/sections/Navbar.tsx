@@ -80,13 +80,6 @@ const ALL_SERVICES: ServiceItem[] = [
     category: 'AI & Data',
     icon: Database,
   },
-  {
-    name: 'Platform Engineering',
-    href: '/services/platform-engineering',
-    description: 'Multi-tenant SaaS architectures & internal developer portals.',
-    category: 'AI & Data',
-    icon: Layers,
-  },
 
   // Cloud & Software
   {
