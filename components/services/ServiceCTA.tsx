@@ -22,7 +22,7 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
   if (!cta) return null
 
   const customBg = typeof cta.backgroundImage === 'string' ? cta.backgroundImage : cta.backgroundImage?.asset?.url
-  const bgImage = customBg || '/images/services/light-abstract.png'
+  const bgImage = customBg || '/Services-img/service-cta.png'
   const advisorPhoto = typeof cta.advisorImage === 'string' ? cta.advisorImage : cta.advisorImage?.asset?.url
 
   const handleSubmit = async (e: React.FormEvent) => {
