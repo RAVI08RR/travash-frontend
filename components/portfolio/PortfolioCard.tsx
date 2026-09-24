@@ -189,7 +189,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
           </p>
 
           {/* Technologies Badges */}
-          {techList.length > 0 && (
+          {/* {techList.length > 0 && (
             <div className="flex flex-wrap items-center gap-1.5 mb-5">
               {techList.slice(0, 4).map((tech, i) => (
                 <span
@@ -205,7 +205,7 @@ export default function PortfolioCard({ project }: PortfolioCardProps) {
                 </span>
               )}
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Card Footer CTA */}
