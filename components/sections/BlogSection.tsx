@@ -52,7 +52,13 @@ export default function BlogSection({
   sectionData?: BlogSectionData
   posts?: BlogPost[]
 }) {
-  const displayPosts = posts && posts.length >= 3 ? posts.slice(0, 3) : PDF_POSTS
+  const displayPosts =
+    posts && posts.length > 0
+      ? posts.length >= 3
+        ? posts.slice(0, 3)
+        : [...posts, ...PDF_POSTS.slice(posts.length, 3)]
+      : PDF_POSTS
+
   const heading = sectionData?.heading || 'Latest Insights from Travash'
 
   return (
@@ -69,12 +75,22 @@ export default function BlogSection({
           {displayPosts.map((post, idx) => {
             const fallback = PDF_POSTS[idx] || PDF_POSTS[0]
             const img =
-              post.coverImage?.asset?.url ||
-              (post as any).featuredImage?.asset?.url ||
+              (typeof post.coverImage === 'string'
+                ? post.coverImage
+                : post.coverImage?.asset?.url) ||
+              (typeof (post as any).featuredImage === 'string'
+                ? (post as any).featuredImage
+                : (post as any).featuredImage?.asset?.url) ||
+              (typeof (post as any).mainImage === 'string'
+                ? (post as any).mainImage
+                : (post as any).mainImage?.asset?.url) ||
               post.imageUrl ||
               fallback.imageUrl
 
-            const postSlug = post.slug?.current || (post as any).slug || '#'
+            const postSlug =
+              typeof post.slug === 'string'
+                ? post.slug
+                : post.slug?.current || (post as any).slug || fallback.slug?.current || '#'
 
             return (
               <article
@@ -100,7 +116,7 @@ export default function BlogSection({
 
                   <Link
                     href={`/blogs/${postSlug}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#0B4785]  pt-2"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#0B4785] pt-2"
                   >
                     Read More
                     <span className="group-hover:translate-x-1 transition-transform">→</span>

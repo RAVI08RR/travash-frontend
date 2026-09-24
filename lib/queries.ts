@@ -216,14 +216,20 @@ export const homePageQuery = groq`
 
 // Recent blog posts (3 most recent)
 export const recentPostsQuery = groq`
-  *[_type == "post"] | order(publishedAt desc) [0...3] {
+  *[_type in ["blogPost", "post"]] | order(publishedAt desc, _createdAt desc) [0...3] {
     _id,
+    _type,
     title,
-    slug,
-    category,
+    "slug": slug.current,
+    "category": select(
+      defined(categories[0]._ref) => categories[0]->title,
+      defined(categories[0].title) => categories[0].title,
+      defined(category) => category,
+      "Insights"
+    ),
     publishedAt,
     excerpt,
-    coverImage ${imageFragment}
+    "coverImage": coalesce(featuredImage ${imageFragment}, coverImage ${imageFragment}, mainImage ${imageFragment})
   }
 `
 
