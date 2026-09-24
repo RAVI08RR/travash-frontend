@@ -81,6 +81,18 @@ export const technology = defineType({
       type: 'number',
       initialValue: 0,
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO & Social Share',
+      type: 'object',
+      fields: [
+        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
+        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 3 }),
+        defineField({ name: 'ogImage', title: 'Social Share (OG) Image', type: 'image', options: { hotspot: true } }),
+        defineField({ name: 'canonicalUrl', title: 'Canonical URL Override', type: 'url' }),
+        defineField({ name: 'noIndex', title: 'Prevent Search Indexing (noindex)', type: 'boolean', initialValue: false }),
+      ],
+    }),
   ],
   preview: {
     select: {

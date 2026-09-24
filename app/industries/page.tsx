@@ -19,10 +19,35 @@ import {
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export const metadata: Metadata = {
-  title: 'Industry Expertise & Domain Solutions | Travash',
-  description:
-    'Discover Travash deep technical domain expertise across Banking & FinTech, Government, Healthcare, E-Commerce, PropTech, Travel, HR Tech, and Manufacturing.',
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const siteSettings = await client.fetch(siteSettingsQuery)
+    const seo = siteSettings?.seo
+    return {
+      title: seo?.metaTitle || 'Industry Expertise & Domain Solutions | Travash',
+      description:
+        seo?.metaDescription ||
+        'Discover Travash deep technical domain expertise across Banking & FinTech, Government, Healthcare, E-Commerce, PropTech, Travel, HR Tech, and Manufacturing.',
+      alternates: {
+        canonical: seo?.canonicalUrl || 'https://travash.com/industries',
+      },
+      openGraph: {
+        title: seo?.metaTitle || 'Industry Expertise & Domain Solutions | Travash',
+        description:
+          seo?.metaDescription ||
+          'Discover Travash deep technical domain expertise across Banking & FinTech, Government, Healthcare, E-Commerce, PropTech, Travel, HR Tech, and Manufacturing.',
+        url: seo?.canonicalUrl || 'https://travash.com/industries',
+        siteName: 'Travash Software Solutions',
+        type: 'website',
+      },
+    }
+  } catch {
+    return {
+      title: 'Industry Expertise & Domain Solutions | Travash',
+      description:
+        'Discover Travash deep technical domain expertise across Banking & FinTech, Government, Healthcare, E-Commerce, PropTech, Travel, HR Tech, and Manufacturing.',
+    }
+  }
 }
 
 async function getIndustriesPageData() {

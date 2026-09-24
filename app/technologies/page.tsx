@@ -11,10 +11,35 @@ import Footer from '@/components/sections/Footer'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export const metadata: Metadata = {
-  title: 'Technologies & Frameworks — Web, Cloud, AI & Security | Travash',
-  description:
-    'Explore the modern technologies, cloud platforms, programming languages, and databases mastered by Travash Software Solutions.',
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const siteSettings = await client.fetch(siteSettingsQuery)
+    const seo = siteSettings?.seo
+    return {
+      title: seo?.metaTitle || 'Technologies & Frameworks — Web, Cloud, AI & Security | Travash',
+      description:
+        seo?.metaDescription ||
+        'Explore the modern technologies, cloud platforms, programming languages, and databases mastered by Travash Software Solutions.',
+      alternates: {
+        canonical: seo?.canonicalUrl || 'https://travash.com/technologies',
+      },
+      openGraph: {
+        title: seo?.metaTitle || 'Technologies & Frameworks — Web, Cloud, AI & Security | Travash',
+        description:
+          seo?.metaDescription ||
+          'Explore the modern technologies, cloud platforms, programming languages, and databases mastered by Travash Software Solutions.',
+        url: seo?.canonicalUrl || 'https://travash.com/technologies',
+        siteName: 'Travash Software Solutions',
+        type: 'website',
+      },
+    }
+  } catch {
+    return {
+      title: 'Technologies & Frameworks — Web, Cloud, AI & Security | Travash',
+      description:
+        'Explore the modern technologies, cloud platforms, programming languages, and databases mastered by Travash Software Solutions.',
+    }
+  }
 }
 
 async function getTechnologiesData() {

@@ -193,6 +193,16 @@ export const homePageQuery = groq`
         submitLabel,
         successMessage,
         notifyEmail
+      },
+      "seo": coalesce(
+        *[_id == "homePage"][0].seo,
+        *[_type == "homePage"][0].seo
+      ) {
+        metaTitle,
+        metaDescription,
+        ogImage ${imageFragment},
+        canonicalUrl,
+        noIndex
       }
     },
     "siteSettings": *[_type == "siteSettings"][0] {

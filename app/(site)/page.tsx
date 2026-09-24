@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { client } from '@/lib/sanity'
 import { homePageQuery, recentPostsQuery } from '@/lib/queries'
 
@@ -18,6 +19,50 @@ import Footer from '@/components/sections/Footer'
 // Ensure live content updates immediately on Vercel upon publishing in Sanity CMS
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const pageData = await client.fetch(homePageQuery)
+    const seo = pageData?.homePage?.seo
+
+    const title = seo?.metaTitle || 'Travash Software Solutions — AI, Enterprise & Cloud Software Engineering'
+    const description =
+      seo?.metaDescription ||
+      'Travash Software Solutions delivers high-performance enterprise software, autonomous AI agent platforms, cloud architectures, and dedicated agile squads.'
+    const ogImageUrl = seo?.ogImage?.asset?.url
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: seo?.canonicalUrl || 'https://travash.com',
+      },
+      robots: seo?.noIndex
+        ? { index: false, follow: false }
+        : { index: true, follow: true },
+      openGraph: {
+        title,
+        description,
+        url: seo?.canonicalUrl || 'https://travash.com',
+        siteName: 'Travash Software Solutions',
+        images: ogImageUrl ? [{ url: ogImageUrl }] : [],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: ogImageUrl ? [ogImageUrl] : [],
+      },
+    }
+  } catch {
+    return {
+      title: 'Travash Software Solutions — AI, Enterprise & Cloud Software Engineering',
+      description:
+        'Travash Software Solutions delivers high-performance enterprise software, autonomous AI agent platforms, cloud architectures, and dedicated agile squads.',
+    }
+  }
+}
 
 async function getPageData() {
   try {
