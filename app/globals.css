@@ -266,6 +266,15 @@ p {
   animation: marquee-ltr 35s linear infinite;
 }
 
+.animate-marquee:hover,
+.animate-marquee-rtl:hover,
+.animate-marquee-ltr:hover,
+.group:hover .animate-marquee,
+.group:hover .animate-marquee-rtl,
+.group:hover .animate-marquee-ltr {
+  animation-play-state: paused !important;
+}
+
 /* Tailwind v4 theme extensions */
 @theme {
   --color-navy: #0A1E3B;

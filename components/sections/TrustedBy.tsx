@@ -90,12 +90,12 @@ export default function TrustedBy({ label, logos }: TrustedByProps) {
         </div>
 
         {/* Continuous Smooth Marquee Carousel across all screen sizes */}
-        <div className="relative w-full overflow-hidden py-2">
+        <div className="relative w-full overflow-hidden py-2 group">
           {/* Subtle edge fades */}
           <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#F0F5FA] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#F0F5FA] to-transparent z-10 pointer-events-none" />
 
-          <div className="flex items-center gap-12 sm:gap-16 lg:gap-14 w-max animate-marquee hover:[animation-play-state:paused] px-4">
+          <div className="flex items-center gap-12 sm:gap-16 lg:gap-14 w-max animate-marquee hover:[animation-play-state:paused] group-hover:[animation-play-state:paused] px-4">
             {marqueeItems.map((logo, idx) => {
               const imageElement = (
                 <Image
