@@ -22,38 +22,32 @@ const DEFAULT_VALUES: ValueItem[] = [
   {
     title: 'Integrity & Trust',
     description:
-      'We hold ourselves to unwavering ethical standards, complete transparency, and data sovereignty across every client engagement.',
+      'We uphold the highest ethical standards, ensuring transparency, honesty, and accountability in everything we do.',
     iconName: 'Shield',
   },
   {
     title: 'Value Creation',
     description:
-      'We do not write code for code’s sake. Every architectural decision is designed to produce tangible revenue, cost efficiency, or competitive leverage.',
+      'We’re obsessed with creating value for our clients and supercharging their progress.',
     iconName: 'Award',
   },
   {
-    title: 'People-Centricity',
+    title: 'People-centricity',
     description:
-      'Behind every breakthrough application are exceptional human engineers. We champion work-life balance, continuous mentorship, and mutual respect.',
+      'We encourage our people to “find their spark” and shape their career journeys. We empower people to be entrepreneurs and creators and to surface ideas.',
     iconName: 'Users',
   },
   {
     title: 'Inclusion & Equal Opportunity',
     description:
-      'Fostering diverse perspectives and inclusive work environments that unlock creative problem-solving and global collaboration.',
+      'We uphold the highest ethical standards, ensuring transparency, honesty, and accountability in everything we do.',
     iconName: 'HeartHandshake',
   },
   {
     title: 'Social Responsibility',
     description:
-      'Committed to sustainable engineering, digital accessibility, and deploying technology that delivers positive social impact.',
+      'We give back to our communities and we are focused on doing the right things for our planet and the communities where we work and live.',
     iconName: 'Globe',
-  },
-  {
-    title: 'Relentless Innovation',
-    description:
-      'Constantly mastering emerging paradigms—from sovereign LLMs to cloud native microservices—to keep our clients ahead of the curve.',
-    iconName: 'Sparkles',
   },
 ]
 
@@ -90,7 +84,7 @@ export default function ValuesGrid({ header, values, heading, eyebrow, subheadin
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {items.map((item, idx) => {
             const Icon = (item.iconName && iconMap[item.iconName]) || Sparkles
             return (
