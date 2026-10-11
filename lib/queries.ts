@@ -725,8 +725,85 @@ export const allIndustriesQuery = groq`
   *[_type == "industry"] | order(name asc) {
     _id,
     name,
+    title,
     "slug": slug.current,
-    description
+    description,
+    heroImage ${imageFragment},
+    icon ${imageFragment}
+  }
+`
+
+// Query a single industry by slug with resolved case study references
+export const industryBySlugQuery = groq`
+  *[_type == "industry" && (slug.current == $slug || (defined($slugAliases) && slug.current in $slugAliases))] | order(_updatedAt desc)[0] {
+    _id,
+    _type,
+    title,
+    name,
+    "slug": slug.current,
+    shortTitle,
+    eyebrow,
+    tagline,
+    description,
+    overview,
+    icon ${imageFragment},
+    heroImage ${imageFragment},
+    metrics[] { value, label },
+    challenges[] { title, problem, solution },
+    capabilities[] { title, description },
+    technologies,
+    compliance,
+    caseStudyHighlight {
+      title,
+      client,
+      description,
+      metric,
+      metricLabel,
+      href,
+      selectedCaseStudy-> {
+        _id,
+        title,
+        "slug": slug.current,
+        client,
+        shortDescription,
+        excerpt,
+        metrics[] { value, label }
+      }
+    },
+    relatedCaseStudies[]-> {
+      _id,
+      _type,
+      title,
+      "slug": slug.current,
+      "category": coalesce(category, serviceType, "Case Study"),
+      client,
+      "shortDescription": coalesce(shortDescription, cardDescription, excerpt, description),
+      "image": coalesce(
+        heroImage.asset->url,
+        featureImage.asset->url,
+        cardImage.asset->url,
+        featuredImage.asset->url
+      ),
+      heroImage ${imageFragment},
+      featureImage ${imageFragment},
+      cardImage ${imageFragment},
+      featuredImage ${imageFragment},
+      metrics[] { value, label, description }
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage ${imageFragment},
+      canonicalUrl,
+      noIndex
+    }
+  }
+`
+
+// Query all industry slugs for static generation
+export const allIndustrySlugsQuery = groq`
+  *[_type == "industry" && defined(slug.current)] {
+    "slug": slug.current
   }
 `
 

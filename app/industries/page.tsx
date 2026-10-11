@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { client } from '@/lib/sanity'
-import { siteSettingsQuery } from '@/lib/queries'
-import { ALL_INDUSTRIES_LIST } from '@/lib/industry-data'
+import { siteSettingsQuery, allIndustriesQuery } from '@/lib/queries'
+import { ALL_INDUSTRIES_LIST, type IndustryDetailData } from '@/lib/industry-data'
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
 import Contact from '@/components/sections/Contact'
@@ -52,15 +52,35 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function getIndustriesPageData() {
   try {
-    const siteSettings = await client.fetch(siteSettingsQuery)
-    return { siteSettings }
+    const [siteSettings, sanityIndustries] = await Promise.all([
+      client.fetch(siteSettingsQuery),
+      client.fetch(allIndustriesQuery),
+    ])
+    return { siteSettings, sanityIndustries: sanityIndustries || [] }
   } catch {
-    return { siteSettings: null }
+    return { siteSettings: null, sanityIndustries: [] }
   }
 }
 
 export default async function IndustriesDirectoryPage() {
-  const { siteSettings } = await getIndustriesPageData()
+  const { siteSettings, sanityIndustries } = await getIndustriesPageData()
+
+  // Map Sanity industries over ALL_INDUSTRIES_LIST, adding any new ones
+  const industriesList = ALL_INDUSTRIES_LIST.map((fallback) => {
+    const matched = sanityIndustries.find(
+      (si: any) =>
+        si.slug === fallback.slug ||
+        si.title?.toLowerCase() === fallback.title?.toLowerCase() ||
+        si.name?.toLowerCase() === fallback.title?.toLowerCase()
+    )
+    if (!matched) return fallback
+    return {
+      ...fallback,
+      title: matched.title || matched.name || fallback.title,
+      tagline: matched.tagline || matched.description || fallback.tagline,
+      heroImage: matched.heroImage?.asset?.url || fallback.heroImage,
+    }
+  })
 
   return (
     <>
@@ -102,7 +122,7 @@ export default async function IndustriesDirectoryPage() {
         <section className="py-5 sm:py-10 lg:py-10">
           <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {ALL_INDUSTRIES_LIST.map((industry) => (
+              {industriesList.map((industry) => (
                 <Link
                   key={industry.slug}
                   href={`/industries/${industry.slug}`}

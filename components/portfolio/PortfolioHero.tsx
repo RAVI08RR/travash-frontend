@@ -76,11 +76,11 @@ export default function PortfolioHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.15] hero-title-gradient mb-6"
+            className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.15]  mb-6"
           >
             {heading}{' '}
             {headingHighlight && (
-              <span className="text-[#02487D]">
+              <span>
                 {headingHighlight}
               </span>
             )}

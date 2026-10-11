@@ -15,19 +15,42 @@ export interface IndustryCapability {
   icon?: string
 }
 
+export interface IndustryCaseStudyItem {
+  _id?: string
+  _type?: string
+  title: string
+  slug: string
+  category?: string
+  client?: string
+  shortDescription?: string
+  image?: string
+  heroImage?: any
+  featureImage?: any
+  cardImage?: any
+  featuredImage?: any
+  metrics?: { value: string; label: string; description?: string }[]
+  href?: string
+}
+
 export interface IndustryDetailData {
+  _id?: string
   slug: string
   title: string
+  name?: string
   shortTitle?: string
   eyebrow: string
   tagline: string
-  heroImage: string
+  heroImage: any
+  icon?: any
+  description?: string
   overview: string
   metrics: IndustryMetric[]
   challenges: IndustryChallenge[]
   capabilities: IndustryCapability[]
   technologies: string[]
   compliance: string[]
+  relatedCaseStudies?: IndustryCaseStudyItem[]
+  autoCaseStudies?: IndustryCaseStudyItem[]
   caseStudyHighlight?: {
     title: string
     client: string
@@ -35,6 +58,14 @@ export interface IndustryDetailData {
     metric: string
     metricLabel: string
     href: string
+    selectedCaseStudy?: any
+  }
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    ogImage?: any
+    canonicalUrl?: string
+    noIndex?: boolean
   }
 }
 
@@ -91,14 +122,6 @@ export const INDUSTRIES_MAP: Record<string, IndustryDetailData> = {
     ],
     technologies: ['Java', 'Go', 'Kafka', 'PostgreSQL', 'Redis', 'Docker', 'AWS GovCloud', 'GraphQL'],
     compliance: ['PCI-DSS Level 1', 'SOC 2 Type II', 'ISO 27001', 'GDPR', 'Open Banking UK/EU'],
-    caseStudyHighlight: {
-      title: 'High-Volume Digital Banking Experience & API Modernization',
-      client: 'Kotak & FinTech Consortium',
-      description: 'Engineered microservices backend handling 12M+ monthly active transactions with <80ms latency and AI fraud shield.',
-      metric: '12M+',
-      metricLabel: 'Monthly Txns',
-      href: '/work',
-    },
   },
 
   government: {
@@ -153,14 +176,6 @@ export const INDUSTRIES_MAP: Record<string, IndustryDetailData> = {
     ],
     technologies: ['Next.js', 'Python', 'FastAPI', 'PostgreSQL', 'Kubernetes', 'Redis', 'Azure Government'],
     compliance: ['SIAC Standards', 'ISO 27001', 'WCAG 2.1 AA', 'NIST Cybersecurity Framework'],
-    caseStudyHighlight: {
-      title: 'AI-Assisted Identity Verification & Public Registry Modernization',
-      client: 'SIAC Certified Registry',
-      description: 'Automated public registry document extraction pipeline processing 1.9M+ applications with 99.7% accuracy.',
-      metric: '1.9M+',
-      metricLabel: 'Processed',
-      href: '/work',
-    },
   },
 
   ecommerce: {
@@ -449,14 +464,6 @@ export const INDUSTRIES_MAP: Record<string, IndustryDetailData> = {
     ],
     technologies: ['Go', 'Kafka', 'TimescaleDB', 'Python ML', 'React', 'Docker', 'AWS IoT Greengrass'],
     compliance: ['ISO 9001', 'ISO 27001', 'SOC 2 Type II'],
-    caseStudyHighlight: {
-      title: 'Enterprise Cloud Migration & Logistics Architecture',
-      client: 'Global Logistics Network',
-      description: 'Scaled freight tracking architecture achieving 4.8x speedup and 99.99% uptime with 38% cloud infrastructure savings.',
-      metric: '4.8x',
-      metricLabel: 'Speedup',
-      href: '/work',
-    },
   },
 }
 

@@ -84,6 +84,18 @@ interface MetricItem {
   description?: string
 }
 
+const isSlaPlaceholder = (m: MetricItem) => {
+  const val = String(m?.value || '').toLowerCase().trim()
+  const label = String(m?.label || '').toLowerCase().trim()
+  const desc = String(m?.description || '').toLowerCase().trim()
+  return (
+    label.includes('delivery success sla') ||
+    desc.includes('delivery success sla') ||
+    val.includes('delivery success sla') ||
+    (val === '100%' && label.includes('delivery success'))
+  )
+}
+
 export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
   const defaultMetrics: MetricItem[] = [
     {
@@ -108,21 +120,38 @@ export default function CaseStudyMetrics({ data }: { data: CaseStudyData }) {
     },
   ]
 
-  const rawMetrics: MetricItem[] =
-    Array.isArray(data?.metrics) && data.metrics.length > 0
-      ? (data.metrics as MetricItem[])
-      : defaultMetrics
+  const isSatyapaan =
+    data?.slug?.current === 'satyapaan' || data?.slug?.current?.includes('satyapaan')
 
-  const metrics =
-    rawMetrics.length >= 4
-      ? rawMetrics
-      : [...rawMetrics, ...defaultMetrics.slice(rawMetrics.length)]
+  const userMetrics = Array.isArray(data?.metrics)
+    ? (data.metrics as MetricItem[]).filter((m) => !isSlaPlaceholder(m))
+    : []
+
+  const metrics: MetricItem[] =
+    userMetrics.length > 0
+      ? userMetrics
+      : isSatyapaan
+      ? defaultMetrics
+      : []
+
+  if (metrics.length === 0) {
+    return null
+  }
+
+  const gridClasses =
+    metrics.length === 1
+      ? 'grid grid-cols-1 max-w-sm mx-auto'
+      : metrics.length === 2
+      ? 'grid grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto gap-5 sm:gap-6'
+      : metrics.length === 3
+      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto gap-5 sm:gap-6'
+      : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6'
 
   return (
     <section className="py-8 sm:py-12 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 4 Cards Grid across the page */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        {/* Dynamic Cards Grid across the page */}
+        <div className={gridClasses}>
           {metrics.slice(0, 4).map((metric, idx) => {
             const val = String(metric?.value || '').trim()
             const label = String(metric?.label || '').trim()

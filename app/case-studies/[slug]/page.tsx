@@ -167,7 +167,17 @@ async function getCaseStudyData(slug: string) {
                 : fallback.projectMeta,
             metrics:
               Array.isArray(study?.metrics) && study.metrics.length > 0
-                ? study.metrics
+                ? study.metrics.filter((m: any) => {
+                    const l = String(m?.label || '').toLowerCase()
+                    const d = String(m?.description || '').toLowerCase()
+                    const v = String(m?.value || '').toLowerCase()
+                    return (
+                      !l.includes('delivery success sla') &&
+                      !d.includes('delivery success sla') &&
+                      !v.includes('delivery success sla') &&
+                      !(v === '100%' && l.includes('delivery success'))
+                    )
+                  })
                 : fallback.metrics,
             executiveSummary: study?.executiveSummary
               ? {
