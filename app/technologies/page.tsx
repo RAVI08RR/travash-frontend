@@ -75,8 +75,9 @@ export default async function TechnologiesPage() {
     <>
       <Navbar settings={siteSettings} />
       <main className="bg-white">
-        <TechnologyMarquee />
+     
         <TechnologyGrid technologies={technologies} categories={categories} />
+           <TechnologyMarquee />
         <Contact />
       </main>
       <Footer settings={siteSettings} />

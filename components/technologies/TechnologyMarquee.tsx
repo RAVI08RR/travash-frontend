@@ -10,14 +10,13 @@ interface TechBadge {
 // Row 1: AI, LLM & Cloud Automation
 const ROW_1_TECH: TechBadge[] = [
   { name: 'NotebookLM', icon: 'https://cdn.simpleicons.org/googlegemini/8E75B2' },
-  { name: 'ChatGPT / OpenAI', icon: 'https://cdn.simpleicons.org/openai/000000' },
+  { name: 'ChatGPT / OpenAI', icon: 'https://cdn.sanity.io/images/s2k81yej/production/3e8bb9de9d377b3ab2642d2ee7f45d3117273db6-512x512.svg' },
   { name: 'Google Gemini', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg' },
-  { name: 'Meta Llama', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/meta/meta-original.svg' },
-  { name: 'Mistral AI', icon: 'https://cdn.simpleicons.org/mistral/FA520F' },
+
   { name: 'Anthropic Claude', icon: 'https://cdn.simpleicons.org/anthropic/D97706' },
   { name: 'Zapier', icon: 'https://cdn.simpleicons.org/zapier/FF4A00' },
   { name: 'Google AI Studio', icon: 'https://cdn.simpleicons.org/google/4285F4' },
-  { name: 'Hugging Face', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/huggingface/huggingface-original.svg' },
+  { name: 'Hugging Face', icon: 'https://d7umqicpi7263.cloudfront.net/img/product/92c7bfbf-1dce-43c5-afba-bd1408d38458.png' },
   { name: 'LangChain', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
   { name: 'AWS Bedrock', icon: '/images/services/aws.svg' },
   { name: 'Azure AI', icon: '/images/services/azure.svg' },
