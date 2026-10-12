@@ -73,16 +73,19 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       ? data.client
       : (data?.client as any)?.title || (data?.client as any)?.name || 'Telangana State Police'
   const solutionName =
-    data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'solution')?.value ||
+    data?.heroSolution ||
+    data?.solutionName ||
+    data?.projectMeta?.find((m) => (m.label || '').toLowerCase().trim() === 'solution')?.value ||
     title
   const industryName =
     typeof data?.industry === 'string'
       ? data.industry
       : (data?.industry as any)?.title ||
       (data?.industry as any)?.name ||
-      data?.projectMeta?.find((m) => (m.label || '').toLowerCase() === 'industry')?.value ||
+      data?.projectMeta?.find((m) => (m.label || '').toLowerCase().trim() === 'industry')?.value ||
       'Government / Public Safety'
   const capabilitiesValue =
+    data?.capabilities ||
     data?.projectMeta?.find((m) => (m.label || '').toLowerCase().includes('capabilit'))?.value ||
     'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
 

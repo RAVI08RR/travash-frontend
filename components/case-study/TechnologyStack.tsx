@@ -257,7 +257,7 @@ const DEFAULT_FALLBACK_STACK: TechnologyCategory[] = [
 
 export default function TechnologyStack({
   title = 'Enterprise\nTechnology Stack',
-  subtitle = 'To deliver a robust custom software solution capable of processing millions of records securely, we utilised a highly resilient tech stack:',
+  subtitle,
   items,
 }: TechnologyStackProps) {
   const stackCategories = items && items.length > 0 ? items : DEFAULT_FALLBACK_STACK

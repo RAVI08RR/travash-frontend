@@ -116,6 +116,8 @@ export const portfolioProjectBySlugQuery = groq`
     platform,
     year,
     client,
+    heroSolution,
+    capabilities,
     location,
     "featuredImage": coalesce(featuredImage ${imageFragment}, cardImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),
     "cardImage": coalesce(cardImage ${imageFragment}, featuredImage ${imageFragment}, featureImage ${imageFragment}, heroImage ${imageFragment}),

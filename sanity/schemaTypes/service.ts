@@ -493,6 +493,12 @@ export const service = defineType({
             defineField({ name: 'href', title: 'Link', type: 'string' }),
           ],
         }),
+        defineField({
+          name: 'submitLabel',
+          title: 'Form Submit Button Label',
+          type: 'string',
+          initialValue: 'Submit',
+        }),
       ],
     }),
 

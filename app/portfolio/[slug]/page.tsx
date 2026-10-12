@@ -58,6 +58,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
       category: raw?.category || fallback.category,
       industry: (typeof raw?.industry === 'string' ? raw.industry : raw?.industry?.title || raw?.industry?.name) || fallback.industry,
       client: (typeof raw?.client === 'string' ? raw.client : raw?.client?.title || raw?.client?.name) || fallback.client,
+      heroSolution: raw?.heroSolution || fallback.heroSolution,
+      capabilities: raw?.capabilities || fallback.capabilities,
       location: raw?.location || fallback.location,
       shortDescription: raw?.shortDescription || fallback.shortDescription,
       heroImage: raw?.heroImage || raw?.featuredImage || fallback.heroImage,

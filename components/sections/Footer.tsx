@@ -113,7 +113,36 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
     settings?.footerLogo?.asset?.url ||
     '/travash-latest-logo.svg'
 
-  const menuLinks = settings?.menuLinks && settings.menuLinks.length > 0 ? settings.menuLinks : DEFAULT_MENU_LINKS
+  const rawMenuLinks = settings?.menuLinks && settings.menuLinks.length > 0 ? settings.menuLinks : DEFAULT_MENU_LINKS
+  const routeFixes: Record<string, string> = {
+    '/about': '/about-us',
+    '/work': '/portfolio',
+    '/careers': '/career',
+    '/blog': '/blogs',
+    '/contact': '/contact-us',
+  }
+  const fixedMenuLinks = rawMenuLinks.map((link) => ({
+    ...link,
+    href: routeFixes[link.href] || link.href,
+  }))
+  const hasIndustries = fixedMenuLinks.some(
+    (l) => l.href === '/industries' || l.label.toLowerCase().includes('industr')
+  )
+  const menuLinks = hasIndustries
+    ? fixedMenuLinks
+    : (() => {
+        const servicesIdx = fixedMenuLinks.findIndex(
+          (l) => l.href === '/services' || l.label.toLowerCase().includes('service')
+        )
+        const industriesLink = { label: 'Industries', href: '/industries' }
+        if (servicesIdx !== -1) {
+          const updated = [...fixedMenuLinks]
+          updated.splice(servicesIdx + 1, 0, industriesLink)
+          return updated
+        }
+        return [...fixedMenuLinks, industriesLink]
+      })()
+
   const industryLinks = settings?.industryLinks && settings.industryLinks.length > 0 ? settings.industryLinks : DEFAULT_INDUSTRY_LINKS
   const serviceLinks = settings?.serviceLinks && settings.serviceLinks.length > 0 ? settings.serviceLinks : DEFAULT_SERVICE_LINKS
   const offices = settings?.offices && settings.offices.length > 0 ? settings.offices : DEFAULT_OFFICES
@@ -124,10 +153,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
 
   return (
     <footer className="bg-white text-gray-700 border-t border-gray-200">
-      <div className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 footer-nav-grid gap-10 sm:gap-8 lg:gap-6 xl:gap-8">
           {/* Column 1: Brand, Socials & Legal */}
-          <div className="lg:col-span-3 flex flex-col justify-between gap-6">
+          <div className="sm:col-span-2 md:col-span-4 lg:col-span-1 flex flex-col justify-between gap-6">
             <div className="flex flex-col gap-4">
               <Link href="/" className="inline-flex">
                 <Image
@@ -174,12 +203,12 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* Column 2: Menu */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Menu</h4>
             <ul className="flex flex-col gap-2.5 text-sm">
               {menuLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors">
+                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors whitespace-nowrap">
                     {link.label}
                   </Link>
                 </li>
@@ -188,12 +217,12 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* Column 3: Industries */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Industries</h4>
             <ul className="flex flex-col gap-2.5 text-sm">
               {industryLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors">
+                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors whitespace-nowrap">
                     {link.label}
                   </Link>
                 </li>
@@ -202,12 +231,12 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* Column 4: Our Services */}
-          <div className="lg:col-span-2 xl:col-span-3 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Our Services</h4>
             <ul className="flex flex-col gap-2.5 text-sm">
               {serviceLinks.map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors">
+                  <Link href={link.href} className="text-gray-600 hover:text-[#0B4785] transition-colors whitespace-nowrap">
                     {link.label}
                   </Link>
                 </li>
@@ -216,7 +245,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* Column 5: Contact & Locations */}
-          <div className="lg:col-span-3 xl:col-span-2 flex flex-col gap-4">
+          <div className="sm:col-span-2 md:col-span-4 lg:col-span-1 flex flex-col gap-4">
             <h4 className="text-sm font-bold text-[#0B4785] tracking-tight">Contact</h4>
             <div className="flex flex-col gap-4 text-sm text-gray-600">
               {offices.map((office, idx) => (

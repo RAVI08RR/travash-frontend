@@ -169,6 +169,7 @@ export interface ServiceFinalCTA {
   primaryCTA?: ServiceCTA
   secondaryCTA?: ServiceCTA
   features?: { title: string; description: string }[]
+  submitLabel?: string
 }
 
 export interface ServiceSEO {
@@ -2412,6 +2413,7 @@ export const DEFAULT_STAFF_AUGMENTATION_SERVICE: ServiceData = {
       'Stop sifting through unvetted resumes. Speak with an enterprise talent acquisition specialist today to access deployment-ready tech and finance professionals.',
     primaryCTA: { label: 'Request a Talent Consultation', href: '#contact' },
     secondaryCTA: { label: 'Explore Staffing Models', href: '#capabilities' },
+    submitLabel: 'Submit',
   },
   seo: {
     metaTitle: 'Elite Staff Augmentation Services & IT Staffing | Travash',

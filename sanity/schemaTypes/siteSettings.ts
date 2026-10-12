@@ -89,6 +89,20 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: 'industryLinks',
+      title: 'Footer Industry Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', title: 'Label', type: 'string' },
+            { name: 'href', title: 'URL', type: 'string' },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'serviceLinks',
       title: 'Footer Service Links',
       type: 'array',

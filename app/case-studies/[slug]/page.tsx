@@ -156,6 +156,8 @@ async function getCaseStudyData(slug: string) {
             category: study?.category || fallback.category,
             industry: industryStr || fallback.industry,
             client: clientStr || fallback.client,
+            heroSolution: study?.heroSolution || fallback.heroSolution,
+            capabilities: study?.capabilities || fallback.capabilities,
             location: study?.location || fallback.location,
             shortDescription: study?.shortDescription || fallback.shortDescription,
             heroImage: study?.featuredImage || study?.heroImage || fallback.heroImage,

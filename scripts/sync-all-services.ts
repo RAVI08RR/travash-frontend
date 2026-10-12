@@ -166,6 +166,7 @@ async function syncToSanity() {
         description: s.finalCTA.description,
         primaryCTA: s.finalCTA.primaryCTA,
         secondaryCTA: s.finalCTA.secondaryCTA,
+        submitLabel: s.finalCTA.submitLabel || 'Submit',
       }
     }
 

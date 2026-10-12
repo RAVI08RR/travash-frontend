@@ -276,7 +276,7 @@ export default function ServiceCTA({ cta }: { cta: ServiceFinalCTA }) {
                     disabled={isSubmitting}
                     className="btn-global h-[66px] rounded-[5px] w-full inline-flex items-center justify-center bg-[#066095] hover:bg-[#044c76] text-white font-bold text-sm tracking-wide transition-all shadow-md active:scale-98 cursor-pointer mt-2"
                   >
-                    <span>{isSubmitting ? 'Sending...' : 'Schedule Architecture Call'}</span>
+                    <span>{isSubmitting ? 'Sending...' : (cta.submitLabel || 'Submit')}</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </button>
                 </form>

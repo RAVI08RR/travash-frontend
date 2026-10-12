@@ -309,3 +309,11 @@ p {
 .sk-ww-linkedin-page-post a.sk-branding {
   display: none !important;
 }
+
+/* Balanced Desktop Footer Navigation Grid */
+@media (min-width: 1024px) {
+  .footer-nav-grid {
+    display: grid !important;
+    grid-template-columns: 1.25fr 0.75fr 1fr 1.15fr 1.3fr !important;
+  }
+}

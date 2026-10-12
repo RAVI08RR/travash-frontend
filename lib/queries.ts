@@ -231,6 +231,7 @@ export const homePageQuery = groq`
       mediaFooterLogo-> ${mediaFragment},
       socialLinks[] { platform, url },
       menuLinks[] { label, href },
+      industryLinks[] { label, href },
       serviceLinks[] { label, href },
       offices[] { label, address },
       contactEmail,
@@ -270,6 +271,8 @@ export const caseStudyBySlugQuery = groq`
     category,
     industry,
     client,
+    heroSolution,
+    capabilities,
     location,
     shortDescription,
     heroImage ${imageFragment},
@@ -548,6 +551,7 @@ export const portfolioPageQuery = groq`
       footerLogo ${imageFragment},
       socialLinks[] { platform, url },
       menuLinks[] { label, href },
+      industryLinks[] { label, href },
       serviceLinks[] { label, href },
       offices[] { label, address },
       contactEmail,
@@ -701,7 +705,8 @@ export const serviceBySlugQuery = groq`
       backgroundImage ${imageFragment},
       advisorImage ${imageFragment},
       primaryCTA { label, href },
-      secondaryCTA { label, href }
+      secondaryCTA { label, href },
+      submitLabel
     },
     seo {
       metaTitle,

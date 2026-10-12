@@ -102,6 +102,8 @@ export default async function PortfolioPage() {
     'darpan',
     'i-verify',
     'dine-desk',
+    'spencer',
+    'ledray',
     // Gemba is controlled by the admin toggle — always include in data,
     // visibility is handled client-side by GembaToggleWrapper
     'gemba',
