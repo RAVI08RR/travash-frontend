@@ -39,12 +39,12 @@ const ALL_INDUSTRIES: Industry[] = [
   },
   {
     name: 'Government & Public Sector',
-    image: 'https://travash.com/wp-content/uploads/2026/08/Government-Public-Sector.png',
+    image: '/home-img/satyapaan-min 2.png',
     href: '/industries/government',
   },
   {
     name: 'Banking & Financial Services',
-    image: 'https://travash.com/wp-content/uploads/2026/08/Banking-Financial-Services.webp',
+    image: '/home-img/what-is-cybersecurity 2.png',
     href: '/industries/fintech',
   },
   {

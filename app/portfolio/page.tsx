@@ -62,13 +62,27 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PortfolioPage() {
   let sanityProjects: any[] = []
   let listingPageData: any = null
+  let testimonialsData: any = null
 
   try {
-    const [fetchedSanity, pageData] = await Promise.all([
+    const testimonialsQuery = `coalesce(*[_id == "testimonialSection"][0], *[_type == "testimonialSection"][0]) {
+      heading,
+      "testimonials": testimonials[] {
+        "quote": coalesce(quote, @->quote),
+        "authorName": coalesce(authorName, @->clientName, @->authorName, @->name),
+        "authorTitle": coalesce(authorTitle, select(defined(@->designation) && defined(@->company) => @->designation + " · " + @->company, @->designation), @->authorTitle, @->role),
+        "authorCompany": coalesce(authorCompany, @->company),
+        "authorPhoto": coalesce(authorPhoto.asset->url, photo.asset->url, @->authorPhoto.asset->url, @->photo.asset->url)
+      }
+    }`
+
+    const [fetchedSanity, pageData, fetchedTestimonials] = await Promise.all([
       getAllPortfolioProjects(),
       client.fetch(caseStudiesPageQuery).catch(() => null),
+      client.fetch(testimonialsQuery).catch(() => null),
     ])
     listingPageData = pageData
+    testimonialsData = fetchedTestimonials
     if (fetchedSanity && Array.isArray(fetchedSanity)) {
       sanityProjects = fetchedSanity
     }
@@ -205,7 +219,7 @@ export default async function PortfolioPage() {
         <Stats />
 
         {/* Global Testimonials */}
-        <Testimonials />
+        <Testimonials data={testimonialsData} />
 
         {/* Contact & Consultation Section */}
         <Contact />

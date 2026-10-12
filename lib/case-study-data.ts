@@ -25,6 +25,7 @@ export interface CaseStudyData {
   solutionName?: string
   capabilities?: string
   location?: string
+  countries?: string[]
   shortDescription?: string
   heroImage?: { asset?: { url: string } }
   projectMeta?: { label: string; value: string }[]
@@ -3331,7 +3332,8 @@ export const DEFAULT_SPENCER_DATA: CaseStudyData = {
   heroSolution: 'Smart Medication Management Platform',
   capabilities:
     'Web Application Development • Automated Medication Dispensing • Medication Reminders & Tracking • Multilingual Support • Custom Content Management',
-  location: 'Global / Enterprise',
+  countries: ['USA'],
+  location: 'USA',
   shortDescription:
     'Spencer Health Solutions provides digital healthcare solutions focused on medication adherence and clinical trials. Its Spencer Smart Hub helps patients manage their medication routines through automated dispensing, reminders and tracking.',
   heroImage: {
@@ -3496,7 +3498,8 @@ export const DEFAULT_LEDRAY_DATA: CaseStudyData = {
   heroSolution: 'Bespoke Product Catalogue Management Web Application',
   capabilities:
     'Web Application Development • Product Catalogue Management • Advanced Search & Filters • Product Data Migration • Quote Management',
-  location: 'UAE / Global',
+  countries: ['Dubai, UAE'],
+  location: 'Dubai, UAE',
   shortDescription:
     'Ledray, a UAE-based lighting brand, needed a better way to manage its extensive product catalogue and help customers find accurate product information.',
   heroImage: {

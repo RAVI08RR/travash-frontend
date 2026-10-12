@@ -61,6 +61,10 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
       heroSolution: raw?.heroSolution || fallback.heroSolution,
       capabilities: raw?.capabilities || fallback.capabilities,
       location: raw?.location || fallback.location,
+      countries:
+        Array.isArray(raw?.countries) && raw.countries.length > 0
+          ? raw.countries
+          : fallback.countries,
       shortDescription: raw?.shortDescription || fallback.shortDescription,
       heroImage: raw?.heroImage || raw?.featuredImage || fallback.heroImage,
       featureImage: raw?.featureImage || raw?.featuredImage || fallback.featureImage,
@@ -320,6 +324,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
     industry,
     client: raw?.client || title,
     location: raw?.location || 'Global / Enterprise',
+    countries:
+      Array.isArray(raw?.countries) && raw.countries.length > 0 ? raw.countries : undefined,
     shortDescription,
     featureImage,
     heroImage,

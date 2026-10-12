@@ -156,6 +156,39 @@ export const portfolioProject = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'heroSolution',
+      title: 'SOLUTION (Hero Block)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'capabilities',
+      title: 'CAPABILITIES (Hero Block)',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
+      name: 'countries',
+      title: 'LOCATION / Countries (Hero Block)',
+      type: 'array',
+      description:
+        'Select one or more countries for this project (e.g. USA, Dubai / UAE, UK, India). Displays directly below CAPABILITIES with country flag icon(s) and name(s).',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: '🇺🇸 United States (USA)', value: 'USA' },
+          { title: '🇦🇪 United Arab Emirates (Dubai / UAE)', value: 'Dubai, UAE' },
+          { title: '🇬🇧 United Kingdom (UK)', value: 'UK' },
+          { title: '🇮🇳 India', value: 'India' },
+          { title: '🇩🇪 Germany', value: 'Germany' },
+          { title: '🇨🇦 Canada', value: 'Canada' },
+          { title: '🇦🇺 Australia', value: 'Australia' },
+          { title: '🇸🇬 Singapore', value: 'Singapore' },
+          { title: '🇸🇦 Saudi Arabia (KSA)', value: 'Saudi Arabia' },
+          { title: '🌐 Global / International', value: 'Global' },
+        ],
+      },
+    }),
+    defineField({
       name: 'location',
       title: 'Client Location / Region',
       type: 'string',

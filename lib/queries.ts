@@ -273,6 +273,7 @@ export const caseStudyBySlugQuery = groq`
     client,
     heroSolution,
     capabilities,
+    countries,
     location,
     shortDescription,
     heroImage ${imageFragment},

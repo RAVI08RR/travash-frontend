@@ -76,7 +76,7 @@ export const INDUSTRIES_MAP: Record<string, IndustryDetailData> = {
     shortTitle: 'FinTech',
     eyebrow: 'FINANCIAL TECHNOLOGY & BANKING',
     tagline: 'High-throughput core banking APIs, sub-millisecond payment processing, zero-trust fraud defense, and regulatory compliance.',
-    heroImage: 'https://travash.com/wp-content/uploads/2026/08/Banking-Financial-Services.webp',
+    heroImage: '/home-img/what-is-cybersecurity 2.png',
     overview:
       'The modern financial landscape demands sub-second transaction speeds, ironclad security, and strict regulatory compliance. We architect microservices-driven banking platforms, automated algorithmic risk scoring, and zero-trust verification systems that power millions of transactions each month without degradation.',
     metrics: [
@@ -130,7 +130,7 @@ export const INDUSTRIES_MAP: Record<string, IndustryDetailData> = {
     shortTitle: 'GovTech',
     eyebrow: 'GOVTECH & SOVEREIGN DIGITAL SERVICES',
     tagline: 'Sovereign digital identity platforms, citizen portal modernization, tamper-proof audit trails, and strict compliance.',
-    heroImage: 'https://travash.com/wp-content/uploads/2026/08/Government-Public-Sector.png',
+    heroImage: '/home-img/satyapaan-min 2.png',
     overview:
       'Public sector institutions require technology that is universally accessible, resilient against cyber threats, and capable of processing millions of citizen interactions reliably. Travash delivers sovereign digital transformation projects that eliminate bureaucratic delays and establish trustworthy civic digital infrastructure.',
     metrics: [

@@ -11,7 +11,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
 function TravashStudioIcon() {
   return React.createElement('img', {
-    src: 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg',
+    src: '/casestudy-img/New-latest-logo.svg',
     alt: 'Travash',
     style: { height: '22px', width: 'auto', objectFit: 'contain' },
   })
@@ -29,7 +29,7 @@ function TravashStudioLogo() {
       },
     },
     React.createElement('img', {
-      src: 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg',
+      src: '/casestudy-img/New-latest-logo.svg',
       alt: 'Travash',
       style: { height: '26px', width: 'auto', objectFit: 'contain' },
     }),

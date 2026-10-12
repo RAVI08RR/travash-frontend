@@ -7,6 +7,7 @@ import { getSanityImageUrl } from '@/lib/sanity.image'
 import defaultHeroThumb from '@/public/casestudy-img/Satyaapan-Passport-Verification-System.png'
 import type { CaseStudyData } from '@/lib/case-study-data'
 import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
+import { resolveCountries } from './CountryFlags'
 
 export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
   // Resolve Sanity CDN image, direct URL, or fallback for Hero block (prioritizes heroImage)
@@ -88,6 +89,8 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
     data?.capabilities ||
     data?.projectMeta?.find((m) => (m.label || '').toLowerCase().includes('capabilit'))?.value ||
     'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
+
+  const countryItems = resolveCountries(data?.countries, data?.location)
 
   // Extract project name for breadcrumbs (e.g. "Satyapaan")
   const breadcrumbName =
@@ -270,6 +273,49 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
                 </span>
               </div>
             </motion.div>
+
+            {/* 5. LOCATION */}
+            {countryItems.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                className="flex items-start gap-4"
+              >
+                <div className="w-12 h-12 flex-shrink-0 relative">
+                  <Image
+                    src="/casestudy-img/location.svg"
+                    alt="Location"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider mb-1">
+                    LOCATION
+                  </span>
+                  <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2">
+                    {countryItems.map((country, idx) => (
+                      <div
+                        key={country.name + idx}
+                        className="inline-flex items-center gap-2"
+                      >
+                        {country.flagComponent}
+                        <span className="text-base sm:text-lg font-bold text-[#0F172A]">
+                          {country.name}
+                        </span>
+                        {idx < countryItems.length - 1 && (
+                          <span className="text-[#CBD5E1] font-bold text-sm ml-1 select-none">
+                            •
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Right Column: Featured Image Showcase */}

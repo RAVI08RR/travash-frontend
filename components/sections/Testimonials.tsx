@@ -14,11 +14,13 @@ interface Testimonial {
 
 // Name-keyed lookup to guarantee photos match author identity & gender
 const AUTHOR_PHOTOS: Record<string, string> = {
-  'imran khan': 'https://travash.com/wp-content/uploads/2026/08/imran-pixl-client-dubai-1.webp',
-  'ross redfern': 'https://travash.com/wp-content/uploads/2026/08/swd-ross-travash-client.webp',
-  'senior officer': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
-  'national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
-  'senior leadership & national coordinator': 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+  'imran khan': '/images/testimonials/imran-khan.webp',
+  'ross redfern': '/images/testimonials/ross-redfern.jpg',
+  'swd group': '/images/testimonials/ross-redfern.jpg',
+  'senior officer': '/images/testimonials/i4c-client.webp',
+  'national coordinator': '/images/testimonials/i4c-client.webp',
+  'senior leadership & national coordinator': '/images/testimonials/i4c-client.webp',
+  i4c: '/images/testimonials/i4c-client.webp',
 }
 
 const TESTIMONIALS: Testimonial[] = [
@@ -27,21 +29,21 @@ const TESTIMONIALS: Testimonial[] = [
       'Travash has been our trusted technology partner for nearly eight years. Handling luxury real estate marketing in Dubai requires flawless digital tools, and they consistently deliver. They successfully digitized our operations by building custom CRM apps and high-performance websites for our team and our high-profile clients. Their technical expertise, reliability, and deep understanding of the real estate industry have made them an invaluable part of our growth. We are extremely happy with their work and look forward to continuing this strong relationship.',
     authorName: 'Imran Khan',
     authorTitle: 'Managing Director - PIXL Group (Dubai, UAE)',
-    authorPhoto: 'https://travash.com/wp-content/uploads/2026/08/imran-pixl-client-dubai-1.webp',
+    authorPhoto: '/images/testimonials/imran-khan.webp',
   },
   {
     quote:
       'The Satyaapan web application built by Travash has successfully solved our biggest challenge: identifying fraudulent activity and fake records during the passport verification process. Our officers use the platform daily to securely cross-reference applications, making the entire process highly convenient and incredibly efficient.',
     authorName: 'Senior Officer',
     authorTitle: 'Passport & Security Verification · Govt. of Telangana',
-    authorPhoto: 'https://travash.com/wp-content/uploads/2026/08/i4c-travash-client.png',
+    authorPhoto: '/images/testimonials/i4c-client.webp',
   },
   {
     quote:
       'For six years, Travash has been the powerful engine driving our successful deliveries, and their recent work on the UGO logistics application is truly next-level. Architecting a highly complex supply chain platform demands immense expertise, and the team navigated intricate routing workflows with absolute precision.',
     authorName: 'Ross Redfern',
     authorTitle: 'Managing Director · SWD Group',
-    authorPhoto: 'https://travash.com/wp-content/uploads/2026/08/swd-ross-travash-client.webp',
+    authorPhoto: '/images/testimonials/ross-redfern.jpg',
   },
 ]
 
@@ -50,7 +52,7 @@ interface SanityTestimonial {
   authorName?: string
   authorTitle?: string
   authorCompany?: string
-  authorPhoto?: { asset?: { url: string } }
+  authorPhoto?: { asset?: { url: string } } | string
 }
 
 interface TestimonialsSectionData {
@@ -69,8 +71,15 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
           const fb = TESTIMONIALS[i % TESTIMONIALS.length]
           const name = t.authorName || fb.authorName
           const cleanKey = name.trim().toLowerCase()
+
+          let photoUrl = typeof t.authorPhoto === 'string' ? t.authorPhoto : t.authorPhoto?.asset?.url
+          // Avoid 403 blocked wp-content URLs from legacy migrations
+          if (photoUrl && photoUrl.includes('wp-content')) {
+            photoUrl = undefined
+          }
+
           const resolvedPhoto =
-            t.authorPhoto?.asset?.url ||
+            photoUrl ||
             AUTHOR_PHOTOS[cleanKey] ||
             fb.authorPhoto
 
@@ -153,7 +162,7 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
               {/* Left: Rectangular photo */}
               <div className="lg:col-span-4 relative rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100 shadow-sm border border-gray-100 flex items-center justify-center">
                 <Image
-                  src={current.authorPhoto || 'https://travash.com/wp-content/uploads/2026/08/imran-pixl-client-dubai-1.webp'}
+                  src={current.authorPhoto || '/images/testimonials/imran-khan.webp'}
                   alt={current.authorName}
                   fill
                   className="object-cover"

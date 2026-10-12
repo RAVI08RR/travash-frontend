@@ -82,9 +82,33 @@ export const caseStudy = defineType({
         'Capabilities bullet-separated string displayed in Hero block (e.g. Web Application Development • Automated Medication Dispensing • Medication Reminders & Tracking • Multilingual Support • Custom Content Management)',
     }),
     defineField({
+      name: 'countries',
+      title: 'LOCATION / Countries (Hero Block)',
+      type: 'array',
+      description:
+        'Select one or more countries for this project (e.g. USA, Dubai / UAE, UK, India). Displays directly below CAPABILITIES with country flag icon(s) and name(s).',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: '🇺🇸 United States (USA)', value: 'USA' },
+          { title: '🇦🇪 United Arab Emirates (Dubai / UAE)', value: 'Dubai, UAE' },
+          { title: '🇬🇧 United Kingdom (UK)', value: 'UK' },
+          { title: '🇮🇳 India', value: 'India' },
+          { title: '🇩🇪 Germany', value: 'Germany' },
+          { title: '🇨🇦 Canada', value: 'Canada' },
+          { title: '🇦🇺 Australia', value: 'Australia' },
+          { title: '🇸🇬 Singapore', value: 'Singapore' },
+          { title: '🇸🇦 Saudi Arabia (KSA)', value: 'Saudi Arabia' },
+          { title: '🌐 Global / International', value: 'Global' },
+        ],
+      },
+    }),
+    defineField({
       name: 'location',
-      title: 'Location / Region',
+      title: 'Location / Region (Fallback / Custom Text)',
       type: 'string',
+      description:
+        'Custom location string or fallback if no countries are checked above (e.g. "USA", "Dubai, UAE", "India")',
       initialValue: 'India',
     }),
     defineField({
