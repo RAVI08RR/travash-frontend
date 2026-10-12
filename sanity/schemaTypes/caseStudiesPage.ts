@@ -81,6 +81,34 @@ export const caseStudiesPage = defineType({
       ],
     }),
     defineField({
+      name: 'testimonialsSection',
+      title: 'Testimonials Section',
+      type: 'object',
+      description:
+        'Select specific testimonials from the global Testimonials Library to display on the Works / Case Studies listing page.',
+      fields: [
+        defineField({
+          name: 'heading',
+          title: 'Section Heading',
+          type: 'string',
+          initialValue: 'Trusted by Businesses Worldwide',
+        }),
+        defineField({
+          name: 'selectedTestimonials',
+          title: 'Selected Testimonials',
+          description:
+            'Select which testimonials to feature on the Works page. If empty, the global default testimonials will be shown.',
+          type: 'array',
+          of: [
+            {
+              type: 'reference',
+              to: [{ type: 'testimonial' }],
+            },
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: 'cta',
       title: 'Bottom CTA Section',
       type: 'object',

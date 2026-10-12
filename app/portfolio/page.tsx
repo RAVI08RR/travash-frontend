@@ -82,7 +82,15 @@ export default async function PortfolioPage() {
       client.fetch(testimonialsQuery).catch(() => null),
     ])
     listingPageData = pageData
-    testimonialsData = fetchedTestimonials
+    const pageSelectedTestimonials = pageData?.testimonialsSection?.testimonials
+    if (Array.isArray(pageSelectedTestimonials) && pageSelectedTestimonials.length > 0) {
+      testimonialsData = {
+        heading: pageData?.testimonialsSection?.heading || 'Trusted by Businesses Worldwide',
+        testimonials: pageSelectedTestimonials,
+      }
+    } else {
+      testimonialsData = fetchedTestimonials
+    }
     if (fetchedSanity && Array.isArray(fetchedSanity)) {
       sanityProjects = fetchedSanity
     }

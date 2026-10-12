@@ -424,6 +424,20 @@ export const caseStudiesPageQuery = groq`
       title,
       subtitle
     },
+    testimonialsSection {
+      heading,
+      "testimonials": selectedTestimonials[]-> {
+        quote,
+        "authorName": coalesce(clientName, name, authorName),
+        "authorTitle": coalesce(
+          select(defined(designation) && defined(company) => designation + " · " + company, designation),
+          role,
+          authorTitle
+        ),
+        "authorCompany": company,
+        "authorPhoto": coalesce(photo.asset->url, clientLogo.asset->url)
+      }
+    },
     cta {
       heading,
       description,
@@ -455,6 +469,20 @@ export const portfolioPageQuery = groq`
         badge,
         title,
         subtitle
+      },
+      testimonialsSection {
+        heading,
+        "testimonials": selectedTestimonials[]-> {
+          quote,
+          "authorName": coalesce(clientName, name, authorName),
+          "authorTitle": coalesce(
+            select(defined(designation) && defined(company) => designation + " · " + company, designation),
+            role,
+            authorTitle
+          ),
+          "authorCompany": company,
+          "authorPhoto": coalesce(photo.asset->url, clientLogo.asset->url)
+        }
       },
       cta {
         heading,
