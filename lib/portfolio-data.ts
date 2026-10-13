@@ -464,6 +464,25 @@ export const DEFAULT_PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
   },
   {
+    _id: 'proj-crestsure',
+    title: 'Crestsure: Creating a Clear Digital Experience for Corporate Governance and Risk Solutions',
+    portfolioTitle: 'Crestsure – GRC Corporate Website',
+    slug: 'crestsure',
+    cardDescription:
+      "A structured corporate website for Crestsure's governance, risk, compliance and corporate resilience software suite — presenting product pages, advisor directory and enquiry pathways for executive audiences.",
+    shortDescription:
+      "A structured corporate website for Crestsure's governance, risk, compliance and corporate resilience software suite — presenting product pages, advisor directory and enquiry pathways for executive audiences.",
+    category: 'Corporate Website Development',
+    industry: 'SaaS & Technology',
+    projectType: 'Website Development',
+    industries: ['SaaS & Technology', 'Governance Risk & Compliance', 'Legal'],
+    technologies: ['Custom Web Development', 'CMS Integration', 'Interactive Mapping'],
+    featured: false,
+    portfolioOrder: 14,
+    portfolioVisible: true,
+    cardImage: '/images/portfolio/dovehouse.png',
+  },
+  {
     _id: 'proj-kalsi',
     title: 'Kalsi Estate: Commercial Property Portfolio & Asset Management',
     portfolioTitle: 'Kalsi Estate - Commercial Property',

@@ -3744,6 +3744,152 @@ export const DEFAULT_LEDRAY_DATA: CaseStudyData = {
 }
 
 // ----------------------------------------------------------------------
+// Crestsure – Corporate Website for GRC & Corporate Resilience Software
+// ----------------------------------------------------------------------
+export const DEFAULT_CRESTSURE_DATA: CaseStudyData = {
+  
+  title: 'Crestsure: Creating a Clear Digital Experience for Corporate Governance and Risk Solutions',
+  slug: { current: 'crestsure' },
+  eyebrow: 'CASE STUDY',
+  category: 'Corporate Website Development',
+  client: 'Crestsure',
+  heroSolution: 'Corporate Website / Digital Experience',
+  industry: 'SaaS & Technology',
+  capabilities: 'Corporate Website Development • Product Presentation • Content Architecture • Advisor Directory • Interactive Mapping • Webinar Sections • Enquiry Pathways',
+  countries: ['UK'],
+  location: 'UK',
+  shortDescription: "Crestsure provides software solutions focused on corporate governance, risk management, compliance, legal operations and corporate resilience. Travash designed and developed a structured corporate website to bring together product information, advisor resources and knowledge-sharing sections so visitors can explore Crestsure's offerings and connect with the team.",
+  heroImage: { asset: { url: '/images/portfolio/dovehouse.png' } },
+  featureImage: { asset: { url: '/images/portfolio/dovehouse.png' } },
+  projectMeta: [
+    { label: 'CLIENT', value: 'Crestsure' },
+    { label: 'SOLUTION', value: 'Corporate Website / Digital Experience' },
+    { label: 'INDUSTRY', value: 'Governance, Risk & Compliance Software' },
+    { label: 'CAPABILITIES', value: 'Corporate Website Development • Product Presentation • Content Architecture • Advisor Directory • Interactive Mapping • Webinar Sections • Enquiry Pathways' },
+    { label: 'Project Type', value: 'Corporate Website' },
+    { label: 'Year', value: '2024' },
+  ],
+  executiveSummary: {
+    title: 'Executive Summary',
+    subtitle: '',
+    paragraphs: [
+      "Crestsure provides software solutions focused on corporate governance, risk management, compliance, legal operations and corporate resilience. Its product ecosystem includes BoardCore360, BoardCorePrime, RiskCorePrime and LawCorePrime.",
+      "The website brings together product information, corporate content, advisor resources and knowledge-sharing sections to help visitors explore Crestsure's offerings and connect with its team. Travash structured the digital experience to make complex GRC software easy to navigate and understand."
+    ]
+  },
+  challenge: {
+    title: 'The Challenge',
+    subtitle: 'Presenting Complex GRC Software Clearly to Decision-Makers',
+    content: "Crestsure needed a corporate website that could clearly present its suite of governance, risk and compliance software products to senior executives, board members and compliance professionals — audiences who require structured, authoritative information to evaluate software solutions.",
+    pointsLabel: 'Key challenges included:',
+    points: [
+      'Product Complexity: Communicating four distinct software products (BoardCore360, BoardCorePrime, RiskCorePrime, LawCorePrime) to different audience segments.',
+      'Audience Specificity: Reaching board directors, risk officers, legal teams and corporate advisors through clearly segmented content pathways.',
+      'Advisor Discovery: Creating a structured directory to help businesses locate qualified Crestsure advisors.',
+      'Knowledge Sharing: Presenting webinars and publications in easily accessible sections.',
+      'Lead Generation: Providing clear contact and demonstration pathways for interested visitors.'
+    ],
+    takeaway: "The website needed to make Crestsure's complex product ecosystem easy to explore, with structured pathways for different visitor types."
+  },
+  complexity: {
+    title: 'Key Website Sections',
+    intro: 'Designed for Clarity, Navigation and Audience-Specific Journeys',
+    items: [
+      { title: '1. Product Pages', description: 'Dedicated sections for BoardCore360, BoardCorePrime, RiskCorePrime and LawCorePrime, each presenting features, benefits and use cases clearly.', icon: 'layers' },
+      { title: '2. Solutions Overview', description: "Organised content presenting how Crestsure's software addresses governance, risk, compliance and legal operations challenges.", icon: 'check' },
+      { title: '3. Advisor Directory', description: 'A structured directory enabling businesses to search and locate qualified Crestsure advisors by region or specialism.', icon: 'globe' },
+      { title: '4. Interactive Mapping', description: 'Location‑based mapping to help visitors discover nearby advisors and regional resources.', icon: 'chart' },
+      { title: '5. Webinars & Publications', description: "Dedicated knowledge‑sharing sections presenting Crestsure's webinars, insights and published resources.", icon: 'database' },
+      { title: '6. Corporate Content', description: "About, team, and corporate pages presenting Crestsure's mission, leadership and company story.", icon: 'shield' },
+      { title: '7. Enquiry & Demo Pathways', description: 'Clear contact forms and demonstration request pathways to support qualified leads.', icon: 'cpu' }
+    ]
+  },
+  approach: {
+    title: 'Travash Approach',
+    subtitle: 'Structured Information Architecture for a Complex Software Ecosystem',
+    steps: [
+      { stepNumber: '01', title: 'Discovery & Information Architecture', description: "Mapped Crestsure's product ecosystem, audience segments and content needs to define a clear site structure and navigation hierarchy." },
+      { stepNumber: '02', title: 'Product Content Design', description: "Designed individual product pages for each software offering, presenting features, benefits and target audiences in structured, readable formats." },
+      { stepNumber: '03', title: 'Advisor Directory & Mapping', description: "Built a searchable advisor directory with interactive mapping to help businesses discover qualified Crestsure advisors by location." },
+      { stepNumber: '04', title: 'Knowledge & Resources Sections', description: "Created dedicated sections for webinars and publications, making Crestsure's thought leadership content easy to browse and access." },
+      { stepNumber: '05', title: 'Enquiry & Demo Integration', description: "Integrated contact and demonstration request pathways throughout the site to support lead generation and customer enquiries." }
+    ]
+  },
+  solution: {
+    title: 'The Solution',
+    subtitle: 'A Structured Corporate Website for a Multi‑Product GRC Software Brand',
+    intro: "Travash designed and developed a corporate website that organises Crestsure's product suite and resources into clear, navigable sections for executive and compliance audiences.",
+    items: [
+      { title: 'Product Discovery Sections', description: "Dedicated pages for each of Crestsure's four software products, presenting capabilities and audience relevance clearly." },
+      { title: 'Structured Information Architecture', description: "Organised content into clear navigational sections so different visitor types can find relevant product, solution and advisory information efficiently." },
+      { title: 'Advisor Directory & Location Mapping', description: "A structured advisor directory with interactive mapping, enabling businesses to find qualified Crestsure advisors by region or specialism." },
+      { title: 'Knowledge & Webinar Sections', description: "Dedicated resource sections presenting Crestsure's webinars, insights and publications in a clear, accessible format." },
+      { title: 'Enquiry & Demonstration Pathways', description: "Integrated contact and demonstration request forms to support customer enquiries and lead generation throughout the site." }
+    ]
+  },
+  technologyStack: [
+    { category: 'Website Platform', technologies: ['WordPress'] },
+    { category: 'Page Development', technologies: ['Elementor Pro'] },
+    { category: 'Dynamic Content', technologies: ['Advanced Custom Fields (ACF)'] },
+    { category: 'Interactive Mapping', technologies: ['Leaflet.js'] },
+    { category: 'Contact Forms', technologies: ['Contact Form 7'] },
+    { category: 'Responsive Experience', technologies: ['Desktop', 'Tablet', 'Mobile'] }
+  ],
+  impact: {
+    title: 'Digital Transformation Impact',
+    subtitle: '',
+    content: "The Crestsure website provides a central destination for exploring its corporate resilience software, advisory resources and company information. The structured presentation of products, advisor profiles, knowledge resources and contact pathways supports a more organised digital experience for prospective customers.",
+    outcomes: [
+      'Easier exploration of the product ecosystem.',
+      'Clearer presentation of software capabilities.',
+      'More accessible advisor and knowledge resources.',
+      'Defined pathways for product enquiries and demonstrations.'
+    ]
+  },
+  beforeAfter: {
+    title: 'Before and After',
+    subtitle: '',
+    beforeTitle: 'BEFORE',
+    afterTitle: 'AFTER',
+    before: [
+      'Complex product suite without clear digital presentation for executive audiences.',
+      'Limited advisor discoverability for businesses seeking qualified GRC support.',
+      'Knowledge and webinar resources not easily accessible in one place.',
+      'No clear enquiry or demonstration pathway for interested visitors.',
+      'Website structure not aligned with the distinct needs of different audience segments.'
+    ],
+    after: [
+      'Dedicated product pages presenting each software offering clearly to relevant audiences.',
+      'Structured advisor directory with interactive mapping for regional discovery.',
+      'Webinar and publication sections making knowledge resources easily accessible.',
+      'Integrated contact and demonstration request pathways throughout the site.',
+      'Clear navigation structure supporting different visitor journeys.'
+    ]
+  },
+  whyItMAtters: {
+    title: 'Why This Project Matters',
+    subtitle: '',
+    description: "Software companies with complex product portfolios need digital experiences that make their solutions easier to understand and explore. The Crestsure case study demonstrates how structured website content can bring multiple software offerings, corporate information, advisory resources and enquiry options into one digital destination.",
+    items: [
+      'Corporate websites that communicate complex software suites clearly to professional audiences',
+      'Structured information architecture supporting multiple products and audience segments',
+      'Advisor directories and interactive features to improve discovery and accessibility',
+      'Enquiry and demonstration pathways integrated throughout the customer journey'
+    ]
+  },
+  nextStep: {
+    heading: 'Call to Action',
+    subtitle: '',
+    content: "Travash helps businesses create corporate websites, web applications and digital experiences that organise information, present products clearly and support customer journeys.",
+    primaryCTA: { label: 'Discuss Your Project', href: '#contact' },
+    secondaryCTA: { label: 'Schedule a Consultation', href: '#contact' }
+  },
+  seo: {
+    metaTitle: 'Crestsure Case Study | Corporate Website Development | Travash',
+    metaDescription: "Explore how Crestsure's digital experience, presenting governance, risk, compliance and corporate resilience solutions through a structured website."
+  }
+};
+// ----------------------------------------------------------------------
 // Master Fallback Registry of all Reviewed Case Studies
 // ----------------------------------------------------------------------
 export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
@@ -3801,6 +3947,9 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyData> = {
   // Historical & CMS Slugs
   darpan: DEFAULT_DARPAN_DATA,
   'i-verify': DEFAULT_IVERIFY_DATA,
+
+  // 13. Crestsure – GRC Corporate Website
+  crestsure: DEFAULT_CRESTSURE_DATA,
 }
 
 export function buildCaseStudySections(data: CaseStudyData) {

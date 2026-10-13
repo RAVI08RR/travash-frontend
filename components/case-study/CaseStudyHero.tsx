@@ -54,6 +54,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
     'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
     unixparts: '/casestudy-thumbs/unixparts.png',
     'unix-parts': '/casestudy-thumbs/unixparts.png',
+    crestsure: '/images/portfolio/dovehouse.png',
   }
 
   const slug = data.slug?.current || ''
