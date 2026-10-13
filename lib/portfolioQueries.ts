@@ -17,7 +17,7 @@ const imageFragment = groq`
 
 // Fetch all published portfolio projects with resolved references and fallback support
 export const allPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true] | order(coalesce(displayOrder, portfolioOrder, 100) asc, _createdAt desc) {
+  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && portfolioVisible == true] | order(coalesce(displayOrder, portfolioOrder, 100) asc, _createdAt desc) {
     _id,
     _type,
     wordpressId,
@@ -283,7 +283,7 @@ export const portfolioProjectBySlugQuery = groq`
 
 // Featured projects for homepage and spotlights
 export const featuredPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && (isFeatured == true || featured == true) && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true] | order(coalesce(displayOrder, portfolioOrder, 100) asc) [0...6] {
+  *[_type in ["portfolioProject", "caseStudy"] && (isFeatured == true || featured == true) && coalesce(status, "published") == "published" && portfolioVisible == true] | order(coalesce(displayOrder, portfolioOrder, 100) asc) [0...6] {
     _id,
     title,
     "slug": slug.current,
@@ -315,7 +315,7 @@ export const portfolioIndustriesQuery = groq`
     "title": coalesce(title, name),
     "slug": slug.current,
     description,
-    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || industry == ^.name || industry == ^.title || industry == ^._id)])
+    "projectCount": count(*[_type == "portfolioProject" && portfolioVisible == true && (references(^._id) || industry == ^.name || industry == ^.title || industry == ^._id)])
   }
 `
 
@@ -326,7 +326,7 @@ export const portfolioServicesQuery = groq`
     title,
     "slug": slug.current,
     description,
-    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || ^._id in services)])
+    "projectCount": count(*[_type == "portfolioProject" && portfolioVisible == true && (references(^._id) || ^._id in services)])
   }
 `
 
@@ -338,13 +338,13 @@ export const portfolioTechnologiesQuery = groq`
     "slug": slug.current,
     category,
     icon ${imageFragment},
-    "projectCount": count(*[_type == "portfolioProject" && coalesce(portfolioVisible, true) == true && (references(^._id) || ^._id in technologies)])
+    "projectCount": count(*[_type == "portfolioProject" && portfolioVisible == true && (references(^._id) || ^._id in technologies)])
   }
 `
 
 // Related portfolio projects (by matching industry or services, excluding current slug)
 export const relatedPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && slug.current != $currentSlug && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true] | order(_createdAt desc) [0...3] {
+  *[_type in ["portfolioProject", "caseStudy"] && slug.current != $currentSlug && coalesce(status, "published") == "published" && portfolioVisible == true] | order(_createdAt desc) [0...3] {
     _id,
     title,
     "slug": slug.current,
@@ -365,7 +365,7 @@ export const relatedPortfolioProjectsQuery = groq`
 
 // Search query
 export const searchPortfolioProjectsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && coalesce(portfolioVisible, true) == true && (
+  *[_type in ["portfolioProject", "caseStudy"] && coalesce(status, "published") == "published" && portfolioVisible == true && (
     title match $searchTerm + "*" ||
     excerpt match $searchTerm + "*" ||
     description match $searchTerm + "*" ||
@@ -438,7 +438,7 @@ export async function searchPortfolioProjects(searchTerm: string) {
 export const allSanitySlugsQuery = groq`
   *[_type in ["portfolioProject", "caseStudy"] && defined(slug.current)] {
     "slug": slug.current,
-    "visible": coalesce(portfolioVisible, true)
+    "visible": portfolioVisible == true
   }
 `
 

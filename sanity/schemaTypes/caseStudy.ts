@@ -834,7 +834,7 @@ export const caseStudy = defineType({
       title: 'Show in Portfolio Page',
       type: 'boolean',
       description: 'Turn on to display this project on the /portfolio listing page',
-      initialValue: true,
+      initialValue: false,
     }),
     defineField({
       name: 'featured',
