@@ -98,75 +98,66 @@ export default async function PortfolioPage() {
     console.warn('Sanity portfolio projects fetch fallback triggered:', err)
   }
 
-  // Create lookup of Sanity projects by slug
-  const sanitySlugMap = new Map<string, any>()
-  for (const p of sanityProjects) {
-    if (!p || !p.slug) continue
-    const slugKey = String(p.slug).toLowerCase().trim()
-    const existing = sanitySlugMap.get(slugKey)
-    if (!existing) {
-      sanitySlugMap.set(slugKey, p)
-    } else if (p._type === 'caseStudy' && existing._type !== 'caseStudy') {
-      sanitySlugMap.set(slugKey, p)
-    }
-  }
+  // ---------------------------------------------------------------------------
+  // DYNAMIC PORTFOLIO LISTING
+  // ---------------------------------------------------------------------------
+  // SOURCE 1 — Sanity (fully dynamic):
+  //   Any case study / portfolio project with portfolioVisible = true in Sanity
+  //   is automatically shown here. No code change needed when you add new ones.
+  //   The GROQ query already filters by `coalesce(portfolioVisible, true) == true`.
+  //
+  // SOURCE 2 — Fallback (static safety net):
+  //   Projects that are NOT yet in Sanity fall back to DEFAULT_PORTFOLIO_PROJECTS.
+  //   Only slugs in FALLBACK_ONLY_SLUGS will be shown from the local fallback list,
+  //   preventing unfinished placeholder entries from appearing publicly.
+  //   When you add a project to Sanity and enable it there, you can remove its slug
+  //   from FALLBACK_ONLY_SLUGS — Sanity takes over automatically.
+  // ---------------------------------------------------------------------------
 
-  // Master list of 11 approved active case study slugs to display on the portfolio page
-  const UPDATED_PORTFOLIO_SLUGS = [
+  // Safety list: slugs that should be shown from the LOCAL fallback data only when
+  // they have NO matching entry in Sanity. Once a project is live in Sanity with
+  // portfolioVisible=true, it is served from SOURCE 1 and this list is ignored for it.
+  const FALLBACK_ONLY_SLUGS = new Set([
     'pekt',
     'satyapaan',
     'direct-owners',
     'ugo',
     'indispare',
     'i4c-bank-portal',
+    'i4c',
     'dovehouse',
     'skipr',
     'darpan',
     'i-verify',
     'dine-desk',
+    'dinedesk',
     'spencer',
     'ledray',
-    // Gemba is controlled by the admin toggle — always include in data,
-    // visibility is handled client-side by GembaToggleWrapper
     'gemba',
-  ]
+    'crestsure',
+  ])
 
-  // Map and filter default projects to include ONLY approved case studies that are set visible
-  const projects: PortfolioProject[] = DEFAULT_PORTFOLIO_PROJECTS
-    .filter((p) => {
-      const slug = p.slug.toLowerCase().trim()
-      const slugKey = slug === 'i4c' ? 'i4c-bank-portal' : slug === 'dinedesk' ? 'dine-desk' : slug
-      const sp = sanitySlugMap.get(slugKey)
-
-      // If Sanity project explicitly sets portfolioVisible to false, filter it out
-      if (sp && sp.portfolioVisible === false) {
-        return false
-      }
-
-      return (
-        UPDATED_PORTFOLIO_SLUGS.includes(slug) ||
-        (slug === 'i4c' && UPDATED_PORTFOLIO_SLUGS.includes('i4c-bank-portal')) ||
-        (slug === 'dinedesk' && UPDATED_PORTFOLIO_SLUGS.includes('dine-desk'))
-      )
-    })
-    .map((fallback) => {
-      const slugKey = fallback.slug.toLowerCase().trim()
-      const sp = sanitySlugMap.get(slugKey) || {}
-
-      let orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf(slugKey)
-      if (orderIdx === -1 && slugKey === 'i4c') {
-        orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf('i4c-bank-portal')
-      }
-      if (orderIdx === -1 && slugKey === 'dinedesk') {
-        orderIdx = UPDATED_PORTFOLIO_SLUGS.indexOf('dine-desk')
-      }
+  // --- Build projects from Sanity (SOURCE 1) ---
+  const projectsFromSanity: PortfolioProject[] = sanityProjects
+    .filter((sp: any) => sp?.slug)
+    .map((sp: any) => {
+      const slugKey = String(sp.slug).toLowerCase().trim()
+      // Merge with local fallback data for fields Sanity may not store (category, projectType, etc.)
+      const fallback = DEFAULT_PORTFOLIO_PROJECTS.find((p) => {
+        const ps = p.slug.toLowerCase().trim()
+        return (
+          ps === slugKey ||
+          (ps === 'i4c' && slugKey === 'i4c-bank-portal') ||
+          (ps === 'dinedesk' && slugKey === 'dine-desk')
+        )
+      }) || ({} as PortfolioProject)
 
       return {
         ...fallback,
         ...sp,
         title: sp.title || fallback.title,
-        portfolioTitle: sp.portfolioTitle || fallback.portfolioTitle || fallback.title,
-        slug: fallback.slug,
+        portfolioTitle: sp.portfolioTitle || fallback.portfolioTitle || sp.title,
+        slug: sp.slug,
         cardDescription:
           sp.cardDescription ||
           sp.excerpt ||
@@ -174,8 +165,8 @@ export default async function PortfolioPage() {
           fallback.cardDescription ||
           fallback.shortDescription,
         cardImage: sp.cardImage || sp.featuredImage || sp.heroImage || fallback.cardImage,
-        category: fallback.category,
-        industry: fallback.industry,
+        category: fallback.category || sp.category,
+        industry: fallback.industry || sp.industryName || sp.industry,
         projectType: fallback.projectType,
         projectTypes:
           Array.isArray(sp.projectTypes) && sp.projectTypes.length > 0
@@ -184,9 +175,28 @@ export default async function PortfolioPage() {
         technologies:
           sp.technologies && sp.technologies.length > 0 ? sp.technologies : fallback.technologies,
         metrics: sp.metrics && sp.metrics.length > 0 ? sp.metrics : fallback.metrics,
-        portfolioOrder: orderIdx !== -1 ? orderIdx + 1 : fallback.portfolioOrder || 100,
-      }
+        portfolioOrder: sp.displayOrder || sp.portfolioOrder || fallback.portfolioOrder || 100,
+      } as PortfolioProject
     })
+
+  // Track which slugs are already covered by Sanity so we don't duplicate
+  const sanityCoveredSlugs = new Set(
+    projectsFromSanity.map((p) => p.slug.toLowerCase().trim())
+  )
+
+  // --- Build fallback-only projects (SOURCE 2) ---
+  const projectsFromFallback: PortfolioProject[] = DEFAULT_PORTFOLIO_PROJECTS
+    .filter((p) => {
+      const slug = p.slug.toLowerCase().trim()
+      // Skip if already served from Sanity
+      if (sanityCoveredSlugs.has(slug)) return false
+      // Only show slugs in the approved fallback safety list
+      return FALLBACK_ONLY_SLUGS.has(slug)
+    })
+    .map((p) => ({ ...p, portfolioOrder: p.portfolioOrder || 100 }))
+
+  // --- Merge and sort ---
+  const projects: PortfolioProject[] = [...projectsFromSanity, ...projectsFromFallback]
     .sort((a, b) => (a.portfolioOrder || 100) - (b.portfolioOrder || 100))
 
   const industries: IndustryItem[] = DEFAULT_INDUSTRIES
