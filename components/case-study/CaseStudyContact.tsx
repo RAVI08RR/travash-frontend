@@ -69,7 +69,7 @@ export default function CaseStudyContact({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-6"
+              className="lg:col-span-5"
             >
               <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F172A] tracking-[-1px] leading-[1.12] mb-5">
                 {headingLines.map((line, idx) => (
@@ -89,7 +89,7 @@ export default function CaseStudyContact({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-6"
+              className="lg:col-span-7"
             >
               <div className="bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-xs border border-gray-100 w-full">
                 <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
@@ -107,7 +107,7 @@ export default function CaseStudyContact({
 
                   {/* Name */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="cs-name" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                    <label htmlFor="cs-name" className="text-base sm:text-[13px] font-semibold text-gray-700">
                       Name <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -116,28 +116,28 @@ export default function CaseStudyContact({
                       type="text"
                       required
                       placeholder="Enter Your Name"
-                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[13px] sm:text-[13px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
                     />
                   </div>
 
                   {/* Phone */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="cs-phone" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                    <label htmlFor="cs-phone" className="text-base sm:text-[13px] font-semibold text-gray-700">
                       Phone Number <span className="text-red-500">*</span>
                     </label>
                     <CountryPhoneInput
                       id="cs-phone"
                       name="phone"
-                      placeholder="9876543210"
+                      placeholder="Phone Number"
                       required
                       className="h-[58px]"
-                      inputClassName="h-[58px] rounded-r-xl px-4 sm:px-5 text-[14px] sm:text-[14px] border-[#D9DEE7] placeholder:text-[#9AA5B8] focus:ring-2 focus:ring-[#003865]/10"
+                      inputClassName="h-[58px] rounded-r-xl px-4 sm:px-5 text-[13px] sm:text-[13px] border-[#D9DEE7] placeholder:text-[#9AA5B8] focus:ring-2 focus:ring-[#003865]/10"
                     />
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="cs-email" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                    <label htmlFor="cs-email" className="text-base sm:text-[13px] font-semibold text-gray-700">
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -146,13 +146,13 @@ export default function CaseStudyContact({
                       type="email"
                       required
                       placeholder="Enter Your Email"
-                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[13px] sm:text-[13px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
                     />
                   </div>
 
                   {/* Subject */}
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="cs-subject" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                    <label htmlFor="cs-subject" className="text-base sm:text-[13px] font-semibold text-gray-700">
                       Subject
                     </label>
                     <input
@@ -160,13 +160,13 @@ export default function CaseStudyContact({
                       name="subject"
                       type="text"
                       placeholder="Enter Your Subject"
-                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[13px] sm:text-[13px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
                     />
                   </div>
 
                   {/* Message */}
                   <div className="sm:col-span-2 flex flex-col gap-2">
-                    <label htmlFor="cs-message" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                    <label htmlFor="cs-message" className="text-base sm:text-[13px] font-semibold text-gray-700">
                       Message <span className="text-red-500">*</span>
                     </label>
                     <textarea
@@ -175,7 +175,7 @@ export default function CaseStudyContact({
                       rows={5}
                       required
                       placeholder="Enter Your Message..."
-                      className="w-full min-h-[150px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 py-4 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 resize-none transition-colors"
+                      className="w-full min-h-[150px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 py-4 text-[13px] sm:text-[13px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 resize-none transition-colors"
                     />
                   </div>
 

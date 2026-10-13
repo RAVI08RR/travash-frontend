@@ -100,7 +100,7 @@ export default function Capabilities({ data }: { data?: CapabilitiesData }) {
               {/* Action Button */}
               <Link
                 href={card.ctaHref || '/services'}
-                className="btn-capability-card h-[66px] w-full inline-flex items-center justify-center font-semibold text-sm mt-auto"
+                className="btn-capability-card h-[60px] w-full inline-flex items-center justify-center font-semibold text-sm mt-auto"
               >
                 {card.ctaLabel || 'Explore More'}
               </Link>
