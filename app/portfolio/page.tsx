@@ -4,7 +4,7 @@ import { client } from '@/lib/sanity'
 import { caseStudiesPageQuery } from '@/lib/queries'
 import {
   getAllPortfolioProjects,
-  getHiddenPortfolioSlugs,
+  getAllSanitySlugs,
 } from '@/lib/portfolioQueries'
 import {
   DEFAULT_PORTFOLIO_PROJECTS,
@@ -64,8 +64,8 @@ export default async function PortfolioPage() {
   let sanityProjects: any[] = []
   let listingPageData: any = null
   let testimonialsData: any = null
-  // Slugs explicitly turned OFF in Sanity (portfolioVisible = false)
-  let sanityHiddenSlugs: Set<string> = new Set()
+  // All slugs known to Sanity (visible + hidden). Fallback won't touch these.
+  let sanityOwnedSlugs: Set<string> = new Set()
 
   try {
     const testimonialsQuery = `coalesce(*[_id == "testimonialSection"][0], *[_type == "testimonialSection"][0]) {
@@ -79,14 +79,20 @@ export default async function PortfolioPage() {
       }
     }`
 
-    const [fetchedSanity, pageData, fetchedTestimonials, hiddenSlugs] = await Promise.all([
+    const [fetchedSanity, pageData, fetchedTestimonials, allSanitySlugsRaw] = await Promise.all([
       getAllPortfolioProjects(),
       client.fetch(caseStudiesPageQuery).catch(() => null),
       client.fetch(testimonialsQuery).catch(() => null),
-      getHiddenPortfolioSlugs().catch(() => []),
+      getAllSanitySlugs().catch(() => []),
     ])
     listingPageData = pageData
-    sanityHiddenSlugs = new Set(hiddenSlugs)
+
+    // Build slug sets from all Sanity records
+    for (const { slug } of allSanitySlugsRaw) {
+      const key = String(slug).toLowerCase().trim()
+      sanityOwnedSlugs.add(key)  // owned = exists in Sanity at all (any visibility state)
+    }
+
     const pageSelectedTestimonials = pageData?.testimonialsSection?.testimonials
     if (Array.isArray(pageSelectedTestimonials) && pageSelectedTestimonials.length > 0) {
       testimonialsData = {
@@ -184,26 +190,36 @@ export default async function PortfolioPage() {
       } as PortfolioProject
     })
 
-  // Track which slugs are already covered by Sanity so we don't duplicate
+  // --- Build fallback-only projects (SOURCE 2) ---
+  // Only shown when a slug is:
+  //   a) In FALLBACK_ONLY_SLUGS (safety list), AND
+  //   b) NOT owned by Sanity at all (not visible, not hidden, not deleted-but-still-in-Sanity)
   const sanityCoveredSlugs = new Set(
     projectsFromSanity.map((p) => p.slug.toLowerCase().trim())
   )
 
-  // --- Build fallback-only projects (SOURCE 2) ---
   const projectsFromFallback: PortfolioProject[] = DEFAULT_PORTFOLIO_PROJECTS
     .filter((p) => {
       const slug = p.slug.toLowerCase().trim()
-      // Skip if already served from Sanity
+      // Skip if already in Sanity results (visible)
       if (sanityCoveredSlugs.has(slug)) return false
-      // Skip if explicitly turned OFF in Sanity (portfolioVisible = false)
-      if (sanityHiddenSlugs.has(slug)) return false
+      // Skip if Sanity owns this slug in any form (visible=false, or just exists)
+      // This prevents deleted-then-re-added and hidden projects from leaking through
+      if (sanityOwnedSlugs.has(slug)) return false
       // Only show slugs in the approved fallback safety list
       return FALLBACK_ONLY_SLUGS.has(slug)
     })
     .map((p) => ({ ...p, portfolioOrder: p.portfolioOrder || 100 }))
 
-  // --- Merge and sort ---
+  // --- Merge, deduplicate by slug, and sort ---
+  const seenSlugs = new Set<string>()
   const projects: PortfolioProject[] = [...projectsFromSanity, ...projectsFromFallback]
+    .filter((p) => {
+      const slug = p.slug?.toLowerCase().trim()
+      if (!slug || seenSlugs.has(slug)) return false
+      seenSlugs.add(slug)
+      return true
+    })
     .sort((a, b) => (a.portfolioOrder || 100) - (b.portfolioOrder || 100))
 
   const industries: IndustryItem[] = DEFAULT_INDUSTRIES

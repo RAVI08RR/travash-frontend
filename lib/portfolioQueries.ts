@@ -430,18 +430,19 @@ export async function searchPortfolioProjects(searchTerm: string) {
 }
 
 // -----------------------------------------------------------------------
-// Fetch slugs that are explicitly hidden in Sanity (portfolioVisible=false)
-// Used to suppress fallback-data projects when the Sanity toggle is OFF.
+// Fetch ALL slugs that exist in Sanity regardless of portfolioVisible.
+// Used so the fallback list only kicks in for slugs that are NOT in Sanity
+// at all. If Sanity owns a slug (visible, hidden, or previously published)
+// the fallback will not duplicate it.
 // -----------------------------------------------------------------------
-export const hiddenPortfolioSlugsQuery = groq`
-  *[_type in ["portfolioProject", "caseStudy"] && portfolioVisible == false && defined(slug.current)] {
-    "slug": slug.current
+export const allSanitySlugsQuery = groq`
+  *[_type in ["portfolioProject", "caseStudy"] && defined(slug.current)] {
+    "slug": slug.current,
+    "visible": coalesce(portfolioVisible, true)
   }
 `
 
-export async function getHiddenPortfolioSlugs(): Promise<string[]> {
-  const results = await client.fetch(hiddenPortfolioSlugsQuery)
-  return (results ?? []).map((r: any) => String(r.slug).toLowerCase().trim()).filter(Boolean)
+export async function getAllSanitySlugs(): Promise<{ slug: string; visible: boolean }[]> {
+  const results = await client.fetch(allSanitySlugsQuery)
+  return (results ?? []).filter((r: any) => r?.slug)
 }
-
-
