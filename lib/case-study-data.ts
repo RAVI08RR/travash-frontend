@@ -3866,7 +3866,7 @@ export const DEFAULT_CRESTSURE_DATA: CaseStudyData = {
       'Clear navigation structure supporting different visitor journeys.'
     ]
   },
-  whyItMAtters: {
+  whyItMatters: {
     title: 'Why This Project Matters',
     subtitle: '',
     description: "Software companies with complex product portfolios need digital experiences that make their solutions easier to understand and explore. The Crestsure case study demonstrates how structured website content can bring multiple software offerings, corporate information, advisory resources and enquiry options into one digital destination.",
