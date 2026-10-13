@@ -102,12 +102,12 @@ export default function Testimonials({ data }: { data?: TestimonialsSectionData 
   const total = activeList.length
   const current = activeList[currentIdx % total]
 
-  // Slower, comfortable reading speed (7.5s interval), pauses on hover and touch
+  // Comfortable reading speed with a slightly quicker rotation, pauses on hover and touch
   useEffect(() => {
     if (isPaused || total <= 1) return
     const interval = setInterval(() => {
       setCurrentIdx((prev) => (prev + 1) % total)
-    }, 7500)
+    }, 5000)
     return () => clearInterval(interval)
   }, [isPaused, total])
 

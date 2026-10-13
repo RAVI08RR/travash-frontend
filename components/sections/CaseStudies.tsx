@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface Outcome {
   value: string
@@ -184,6 +185,7 @@ function getDetailHref(rawHref?: string, projectName?: string): string {
 
 export default function CaseStudies({ data }: { data?: CaseStudiesSectionData }) {
   const [currentIdx, setCurrentIdx] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   const activeStudies =
     data?.caseStudies && data.caseStudies.length > 0
@@ -217,6 +219,16 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
   const current = activeStudies[currentIdx % activeStudies.length]
   const heading = data?.heading || 'Built on Results, Not Promises'
 
+  useEffect(() => {
+    if (isPaused || activeStudies.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % activeStudies.length)
+    }, 5500)
+
+    return () => clearInterval(interval)
+  }, [activeStudies.length, isPaused])
+
   const nextSlide = () => {
     setCurrentIdx((prev) => (prev + 1) % activeStudies.length)
   }
@@ -243,8 +255,11 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
   }
 
   return (
-    <section className="py-12 lg:py-16 
-    bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+    <section className="py-12 lg:py-5 
+    bg-gradient-to-b from-[#ffffff] to-[#F2F2F2] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 lg:mb-14">
@@ -280,19 +295,19 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                   fill
                   unoptimized
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 450px"
+                  sizes="(max-width: 1024px) 100vw, 480px"
                 />
               </Link>
 
               {/* Right Column: Case Study Details & 2x2 Outcome Grid */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
-                  <Link href={current.ctaHref} className="hover:underline">
+                  <Link href={current.ctaHref} className="hover:no-underline cursor-pointer">
                     <h3 className="text-xl sm:text-2xl lg:text-[28px] font-[600] text-[#0B4785] tracking-tight break-words leading-snug">
                       {current.projectName}
                     </h3>
                   </Link>
-                  <p className="text-gray-500 text-[13px] sm:text-[14px] font-normal mt-1.5 mb-5 sm:mb-6 whitespace-pre-line">
+                  <p className="text-gray-500 text-[13px] sm:text-[14px] font-normal mt-1.5 mb-5 sm:mb-5 whitespace-pre-line">
                     {current.clientType}
                   </p>
 
@@ -301,12 +316,12 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                   </p>
 
                   {/* 2x2 Outcome Grid */}
-                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5 sm:mb-7">
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-2 sm:mb-2">
                     {current.outcomes.map((item, idx) => (
                       <div
                         key={idx}
                         className={`${item.bg || 'bg-gray-50'} border ${item.border || 'border-gray-200'
-                          } rounded-xl p-3 sm:p-4 flex flex-col justify-center`}
+                          } rounded-xl p-2 sm:p-3 flex flex-col justify-center`}
                       >
                         <span className="text-sm sm:text-base font-bold text-gray-900 leading-tight">
                           {item.value}
@@ -320,7 +335,7 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                 </div>
 
                 {/* Bottom Row: CTA + Slider Nav */}
-                <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 pt-0 sm:pt-2">
                   <Link
                     href={current.ctaHref}
                     className="inline-flex items-center justify-center bg-[#0B4785] hover:bg-[#083566] text-white font-semibold px-7 py-3 rounded-[10px] text-[14px] transition-all duration-200 shadow-sm w-full sm:w-auto"
@@ -331,27 +346,17 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
                   <div className="flex items-center gap-2.5">
                     <button
                       onClick={prevSlide}
-                      className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 transition-all flex items-center justify-center cursor-pointer active:scale-95 shadow-sm"
+                      className="w-10 h-10 rounded-full border border-[#0B4785]/30 text-[#0B4785] hover:bg-[#0B4785] hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 bg-white"
                       aria-label="Previous case study"
                     >
-                      <Image
-                        src="/home-img/Group 1000003288.png"
-                        alt="Previous"
-                        width={40}
-                        height={40}
-                      />
+                      <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 transition-all flex items-center justify-center cursor-pointer active:scale-95 shadow-sm"
+                      className="w-10 h-10 rounded-full border border-[#0B4785]/30 text-[#0B4785] hover:bg-[#0B4785] hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 bg-white"
                       aria-label="Next case study"
                     >
-                      <Image
-                        src="/home-img/Group 1000003287-1.png"
-                        alt="Next"
-                        width={40}
-                        height={40}
-                      />
+                      <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -363,4 +368,3 @@ export default function CaseStudies({ data }: { data?: CaseStudiesSectionData })
     </section>
   )
 }
-
