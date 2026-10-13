@@ -26,7 +26,8 @@ export default function CaseStudyContact({
       name: formData.get('name'),
       phone: formData.get('phone'),
       email: formData.get('email'),
-      subject: 'Case Study Inquiry: ' + heading.replace(/\n/g, ' '),
+      subject:
+        formData.get('subject') || 'Case Study Inquiry: ' + heading.replace(/\n/g, ' '),
       message: formData.get('message'),
       website: formData.get('website'),
     }
@@ -90,8 +91,8 @@ export default function CaseStudyContact({
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-6"
             >
-              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-gray-100 w-full">
-                <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2">
+              <div className="bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-xs border border-gray-100 w-full">
+                <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
                   {/* Honeypot field for bot spam protection */}
                   <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
                     <label htmlFor="cs-website">Website</label>
@@ -105,59 +106,76 @@ export default function CaseStudyContact({
                   </div>
 
                   {/* Name */}
-                  <div className="flex flex-col gap-0.5">
-                    <label htmlFor="cs-name" className="text-[10px] font-semibold text-gray-600">
-                      Name
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="cs-name" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                      Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="cs-name"
                       name="name"
                       type="text"
                       required
-                      placeholder="Enter Name"
-                      className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#003865] transition-colors"
+                      placeholder="Enter Your Name"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
                     />
                   </div>
 
                   {/* Phone */}
-                  <div className="flex flex-col gap-0.5">
-                    <label htmlFor="cs-phone" className="text-[10px] font-semibold text-gray-600">
-                      Phone Number
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="cs-phone" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                      Phone Number <span className="text-red-500">*</span>
                     </label>
                     <CountryPhoneInput
                       id="cs-phone"
                       name="phone"
-                      placeholder="98765 43210"
+                      placeholder="9876543210"
+                      required
+                      className="h-[58px]"
+                      inputClassName="h-[58px] rounded-r-xl px-4 sm:px-5 text-[14px] sm:text-[14px] border-[#D9DEE7] placeholder:text-[#9AA5B8] focus:ring-2 focus:ring-[#003865]/10"
                     />
                   </div>
 
                   {/* Email */}
-                  <div className="flex flex-col gap-0.5">
-                    <label htmlFor="cs-email" className="text-[10px] font-semibold text-gray-600">
-                      Email
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="cs-email" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="cs-email"
                       name="email"
                       type="email"
                       required
-                      placeholder="Enter Email"
-                      className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#003865] transition-colors"
+                      placeholder="Enter Your Email"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
+                    />
+                  </div>
+
+                  {/* Subject */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="cs-subject" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                      Subject
+                    </label>
+                    <input
+                      id="cs-subject"
+                      name="subject"
+                      type="text"
+                      placeholder="Enter Your Subject"
+                      className="w-full h-[58px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 transition-colors"
                     />
                   </div>
 
                   {/* Message */}
-                  <div className="flex flex-col gap-0.5">
-                    <label htmlFor="cs-message" className="text-[10px] font-semibold text-gray-600">
-                      Message
+                  <div className="sm:col-span-2 flex flex-col gap-2">
+                    <label htmlFor="cs-message" className="text-base sm:text-[15px] font-semibold text-gray-700">
+                      Message <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="cs-message"
                       name="message"
-                      rows={2}
+                      rows={5}
                       required
-                      placeholder="Enter Message"
-                      className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#003865] resize-none transition-colors"
+                      placeholder="Enter Your Message..."
+                      className="w-full min-h-[150px] bg-white border border-[#D9DEE7] rounded-xl px-4 sm:px-5 py-4 text-[14px] sm:text-[14px] text-gray-800 placeholder:text-[#9AA5B8] focus:outline-none focus:border-[#003865] focus:ring-2 focus:ring-[#003865]/10 resize-none transition-colors"
                     />
                   </div>
 
@@ -165,7 +183,7 @@ export default function CaseStudyContact({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#003865] hover:bg-[#002847] disabled:bg-gray-400 text-white font-semibold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-xs mt-1"
+                    className="sm:col-span-2 w-full bg-[#003865] hover:bg-[#002847] disabled:bg-gray-400 text-white font-semibold py-3.5 rounded-xl text-sm uppercase tracking-wider transition-colors shadow-xs mt-1"
                   >
                     {isSubmitting ? 'Submitting...' : 'SUBMIT'}
                   </button>

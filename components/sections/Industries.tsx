@@ -149,7 +149,7 @@ export default function Industries({ data }: { data?: IndustriesSectionData }) {
               >
                 <Link
                   href={ind.href}
-                  className="group relative block w-[263.5px] h-[208.5px] rounded-[16px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-gray-100"
+                  className="group relative block w-[263.5px] h-[208.5px] rounded-[16px] overflow-hidden shadow-sm  transition-all duration-300 bg-gray-100"
                 >
                   {/* Background photo */}
                   <Image
