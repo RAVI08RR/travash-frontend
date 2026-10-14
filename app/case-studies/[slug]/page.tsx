@@ -1,14 +1,11 @@
 import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { client } from '@/lib/sanity'
 import { caseStudyBySlugQuery, allCaseStudySlugsQuery, homePageQuery } from '@/lib/queries'
 import { portfolioProjectBySlugQuery } from '@/lib/portfolioQueries'
 import {
-  DEFAULT_SATYAPAAN_DATA,
-  FALLBACK_CASE_STUDIES,
   type CaseStudyData,
 } from '@/lib/case-study-data'
-import { DEFAULT_PORTFOLIO_PROJECTS } from '@/lib/portfolio-data'
 
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
@@ -52,7 +49,7 @@ export async function generateMetadata({
     if (!study) {
       study = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
-    const data = study || FALLBACK_CASE_STUDIES[slug] || null
+    const data = study || null
 
     if (!data) {
       return {
@@ -129,7 +126,9 @@ async function getCaseStudyData(slug: string) {
       study = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
 
-    const fallback = FALLBACK_CASE_STUDIES[slug]
+    // Sanity is the source of truth for detail pages. Never merge an old local
+    // case-study record into a live document, because that can display stale content.
+    const fallback = undefined as unknown as CaseStudyData | undefined
     const combinedGallery =
       (Array.isArray(study?.gallery) && study.gallery.length > 0 ? study.gallery : null) ||
       fallback?.gallery ||
@@ -332,12 +331,9 @@ async function getCaseStudyData(slug: string) {
           }
         : study
         ? (() => {
-            const defaultProj = DEFAULT_PORTFOLIO_PROJECTS.find((p) => p.slug === slug)
             const cleanDesc = sanitizeScrapedText(study.description, '')
             const cleanExcerpt = sanitizeScrapedText(study.excerpt, '')
             const fallbackShortDesc =
-              defaultProj?.shortDescription ||
-              defaultProj?.cardDescription ||
               `${study.title || slug} enterprise platform engineered by Travash.`
             const shortDesc = cleanExcerpt || cleanDesc || fallbackShortDesc
 
@@ -402,7 +398,7 @@ async function getCaseStudyData(slug: string) {
     }
   } catch {
     return {
-      caseStudy: FALLBACK_CASE_STUDIES[slug] || null,
+      caseStudy: null,
       siteSettings: null,
     }
   }
@@ -414,17 +410,12 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  redirect(`/portfolio/${slug}`)
   const { caseStudy, siteSettings } = await getCaseStudyData(slug)
 
   if (!caseStudy) {
     notFound()
   }
-
-  // Feature Image resolution
-  const featureImageSrc =
-    typeof caseStudy.featureImage === 'string'
-      ? caseStudy.featureImage
-      : caseStudy.featureImage?.asset?.url || '/home-img/satyapaan-min 2.png'
 
   return (
     <>
@@ -464,8 +455,7 @@ export default async function CaseStudyPage({
               : caseStudy.heroImage?.asset?.url) ||
             (typeof caseStudy.featureImage === 'string'
               ? caseStudy.featureImage
-              : caseStudy.featureImage?.asset?.url) ||
-            '/home-img/satyapaan-min 2.png'
+              : caseStudy.featureImage?.asset?.url)
           }
           alt={caseStudy.title}
         />

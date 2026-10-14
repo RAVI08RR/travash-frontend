@@ -54,7 +54,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/case-studies/satyapaan',
+    ctaHref: '/portfolio/satyapaan',
   },
   {
     projectName: 'Smart Healthcare Data Platform',
@@ -87,7 +87,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/case-studies/radiantsa',
+    ctaHref: '/portfolio/radiantsa',
   },
   {
     projectName: 'Digital Banking & Cyber Fraud Mitigation Platform',
@@ -120,7 +120,7 @@ const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     ctaLabel: 'View Case Study',
-    ctaHref: '/case-studies/i4c-bank-portal',
+    ctaHref: '/portfolio/i4c-bank-portal',
   },
 ]
 
@@ -154,7 +154,7 @@ function getDetailHref(rawHref?: string, projectName?: string): string {
   
   if (rawHref && !LIST_PAGES.includes(rawHref.trim())) {
     // If it's a specific slug route, return it directly
-    if (rawHref.startsWith('/case-studies/') || rawHref.startsWith('/portfolio/')) {
+    if (rawHref.startsWith('/portfolio/')) {
       return rawHref
     }
   }
@@ -162,25 +162,25 @@ function getDetailHref(rawHref?: string, projectName?: string): string {
   // Infer detail route from project name or raw href string
   const str = `${projectName || ''} ${rawHref || ''}`.toLowerCase()
   if (str.includes('passport') || str.includes('satya') || str.includes('verification')) {
-    return '/case-studies/satyapaan'
+    return '/portfolio/satyapaan'
   }
   if (str.includes('health') || str.includes('radiant') || str.includes('medical') || str.includes('clinical')) {
-    return '/case-studies/radiantsa'
+    return '/portfolio/radiantsa'
   }
   if (str.includes('bank') || str.includes('fraud') || str.includes('i4c') || str.includes('cyber')) {
-    return '/case-studies/i4c-bank-portal'
+    return '/portfolio/i4c-bank-portal'
   }
   if (str.includes('voice') || str.includes('pixl') || str.includes('agent')) {
-    return '/case-studies/pixl'
+    return '/portfolio/pixl'
   }
   if (str.includes('rental') || str.includes('direct') || str.includes('vacation')) {
-    return '/case-studies/direct-owners'
+    return '/portfolio/direct-owners'
   }
   if (str.includes('ugo') || str.includes('supply') || str.includes('fleet')) {
-    return '/case-studies/ugo'
+    return '/portfolio/ugo'
   }
 
-  return '/case-studies/satyapaan'
+  return '/portfolio/satyapaan'
 }
 
 export default function CaseStudies({ data }: { data?: CaseStudiesSectionData }) {

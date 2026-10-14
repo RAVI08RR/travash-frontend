@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { getSanityImageUrl } from '@/lib/sanity.image'
-import defaultHeroThumb from '@/public/casestudy-img/Satyaapan-Passport-Verification-System.png'
 import type { CaseStudyData } from '@/lib/case-study-data'
 import { sanitizeScrapedText, isScrapedJunkOrCss } from '@/lib/case-study-cleaner'
 import { resolveCountries } from './CountryFlags'
@@ -21,51 +20,11 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       ? getSanityImageUrl(data.featureImage, 1400)
       : undefined
 
-  const SLUG_THUMBS: Record<string, string> = {
-    pixl: '/casestudy-thumbs/pixl-crm.png',
-    'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
-    'ai-voice-agent': '/casestudy-thumbs/pixl-crm.png',
-    satyapaan: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
-    satyaapan: '/casestudy-img/Satyaapan-Passport-Verification-System.png',
-    'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
-    i4c: '/casestudy-thumbs/i4c.png',
-    '14c': '/casestudy-thumbs/14c.png',
-    'direct-owners': '/casestudy-thumbs/Dreamnest.png',
-    directowner: '/casestudy-thumbs/Dreamnest.png',
-    ugo: '/casestudy-thumbs/UGO.png',
-    uog: '/casestudy-thumbs/UGO.png',
-    indispare: '/casestudy-thumbs/indispare.png',
-    dovehouse: '/images/portfolio/dovehouse.png',
-    'dovehouse-capital': '/images/portfolio/dovehouse.png',
-    pekt: '/images/portfolio/pekt.webp',
-    skipr: '/images/portfolio/skipr.png',
-    darpan: '/casestudy-thumbs/Darpan.png',
-    'i-verify': '/casestudy-thumbs/i-verify.png',
-    iverify: '/casestudy-thumbs/i-verify.png',
-    'dine-desk': '/casestudy-thumbs/dinedesk.png',
-    dinedesk: '/casestudy-thumbs/dinedesk.png',
-    radiantsa: '/casestudy-thumbs/rediantsage.png',
-    'radiant-sage': '/casestudy-thumbs/rediantsage.png',
-    'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
-    protectly: '/casestudy-thumbs/protectly.png',
-    crowdcounting: '/casestudy-thumbs/Crowd-Counting.png',
-    'crowd-counting': '/casestudy-thumbs/Crowd-Counting.png',
-    nigaah: '/casestudy-thumbs/Nigaah.png',
-    'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
-    unixparts: '/casestudy-thumbs/unixparts.png',
-    'unix-parts': '/casestudy-thumbs/unixparts.png',
-    crestsure: '/images/portfolio/dovehouse.png',
-  }
-
-  const slug = data.slug?.current || ''
-  const slugFallback = SLUG_THUMBS[slug] || '/casestudy-thumbs/Satyaapan.png'
-
   const featureVisual =
     heroSanityUrl ||
     (typeof data.heroImage === 'string' && data.heroImage ? data.heroImage : undefined) ||
     featureSanityUrl ||
-    (typeof data.featureImage === 'string' && data.featureImage ? data.featureImage : undefined) ||
-    slugFallback
+    (typeof data.featureImage === 'string' && data.featureImage ? data.featureImage : undefined)
 
   const title = data?.title || 'Case Study'
 
@@ -73,7 +32,7 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
   const clientName =
     typeof data?.client === 'string'
       ? data.client
-      : (data?.client as any)?.title || (data?.client as any)?.name || 'Telangana State Police'
+      : (data?.client as any)?.title || (data?.client as any)?.name || ''
   const solutionName =
     data?.heroSolution ||
     data?.solutionName ||
@@ -85,11 +44,11 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
       : (data?.industry as any)?.title ||
       (data?.industry as any)?.name ||
       data?.projectMeta?.find((m) => (m.label || '').toLowerCase().trim() === 'industry')?.value ||
-      'Government / Public Safety'
+      ''
   const capabilitiesValue =
     data?.capabilities ||
     data?.projectMeta?.find((m) => (m.label || '').toLowerCase().includes('capabilit'))?.value ||
-    'Web Application Development • AI–Assisted Verification • Facial Recognition • Data Extraction • Workflow Automation'
+    ''
 
   const countryItems = resolveCountries(data?.countries, data?.location)
 
@@ -327,15 +286,21 @@ export default function CaseStudyHero({ data }: { data: CaseStudyData }) {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative aspect-16/10 w-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 bg-[#F8FAFC]"
             >
-              <Image
-                src={featureVisual}
-                alt={data.title}
-                fill
-                priority
-                unoptimized
-                className="object-cover object-center"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {featureVisual ? (
+                <Image
+                  src={featureVisual}
+                  alt={data.title}
+                  fill
+                  priority
+                  unoptimized
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-[#E8F1F7] text-sm font-semibold text-[#004771]">
+                  {title}
+                </div>
+              )}
             </motion.div>
           </div>
         </div>

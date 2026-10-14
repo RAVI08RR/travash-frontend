@@ -13,39 +13,6 @@ interface ServiceCaseStudiesProps {
   serviceTitle?: string
 }
 
-const SLUG_TO_THUMB: Record<string, string> = {
-  satyapaan: '/casestudy-thumbs/Satyaapan.png',
-  satyaapan: '/casestudy-thumbs/Satyaapan.png',
-  'i4c-bank-portal': '/casestudy-thumbs/i4c.png',
-  i4c: '/casestudy-thumbs/i4c.png',
-  '14c': '/casestudy-thumbs/14c.png',
-  'dine-desk': '/casestudy-thumbs/dinedesk.png',
-  dinedesk: '/casestudy-thumbs/dinedesk.png',
-  darpan: '/casestudy-thumbs/Darpan.png',
-  ugo: '/casestudy-thumbs/UGO.png',
-  uog: '/casestudy-thumbs/UGO.png',
-  indispare: '/casestudy-thumbs/indispare.png',
-  pixl: '/casestudy-thumbs/pixl-crm.png',
-  'pixl-crm': '/casestudy-thumbs/pixl-crm.png',
-  'ai-voice-agent': '/casestudy-thumbs/pixl-crm.png',
-  'i-verify': '/casestudy-thumbs/i-verify.png',
-  iverify: '/casestudy-thumbs/i-verify.png',
-  radiantsa: '/casestudy-thumbs/rediantsage.png',
-  'radiant-sage': '/casestudy-thumbs/rediantsage.png',
-  'smart-healthcare-data-platform': '/casestudy-thumbs/rediantsage.png',
-  protectly: '/casestudy-thumbs/protectly.png',
-  skipr: '/images/portfolio/skipr.png',
-  dovehouse: '/images/portfolio/dovehouse.png',
-  pekt: '/images/portfolio/pekt.webp',
-  'direct-owners': '/casestudy-thumbs/Dreamnest.png',
-  crowdcounting: '/casestudy-thumbs/Crowd-Counting.png',
-  'crowd-counting': '/casestudy-thumbs/Crowd-Counting.png',
-  nigaah: '/casestudy-thumbs/Nigaah.png',
-  'nigaah-videosurvelience': '/casestudy-thumbs/Nigaah.png',
-  'unix-parts': '/casestudy-thumbs/unixparts.png',
-  unixparts: '/casestudy-thumbs/unixparts.png',
-}
-
 // 6 diverse, high-impact enterprise case studies to guarantee smooth 3-at-a-time infinite looping
 const DEFAULT_FALLBACK_STUDIES: RelatedCaseStudy[] = [
   {
@@ -237,22 +204,17 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
         >
           <div className="flex touch-pan-y -ml-6">
             {displayedStudies.map((study, idx) => {
-              // Prefer the Sanity-resolved hero image, then the local slug→thumb map,
-              // then any raw string set on the study, then a safe placeholder.
+              // Prefer the current Sanity image, then any image carried by the study.
               const sanityImg =
                 study.heroImage?.asset?.url ||
                 study.featureImage?.asset?.url
-              const thumbFromMap = study.slug ? SLUG_TO_THUMB[study.slug] : undefined
-              const rawImage = sanityImg || thumbFromMap || study.image
+              const rawImage = sanityImg || study.image
               const isValidPath =
                 typeof rawImage === 'string' &&
                 (rawImage.startsWith('/') || rawImage.startsWith('http'))
-              const imageSrc = isValidPath ? rawImage : '/casestudy-thumbs/Satyaapan.png'
+              const imageSrc = isValidPath ? rawImage : undefined
 
-              const href =
-                study.slug === 'satyapaan' || study.slug?.includes('satyapaan')
-                  ? '/case-studies/satyapaan'
-                  : `/case-studies/${study.slug}`
+              const href = `/portfolio/${study.slug}`
 
               return (
                 <div
@@ -264,13 +226,19 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
                     <div>
                       {/* Compact Image Frame */}
                       <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
-                        <Image
-                          src={imageSrc}
-                          alt={study.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 640px) 88vw, (max-width: 1024px) 50vw, 420px"
-                        />
+                        {imageSrc ? (
+                          <Image
+                            src={imageSrc}
+                            alt={study.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 640px) 88vw, (max-width: 1024px) 50vw, 420px"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#E8F1F7] text-sm font-semibold text-[#004771]">
+                            Case Study
+                          </div>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
 
                         {/* Category Tag */}
@@ -338,4 +306,3 @@ export default function ServiceCaseStudies({ caseStudies, serviceTitle }: Servic
     </section>
   )
 }
-

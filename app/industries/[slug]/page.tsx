@@ -137,58 +137,44 @@ async function getIndustryPageData(slug: string) {
       client.fetch(siteSettingsQuery, {}, { cache: 'no-store', next: { revalidate: 0 } }),
     ])
 
-    // Find local fallback
-    let localFallback: IndustryDetailData | undefined = INDUSTRIES_MAP[slug]
-    if (!localFallback && slugAliases.length > 0) {
-      for (const alias of slugAliases) {
-        if (INDUSTRIES_MAP[alias]) {
-          localFallback = INDUSTRIES_MAP[alias]
-          break
-        }
-      }
-    }
-
-    if (!sanityIndustry && !localFallback) {
+    // Industry detail pages are sourced from Sanity. Do not merge old local
+    // fixtures into the rendered page when the Sanity document is incomplete.
+    if (!sanityIndustry) {
       return { industry: null, siteSettings }
     }
 
-    // Merge Sanity data with fallback data
-    const title = sanityIndustry?.title || sanityIndustry?.name || localFallback?.title || ''
-    const eyebrow = sanityIndustry?.eyebrow || localFallback?.eyebrow || 'INDUSTRY PRACTICE'
+    // Normalize the current Sanity document without injecting local fixture data.
+    const title = sanityIndustry.title || sanityIndustry.name || ''
+    const eyebrow = sanityIndustry?.eyebrow || 'INDUSTRY PRACTICE'
     const tagline =
-      sanityIndustry?.tagline || sanityIndustry?.description || localFallback?.tagline || ''
-    const overview = sanityIndustry?.overview || localFallback?.overview || ''
-    const heroImage =
-      sanityIndustry?.heroImage?.asset?.url ||
-      (typeof localFallback?.heroImage === 'string'
-        ? localFallback.heroImage
-        : localFallback?.heroImage?.asset?.url) ||
-      '/home-img/Frame.png'
+      sanityIndustry?.tagline || sanityIndustry?.description || ''
+    const overview = sanityIndustry?.overview || ''
+    const heroImage = sanityIndustry?.heroImage?.asset?.url
 
     const metrics =
       Array.isArray(sanityIndustry?.metrics) && sanityIndustry.metrics.length > 0
         ? sanityIndustry.metrics
-        : localFallback?.metrics || []
+        : []
 
     const challenges =
       Array.isArray(sanityIndustry?.challenges) && sanityIndustry.challenges.length > 0
         ? sanityIndustry.challenges
-        : localFallback?.challenges || []
+        : []
 
     const capabilities =
       Array.isArray(sanityIndustry?.capabilities) && sanityIndustry.capabilities.length > 0
         ? sanityIndustry.capabilities
-        : localFallback?.capabilities || []
+        : []
 
     const technologies =
       Array.isArray(sanityIndustry?.technologies) && sanityIndustry.technologies.length > 0
         ? sanityIndustry.technologies
-        : localFallback?.technologies || []
+        : []
 
     const compliance =
       Array.isArray(sanityIndustry?.compliance) && sanityIndustry.compliance.length > 0
         ? sanityIndustry.compliance
-        : localFallback?.compliance || []
+        : []
 
     // Only use explicitly selected case studies from Sanity backend
     const relatedCaseStudies =
@@ -221,7 +207,7 @@ async function getIndustryPageData(slug: string) {
             'Delivered ROI',
           href:
             sh.href ||
-            (sel?.slug ? `/case-studies/${sel.slug}` : '/portfolio'),
+            (sel?.slug ? `/portfolio/${sel.slug}` : '/portfolio'),
         }
       }
     }
@@ -230,7 +216,7 @@ async function getIndustryPageData(slug: string) {
       _id: sanityIndustry?._id,
       slug,
       title,
-      shortTitle: sanityIndustry?.shortTitle || localFallback?.shortTitle,
+      shortTitle: sanityIndustry?.shortTitle,
       eyebrow,
       tagline,
       heroImage,
@@ -249,7 +235,7 @@ async function getIndustryPageData(slug: string) {
   } catch (err) {
     console.error('Error fetching industry page data:', err)
     return {
-      industry: INDUSTRIES_MAP[slug] || null,
+      industry: null,
       siteSettings: null,
     }
   }
@@ -353,14 +339,20 @@ export default async function IndustryDetailPage({
               {/* Right Column: Visual Card */}
               <div className="lg:col-span-5">
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_16px_50px_rgba(11,71,133,0.14)] border border-gray-200/90 group">
-                  <Image
-                    src={industry.heroImage}
-                    alt={industry.title}
-                    fill
-                    priority
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 500px"
-                  />
+                  {industry.heroImage ? (
+                    <Image
+                      src={industry.heroImage}
+                      alt={industry.title}
+                      fill
+                      priority
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 500px"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-[#E8F1F7] text-sm font-semibold text-[#004771]">
+                      Industry Practice
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E3D]/90 via-[#0B1E3D]/25 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
                     <span className="text-xs font-bold uppercase tracking-wider text-teal-300 block mb-1">

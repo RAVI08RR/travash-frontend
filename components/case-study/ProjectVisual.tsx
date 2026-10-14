@@ -10,7 +10,7 @@ interface ProjectVisualProps {
 }
 
 export default function ProjectVisual({
-  imageSrc = '/home-img/satyapaan-min 2.png',
+  imageSrc,
   alt = 'Satyaapan Passport Verification Portal Interface',
   caption,
 }: ProjectVisualProps) {
@@ -24,15 +24,21 @@ export default function ProjectVisual({
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative w-full aspect-[16/9] sm:aspect-[16/9] lg:aspect-[16/9] rounded-2xl sm:rounded-3xl lg:rounded-[36px] overflow-hidden bg-gray-50"
         >
-          <Image
-            src={imageSrc}
-            alt={alt}
-            fill
-            unoptimized
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 1280px"
-            priority
-          />
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={alt}
+              fill
+              unoptimized
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 1280px"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-[#E8F1F7] text-sm font-semibold text-[#004771]">
+              {alt}
+            </div>
+          )}
         </motion.div>
         {caption && (
           <p className="text-center text-xs text-gray-500 mt-4 italic font-medium">

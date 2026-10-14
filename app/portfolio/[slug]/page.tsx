@@ -3,11 +3,7 @@ import { notFound } from 'next/navigation'
 import { client } from '@/lib/sanity'
 import { portfolioProjectBySlugQuery, allPortfolioSlugsQuery } from '@/lib/portfolioQueries'
 import { caseStudyBySlugQuery, homePageQuery } from '@/lib/queries'
-import {
-  FALLBACK_CASE_STUDIES,
-  type CaseStudyData,
-} from '@/lib/case-study-data'
-import { DEFAULT_PORTFOLIO_PROJECTS } from '@/lib/portfolio-data'
+import { type CaseStudyData } from '@/lib/case-study-data'
 
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
@@ -39,7 +35,10 @@ export const revalidate = 0
 
 // Adapt any Sanity project or fallback into standard CaseStudyData shape
 function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
-  const fallback = FALLBACK_CASE_STUDIES[slug]
+  // The canonical portfolio page must be backed by the current Sanity document.
+  // Keep the adapter shape-normalization only; never hydrate this page from old
+  // local case-study or portfolio fixtures.
+  const fallback = undefined as unknown as CaseStudyData | undefined
 
   if (!raw && !fallback) return null
 
@@ -229,7 +228,16 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
   }
 
   // Synthesis for any project without a pre-baked static fallback
-  const defaultProj = DEFAULT_PORTFOLIO_PROJECTS.find((p) => p.slug === slug)
+  const defaultProj = undefined as {
+    title?: string
+    industry?: string
+    category?: string
+    technologies?: unknown[]
+    metrics?: unknown[]
+    cardImage?: string
+    shortDescription?: string
+    cardDescription?: string
+  } | undefined
 
   const rawTitle = typeof raw?.title === 'string' ? sanitizeScrapedText(raw.title, '') : ''
   const title = rawTitle || defaultProj?.title || raw?.title || slug
@@ -274,9 +282,8 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
           { value: raw?.client || title, label: 'client-badge' },
         ]
 
-  const fallbackThumb = defaultProj?.cardImage || `/images/portfolio/${slug}.webp`
-  const heroImage = raw?.heroImage || raw?.featuredImage || raw?.cardImage || fallbackThumb
-  const featureImage = raw?.featureImage || raw?.featuredImage || raw?.cardImage || fallbackThumb
+  const heroImage = raw?.heroImage || raw?.featuredImage || raw?.cardImage
+  const featureImage = raw?.featureImage || raw?.featuredImage || raw?.cardImage || raw?.heroImage
 
   const cleanExcerpt = sanitizeScrapedText(raw?.excerpt, '')
   const cleanDesc = sanitizeScrapedText(raw?.description, '')
@@ -440,8 +447,7 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
     technologyStack:
       raw?.technologyStack && Array.isArray(raw.technologyStack) && raw.technologyStack.length > 0
         ? raw.technologyStack
-        : FALLBACK_CASE_STUDIES[slug]?.technologyStack ||
-          (techList.length > 0
+        : (techList.length > 0
             ? [
                 {
                   category: 'Core Architecture',
@@ -480,7 +486,7 @@ function adaptToCaseStudyData(raw: any, slug: string): CaseStudyData | null {
           company: raw.testimonial.company || title,
           image: raw.testimonial.image || { asset: { url: '/images/avatar-placeholder.svg' } },
         }
-      : FALLBACK_CASE_STUDIES[slug]?.testimonial || undefined,
+      : undefined,
     whyItMatters:
       raw?.whyItMatters || {
         title: 'Why This Matters',
@@ -528,9 +534,9 @@ export async function generateMetadata({
 
   let raw: any = null
   try {
-    raw = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
+    raw = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     if (!raw) {
-      raw = await client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
+      raw = await client.fetch(caseStudyBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } })
     }
   } catch {
     // fallback
@@ -605,7 +611,7 @@ export default async function PortfolioProjectDetailPage({
       client.fetch(portfolioProjectBySlugQuery, { slug }, { cache: 'no-store', next: { revalidate: 0 } }),
       client.fetch(homePageQuery, {}, { cache: 'no-store', next: { revalidate: 0 } }),
     ])
-    rawProject = caseStudyResult || projectResult
+    rawProject = projectResult || caseStudyResult
     siteSettings = homeResult?.siteSettings || null
   } catch (err) {
     console.warn(`Sanity fetch error for portfolio slug ${slug}:`, err)
