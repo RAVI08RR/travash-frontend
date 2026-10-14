@@ -16,7 +16,7 @@ export default function LinkedInUpdates() {
   }, [])
 
   return (
-    <section className="py-12 lg:py-16 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
+    <section className="py-10 lg:py-10 bg-white font-['Plus_Jakarta_Sans',sans-serif]">
       <div className="max-w-[94rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-5 lg:mb-5">
           <h2 className="section-heading-title">Follow Our Updates</h2>
