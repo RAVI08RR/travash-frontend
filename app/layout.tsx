@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import FloatingWidgets from '@/components/chat/FloatingWidgets'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -31,13 +32,6 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/',
-  },
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.png', type: 'image/png' },
-    ],
-    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
     type: 'website',
@@ -88,10 +82,10 @@ const jsonLd = {
       logo: {
         '@type': 'ImageObject',
         '@id': `${BASE_URL}/#logo`,
-        url: `${BASE_URL}/travash-latest-logo.svg`,
+        url: 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg',
         caption: 'Travash Software Solutions',
       },
-      image: `${BASE_URL}/travash-latest-logo.svg`,
+      image: 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg',
       description:
         'Travash is an AI-assisted software and product development company, partnering with startups and enterprises to build high-impact digital products.',
       contactPoint: [
@@ -105,9 +99,7 @@ const jsonLd = {
       ],
       sameAs: [
         'https://www.linkedin.com/company/travash-software-solutions/',
-        'https://www.facebook.com/travashglobal',
-        'https://www.instagram.com/travashglobal/',
-        'https://x.com/travashglobal',
+        'https://www.facebook.com/TravashSoftwareSolutions/',
       ],
     },
     {
@@ -126,7 +118,7 @@ const jsonLd = {
       '@id': `${BASE_URL}/#professionalService`,
       name: 'Travash Software Solutions',
       url: BASE_URL,
-      logo: `${BASE_URL}/travash-latest-logo.svg`,
+      logo: 'https://travash.com/wp-content/uploads/2023/12/New-latest-logo.svg',
       priceRange: '$$',
       telephone: '+91-7416743434',
       email: 'contact@travash.com',
@@ -147,7 +139,10 @@ export default function RootLayout({ children }: LayoutProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${plusJakartaSans.className} antialiased`}>{children}</body>
+      <body className={`${plusJakartaSans.className} antialiased`}>
+        {children}
+        <FloatingWidgets />
+      </body>
     </html>
   )
 }
